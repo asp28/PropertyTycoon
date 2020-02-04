@@ -5,6 +5,8 @@
  */
 package com.mycompany.propertytycoon;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ankeet
@@ -16,7 +18,7 @@ public class PropertyCards {
     private String action;
     private boolean canBeBought;
     private int cost;
-    private Integer[] houses;
+    private ArrayList<Integer> houses;
     private int rent;
 
     public String getName() {
@@ -39,15 +41,15 @@ public class PropertyCards {
         return cost;
     }
 
-    public Integer[] getHouses() {
+    public ArrayList<Integer> getHouses() {
         return houses;
     }
 
-    public int rent() {
+    public int getRent() {
         return rent;
     }
 
-    public PropertyCards(String name, String group, String action, boolean canBeBought, int cost, int rent, Integer[] houses) {
+    public PropertyCards(String name, String group, String action, boolean canBeBought, int cost, int rent, ArrayList<Integer> houses) {
         this.rent = rent;
         this.name = name;
         this.action = action;
