@@ -19,7 +19,12 @@ public class PropertyCards {
     private boolean canBeBought;
     private int cost;
     private ArrayList<Integer> houses;
-    private int rent;
+    private String rent;
+    private int houseCost;
+
+    public int getHouseCost() {
+        return houseCost;
+    }
 
     public String getName() {
         return name;
@@ -45,11 +50,11 @@ public class PropertyCards {
         return houses;
     }
 
-    public int getRent() {
+    public String getRent() {
         return rent;
     }
 
-    public PropertyCards(String name, String group, String action, boolean canBeBought, int cost, int rent, ArrayList<Integer> houses) {
+    public PropertyCards(String name, String group, String action, boolean canBeBought, int cost, String rent, ArrayList<Integer> houses, int houseCost) {
         this.rent = rent;
         this.name = name;
         this.action = action;
@@ -57,5 +62,6 @@ public class PropertyCards {
         this.canBeBought = canBeBought;
         this.cost = cost;
         this.houses = houses;
+        this.houseCost = houseCost;
     }
 }
