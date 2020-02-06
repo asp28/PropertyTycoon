@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.propertytycoon;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -14,12 +9,24 @@ import java.util.Iterator;
 
 /**
  *
- * @author ankeet
+ * @author BigNerdNotation
+ * @version 1.0
+ * 
+ * Parser object will turn the excel documents into java objects that can be used.
+ * 
  */
 public class Parser {
-
+    /**
+     * String location of where the board is located.
+     */
     public final String board = "./src/main/resources/PropertyTycoonBoardData.xlsx";
 
+    /**
+     * 
+     * @return ArrayList of propertyCard objects.
+     * @throws IOException
+     * @throws InvalidFormatException 
+     */
     public ArrayList<PropertyCards> boardMaker() throws IOException, InvalidFormatException {
         ArrayList<PropertyCards> b = new ArrayList<>();
         Workbook workbook = WorkbookFactory.create(new File(board));
@@ -96,7 +103,6 @@ public class Parser {
                     houseCost = 200;
                 }
             }
-            //System.out.println(position + " " + name + " " + group + " " + action + " " + bought + " " + cost + " " + rent + " " + houses);
             PropertyCards pc = new PropertyCards(name, group, action, canBeBought, cost, rent, houses, houseCost);
             b.add(pc);
         }
