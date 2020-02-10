@@ -1,14 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.mycompany.propertytycoon;
 
-/**
- *
- * @author ankeet
- */
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+
+
 public class Board {
+    
+    private ArrayList<PropertyCards> boardLocations;
+    
+    /**
+     * Constructor to initialize Board object
+     * @throws IOException
+     * @throws InvalidFormatException 
+     */
+    public Board() throws IOException, InvalidFormatException{
+        boardLocations = new Parser().boardMaker();
+    }
+    
+    /**
+     * Getter for variable boardLocations
+     * @return an ArrayList of PropertyCards
+     */
+    public ArrayList<PropertyCards> getBoardLocations() {
+        return boardLocations;
+    }
     
 }
