@@ -47,14 +47,14 @@ public class BankJUnitTest {
      */
     @Test
     public void testWithdraw() {
-        int cash = b.withdraw(500);
+       int cash = b.withdraw(500);
         System.out.print(b.getMoney());
         assertEquals(cash, 500);
         assertEquals(b.getMoney(), 49500);
         int cash2 = b.withdraw(49500);
         assertEquals(b.getMoney(), 0);
         int cash3 = b.withdraw(500);
-        assertEquals(b.getMoney(), 0);
+        assertEquals(b.getMoney(), 49500);
     }
 
     /**
