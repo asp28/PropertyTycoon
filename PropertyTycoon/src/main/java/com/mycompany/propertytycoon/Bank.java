@@ -20,7 +20,9 @@ public class Bank {
      */
     public Bank(ArrayList<PropertyCards> properties) {
         totalMoney = 50000;
-        unownedProperties = properties;
+        for (PropertyCards pc : properties) {
+            if (pc.canBeBought()) {
+                unownedProperties.add(pc);
     }
 
     /**
@@ -52,8 +54,9 @@ public class Bank {
             totalMoney -= cash;
             return cash;
         } else {
-            System.out.print("Bank can not pay");
-            return 0;
+            totalMoney += 50000;
+            System.out.print("Bank funds have been replenished");
+            return withdraw(cash);
         }
     }
 
