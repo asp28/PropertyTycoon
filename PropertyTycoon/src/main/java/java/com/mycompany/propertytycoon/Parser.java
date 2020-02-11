@@ -1,4 +1,4 @@
-package com.mycompany.propertytycoon;
+package java.com.mycompany.propertytycoon;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
