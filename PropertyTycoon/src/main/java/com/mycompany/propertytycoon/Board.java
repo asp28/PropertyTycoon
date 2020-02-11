@@ -1,5 +1,5 @@
 
-package java.com.mycompany.propertytycoon;
+package com.mycompany.propertytycoon;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 

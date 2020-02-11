@@ -11,6 +11,8 @@ import org.junit.*;
 
 import java.io.IOException;
 
+import static org.junit.Assert.assertEquals;
+
 public class BoardTest {
 
     Board board;

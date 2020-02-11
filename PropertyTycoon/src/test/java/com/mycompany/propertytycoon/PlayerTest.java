@@ -1,4 +1,4 @@
-package java.com.mycompany.propertytycoon;
+package com.mycompany.propertytycoon;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
@@ -40,35 +40,30 @@ public class PlayerTest {
         PropertyCards propertyCards = new PropertyCards("test", "green", "", true, 1000, "10", a, 100);
         ArrayList<PropertyCards> properties = new ArrayList<PropertyCards>();
         properties.add(propertyCards);
-        Bank bank = new Bank();
         Dice dice = new Dice();
         Board board = new Board();
+        Bank bank = new Bank(board.getBoardLocations());
         Player player = new Player(board, dice, bank);
         player.setPlayerLocation(42);
         player.rollDice();
-        System.out.println(player.getGetPlayerLocation());
+        System.out.println(player.getPlayerLocation());
     }
 
     /**
      * Testing that the player will be able to successfully buy a property and add it to the players owned property list
      */
     @Test
-    public void testBuy() {
-        ArrayList<Integer> a = new ArrayList<Integer>();
-        a.add(1);
-        PropertyCards propertyCards = new PropertyCards("test", "green", "", true, 1000, "10", a, 100);
-        ArrayList<PropertyCards> properties = new ArrayList<PropertyCards>();
-        properties.add(propertyCards);
-        Bank bank = new Bank(properties);
+    public void testBuy() throws IOException, InvalidFormatException {
         Dice dice = new Dice();
-        Board board = new Board(properties);
-        Player player = new Player(board,dice,bank);
+        Board board = new Board();
+        Bank bank = new Bank(board.getBoardLocations());
+        Player player = new Player(board, dice, bank);
 
-        player.setPlayerLocation(0);
-        PropertyCards propertyLocation = board.getBoardLocations().get(player.getGetPlayerLocation());
+        player.setPlayerLocation(1);
+        PropertyCards propertyLocation = board.getBoardLocations().get(player.getPlayerLocation());
         player.buyProperty(propertyLocation);
 
-        Assertions.assertEquals(1,player.getOwnedProperties().size());
+        Assertions.assertEquals(1, player.getOwnedProperties().size());
 
     }
 

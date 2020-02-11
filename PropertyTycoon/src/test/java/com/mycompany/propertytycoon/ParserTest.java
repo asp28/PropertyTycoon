@@ -8,7 +8,6 @@ package com.mycompany.propertytycoon;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.*;
 
-import java.com.mycompany.propertytycoon.Parser;
 import java.io.IOException;
 import java.util.ArrayList;
 
