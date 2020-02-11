@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.propertytycoon;
+package java.com.mycompany.propertytycoon;
+
+import com.mycompany.propertytycoon.Board;
+import com.mycompany.propertytycoon.PropertyCards;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,5 @@
 package java.com.mycompany.propertytycoon;
 
-import com.mycompany.propertytycoon.*;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
