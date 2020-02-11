@@ -23,7 +23,7 @@ public class PlayerTest {
         Bank bank = new Bank(properties);
         Dice dice = new Dice();
         Board board = new Board();
-        Player player = new Player(board, dice, bank);
+        Player player = new Player(board, dice, bank, "name");
 
         player.rollDice();
         Assertions.assertTrue(player.getPlayerLocation() != 0);
@@ -43,7 +43,7 @@ public class PlayerTest {
         Dice dice = new Dice();
         Board board = new Board();
         Bank bank = new Bank(board.getBoardLocations());
-        Player player = new Player(board, dice, bank);
+        Player player = new Player(board, dice, bank, "name");
         player.setPlayerLocation(42);
         player.rollDice();
         System.out.println(player.getPlayerLocation());
@@ -57,11 +57,11 @@ public class PlayerTest {
         Dice dice = new Dice();
         Board board = new Board();
         Bank bank = new Bank(board.getBoardLocations());
-        Player player = new Player(board, dice, bank);
+        Player player = new Player(board, dice, bank, "name");
 
         player.setPlayerLocation(1);
         PropertyCards propertyLocation = board.getBoardLocations().get(player.getPlayerLocation());
-        player.buyProperty(propertyLocation);
+        player.buyProperty(propertyLocation, 1);
 
         Assertions.assertEquals(1, player.getOwnedProperties().size());
 

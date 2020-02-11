@@ -25,23 +25,30 @@ public class Player {
     private Board board;
     private Dice dice;
     private Bank bank;
+    private String character;
 
     /**
      * Bank Constructor method
+     *
      * @param board
      * @param dice
      * @param bank
      */
-    public Player(Board board, Dice dice, Bank bank) {
+    public Player(Board board, Dice dice, Bank bank, String character) {
         playerBalance = 1500;
-
+        this.character = character;
         this.board = board;
         this.dice = dice;
         this.bank = bank;
     }
 
+    public String getCharacter() {
+        return character;
+    }
+
     /**
      * Gets the location of the player around the board by returning an integer which represents the players location in the board location array
+     *
      * @return current player Location
      */
     public int getPlayerLocation() {
@@ -135,18 +142,22 @@ public class Player {
      * Gets all the actions that can be performed on the location for that user
      * Currently can check if the player location is owned by the bank
      */
-    public void viewActionsOnBoardPosition() {
+    public String viewActionsOnBoardPosition() {
+        String commandsOnThatProperty = "";
         PropertyCards propertyCards = board.getBoardLocations().get(playerLocation);
         //Check if the property can be brought
         String nameOfProperty = propertyCards.getName();
         if (propertyCards.isCanBeBought()) {
 
             if (bank.getProperties(nameOfProperty) != null) {
-                //Do Something that will enable the property to be able to be brought as it is still owned by the bank
+                commandsOnThatProperty = "BUY";
+            } else {
+                commandsOnThatProperty = "RENT";
             }
         } else {
-            //Will need to in the future check if the card is one of the chest or owned by another player and have the actions required!
+
         }
+        return commandsOnThatProperty;
     }
 
     /**
@@ -157,7 +168,7 @@ public class Player {
      *
      * @param property
      */
-    public void buyProperty(PropertyCards property) {
+    public void buyProperty(PropertyCards property, int location) {
         String nameOfProperty = property.getName();
         //Check the balance
         if (property.isCanBeBought()) {
@@ -165,11 +176,28 @@ public class Player {
                 playerBalance = playerBalance - property.getCost();
                 ownedProperties.add(property);
                 bank.removeProperties(nameOfProperty);
+                board.getBoardLocations().get(location).setOwnedBuy(getCharacter());
             } else {
                 System.out.println("Don't currently have the funds to be able to afford this property");
             }
         }
 
+    }
+
+    public String payRent(PropertyCards property, Player ownerOfProperty) {
+        int rentOwed = Integer.parseInt(property.getRent());
+        if ((playerBalance - rentOwed) >= 0) {
+            playerBalance = playerBalance - rentOwed;
+            ownerOfProperty.increaseBalance(rentOwed);
+            return "PAID";
+        } else {
+            return "UNABLETOPAY";
+        }
+
+    }
+
+    public void increaseBalance(int value) {
+        playerBalance += value;
     }
 
 

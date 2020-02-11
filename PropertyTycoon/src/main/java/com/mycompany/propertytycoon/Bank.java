@@ -74,7 +74,6 @@ public class Bank {
                 return p;
             }
         }
-        System.out.print("Not found");
         return null; // Watch out for later
     }
 

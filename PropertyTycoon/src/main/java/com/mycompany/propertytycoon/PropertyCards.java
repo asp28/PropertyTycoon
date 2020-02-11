@@ -23,6 +23,7 @@ public class PropertyCards {
     private ArrayList<Integer> houses;
     private String rent;
     private int houseCost;
+    private String ownedBuy;
 
     /**
      * @param name
@@ -43,6 +44,18 @@ public class PropertyCards {
         this.cost = cost;
         this.houses = houses;
         this.houseCost = houseCost;
+        if (canBeBought) {
+            ownedBuy = "The Board";
+        }
+        ownedBuy = "The Bank";
+    }
+
+    public String getOwnedBuy() {
+        return ownedBuy;
+    }
+
+    public void setOwnedBuy(String ownedBuy) {
+        this.ownedBuy = ownedBuy;
     }
 
     /**
