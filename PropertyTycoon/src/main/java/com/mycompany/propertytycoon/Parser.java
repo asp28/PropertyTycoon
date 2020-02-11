@@ -20,7 +20,7 @@ public class Parser {
     /**
      * String location of where the board is located.
      */
-    public final String board = "C:\\Users\\chris\\IdeaProjects\\PropertyTycoon\\PropertyTycoon\\src\\main\\java\\resources\\PropertyTycoonBoardData.xlsx";
+    public final String board = "./src/main/java/resources/PropertyTycoonBoardData.xlsx";
 
     /**
      *
