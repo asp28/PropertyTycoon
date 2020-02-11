@@ -23,7 +23,7 @@ public class Dice {
      */
     public int roll() {
         Random rn = new Random();
-        int answer = rn.nextInt(5) + 1;
+        int answer = rn.nextInt(6) + 1;
         return answer;
     }
 }
