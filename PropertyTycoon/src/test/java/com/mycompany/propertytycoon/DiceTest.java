@@ -1,4 +1,4 @@
-package com.mycompany.propertytycoon.test;
+package java.com.mycompany.propertytycoon;
 
 
 import com.mycompany.propertytycoon.Dice;
