@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.propertytycoon;
+package java.com.mycompany.propertytycoon;
 
 import java.util.ArrayList;
 
 /**
- *
  * @author BigNerdNotation
  * @version 1.0
- *
+ * <p>
  * A propertyCard is one piece of the board.
  */
 public class PropertyCards {
@@ -26,73 +25,6 @@ public class PropertyCards {
     private int houseCost;
 
     /**
-     *
-     * @return cost of house
-     */
-    public int getHouseCost() {
-        return houseCost;
-    }
-
-    /**
-     *
-     * @return name of card
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     *
-     * @return group card belongs too
-     */
-    public String getGroup() {
-        return group;
-    }
-
-    /**
-     *
-     * @return returns any action the card does
-     */
-    public String getAction() {
-        return action;
-    }
-
-    /**
-     *
-     * @return whether or not the card can be bought (Cards such as Go cannot be
-     * bought)
-     */
-    public boolean isCanBeBought() {
-        return canBeBought;
-    }
-
-    /**
-     *
-     * @return cost to buy card
-     */
-    public int getCost() {
-        return cost;
-    }
-
-    /**
-     *
-     * @return a arraylist of all the houses(and hotel) and the rent it costs
-     * with that many houses(or hotel)
-     */
-    public ArrayList<Integer> getHouses() {
-        return houses;
-    }
-
-    /**
-     *
-     * @return normal unaffected rent cost
-     */
-    public String getRent() {
-        return rent;
-    }
-
-    /**
-     *
      * @param name
      * @param group
      * @param action
@@ -100,9 +32,7 @@ public class PropertyCards {
      * @param cost
      * @param rent
      * @param houses
-     * @param houseCost
-     *
-     * Constructor of the propertyCard.
+     * @param houseCost   Constructor of the propertyCard.
      */
     public PropertyCards(String name, String group, String action, boolean canBeBought, int cost, String rent, ArrayList<Integer> houses, int houseCost) {
         this.rent = rent;
@@ -113,5 +43,63 @@ public class PropertyCards {
         this.cost = cost;
         this.houses = houses;
         this.houseCost = houseCost;
+    }
+
+    /**
+     * @return cost of house
+     */
+    public int getHouseCost() {
+        return houseCost;
+    }
+
+    /**
+     * @return name of card
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @return group card belongs too
+     */
+    public String getGroup() {
+        return group;
+    }
+
+    /**
+     * @return returns any action the card does
+     */
+    public String getAction() {
+        return action;
+    }
+
+    /**
+     * @return whether or not the card can be bought (Cards such as Go cannot be
+     * bought)
+     */
+    public boolean isCanBeBought() {
+        return canBeBought;
+    }
+
+    /**
+     * @return cost to buy card
+     */
+    public int getCost() {
+        return cost;
+    }
+
+    /**
+     * @return a arraylist of all the houses(and hotel) and the rent it costs
+     * with that many houses(or hotel)
+     */
+    public ArrayList<Integer> getHouses() {
+        return houses;
+    }
+
+    /**
+     * @return normal unaffected rent cost
+     */
+    public String getRent() {
+        return rent;
     }
 }

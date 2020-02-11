@@ -1,19 +1,18 @@
-package com.mycompany.propertytycoon;
+package java.com.mycompany.propertytycoon;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- *
  * @author BigNerdNotation
  * @version 1.0
- * 
+ * <p>
  * Parser object will turn the excel documents into java objects that can be used.
- * 
  */
 public class Parser {
     /**
@@ -22,10 +21,9 @@ public class Parser {
     public final String board = "./src/main/resources/PropertyTycoonBoardData.xlsx";
 
     /**
-     * 
      * @return ArrayList of propertyCard objects.
      * @throws IOException
-     * @throws InvalidFormatException 
+     * @throws InvalidFormatException
      */
     public ArrayList<PropertyCards> boardMaker() throws IOException, InvalidFormatException {
         ArrayList<PropertyCards> b = new ArrayList<>();

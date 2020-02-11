@@ -5,46 +5,45 @@
  */
 package com.mycompany.propertytycoon;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.junit.*;
+
+import java.com.mycompany.propertytycoon.Parser;
 import java.io.IOException;
 import java.util.ArrayList;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
 
 /**
- *
  * @author ankeet
  */
 public class ParserTest {
     ArrayList<PropertyCards> board;
-    
+
     public ParserTest() throws IOException, InvalidFormatException {
         Parser p = new Parser();
         board = p.boardMaker();
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
     /**
      * Test of boardMaker method, of class Parser.
+     *
      * @throws java.lang.Exception
      */
     @Test
@@ -97,5 +96,5 @@ public class ParserTest {
         }
         assertEquals(expResult, result);
     }
-    
+
 }
