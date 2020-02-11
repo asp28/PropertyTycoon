@@ -48,7 +48,7 @@ public class GameLoop {
             System.out.println("Would you like to roll the dice type y");
             rollDice = scanner.nextLine();
         }
-        player.setPlayerLocation(24);
+        player.rollDice();
         int endLocation = player.getPlayerLocation();
 
         System.out.println(player.getCharacter() + " has rolled a: " + (endLocation - startLocation));
