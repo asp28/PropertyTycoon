@@ -38,7 +38,6 @@ public class PropertyTycoon extends Application {
         hBox.getChildren().addAll(playerStatus, playerCards);
 
         Scene scene = new Scene(bPane, 300, 250);
-
         primaryStage.setTitle("Property Tycoon");
         primaryStage.setScene(scene);
         primaryStage.show();
