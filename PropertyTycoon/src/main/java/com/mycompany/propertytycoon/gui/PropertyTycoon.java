@@ -12,7 +12,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
@@ -25,30 +28,22 @@ public class PropertyTycoon extends Application {
     GameLoop gl;
 
     @Override
-    public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Corona Virus'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
+    public void start(Stage primaryStage) throws IOException, InvalidFormatException {
+        GameLoop gameLoop = new GameLoop(2);
 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Corona Virus");
-            }
-        });
+        BorderPane bPane = new BorderPane();
+        VBox hBox = new VBox(8);
+        bPane.setRight(hBox);
 
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
+        Label playerStatus = new Label("Player");
+        Label playerCards = new Label("Player Cards");       
+        hBox.getChildren().addAll(playerStatus, playerCards);
 
-        Scene scene = new Scene(root, 300, 250);
-
-        primaryStage.setTitle("Hello World!");
+        Scene scene = new Scene(bPane, 300, 250);
+        primaryStage.setTitle("Property Tycoon");
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
 
-    public GameLoop newGame(int players) throws IOException, InvalidFormatException {
-        GameLoop gl = new GameLoop(players);
-        return gl;
     }
 
     /**

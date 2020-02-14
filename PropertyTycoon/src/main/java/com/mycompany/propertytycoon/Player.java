@@ -127,8 +127,8 @@ public class Player {
             move(moveToJail);
         } else {
             //Test Size of board = 42
-            if (playerLocation + totalMovement > 42) {
-                int moveValue = playerLocation + totalMovement - 42;
+            if (playerLocation + totalMovement > board.getBoardLocations().size()) {
+                int moveValue = playerLocation + totalMovement - board.getBoardLocations().size();
                 playerLocation = 1;
                 doublesRolled = 0;
                 move(moveValue);
