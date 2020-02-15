@@ -199,6 +199,4 @@ public class Player {
     public void increaseBalance(int value) {
         playerBalance += value;
     }
-
-
 }

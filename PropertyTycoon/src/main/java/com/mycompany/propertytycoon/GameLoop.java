@@ -14,6 +14,13 @@ public class GameLoop {
     private Dice dice;
     private Scanner scanner = new Scanner(System.in);
 
+    private Player activePlayer;
+
+    public Player getActivePlayer() {
+        return activePlayer;
+    }
+
+
     public GameLoop(int NoOfPlayer) throws IOException, InvalidFormatException {
         board = new Board();
         bank = new Bank(board.getBoardLocations());
@@ -89,6 +96,7 @@ public class GameLoop {
     public void gameLoop() {
         while (amountOfPlayers.size() > 1) {
             for (Player player : amountOfPlayers) {
+                activePlayer = player;
                 //Starting the round
                 System.out.println("It is " + player.getCharacter() + " go!");
                 viewStats(player);
