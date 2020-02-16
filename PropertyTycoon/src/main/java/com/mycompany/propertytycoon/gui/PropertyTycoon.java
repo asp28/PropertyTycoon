@@ -49,10 +49,22 @@ public class PropertyTycoon extends Application {
 
     }
 
+    /**
+     *
+     * @param num
+     * @return new game
+     * @throws IOException
+     * @throws InvalidFormatException
+     */
     public GameLoop createGame(int num) throws IOException, InvalidFormatException {
         return new GameLoop(num);
     }
 
+    /**
+     * create players menu (name and balance)
+     *
+     * @return
+     */
     public VBox Players() {
         VBox hb = new VBox();
         hb.getChildren().addAll(new Label("Player :" + gl.getActivePlayer().getCharacter()), new Label("£" + gl.getActivePlayer().getPlayerBalance()));
@@ -60,6 +72,11 @@ public class PropertyTycoon extends Application {
         return hb;
     }
 
+    /**
+     * create a menu showing all cards active player owns
+     *
+     * @return
+     */
     public VBox PlayerCards() {
         VBox playerCards = new VBox();
         playerCards.getChildren().add(new Label("Cards Owned by Player"));
@@ -71,6 +88,10 @@ public class PropertyTycoon extends Application {
 
     }
 
+    /**
+     * create a image of the board and display it
+     * @return @throws FileNotFoundException
+     */
     public ImageView board() throws FileNotFoundException {
         FileInputStream inputstream = new FileInputStream("./src/main/java/resources/img/PropertyTycoon.png");
         Image image = new Image(inputstream) {
@@ -80,14 +101,17 @@ public class PropertyTycoon extends Application {
         imageView.setFitWidth(1000);
         return imageView;
     }
-
+    /**
+     * create all the buttons the player needs
+     * @return 
+     */
     public VBox buttons() {
         VBox buttons = new VBox();
         HBox first = new HBox();
         Button roll = new Button("Roll");
-        roll.setPadding(new Insets(10,10,10,10));
+        roll.setPadding(new Insets(10, 10, 10, 10));
         Button buy = new Button("Buy");
-        buy.setPadding(new Insets(10,10,10,10));
+        buy.setPadding(new Insets(10, 10, 10, 10));
         roll.setOnAction((event) -> {
             gl.getActivePlayer().rollDice();
         });
@@ -98,9 +122,9 @@ public class PropertyTycoon extends Application {
         first.setSpacing(50);
         HBox second = new HBox();
         Button sell = new Button("Sell");
-        sell.setPadding(new Insets(10,10,10,10));
+        sell.setPadding(new Insets(10, 10, 10, 10));
         Button house = new Button("Houses");
-        house.setPadding(new Insets(10,10,10,10));
+        house.setPadding(new Insets(10, 10, 10, 10));
         sell.setOnAction((event) -> {
             /**
              * Sell
@@ -118,13 +142,17 @@ public class PropertyTycoon extends Application {
         buttons.setStyle("-fx-border-color: black;");
         return buttons;
     }
-
+    /**
+     * creates a log of all the moves made.
+     * @return 
+     */
     public ScrollPane log() {
         ScrollPane sp = new ScrollPane();
         return sp;
     }
 
     /**
+     * launches the program
      * @param args the command line arguments
      */
     public static void main(String[] args) {
