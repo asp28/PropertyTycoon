@@ -31,11 +31,12 @@ public class GameLoop {
         board = new Board();
         bank = new Bank(board.getBoardLocations());
         dice = new Dice();
+        Token token = Token.CAT;
 
         for (int i = 0; i < NoOfPlayer; i++) {
             System.out.println("Please enter a character name");
             String characterName = scanner.nextLine();
-            Player player = new Player(board, dice, bank, characterName);
+            Player player = new Player(board, dice, bank, characterName, token);
             amountOfPlayers.add(player);
         }
         activePlayer = amountOfPlayers.get(0);
