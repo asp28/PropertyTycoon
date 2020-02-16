@@ -19,7 +19,13 @@ public class GameLoop {
     public Player getActivePlayer() {
         return activePlayer;
     }
+    public Board getBoard() {
+        return board;
+    }
 
+    public Bank getBank() {
+        return bank;
+    }
 
     public GameLoop(int NoOfPlayer) throws IOException, InvalidFormatException {
         board = new Board();
