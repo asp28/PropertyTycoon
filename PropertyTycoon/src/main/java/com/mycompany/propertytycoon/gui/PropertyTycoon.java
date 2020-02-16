@@ -38,15 +38,14 @@ public class PropertyTycoon extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException, InvalidFormatException {
         gl = createGame(2);
-
         BorderPane bPane = new BorderPane();
         VBox all = new VBox();
-        all.getChildren().addAll(Players(), PlayerCards(), buttons(), log());
+        all.getChildren().add(Players());
+        all.getChildren().addAll(PlayerCards(), buttons(), log());
         all.setSpacing(10);
         all.setPadding(new Insets(10, 10, 10, 10));
         bPane.setRight(all);
         bPane.setCenter(board());
-
         Scene scene = new Scene(bPane, 1500, 1000);
         primaryStage.setTitle("Property Tycoon");
         primaryStage.setScene(scene);
@@ -60,14 +59,17 @@ public class PropertyTycoon extends Application {
 
     public VBox Players() {
         VBox hb = new VBox();
-        hb.getChildren().addAll(new Label("Player :" + "name"), new Label("£" + "BALANCE OF PLAYER"));
+        hb.getChildren().addAll(new Label("Player :" + gl.getActivePlayer().getCharacter()), new Label("£" + gl.getActivePlayer().getPlayerBalance()));
         hb.setStyle("-fx-border-color: black;");
         return hb;
     }
 
     public VBox PlayerCards() {
         VBox playerCards = new VBox();
-        playerCards.getChildren().addAll(new Label("Cards Owned by Player"), new Label("GET PLAYER OWNEDPROPERTIES ARRAYLIST"));
+        playerCards.getChildren().add(new Label("Cards Owned by Player"));
+        for (PropertyCards pc : gl.getActivePlayer().getOwnedProperties()) {
+            playerCards.getChildren().add(new Label(pc.getName()));
+        }
         playerCards.setStyle("-fx-border-color: black;");
         return playerCards;
 
@@ -87,22 +89,22 @@ public class PropertyTycoon extends Application {
         VBox buttons = new VBox();
         HBox first = new HBox();
         Button roll = new Button("Roll");
+        roll.setPadding(new Insets(10,10,10,10));
         Button buy = new Button("Buy");
+        buy.setPadding(new Insets(10,10,10,10));
         roll.setOnAction((event) -> {
-            /**
-             * ROLL
-             */
+            gl.getActivePlayer().rollDice();
         });
         buy.setOnAction((event) -> {
-            /**
-             * Buy Property
-             */
+            gl.getActivePlayer().buyProperty(gl.getBoard().getBoardLocations().get(gl.getActivePlayer().getPlayerLocation()), gl.getActivePlayer().getPlayerLocation());
         });
         first.getChildren().addAll(roll, buy);
         first.setSpacing(50);
         HBox second = new HBox();
         Button sell = new Button("Sell");
+        sell.setPadding(new Insets(10,10,10,10));
         Button house = new Button("Houses");
+        house.setPadding(new Insets(10,10,10,10));
         sell.setOnAction((event) -> {
             /**
              * Sell
@@ -120,7 +122,7 @@ public class PropertyTycoon extends Application {
         buttons.setStyle("-fx-border-color: black;");
         return buttons;
     }
-    
+
     public ScrollPane log() {
         ScrollPane sp = new ScrollPane();
         return sp;
