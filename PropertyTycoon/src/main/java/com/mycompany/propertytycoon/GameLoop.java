@@ -32,7 +32,7 @@ public class GameLoop {
             Player player = new Player(board, dice, bank, characterName);
             amountOfPlayers.add(player);
         }
-
+        activePlayer = amountOfPlayers.get(0);
     }
 
     public static void main(String[] args) throws IOException, InvalidFormatException {
