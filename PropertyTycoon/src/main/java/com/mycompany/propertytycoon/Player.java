@@ -26,6 +26,7 @@ public class Player {
     private Dice dice;
     private Bank bank;
     private String character;
+    private Token token;
 
     /**
      * Bank Constructor method
@@ -33,10 +34,13 @@ public class Player {
      * @param board
      * @param dice
      * @param bank
+     * @param character
+     * @param token
      */
-    public Player(Board board, Dice dice, Bank bank, String character) {
+    public Player(Board board, Dice dice, Bank bank, String character, Token token) {
         playerBalance = 1500;
         this.character = character;
+        this.token = token;
         this.board = board;
         this.dice = dice;
         this.bank = bank;
@@ -77,6 +81,14 @@ public class Player {
      */
     public int getPlayerBalance() {
         return playerBalance;
+    }
+
+    /**
+     * Gets player token
+     * @return String of token
+     */
+    public String getToken() {
+        return token.name();
     }
 
     /**
