@@ -30,6 +30,7 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 public class PropertyTycoon extends Application {
 
     GameLoop gl;
+    ScrollPane sp;
 
     @Override
     public void start(Stage primaryStage) throws IOException, InvalidFormatException {
@@ -57,7 +58,8 @@ public class PropertyTycoon extends Application {
      * @throws InvalidFormatException
      */
     public GameLoop createGame(int num) throws IOException, InvalidFormatException {
-        return new GameLoop(num);
+        gl = new GameLoop(num);
+        return gl;
     }
 
     /**
@@ -147,7 +149,7 @@ public class PropertyTycoon extends Application {
      * @return 
      */
     public ScrollPane log() {
-        ScrollPane sp = new ScrollPane();
+        sp = new ScrollPane();
         return sp;
     }
 
