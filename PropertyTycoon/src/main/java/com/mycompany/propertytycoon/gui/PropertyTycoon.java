@@ -152,6 +152,10 @@ public class PropertyTycoon extends Application {
         sp = new ScrollPane();
         return sp;
     }
+    
+    public ScrollPane getLog() {
+        return sp;
+    }
 
     /**
      * launches the program
