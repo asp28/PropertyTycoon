@@ -12,11 +12,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 /**
  * @author ankeet
  */
 public class ParserTest {
+
     ArrayList<PropertyCards> board;
     ArrayList<OpportunityKnocks> oppo;
     ArrayList<PotLuck> potluck;
@@ -99,6 +102,7 @@ public class ParserTest {
         }
         assertEquals(expResult, result);
     }
+
     /**
      * Tests Opportunity Knocks cards being made.
      */
@@ -126,9 +130,21 @@ public class ParserTest {
         for (OpportunityKnocks ok : oppo) {
             result.add(ok.getDescription());
         }
-        assertEquals(expResult, result);
-        
+        for (int i = 0; i < result.size(); i++) {
+            for (int j = 0; j < expResult.size(); j++) {
+                if (result.get(i) == null ? expResult.get(j) == null : result.get(i).equals(expResult.get(j))) {
+                    expResult.remove(j);
+                }
+            }
+        }
+        if (expResult.isEmpty()) {
+            assertTrue(true);
+        } else {
+            fail();
+        }
+
     }
+
     /**
      * Tests PotLuck cards being made.
      */
@@ -156,7 +172,18 @@ public class ParserTest {
         for (PotLuck ok : potluck) {
             result.add(ok.getDescription());
         }
-        assertEquals(expResult, result);
+        for (int i = 0; i < result.size(); i++) {
+            for (int j = 0; j < expResult.size(); j++) {
+                if (result.get(i) == null ? expResult.get(j) == null : result.get(i).equals(expResult.get(j))) {
+                    expResult.remove(j);
+                }
+            }
+        }
+        if (expResult.isEmpty()) {
+            assertTrue(true);
+        } else {
+            fail();
+        }
     }
 
 }
