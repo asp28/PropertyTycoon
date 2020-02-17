@@ -16,17 +16,36 @@ public class GameLoop {
 
     private Player activePlayer;
 
+    /**
+     * Gets the player who is currently taking their round
+     * @return Player object
+     */
     public Player getActivePlayer() {
         return activePlayer;
     }
+    
+    /**
+     * Get main board object
+     * @return Board object
+     */
     public Board getBoard() {
         return board;
     }
 
+    /**
+     * Get bank from game
+     * @return Bank object
+     */
     public Bank getBank() {
         return bank;
     }
 
+    /**
+     * Initial method to initialize Player objects
+     * @param NoOfPlayer
+     * @throws IOException
+     * @throws InvalidFormatException 
+     */
     public GameLoop(int NoOfPlayer) throws IOException, InvalidFormatException {
         board = new Board();
         bank = new Bank(board.getBoardLocations());
@@ -42,11 +61,21 @@ public class GameLoop {
         activePlayer = amountOfPlayers.get(0);
     }
 
+    /**
+     * main method to run program
+     * @param args
+     * @throws IOException
+     * @throws InvalidFormatException 
+     */
     public static void main(String[] args) throws IOException, InvalidFormatException {
         GameLoop gameLoop = new GameLoop(2);
         gameLoop.gameLoop();
     }
 
+    /**
+     * View player properties such as balance and owned properties
+     * @param player 
+     */
     private void viewStats(Player player) {
         System.out.println(player.getCharacter() + " Current balance is: " + player.getPlayerBalance());
         System.out.println(player.getCharacter() + " Current owned Properties are: ");
@@ -55,11 +84,15 @@ public class GameLoop {
         }
     }
 
+    /**
+     * 
+     * @param player 
+     */
     private void rollingDice(Player player) {
         int startLocation = player.getPlayerLocation();
         String rollDice = "n";
         while (rollDice.equals("n")) {
-            System.out.println("Would you like to roll the dice type y");
+            System.out.println("Would you like to roll the dice? Type 'y'");
             rollDice = scanner.nextLine();
         }
         player.rollDice();
@@ -68,6 +101,10 @@ public class GameLoop {
         System.out.println(player.getCharacter() + " has rolled a: " + (endLocation - startLocation));
     }
 
+    /**
+     * Player to perform an operation such as buying a property or paying rent to another player
+     * @param player 
+     */
     private void performCommand(Player player) {
         String commandsAllowed = player.viewActionsOnBoardPosition();
 
@@ -93,13 +130,16 @@ public class GameLoop {
             }
             String hasPaid = player.payRent(board.getBoardLocations().get(player.getPlayerLocation()), ownerPlayer);
             if (hasPaid.equals("UNABLETOPAY")) {
-                System.out.println("It seems that " + player.getCharacter() + "Has been unable to pay rent they are out of the game");
+                System.out.println("It seems that " + player.getCharacter() + "Has been unable to pay rent. They are out of the game");
                 amountOfPlayers.remove(player);
             }
             System.out.println("Rent paid successfully \n");
         }
     }
 
+    /**
+     * Loop of player turns until there is only 1 player left
+     */
     public void gameLoop() {
         while (amountOfPlayers.size() > 1) {
             for (Player player : amountOfPlayers) {
