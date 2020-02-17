@@ -7,20 +7,24 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import org.apache.poi.EncryptedDocumentException;
 
 /**
  *
  * @author BigNerdNotation
  * @version 1.0
  *
- * Parser object will turn the excel documents into java objects that can be used.
+ * Parser object will turn the excel documents into java objects that can be
+ * used.
  *
  */
 public class Parser {
+
     /**
      * String location of where the board is located.
      */
     public final String board = "./src/main/java/resources/PropertyTycoonBoardData.xlsx";
+    public final String OppoPotLuck = "./src/main/java/resources/PropertyTycoonCardData.xlsx";
 
     /**
      *
@@ -109,5 +113,43 @@ public class Parser {
         }
 
         return b;
+    }
+
+    public ArrayList<OpportunityKnocks> createOppoCards() throws IOException, InvalidFormatException {
+        ArrayList<OpportunityKnocks> oppo = new ArrayList<>();
+        Workbook workbook = WorkbookFactory.create(new File(OppoPotLuck));
+        Sheet s = workbook.getSheetAt(0);
+        Iterator<Row> rowIterator = s.rowIterator();
+        while (rowIterator.hasNext()) {
+            Row r = rowIterator.next();
+            if (r.getRowNum() < 25) {
+                continue;
+            } else {
+                OpportunityKnocks ok = new OpportunityKnocks(r.getCell(0).getStringCellValue(), r.getCell(3).getStringCellValue());
+                oppo.add(ok);
+            }
+        }
+
+        return oppo;
+    }
+
+    public ArrayList<PotLuck> createPotLuckCards() throws IOException, EncryptedDocumentException {
+        ArrayList<PotLuck> potluck = new ArrayList<>();
+        Workbook workbook = WorkbookFactory.create(new File(OppoPotLuck));
+        Sheet s = workbook.getSheetAt(0);
+        Iterator<Row> rowIterator = s.rowIterator();
+        while (rowIterator.hasNext()) {
+            Row r = rowIterator.next();
+            if (r.getRowNum() < 5) {
+                continue;
+            } else if (r.getRowNum() > 21) {
+                break;
+            } else {
+                PotLuck pl = new PotLuck(r.getCell(0).getStringCellValue(), r.getCell(3).getStringCellValue());
+                potluck.add(pl);
+            }
+
+        }
+        return potluck;
     }
 }
