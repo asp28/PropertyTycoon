@@ -29,8 +29,8 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
  */
 public class PropertyTycoon extends Application {
 
-    GameLoop gl;
-    ScrollPane sp;
+    private GameLoop gl;
+    private ScrollPane sp;
 
     @Override
     public void start(Stage primaryStage) throws IOException, InvalidFormatException {
