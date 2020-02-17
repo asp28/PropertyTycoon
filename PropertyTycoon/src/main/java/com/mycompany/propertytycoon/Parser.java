@@ -6,6 +6,7 @@ import org.apache.poi.ss.usermodel.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import org.apache.poi.EncryptedDocumentException;
 
@@ -137,6 +138,7 @@ public class Parser {
                 oppo.add(ok);
             }
         }
+        Collections.shuffle(oppo);
 
         return oppo;
     }
@@ -164,6 +166,7 @@ public class Parser {
             }
 
         }
+        Collections.shuffle(potluck);
         return potluck;
     }
 }
