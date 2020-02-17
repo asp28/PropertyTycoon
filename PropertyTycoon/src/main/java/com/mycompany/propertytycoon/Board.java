@@ -23,7 +23,6 @@ public class Board {
 
     /**
      * Getter for variable boardLocations
-     *
      * @return an ArrayList of PropertyCards
      */
     public ArrayList<PropertyCards> getBoardLocations() {
