@@ -143,7 +143,8 @@ public class Parser {
 
     /**
      * Creates the PotLuck cards
-     * @return @throws IOException
+     * @return 
+     * @throws IOException
      * @throws org.apache.poi.openxml4j.exceptions.InvalidFormatException
      */
     public ArrayList<PotLuck> createPotLuckCards() throws IOException, InvalidFormatException {
