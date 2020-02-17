@@ -22,6 +22,7 @@ public class Parser {
 
     /**
      * String location of where the board is located.
+     * String location of where the opportunityKnocks cards and PotLuck cards are located.
      */
     public final String board = "./src/main/java/resources/PropertyTycoonBoardData.xlsx";
     public final String OppoPotLuck = "./src/main/java/resources/PropertyTycoonCardData.xlsx";
@@ -115,6 +116,13 @@ public class Parser {
         return b;
     }
 
+    /**
+     * Creates the Opportunity Knocks cards
+     *
+     * @return
+     * @throws IOException
+     * @throws InvalidFormatException
+     */
     public ArrayList<OpportunityKnocks> createOppoCards() throws IOException, InvalidFormatException {
         ArrayList<OpportunityKnocks> oppo = new ArrayList<>();
         Workbook workbook = WorkbookFactory.create(new File(OppoPotLuck));
@@ -133,7 +141,12 @@ public class Parser {
         return oppo;
     }
 
-    public ArrayList<PotLuck> createPotLuckCards() throws IOException, EncryptedDocumentException {
+    /**
+     * Creates the PotLuck cards
+     * @return @throws IOException
+     * @throws org.apache.poi.openxml4j.exceptions.InvalidFormatException
+     */
+    public ArrayList<PotLuck> createPotLuckCards() throws IOException, InvalidFormatException {
         ArrayList<PotLuck> potluck = new ArrayList<>();
         Workbook workbook = WorkbookFactory.create(new File(OppoPotLuck));
         Sheet s = workbook.getSheetAt(0);
