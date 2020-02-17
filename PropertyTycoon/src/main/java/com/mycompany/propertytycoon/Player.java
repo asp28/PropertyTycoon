@@ -29,7 +29,7 @@ public class Player {
     private Token token;
 
     /**
-     * Bank Constructor method
+     * Player Constructor method
      *
      * @param board
      * @param dice
@@ -46,13 +46,16 @@ public class Player {
         this.bank = bank;
     }
 
+    /**
+     * Getter of character name
+     * @return String of variable 'character'
+     */
     public String getCharacter() {
         return character;
     }
 
     /**
      * Gets the location of the player around the board by returning an integer which represents the players location in the board location array
-     *
      * @return current player Location
      */
     public int getPlayerLocation() {
@@ -175,10 +178,11 @@ public class Player {
     /**
      * Used to buy the property that the player is currently located at
      * Checks if the player has the correct balance to be able to afford the property and that the bank still owns it
-     * Adds the property to the players owenedpropertyArray
-     * Removes the property from the banks owned properties
+     * Adds the property to the players ownedProperties array
+     * Removes the property from the bank's owned properties
      *
      * @param property
+     * @param location
      */
     public void buyProperty(PropertyCards property, int location) {
         String nameOfProperty = property.getName();
@@ -196,6 +200,13 @@ public class Player {
 
     }
 
+    /**
+     * Used when a player lands on another player's property and must pay rent. Returns in "paid".
+     * If the player cannot pay rent, returns "unableToPay"
+     * @param property
+     * @param ownerOfProperty
+     * @return 
+     */
     public String payRent(PropertyCards property, Player ownerOfProperty) {
         int rentOwed = Integer.parseInt(property.getRent());
         if ((playerBalance - rentOwed) >= 0) {
@@ -208,6 +219,10 @@ public class Player {
 
     }
 
+    /**
+     * Increases the player balance by a certain value when receiving rent
+     * @param value 
+     */
     public void increaseBalance(int value) {
         playerBalance += value;
     }
