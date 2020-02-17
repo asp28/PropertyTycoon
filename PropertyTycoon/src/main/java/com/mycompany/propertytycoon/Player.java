@@ -28,6 +28,10 @@ public class Player {
     private String character;
     private Token token;
 
+    public Bank getBank() {
+        return bank;
+    }
+
     /**
      * Player Constructor method
      *
