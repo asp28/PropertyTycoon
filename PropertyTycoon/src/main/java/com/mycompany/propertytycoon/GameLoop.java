@@ -266,7 +266,10 @@ public class GameLoop {
                 break;
         }
     }
-
+/**
+ * Does action for the potluck card chosen.
+ * @param potluck 
+ */
     public void doAction(PotLuck potluck) {
         String action = potluck.getAction();
         switch (action) {
