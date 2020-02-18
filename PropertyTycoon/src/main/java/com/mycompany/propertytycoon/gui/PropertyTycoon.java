@@ -46,9 +46,6 @@ public class PropertyTycoon extends Application {
         all.setPadding(new Insets(10, 10, 10, 10));
         bPane.setRight(all);
         bPane.setCenter(board());
-        addLogTextBox("GAME HAS BEGAN \n");
-        addLogTextBox("PLAYER " + gl.getActivePlayer().getCharacter() + " is now rolling \n");
-        System.out.print(logTextBox.getText());
         Scene scene = new Scene(bPane, 1500, 1000);
         primaryStage.setTitle("Property Tycoon");
         primaryStage.setScene(scene);
