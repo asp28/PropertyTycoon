@@ -18,14 +18,16 @@ public class GameLoop {
 
     /**
      * Gets the player who is currently taking their round
+     *
      * @return Player object
      */
     public Player getActivePlayer() {
         return activePlayer;
     }
-    
+
     /**
      * Get main board object
+     *
      * @return Board object
      */
     public Board getBoard() {
@@ -34,6 +36,7 @@ public class GameLoop {
 
     /**
      * Get bank from game
+     *
      * @return Bank object
      */
     public Bank getBank() {
@@ -42,9 +45,10 @@ public class GameLoop {
 
     /**
      * Initial method to initialize Player objects
+     *
      * @param NoOfPlayer
      * @throws IOException
-     * @throws InvalidFormatException 
+     * @throws InvalidFormatException
      */
     public GameLoop(int NoOfPlayer) throws IOException, InvalidFormatException {
         board = new Board();
@@ -63,9 +67,10 @@ public class GameLoop {
 
     /**
      * main method to run program
+     *
      * @param args
      * @throws IOException
-     * @throws InvalidFormatException 
+     * @throws InvalidFormatException
      */
     public static void main(String[] args) throws IOException, InvalidFormatException {
         GameLoop gameLoop = new GameLoop(2);
@@ -74,7 +79,8 @@ public class GameLoop {
 
     /**
      * View player properties such as balance and owned properties
-     * @param player 
+     *
+     * @param player
      */
     private void viewStats(Player player) {
         System.out.println(player.getCharacter() + " Current balance is: " + player.getPlayerBalance());
@@ -85,8 +91,8 @@ public class GameLoop {
     }
 
     /**
-     * 
-     * @param player 
+     *
+     * @param player
      */
     private void rollingDice(Player player) {
         int startLocation = player.getPlayerLocation();
@@ -102,8 +108,10 @@ public class GameLoop {
     }
 
     /**
-     * Player to perform an operation such as buying a property or paying rent to another player
-     * @param player 
+     * Player to perform an operation such as buying a property or paying rent
+     * to another player
+     *
+     * @param player
      */
     private void performCommand(Player player) {
         String commandsAllowed = player.viewActionsOnBoardPosition();
@@ -169,6 +177,156 @@ public class GameLoop {
                 }
 
             }
+        }
+    }
+
+    /**
+     * Does the action of the OpportunityKnocks card.
+     *
+     * @param opportunityKnocks
+     */
+    public void doAction(OpportunityKnocks opportunityKnocks) {
+        String action = opportunityKnocks.getAction();
+        switch (action) {
+            case "Bank pays player £50":
+                getActivePlayer().getBank().withdraw(50);
+                getActivePlayer().increaseBalance(50);
+                break;
+            case "Bank pays player £100":
+                getActivePlayer().getBank().withdraw(100);
+                getActivePlayer().increaseBalance(100);
+                break;
+            case "Player token moves forwards to Turing Heights":
+                getActivePlayer().setPlayerLocation(39);
+                break;
+            case "Player moves token":
+                if (opportunityKnocks.getDescription().contains("han xin")) {
+                    if (getActivePlayer().getPlayerLocation() > 24) {
+                        getActivePlayer().setPlayerLocation(24);
+                        getActivePlayer().increaseBalance(200);
+                        getActivePlayer().getBank().withdraw(200);
+                    } else {
+                        getActivePlayer().setPlayerLocation(24);
+                    }
+                    break;
+                }
+                if (opportunityKnocks.getDescription().contains("hove station")) {
+                    if (getActivePlayer().getPlayerLocation() > 15) {
+                        getActivePlayer().setPlayerLocation(15);
+                        getActivePlayer().increaseBalance(200);
+                        getActivePlayer().getBank().withdraw(200);
+                    } else {
+                        getActivePlayer().setPlayerLocation(15);
+                    }
+                    break;
+                }
+                if (opportunityKnocks.getDescription().equalsIgnoreCase("advance to go")) {
+                    getActivePlayer().setPlayerLocation(0);
+                    break;
+                }
+                if (opportunityKnocks.getDescription().equalsIgnoreCase("go back 3 spaces")) {
+                    //fix error of if location is 2 or less, it should minus the rest from 40
+                    getActivePlayer().setPlayerLocation(getActivePlayer().getPlayerLocation() - 3);
+                    break;
+                }
+                if (opportunityKnocks.getDescription().equalsIgnoreCase("Advance to Skywalker Drive. If you pass GO collect £200")) {
+                    if (getActivePlayer().getPlayerLocation() > 11) {
+                        getActivePlayer().setPlayerLocation(11);
+                        getActivePlayer().increaseBalance(200);
+                        getActivePlayer().getBank().withdraw(200);
+                    } else {
+                        getActivePlayer().setPlayerLocation(11);
+                    }
+                    break;
+                }
+            case "Player puts £15 on free parking":
+                //implement free parking balance
+                break;
+            case "Player pays £150 to the bank":
+                getActivePlayer().increaseBalance(-150);
+                getActivePlayer().getBank().deposit(150);
+                break;
+            case "Bank pays £150 to the player":
+                getActivePlayer().getBank().withdraw(150);
+                getActivePlayer().increaseBalance(150);
+                break;
+            case "Player pays money to the bank":
+                //£40 per house and £115 per hotel
+                break;
+            //£25 per house and £100 per hotel
+            case "As the card says":
+                getActivePlayer().setPlayerLocation(10);
+                //implement sending someone to jail
+                break;
+            case "Player puts £20 on free parking":
+                //implement free parking
+                break;
+            case "Retained by the player until needed. No resale or trade value":
+                //give card to player, move to bottom of pile once used.
+                break;
+        }
+    }
+
+    public void doAction(PotLuck potluck) {
+        String action = potluck.getAction();
+        switch (action) {
+            case "Bank pays player £20":
+                getActivePlayer().getBank().withdraw(20);
+                getActivePlayer().increaseBalance(20);
+                break;
+            case "Bank pays player £50":
+                getActivePlayer().getBank().withdraw(50);
+                getActivePlayer().increaseBalance(50);
+                break;
+            case "Bank pays player £100":
+                getActivePlayer().getBank().withdraw(100);
+                getActivePlayer().increaseBalance(100);
+                break;
+            case "Bank pays player £200":
+                getActivePlayer().getBank().withdraw(200);
+                getActivePlayer().increaseBalance(200);
+                break;
+            case "Player token moves backwards to Crapper Street":
+                getActivePlayer().setPlayerLocation(1);
+                break;
+            case "If fine paid, player puts £10 on free parking":
+                //give choice of card or fine
+                break;
+            case "Player puts £50 on free parking":
+                //implement free parking balance
+                break;
+            case "Bank pays £100 to the player":
+                getActivePlayer().getBank().withdraw(100);
+                getActivePlayer().increaseBalance(100);
+                break;
+            case "Bank pays player £25":
+                getActivePlayer().getBank().withdraw(25);
+                getActivePlayer().increaseBalance(25);
+                break;
+            case "Player receives £10 from each player":
+                for (Player p : amountOfPlayers) {
+                    p.increaseBalance(-10);
+                    getActivePlayer().increaseBalance(10);
+                }
+                break;
+            case "As the card says":
+                getActivePlayer().setPlayerLocation(10);
+                //implement sending someone to jail
+                break;
+            case "Player moves forwards to GO":
+                getActivePlayer().setPlayerLocation(0);
+                break;
+            case "Retained by the player until needed. No resale or trade value":
+                //give card to player, move to bottom of pile once used.
+                break;
+            case "Player pays £50 to the bank":
+                getActivePlayer().increaseBalance(-50);
+                getActivePlayer().getBank().deposit(50);
+                break;
+            case "Player pays £100 to the bank":
+                getActivePlayer().increaseBalance(-100);
+                getActivePlayer().getBank().deposit(100);
+                break;
         }
     }
 
