@@ -15,11 +15,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
@@ -31,6 +33,7 @@ public class PropertyTycoon extends Application {
 
     private GameLoop gl;
     private ScrollPane sp;
+    private Text logTextBox;
 
     @Override
     public void start(Stage primaryStage) throws IOException, InvalidFormatException {
@@ -43,9 +46,13 @@ public class PropertyTycoon extends Application {
         all.setPadding(new Insets(10, 10, 10, 10));
         bPane.setRight(all);
         bPane.setCenter(board());
+        addLogTextBox("GAME HAS BEGAN \n");
+        addLogTextBox("PLAYER " + gl.getActivePlayer().getCharacter() + " is now rolling \n");
+        System.out.print(logTextBox.getText());
         Scene scene = new Scene(bPane, 1500, 1000);
         primaryStage.setTitle("Property Tycoon");
         primaryStage.setScene(scene);
+        primaryStage.maximizedProperty();
         primaryStage.show();
 
     }
@@ -150,7 +157,22 @@ public class PropertyTycoon extends Application {
      */
     public ScrollPane log() {
         sp = new ScrollPane();
+        logTextBox = new Text(" ");
+        sp.setContent(logTextBox);
         return sp;
+    }
+
+    public Text getLogTextBox() {
+        return logTextBox;
+    }
+
+    public void setLogTextBox(Text logTextBox) {
+        this.logTextBox = logTextBox;
+    }
+    
+    public void addLogTextBox(String text) {
+        Text log = new Text(logTextBox.getText() + text);
+        this.logTextBox = log;
     }
     
     public ScrollPane getLog() {
