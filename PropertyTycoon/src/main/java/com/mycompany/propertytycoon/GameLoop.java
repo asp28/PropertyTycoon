@@ -242,7 +242,8 @@ public class GameLoop {
                     break;
                 }
             case "Player puts £15 on free parking":
-                //implement free parking balance
+                FreeParkingPiece fpp = (FreeParkingPiece) board.getBoardLocations().get(20);
+                fpp.setBalance(fpp.getBalance() + 15);
                 break;
             case "Player pays £150 to the bank":
                 getActivePlayer().increaseBalance(-150);
@@ -261,7 +262,8 @@ public class GameLoop {
                 //implement sending someone to jail
                 break;
             case "Player puts £20 on free parking":
-                //implement free parking
+                FreeParkingPiece fpp2 = (FreeParkingPiece) board.getBoardLocations().get(20);
+                fpp2.setBalance(fpp2.getBalance() + 20);
                 break;
             case "Retained by the player until needed. No resale or trade value":
                 //give card to player, move to bottom of pile once used.
@@ -295,10 +297,12 @@ public class GameLoop {
                 getActivePlayer().setPlayerLocation(1);
                 break;
             case "If fine paid, player puts £10 on free parking":
-                //give choice of card or fine
+                FreeParkingPiece fpp = (FreeParkingPiece) board.getBoardLocations().get(20);
+                fpp.setBalance(fpp.getBalance() + 10);
                 break;
             case "Player puts £50 on free parking":
-                //implement free parking balance
+                FreeParkingPiece fpp2 = (FreeParkingPiece) board.getBoardLocations().get(20);
+                fpp2.setBalance(fpp2.getBalance() + 50);
                 break;
             case "Bank pays £100 to the player":
                 getActivePlayer().getBank().withdraw(100);
