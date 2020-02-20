@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Board {
 
-    private ArrayList<PropertyCards> boardLocations;
+    private ArrayList<BoardPiece> boardLocations;
 
     /**
      * Constructor to initialize Board object
@@ -25,7 +25,7 @@ public class Board {
      * Getter for variable boardLocations
      * @return an ArrayList of PropertyCards
      */
-    public ArrayList<PropertyCards> getBoardLocations() {
+    public ArrayList<BoardPiece> getBoardLocations() {
         return boardLocations;
     }
 

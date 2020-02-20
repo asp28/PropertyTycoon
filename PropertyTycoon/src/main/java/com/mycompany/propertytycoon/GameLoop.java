@@ -85,8 +85,8 @@ public class GameLoop {
     private void viewStats(Player player) {
         System.out.println(player.getCharacter() + " Current balance is: " + player.getPlayerBalance());
         System.out.println(player.getCharacter() + " Current owned Properties are: ");
-        for (PropertyCards pc : player.getOwnedProperties()) {
-            System.out.println(pc.getName());
+        for (BoardPiece pc : player.getOwnedProperties()) {
+            System.out.println(pc.getTitle());
         }
     }
 
@@ -124,12 +124,13 @@ public class GameLoop {
 
             if (buyOrNotBuy.equals("y")) {
                 player.buyProperty(board.getBoardLocations().get(player.getPlayerLocation()), player.getPlayerLocation());
-                System.out.println(player.getCharacter() + " has Brought: " + board.getBoardLocations().get(player.getPlayerLocation()).getName());
+                System.out.println(player.getCharacter() + " has Brought: " + board.getBoardLocations().get(player.getPlayerLocation()).getTitle());
             }
         }
         if (commandsAllowed.equals("RENT")) {
-            String ownedBy = board.getBoardLocations().get(player.getPlayerLocation()).getOwnedBuy();
-            System.out.println("This Property is owned by " + ownedBy + "\nYou are required to pay: £" + board.getBoardLocations().get(player.getPlayerLocation()).getRent() + " in rent");
+            Property prop = (Property) board.getBoardLocations().get(player.getPlayerBalance());
+            String ownedBy = prop.getOwnedBuy();
+            System.out.println("This Property is owned by " + ownedBy + "\nYou are required to pay: £" + board.getBoardLocations().get(player.getPlayerLocation()).getTitle()+ " in rent");
             Player ownerPlayer = null;
             for (Player p : amountOfPlayers) {
                 if (p.getCharacter().equals(ownedBy)) {
@@ -157,10 +158,11 @@ public class GameLoop {
                 viewStats(player);
 
                 //Rolling and movement
-                System.out.println(player.getCharacter() + " is currently at: " + board.getBoardLocations().get(player.getPlayerLocation()).getName());
+                System.out.println(player.getCharacter() + " is currently at: " + board.getBoardLocations().get(player.getPlayerLocation()).getTitle());
                 rollingDice(player);
-                System.out.println(player.getCharacter() + " has move to  " + board.getBoardLocations().get(player.getPlayerLocation()).getName());
-                System.out.println(board.getBoardLocations().get(player.getPlayerLocation()).getName() + " is currently owned by " + board.getBoardLocations().get(player.getPlayerLocation()).getOwnedBuy());
+                System.out.println(player.getCharacter() + " has move to  " + board.getBoardLocations().get(player.getPlayerLocation()).getTitle());
+                Property prop = (Property) board.getBoardLocations().get(player.getPlayerLocation());
+                System.out.println(prop.getTitle()+ " is currently owned by " + prop.getOwnedBuy());
 
                 //Player commands
                 performCommand(player);

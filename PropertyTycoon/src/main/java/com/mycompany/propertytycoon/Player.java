@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class Player {
     private int playerLocation = 0;
-    private ArrayList<PropertyCards> ownedProperties = new ArrayList<PropertyCards>();
+    private ArrayList<BoardPiece> ownedProperties = new ArrayList<>();
     private int playerBalance;
     private boolean inJail = false;
     private int doublesRolled = 0;
@@ -78,7 +78,7 @@ public class Player {
      * Gets the owned Properties of the player
      * @return the players owned PropertyCards
      */
-    public ArrayList<PropertyCards> getOwnedProperties() {
+    public ArrayList<BoardPiece> getOwnedProperties() {
         return ownedProperties;
     }
 
@@ -163,10 +163,10 @@ public class Player {
      */
     public String viewActionsOnBoardPosition() {
         String commandsOnThatProperty = "";
-        PropertyCards propertyCards = board.getBoardLocations().get(playerLocation);
+        BoardPiece propertyCards = board.getBoardLocations().get(playerLocation);
         //Check if the property can be brought
-        String nameOfProperty = propertyCards.getName();
-        if (propertyCards.isCanBeBought()) {
+        String nameOfProperty = propertyCards.getTitle();
+        if (propertyCards instanceof Property) {
 
             if (bank.getProperties(nameOfProperty) != null) {
                 commandsOnThatProperty = "BUY";
@@ -188,15 +188,16 @@ public class Player {
      * @param property
      * @param location
      */
-    public void buyProperty(PropertyCards property, int location) {
-        String nameOfProperty = property.getName();
+    public void buyProperty(BoardPiece property, int location) {
+        String nameOfProperty = property.getTitle();
         //Check the balance
-        if (property.isCanBeBought()) {
-            if (playerBalance >= property.getCost()) {
-                playerBalance = playerBalance - property.getCost();
+        if (property instanceof Property) {
+            Property prop = (Property) property;
+            if (playerBalance >= prop.getCost()) {
+                playerBalance = playerBalance - prop.getCost();
                 ownedProperties.add(property);
                 bank.removeProperties(nameOfProperty);
-                board.getBoardLocations().get(location).setOwnedBuy(getCharacter());
+                prop.setOwnedBuy(getCharacter());
             } else {
                 System.out.println("Don't currently have the funds to be able to afford this property");
             }
@@ -211,8 +212,9 @@ public class Player {
      * @param ownerOfProperty
      * @return 
      */
-    public String payRent(PropertyCards property, Player ownerOfProperty) {
-        int rentOwed = Integer.parseInt(property.getRent());
+    public String payRent(BoardPiece property, Player ownerOfProperty) {
+        Property prop = (Property) property;
+        int rentOwed = Integer.parseInt(prop.getRent());
         if ((playerBalance - rentOwed) >= 0) {
             playerBalance = playerBalance - rentOwed;
             ownerOfProperty.increaseBalance(rentOwed);

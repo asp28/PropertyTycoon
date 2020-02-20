@@ -86,8 +86,8 @@ public class PropertyTycoon extends Application {
     public VBox PlayerCards() {
         VBox playerCards = new VBox();
         playerCards.getChildren().add(new Label("Cards Owned by Player"));
-        for (PropertyCards pc : gl.getActivePlayer().getOwnedProperties()) {
-            playerCards.getChildren().add(new Label(pc.getName()));
+        for (BoardPiece pc : gl.getActivePlayer().getOwnedProperties()) {
+            playerCards.getChildren().add(new Label(pc.getTitle()));
         }
         playerCards.setStyle("-fx-border-color: black;");
         return playerCards;
