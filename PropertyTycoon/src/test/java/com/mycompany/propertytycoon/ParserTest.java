@@ -11,9 +11,7 @@ import org.junit.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 /**
  * @author ankeet
@@ -26,7 +24,7 @@ public class ParserTest {
 
     public ParserTest() throws IOException, InvalidFormatException {
         Parser p = new Parser();
-        board = p.boardMaker();
+        //board = p.boardMaker();
         oppo = p.createOppoCards();
         potluck = p.createPotLuckCards();
     }

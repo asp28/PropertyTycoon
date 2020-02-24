@@ -35,19 +35,13 @@ public class Player {
     /**
      * Player Constructor method
      *
-     * @param board
-     * @param dice
-     * @param bank
      * @param character
      * @param token
      */
-    public Player(Board board, Dice dice, Bank bank, String character, Token token) {
+    public Player(String character, Token token) {
         playerBalance = 1500;
         this.character = character;
         this.token = token;
-        this.board = board;
-        this.dice = dice;
-        this.bank = bank;
     }
 
     /**
@@ -227,9 +221,14 @@ public class Player {
 
     /**
      * Increases the player balance by a certain value when receiving rent
-     * @param value 
+     *
+     * @param value
      */
     public void increaseBalance(int value) {
         playerBalance += value;
+    }
+
+    public void setOwnedProperties(ArrayList<BoardPiece> ownedProperties) {
+        this.ownedProperties = ownedProperties;
     }
 }
