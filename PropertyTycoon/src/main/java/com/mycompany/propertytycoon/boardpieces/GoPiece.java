@@ -3,24 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.propertytycoon;
+package com.mycompany.propertytycoon.boardpieces;
 
 /**
  *
  * @author ankeet
  */
-public class Card {
+public class GoPiece extends BoardPiece {
     
-    private String description;
     private String action;
     
-    public Card(String desc, String action) {
-        description = desc;
-        this.action = action;
-    }
-
-    public String getDescription() {
-        return description;
+    public GoPiece(String title, String action) {
+        super(title);
     }
 
     public String getAction() {

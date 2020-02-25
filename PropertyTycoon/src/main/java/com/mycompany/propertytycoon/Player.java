@@ -6,6 +6,8 @@
 package com.mycompany.propertytycoon;
 
 
+import com.mycompany.propertytycoon.boardpieces.BoardPiece;
+import com.mycompany.propertytycoon.boardpieces.Property;
 import java.util.ArrayList;
 
 /**
@@ -23,7 +25,6 @@ public class Player {
     private int doublesRolled = 0;
 
     private Board board;
-    private Dice dice;
     private Bank bank;
     private String character;
     private Token token;
@@ -125,8 +126,11 @@ public class Player {
         int diceTwo = 0;
         int totalMovement = 0;
         while (doublesRolled < 3 && diceOne == diceTwo) {
-            diceOne = dice.roll();
-            diceTwo = dice.roll();
+            /**
+             * SEE HERE, DICE NO LONGER EXISTS
+             */
+            //diceOne = dice.roll();
+            //diceTwo = dice.roll();
             totalMovement = diceOne + diceTwo;
             if (diceOne == diceTwo) {
                 doublesRolled++;

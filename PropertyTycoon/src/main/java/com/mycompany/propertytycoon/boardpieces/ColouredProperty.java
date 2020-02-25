@@ -1,4 +1,4 @@
-package com.mycompany.propertytycoon;
+package com.mycompany.propertytycoon.boardpieces;
 
 import java.util.ArrayList;
 

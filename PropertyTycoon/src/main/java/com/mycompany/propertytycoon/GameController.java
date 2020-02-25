@@ -1,5 +1,17 @@
 package com.mycompany.propertytycoon;
 
+import com.mycompany.propertytycoon.boardpieces.PotLuckPiece;
+import com.mycompany.propertytycoon.boardpieces.JailPiece;
+import com.mycompany.propertytycoon.boardpieces.BoardPiece;
+import com.mycompany.propertytycoon.boardpieces.FreeParkingPiece;
+import com.mycompany.propertytycoon.boardpieces.GoPiece;
+import com.mycompany.propertytycoon.boardpieces.GoToJailPiece;
+import com.mycompany.propertytycoon.boardpieces.StationProperty;
+import com.mycompany.propertytycoon.boardpieces.UtilityProperty;
+import com.mycompany.propertytycoon.boardpieces.ColouredProperty;
+import com.mycompany.propertytycoon.boardpieces.OpportunityKnocksPiece;
+import com.mycompany.propertytycoon.boardpieces.TaxPiece;
+import com.mycompany.propertytycoon.boardpieces.Property;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import java.io.IOException;

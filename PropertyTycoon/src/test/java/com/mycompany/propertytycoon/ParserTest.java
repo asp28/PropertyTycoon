@@ -5,6 +5,8 @@
  */
 package com.mycompany.propertytycoon;
 
+import com.mycompany.propertytycoon.cards.OpportunityKnocks;
+import com.mycompany.propertytycoon.cards.PotLuck;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.*;
 

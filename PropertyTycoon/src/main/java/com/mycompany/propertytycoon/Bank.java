@@ -1,5 +1,7 @@
 package com.mycompany.propertytycoon;
 
+import com.mycompany.propertytycoon.boardpieces.BoardPiece;
+import com.mycompany.propertytycoon.boardpieces.Property;
 import java.util.ArrayList;
 
 /**

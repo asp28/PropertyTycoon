@@ -1,6 +1,7 @@
 
 package com.mycompany.propertytycoon;
 
+import com.mycompany.propertytycoon.boardpieces.BoardPiece;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import java.io.IOException;

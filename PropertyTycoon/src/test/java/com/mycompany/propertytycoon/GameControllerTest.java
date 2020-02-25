@@ -1,5 +1,8 @@
 package com.mycompany.propertytycoon;
 
+import com.mycompany.propertytycoon.boardpieces.ColouredProperty;
+import com.mycompany.propertytycoon.boardpieces.BoardPiece;
+import com.mycompany.propertytycoon.boardpieces.Property;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Assert;
 import org.junit.Test;
