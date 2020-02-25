@@ -42,7 +42,7 @@ public class GameControllerTest {
 
         // Test what actions are in the arrayList if the player lands on a potluck card and owns 0 properties
         expected.removeAll(expected);
-        expected.add("PICKPOT");
+        expected.add("PICKCARD");
         expected.add("END");
         owned.remove(0);
         controller.getActivePlayer().setOwnedProperties(owned);
@@ -57,7 +57,7 @@ public class GameControllerTest {
 
         // Test what actions are in the arrayList if the player lands on a opp card and owns 0 properties
         expected.removeAll(expected);
-        expected.add("PICKOPP");
+        expected.add("PICKCARD");
         expected.add("END");
         controller.getActivePlayer().setPlayerLocation(8);
         Assert.assertEquals(expected, controller.getPlayerActions());
@@ -90,7 +90,7 @@ public class GameControllerTest {
         expected.add("SELL");
         expected.add("END");
 
-        Assert.assertEquals(expected, controller.doActions(actions));
+        Assert.assertEquals(expected, controller.performActions(actions));
 
     }
 

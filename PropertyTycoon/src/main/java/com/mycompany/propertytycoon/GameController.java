@@ -1,6 +1,5 @@
 package com.mycompany.propertytycoon;
 
-
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import java.io.IOException;
@@ -42,7 +41,8 @@ public class GameController {
     }
 
     /**
-     * Roll is used to replace the dice class that generates a random number between 1 and 6 for both dice
+     * Roll is used to replace the dice class that generates a random number
+     * between 1 and 6 for both dice
      *
      * @return an array that holds the 2 dice values
      */
@@ -56,9 +56,10 @@ public class GameController {
     }
 
     /**
-     * Move is the method called by the button roll on the GUI it causes the dice to be rolled and the player to be
-     * moved to the location landed on the dice. Move also contains the logic if the dice rolls a double to roll again
-     * and to move to jail if the dice has rolled 3 doubles
+     * Move is the method called by the button roll on the GUI it causes the
+     * dice to be rolled and the player to be moved to the location landed on
+     * the dice. Move also contains the logic if the dice rolls a double to roll
+     * again and to move to jail if the dice has rolled 3 doubles
      */
     public void move() {
         int[] roll = roll();
@@ -80,13 +81,13 @@ public class GameController {
             playerLocations.set(i, moveTotal);
 
             //GUI.update(doActions())
-
         }
 
     }
 
     /**
-     * Gets the actions that a player can do on a particular position on a board and returns an arraylist of the commands
+     * Gets the actions that a player can do on a particular position on a board
+     * and returns an arraylist of the commands
      *
      * @return Arraylist<String> containing the actions that can be done
      */
@@ -125,9 +126,9 @@ public class GameController {
         } else if (boardPiece instanceof GoPiece) {
             playerActions.add("ONGO");
         } else if (boardPiece instanceof OpportunityKnocksPiece) {
-            playerActions.add("PICKOPP");
+            playerActions.add("PICKCARD");
         } else if (boardPiece instanceof PotLuckPiece) {
-            playerActions.add("PICKPOT");
+            playerActions.add("PICKCARD");
         } else if (boardPiece instanceof JailPiece) {
             if (activePlayer.isInJail()) {
                 playerActions.add("INJAIL");
@@ -148,39 +149,54 @@ public class GameController {
     }
 
     /**
-     * Performs the actions avaliable that do not require user input such as paying rent etc then returns the methods that require user interaction
+     * Performs the actions avaliable that do not require user input such as
+     * paying rent etc then returns the methods that require user interaction
      * This is then used by the GUI to update and display the correct buttons
      *
      * @param playerActions
      * @return Arraylist of player required commands
      */
-    public ArrayList<String> doActions(ArrayList<String> playerActions) {
-        for (int i = 0; i < playerActions.size(); i++) {
-            if (playerActions.get(i).equals("RENT")) {
-                //Perform rent method
-                playerActions.remove(i);
-            } else if (playerActions.get(i).equals("ONGO")) {
-                //Perform pass go action
-                playerActions.remove(i);
-            } else if (playerActions.get(i).equals("GOTOJAIL")) {
-                //Perform go to jail method
-                playerActions.remove(i);
-            } else if (playerActions.get(i).equals("TAX")) {
-                //Perform tax method
-                playerActions.remove(i);
-            } else if (playerActions.get(i).equals("FREEPARKING")) {
-                //Perform freeparking method
-                playerActions.remove(i);
+    public ArrayList<String> performActions(ArrayList<String> playerActions) { //local variable as output of getPlayerActions
+	ArrayList<String> remaining = new ArrayList<>();
+        for (String s  : playerActions) {
+            switch (s) {
+                case "RENT":
+                    payRent();
+                    break;
+                case "BUY":
+                    remaining.add("BUY");
+                    break;
+                case "PICKCARD":
+                    pickUpCard();
+                    break;
+                case "GOTOJAIL":
+                    goToJail();
+                    break;
+                case "FREEPARKING":
+                    acquireFreeParkingMoney();
+                    break;
+                case "PASSGO":
+                    passingGo();
+                    break;
+                case "SELL":
+                    remaining.add("SELL");
+                    break;
+                case "END":
+                    remaining.add("END");
+                    break;
+                case "TAX":
+                    remaining.add("TAX");
+                    break;
+                case "INJAIL":
+                    break;
             }
         }
-
-        return playerActions;
+        return remaining;
     }
 
     /*
     Getters and setters
      */
-
     public Board getBoard() {
         return board;
     }
@@ -191,6 +207,38 @@ public class GameController {
 
     public Player getActivePlayer() {
         return activePlayer;
+    }
+    
+    public void buyProperty(BoardPiece bp) {
+        
+    }
+    
+    public void sellProperty(Property prop) {
+        
+    }
+    
+    public void endTurn() {
+        
+    }
+    
+    private void payRent() {
+        
+    }
+    
+    private void pickUpCard() {
+        
+    }
+    
+    private void goToJail() {
+        
+    }
+    
+    private void acquireFreeParkingMoney() {
+        
+    }
+    
+    private void passingGo() {
+        
     }
 
 }
