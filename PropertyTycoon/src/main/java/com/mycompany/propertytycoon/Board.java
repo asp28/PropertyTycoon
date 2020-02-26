@@ -1,4 +1,3 @@
-
 package com.mycompany.propertytycoon;
 
 import com.mycompany.propertytycoon.boardpieces.BoardPiece;
