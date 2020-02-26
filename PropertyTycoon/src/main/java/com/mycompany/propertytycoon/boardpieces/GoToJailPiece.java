@@ -1,18 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.propertytycoon.boardpieces;
 
 /**
- *
- * @author ankeet
+ *  GoToJailPiece represents the GoToJail tile on the board
+ *  @author Big Nerd Notation
  */
 public class GoToJailPiece extends BoardPiece {
     
-
-    
+    /**
+     * GoToJailPiece constructor
+     * @param title 
+     */
     public GoToJailPiece(String title) {
         super(title);
     }

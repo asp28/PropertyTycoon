@@ -1,16 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.propertytycoon.boardpieces;
 
 /**
- *
- * @author ankeet
+ *  Utility Properties represent the Electricity and Water properties
+ *  @author Big Nerd Notation
  */
 public class UtilityProperty extends Property {
     
+    /**
+     * UtilityProperty constructor
+     * @param name
+     * @param group
+     * @param cost
+     * @param rent 
+     */
     public UtilityProperty(String name, String group, int cost, String rent) {
         super(name, group, cost, rent);
     }

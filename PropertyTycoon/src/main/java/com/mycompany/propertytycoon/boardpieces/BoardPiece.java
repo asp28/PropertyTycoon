@@ -1,22 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.propertytycoon.boardpieces;
 
 /**
- *
- * @author ankeet
+ *  BoardPiece represents any tile on the board
+ *  @author Big Nerd Notation
  */
 public class BoardPiece {
     
     private final String title;
     
+    /**
+     * BoardPiece constructor
+     * @param title 
+     */
     public BoardPiece(String title) {
         this.title = title;
     }
 
+    /**
+     * Gets the title/name of the BoardPiece
+     * @return 
+     */
     public String getTitle() {
         return title;
     }

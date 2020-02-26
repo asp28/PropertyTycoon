@@ -1,25 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.propertytycoon.boardpieces;
 
 /**
- *
- * @author ankeet
+ *  TaxPiece represents the tax/fee tiles on the board
+ *  @author Big Nerd Notation
  */
 public class TaxPiece extends BoardPiece {
     
-    private final int tax;
+    private final int taxAmount;
     
+    /**
+     * TaxPiece Constructor
+     * @param title
+     * @param taxAmount 
+     */
     public TaxPiece(String title, int taxAmount) {
         super(title);
-        tax = taxAmount;
+        this.taxAmount = taxAmount;
     }
 
-    public int getTax() {
-        return tax;
+    /**
+     * Gets the tax amount for a player to pay to the bank
+     * @return taxAmount
+     */
+    public int getTaxAmount() {
+        return taxAmount;
     }
     
     
