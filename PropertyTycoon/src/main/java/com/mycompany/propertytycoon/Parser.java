@@ -25,7 +25,6 @@ import java.util.Iterator;
 /**
  *
  * @author BigNerdNotation
- * @version 1.0
  *
  * Parser object will turn the excel documents into java objects that can be
  * used.
@@ -34,7 +33,7 @@ import java.util.Iterator;
 public class Parser {
 
     /**
-     * String location of where the board is located. String location of where
+     * String location of where the board is located String location of where
      * the opportunityKnocks cards and PotLuck cards are located.
      */
     private final String board = "./src/main/java/resources/PropertyTycoonBoardData.xlsx";
