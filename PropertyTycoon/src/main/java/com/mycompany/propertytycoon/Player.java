@@ -135,10 +135,6 @@ public class Player {
     public void setToken(String token) {
         this.token = token;
     }
-
-    public Bank getBank() {
-        return bank;
-    }
     
     
     //Methods
