@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 /**
  * @author Big Nerd Notation
- * @version 1.0
  * Player class to hold player's location, their ownedProperties, etc.
  */
 public class Player {
@@ -93,16 +92,7 @@ public class Player {
      */
     public void setBalance(int balance) {
         this.balance = balance;
-    }
-    
-    /**
-     * Increases the player balance by a certain value when receiving rent
-     *
-     * @param value
-     */
-    public void increaseBalance(int value) {
-        balance += value;
-    }    
+    }   
 
     /**
      * Returns true whether player is in jail
@@ -154,5 +144,14 @@ public class Player {
     public void removeProperty(Property prop){
         ownedProperties.remove(prop);
     }
+    
+    /**
+     * Increases the player balance by a certain value when receiving rent
+     *
+     * @param value
+     */
+    public void increaseBalance(int value) {
+        balance += value;
+    }     
 }
     
