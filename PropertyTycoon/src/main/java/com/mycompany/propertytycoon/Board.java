@@ -14,12 +14,12 @@ public class Board {
 
     /**
      * Constructor to initialize Board object
-     *
+     * Calls Parser object to scan through Excel document
      * @throws IOException
      * @throws InvalidFormatException
      */
     public Board() throws IOException, InvalidFormatException {
-        boardLocations = new Parser().boardMaker();
+        this.boardLocations = new Parser().boardMaker();
     }
 
     /**
