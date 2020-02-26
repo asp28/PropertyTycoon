@@ -366,8 +366,7 @@ public class GameController {
                 break;
             //£25 per house and £100 per hotel
             case "As the card says":
-                getActivePlayer().setPlayerLocation(10);
-                //implement sending someone to jail
+                goToJail();
                 break;
             case "Player puts £20 on free parking":
                 FreeParkingPiece fpp2 = (FreeParkingPiece) board.getBoardLocations().get(20);
@@ -429,8 +428,7 @@ public class GameController {
                 }
                 break;
             case "As the card says":
-                getActivePlayer().setPlayerLocation(10);
-                //implement sending someone to jail
+                goToJail();
                 break;
             case "Player moves forwards to GO":
                 getActivePlayer().setPlayerLocation(0);
