@@ -26,6 +26,10 @@ public class Player {
         this.balance = 1500;
         this.inJail = false;
     }
+    
+    
+    //Getters and Setters
+    
 
     /**
      * Gets the player's name
@@ -90,6 +94,15 @@ public class Player {
     public void setBalance(int balance) {
         this.balance = balance;
     }
+    
+    /**
+     * Increases the player balance by a certain value when receiving rent
+     *
+     * @param value
+     */
+    public void increaseBalance(int value) {
+        balance += value;
+    }    
 
     /**
      * Returns true whether player is in jail
@@ -122,4 +135,28 @@ public class Player {
     public void setToken(String token) {
         this.token = token;
     }
+
+    public Bank getBank() {
+        return bank;
+    }
+    
+    
+    //Methods
+    
+    /**
+     * Adds a property to player's owned properties
+     * @param prop 
+     */
+    public void addProperty(Property prop){
+        ownedProperties.add(prop);
+    }
+    
+    /**
+     * Removes a property from player's owned properties
+     * @param prop 
+     */
+    public void removeProperty(Property prop){
+        ownedProperties.remove(prop);
+    }
 }
+    

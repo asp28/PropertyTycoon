@@ -28,5 +28,14 @@ public class Board {
     public ArrayList<BoardPiece> getBoardLocations() {
         return boardLocations;
     }
+    
+    /**
+     * Gets the BoardPiece at a specific location
+     * @param num
+     * @return 
+     */
+    public BoardPiece getProperty(int num) {
+        return boardLocations.get(num);
+    }
 
 }
