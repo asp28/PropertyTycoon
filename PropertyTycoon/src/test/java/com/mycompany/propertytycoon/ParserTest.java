@@ -5,6 +5,7 @@
  */
 package com.mycompany.propertytycoon;
 
+import com.mycompany.propertytycoon.boardpieces.BoardPiece;
 import com.mycompany.propertytycoon.cards.OpportunityKnocks;
 import com.mycompany.propertytycoon.cards.PotLuck;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -20,7 +21,7 @@ import static org.junit.Assert.*;
  */
 public class ParserTest {
 
-    ArrayList<PropertyCards> board;
+    ArrayList<BoardPiece> board;
     ArrayList<OpportunityKnocks> oppo;
     ArrayList<PotLuck> potluck;
 
@@ -97,9 +98,9 @@ public class ParserTest {
         expResult.add("Super Tax");
         expResult.add("Turing Heights");
         ArrayList<String> result = new ArrayList<>();
-        for (PropertyCards pc : board) {
-            result.add(pc.getName());
-        }
+        board.forEach((pc) -> {
+            result.add(pc.getTitle());
+        });
         assertEquals(expResult, result);
     }
 
@@ -127,9 +128,9 @@ public class ParserTest {
         expResult.add("\"Drunk in charge of a skateboard. Fine £20\"");
         expResult.add("\"Get out of jail free\"");
         ArrayList<String> result = new ArrayList<>();
-        for (OpportunityKnocks ok : oppo) {
+        oppo.forEach((ok) -> {
             result.add(ok.getDescription());
-        }
+        });
         for (int i = 0; i < result.size(); i++) {
             for (int j = 0; j < expResult.size(); j++) {
                 if (result.get(i) == null ? expResult.get(j) == null : result.get(i).equals(expResult.get(j))) {
@@ -169,9 +170,9 @@ public class ParserTest {
         expResult.add("\"It's your birthday. Collect £10 from each player\"");
         expResult.add("\"Get out of jail free\"");
         ArrayList<String> result = new ArrayList<>();
-        for (PotLuck ok : potluck) {
+        potluck.forEach((ok) -> {
             result.add(ok.getDescription());
-        }
+        });
         for (int i = 0; i < result.size(); i++) {
             for (int j = 0; j < expResult.size(); j++) {
                 if (result.get(i) == null ? expResult.get(j) == null : result.get(i).equals(expResult.get(j))) {
