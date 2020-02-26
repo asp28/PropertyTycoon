@@ -26,7 +26,7 @@ public class GameControllerTest {
         expected.removeAll(expected);
         expected.add("BUY");
         expected.add("END");
-        controller.getActivePlayer().setPlayerLocation(6);
+        controller.getActivePlayer().setLocation(6);
         Assert.assertEquals(expected, controller.getPlayerActions());
 
         //test what actions are in the arrayList if another player owns a card and the player owns more than 1 property
@@ -38,8 +38,8 @@ public class GameControllerTest {
         Property p = (Property) bp;
         ColouredProperty cp = (ColouredProperty) p;
         cp.setOwnedBuy("John");
-        ArrayList<BoardPiece> owned = new ArrayList<>();
-        owned.add(new BoardPiece("sa"));
+        ArrayList<Property> owned = new ArrayList<>();
+        owned.add(new Property("London Road", "Blue", 20, "5"));
         controller.getActivePlayer().setOwnedProperties(owned);
         Assert.assertEquals(expected, controller.getPlayerActions());
 
@@ -49,34 +49,34 @@ public class GameControllerTest {
         expected.add("END");
         owned.remove(0);
         controller.getActivePlayer().setOwnedProperties(owned);
-        controller.getActivePlayer().setPlayerLocation(2);
+        controller.getActivePlayer().setLocation(2);
         Assert.assertEquals(expected, controller.getPlayerActions());
 
         //Test what actions are in the arrayList if the player lands on jail and is not in jail
         expected.removeAll(expected);
         expected.add("END");
-        controller.getActivePlayer().setPlayerLocation(11);
+        controller.getActivePlayer().setLocation(11);
         Assert.assertEquals(expected, controller.getPlayerActions());
 
         // Test what actions are in the arrayList if the player lands on a opp card and owns 0 properties
         expected.removeAll(expected);
         expected.add("PICKCARD");
         expected.add("END");
-        controller.getActivePlayer().setPlayerLocation(8);
+        controller.getActivePlayer().setLocation(8);
         Assert.assertEquals(expected, controller.getPlayerActions());
 
         // Test what actions are in the arrayList if the player lands on Go to jail owns 0 properties
         expected.removeAll(expected);
         expected.add("GOTOJAIL");
         expected.add("END");
-        controller.getActivePlayer().setPlayerLocation(33);
+        controller.getActivePlayer().setLocation(33);
         Assert.assertEquals(expected, controller.getPlayerActions());
 
         // Test wha actions are in the arraylist if the player lands on a tax card owns 0 properties
         expected.removeAll(expected);
         expected.add("TAX");
         expected.add("END");
-        controller.getActivePlayer().setPlayerLocation(4);
+        controller.getActivePlayer().setLocation(4);
         Assert.assertEquals(expected, controller.getPlayerActions());
 
     }
@@ -101,7 +101,7 @@ public class GameControllerTest {
     public void testMove() throws IOException, InvalidFormatException {
         GameController controller = new GameController(2);
         controller.move();
-        Assert.assertTrue(controller.getActivePlayer().getPlayerLocation() > 0);
+        Assert.assertTrue(controller.getActivePlayer().getLocation() > 0);
 
     }
 
