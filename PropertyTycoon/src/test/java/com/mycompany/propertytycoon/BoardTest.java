@@ -9,10 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author agent
- */
+
 public class BoardTest {
     
     private Board board;
