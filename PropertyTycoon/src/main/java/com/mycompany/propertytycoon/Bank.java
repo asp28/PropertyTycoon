@@ -7,8 +7,7 @@ import java.util.ArrayList;
 /**
  * PropertyTycoon Bank
  *
- * @author Duarte
- * @version 1.0
+ * @author Big Nerd Notation
  */
 public class Bank {
 
