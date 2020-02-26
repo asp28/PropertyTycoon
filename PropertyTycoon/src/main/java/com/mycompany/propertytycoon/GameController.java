@@ -29,6 +29,15 @@ public class GameController {
     private Player activePlayer;
     private int moveTotal;
     private int doublesRolled;
+    private ArrayList<String> tokens = new ArrayList<String>(){{
+        add("boot");
+        add("smartphone");
+        add("goblet");
+        add("hatstand");
+        add("cat");
+        add("spoon");
+        
+    }};
 
     /**
      * The constructor
@@ -39,13 +48,15 @@ public class GameController {
      */
     public GameController(int amountOfPlayer) throws IOException, InvalidFormatException {
         for (int i = 0; i < amountOfPlayer; i++) {
-            amountOfPlayers.add(new Player("Player" + i, Token.CAT));
+            Player player = new Player();
+            player.setName("Player" + i);
+            amountOfPlayers.add(player);
             playerLocations.add(0);
         }
         board = new Board();
         bank = new Bank(board.getBoardLocations());
 
-        activePlayer = amountOfPlayers.get(0);
+        activePlayer = amountOfPlayers.get(0); //the person who rolls the highest goes first and etc.
         moveTotal = 0;
         doublesRolled = 0;
         // GUI = new PropertyTycoon();
@@ -84,11 +95,11 @@ public class GameController {
             //GUI.update(actions)
         } else if (doublesRolled > 2) {
             //Move player to jail
-            activePlayer.setPlayerLocation(11);
+            activePlayer.setLocation(11);
         } else {
             moveTotal += roll[0] + roll[1];
             //Set location values
-            activePlayer.setPlayerLocation(moveTotal);
+            activePlayer.setLocation(moveTotal);
             int i = amountOfPlayers.indexOf(activePlayer);
             playerLocations.set(i, moveTotal);
 
@@ -99,17 +110,17 @@ public class GameController {
 
     /**
      * Gets the actions that a player can do on a particular position on a board
-     * and returns an arraylist of the commands
+     * and returns an ArrayList of the commands
      *
-     * @return Arraylist<String> containing the actions that can be done
+     * @return ArrayList<String> containing the actions that can be done
      */
     public ArrayList<String> getPlayerActions() {
         ArrayList<String> playerActions = new ArrayList<>();
-        BoardPiece boardPiece = board.getBoardLocations().get(activePlayer.getPlayerLocation());
+        BoardPiece boardPiece = board.getBoardLocations().get(activePlayer.getLocation());
         if (boardPiece instanceof ColouredProperty) {
             ColouredProperty buyable = (ColouredProperty) boardPiece;
             if (buyable.getOwnedBuy().equals("The Bank")) {
-                if (buyable.getCost() <= activePlayer.getPlayerBalance()) {
+                if (buyable.getCost() <= activePlayer.getBalance()) {
                     playerActions.add("BUY");
                 }
             } else {
@@ -118,7 +129,7 @@ public class GameController {
         } else if (boardPiece instanceof StationProperty) {
             StationProperty buyable = (StationProperty) boardPiece;
             if (buyable.getOwnedBuy().equals("The Bank")) {
-                if (buyable.getCost() <= activePlayer.getPlayerBalance()) {
+                if (buyable.getCost() <= activePlayer.getBalance()) {
                     playerActions.add("BUY");
                 }
             } else {
@@ -127,7 +138,7 @@ public class GameController {
         } else if (boardPiece instanceof UtilityProperty) {
             UtilityProperty buyable = (UtilityProperty) boardPiece;
             if (buyable.getOwnedBuy().equals("The Bank")) {
-                if (buyable.getCost() <= activePlayer.getPlayerBalance()) {
+                if (buyable.getCost() <= activePlayer.getBalance()) {
                     playerActions.add("BUY");
                 }
             } else {
