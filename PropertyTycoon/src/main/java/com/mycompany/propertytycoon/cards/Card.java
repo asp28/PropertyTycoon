@@ -1,28 +1,36 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.propertytycoon.cards;
 
 /**
- *
- * @author ankeet
+ *  Card represents the OpportunityKnocks and PotLuck cards
+ *  @author Big Nerd Notation
  */
 public class Card {
     
     private String description;
     private String action;
     
+    /**
+     * Card constructor
+     * @param desc
+     * @param action 
+     */
     public Card(String desc, String action) {
         description = desc;
         this.action = action;
     }
 
+    /**
+     * Gets the description of the Card
+     * @return description
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Gets the action of the Card
+     * @return action
+     */
     public String getAction() {
         return action;
     }
