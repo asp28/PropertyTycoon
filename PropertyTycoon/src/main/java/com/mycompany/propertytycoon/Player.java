@@ -202,6 +202,18 @@ public class Player {
         }
 
     }
+    
+    public void addProperty(Property prop) {
+        ownedProperties.add(prop);
+    }
+    
+    public void removeProperty(Property prop) {
+        ownedProperties.remove(prop);
+    }
+    
+    public void setInJail(Boolean val) {
+        inJail = val;
+    }
 
     /**
      * Used when a player lands on another player's property and must pay rent. Returns in "paid".

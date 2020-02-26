@@ -29,5 +29,9 @@ public class Board {
     public ArrayList<BoardPiece> getBoardLocations() {
         return boardLocations;
     }
+    
+    public BoardPiece getProperty(int num) {
+        return boardLocations.get(num);
+    }
 
 }
