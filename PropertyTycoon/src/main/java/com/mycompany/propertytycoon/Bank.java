@@ -1,5 +1,6 @@
 package com.mycompany.propertytycoon;
 
+import com.mycompany.propertytycoon.boardpieces.BoardPiece;
 import com.mycompany.propertytycoon.boardpieces.Property;
 import java.util.ArrayList;
 
@@ -11,52 +12,87 @@ import java.util.ArrayList;
 public class Bank {
 
     private int totalMoney;
-    private ArrayList<Property> unownedProperties = new ArrayList<>();
+    private ArrayList<BoardPiece> unownedProperties = new ArrayList<>();
 
     /**
      * Bank constructor
      *
      * @param properties property cards
      */
-    public Bank(ArrayList<Property> properties) {
+    public Bank(ArrayList<BoardPiece> properties) {
         totalMoney = 50000;
-        unownedProperties = properties;
+        for (BoardPiece pc : properties) {
+            if (pc instanceof Property) {
+                unownedProperties.add(pc);
+            }
+        }
     }
 
     /**
-     * getter for bank money
+     * Returns banks total money
      *
-     * @return total money
+     * @return current cash
      */
-    public int getTotalMoney() {
+    public int getMoney() {
         return totalMoney;
     }
 
     /**
-     * setter for bank money
+     * Deposes money from players to bank
      *
-     * @param totalMoney
+     * @param cash money to bank
      */
-    public void setTotalMoney(int totalMoney) {
-        this.totalMoney = totalMoney;
+    public void deposit(int cash) {
+        this.totalMoney += cash;
     }
 
     /**
-     * getter for bank properties
+     * Returns requested amount
      *
-     * @return unowned properties
+     * @param cash money to withdraw
+     * @return cash asked or 0 if bank can't pay
      */
-    public ArrayList<Property> getUnownedProperties() {
-        return unownedProperties;
+    public int withdraw(int cash) {
+        if (totalMoney > 0 && totalMoney - cash >= 0) {
+            totalMoney -= cash;
+            return cash;
+        } else {
+            totalMoney += 50000;
+            System.out.print("Bank funds have been replenished");
+            return withdraw(cash);
+        }
     }
 
     /**
-     * setter for bank properties
+     * Gets properties
      *
-     * @param unownedProperties
+     * @param name property name
+     * @return property object or null if it doesn't exist
      */
-    public void setUnownedProperties(ArrayList<Property> unownedProperties) {
-        this.unownedProperties = unownedProperties;
+    public BoardPiece getProperties(String name) {
+        for (BoardPiece p : unownedProperties) {
+            if (name.equals(p.getTitle())) {
+                return p;
+            }
+        }
+        return null; // Watch out for later
     }
 
+    /**
+     * Adds property to list of properties
+     *
+     * @param property property object
+     */
+    public void addProperties(BoardPiece property) {
+        unownedProperties.add(property);
+    }
+
+    /**
+     * Removes property from list of properties
+     *
+     * @param name property name
+     */
+    public void removeProperties(String name) {
+        unownedProperties.remove(getProperties(name));
+    }
 }

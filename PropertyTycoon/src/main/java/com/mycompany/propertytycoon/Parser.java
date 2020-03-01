@@ -105,8 +105,7 @@ public class Parser {
                     int cost = (int) r.getCell(7).getNumericCellValue();
                     if (r.getCell(3).getStringCellValue().equalsIgnoreCase("station")) {
                         b.add(new StationProperty(name, group, cost, rent));
-                    }
-                    if (r.getCell(3).getStringCellValue().equalsIgnoreCase("utilities")) {
+                    } else if (r.getCell(3).getStringCellValue().equalsIgnoreCase("utilities")) {
                         b.add(new UtilityProperty(name, group, cost, rent));
                     } else {
                         ArrayList<Integer> houses = new ArrayList<>();

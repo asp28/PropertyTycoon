@@ -27,7 +27,7 @@ public class ParserTest {
 
     public ParserTest() throws IOException, InvalidFormatException {
         Parser p = new Parser();
-        //board = p.boardMaker();
+        board = p.boardMaker();
         oppo = p.createOppoCards();
         potluck = p.createPotLuckCards();
     }
