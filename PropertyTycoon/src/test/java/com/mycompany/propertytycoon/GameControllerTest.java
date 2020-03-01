@@ -55,21 +55,21 @@ public class GameControllerTest {
         //Test what actions are in the arrayList if the player lands on jail and is not in jail
         expected.removeAll(expected);
         expected.add("END");
-        controller.getActivePlayer().setLocation(11);
+        controller.getActivePlayer().setLocation(10);
         Assert.assertEquals(expected, controller.getPlayerActions());
 
         // Test what actions are in the arrayList if the player lands on a opp card and owns 0 properties
         expected.removeAll(expected);
         expected.add("PICKCARD");
         expected.add("END");
-        controller.getActivePlayer().setLocation(8);
+        controller.getActivePlayer().setLocation(7);
         Assert.assertEquals(expected, controller.getPlayerActions());
 
         // Test what actions are in the arrayList if the player lands on Go to jail owns 0 properties
         expected.removeAll(expected);
         expected.add("GOTOJAIL");
         expected.add("END");
-        controller.getActivePlayer().setLocation(33);
+        controller.getActivePlayer().setLocation(30);
         Assert.assertEquals(expected, controller.getPlayerActions());
 
         // Test wha actions are in the arraylist if the player lands on a tax card owns 0 properties
@@ -85,7 +85,7 @@ public class GameControllerTest {
     public void testDoActions() throws IOException, InvalidFormatException {
         GameController controller = new GameController(2);
         ArrayList<String> actions = new ArrayList<>();
-        actions.add("RENT");
+        actions.add("ONGO");
         actions.add("SELL");
         actions.add("END");
 
