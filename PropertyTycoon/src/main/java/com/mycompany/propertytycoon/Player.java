@@ -152,6 +152,10 @@ public class Player {
      */
     public void increaseBalance(int value) {
         balance += value;
-    }     
+    }
+    
+    public void decreaseBalance(int value) {
+        balance -= value;
+    }
 }
     
