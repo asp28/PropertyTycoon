@@ -3,7 +3,7 @@ package com.mycompany.propertytycoon;
 import com.mycompany.propertytycoon.boardpieces.BoardPiece;
 import com.mycompany.propertytycoon.boardpieces.Property;
 import java.util.ArrayList;
-import java.util.Properties;
+
 
 /**
  * PropertyTycoon Bank
@@ -70,8 +70,8 @@ public class Bank {
      * @param name property name
      * @return property object or null if it doesn't exist
      */
-    public BoardPiece getProperties(String name) {
-        for (BoardPiece p : unownedProperties) {
+    public Property getProperties(String name) {
+        for (Property p : unownedProperties) {
             if (name.equals(p.getTitle())) {
                 return p;
             }
