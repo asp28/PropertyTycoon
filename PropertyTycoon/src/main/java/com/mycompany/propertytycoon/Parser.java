@@ -93,30 +93,25 @@ public class Parser {
                     b.add(new GoToJailPiece(r.getCell(1).getStringCellValue()));
                     continue;
                 } else {
-                    String rent = "";
-                    if (r.getCell(8).getCellType() == CellType.STRING) {
-                        rent = "see notes";
-                    } else {
-                        int rentInt = (int) r.getCell(8).getNumericCellValue();
-                        rent = Integer.toString(rentInt);
-                    }
                     String name = r.getCell(1).getStringCellValue();
                     String group = r.getCell(3).getStringCellValue();
                     int cost = (int) r.getCell(7).getNumericCellValue();
                     if (r.getCell(3).getStringCellValue().equalsIgnoreCase("station")) {
+                        String rent = r.getCell(8).getStringCellValue();
                         b.add(new StationProperty(name, group, cost, rent));
                     } else if (r.getCell(3).getStringCellValue().equalsIgnoreCase("utilities")) {
+                        String rent = r.getCell(8).getStringCellValue();
                         b.add(new UtilityProperty(name, group, cost, rent));
                     } else {
+                        
+                        int rentInt = (int) r.getCell(8).getNumericCellValue();
+                        String rent = Integer.toString(rentInt);
                         ArrayList<Integer> houses = new ArrayList<>();
+                        houses.add(rentInt);
                         for (int i = 0; i < 5; i++) {
-                            if (r.getCell(8) == null) {
-                                houses.add(0);
-                            } else {
-                                double houseDoub = r.getCell(10 + i).getNumericCellValue();
-                                int houseInt = (int) houseDoub;
-                                houses.add(houseInt);
-                            }
+                            double houseDoub = r.getCell(10 + i).getNumericCellValue();
+                            int houseInt = (int) houseDoub;
+                            houses.add(houseInt);
                         }
                         int houseCost = 0;
                         if (workbook.getSheetAt(0).getRow(47).getCell(7).getStringCellValue().contains("Blue") && r.getCell(3).getStringCellValue().equalsIgnoreCase("blue") || workbook.getSheetAt(0).getRow(47).getCell(7).getStringCellValue().contains("Brown") && r.getCell(3).getStringCellValue().equalsIgnoreCase("brown")) {
@@ -192,4 +187,5 @@ public class Parser {
         Collections.shuffle(potluck);
         return potluck;
     }
+    
 }
