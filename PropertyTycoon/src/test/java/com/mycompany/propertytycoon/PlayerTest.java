@@ -1,84 +1,81 @@
 package com.mycompany.propertytycoon;
 
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
-
-import java.io.IOException;
+import com.mycompany.propertytycoon.boardpieces.Property;
 import java.util.ArrayList;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 
 public class PlayerTest {
-
-
-    /**
-     * Test that rolling the dice will cause the player to move to that location that it is not on;
-     */
-    @Test
-    public void testRollDice() throws IOException, InvalidFormatException {
-        ArrayList<Integer> a = new ArrayList<Integer>();
-        a.add(1);
-        PropertyCards propertyCards = new PropertyCards("test", "green", "", true, 1000, "10", a, 100);
-        ArrayList<PropertyCards> properties = new ArrayList<PropertyCards>();
-        properties.add(propertyCards);
-        Bank bank = new Bank(properties);
-        Dice dice = new Dice();
-        Board board = new Board();
-        Token token = Token.CAT;
-        Player player = new Player(board, dice, bank, "name", token);
-
-        player.rollDice();
-        Assertions.assertTrue(player.getPlayerLocation() != 0);
+    
+    public Player player;
+    
+    public PlayerTest() {
     }
-
-
-    /**
-     * Test that the player will move around the board resetting the location back to 0 when it reaches the last known location
-     */
-    @Test
-    public void testRoundTheBoard() throws IOException, InvalidFormatException {
-        ArrayList<Integer> a = new ArrayList<Integer>();
-        a.add(1);
-        PropertyCards propertyCards = new PropertyCards("test", "green", "", true, 1000, "10", a, 100);
-        ArrayList<PropertyCards> properties = new ArrayList<PropertyCards>();
-        properties.add(propertyCards);
-        Dice dice = new Dice();
-        Board board = new Board();
-        Bank bank = new Bank(board.getBoardLocations());
-        Token token = Token.CAT;
-        Player player = new Player(board, dice, bank, "name", token);
-        player.setPlayerLocation(42);
-        player.rollDice();
-        System.out.println(player.getPlayerLocation());
+    
+    @BeforeClass
+    public static void setUpClass() {
     }
-
-    /**
-     * Testing that the player will be able to successfully buy a property and add it to the players owned property list
-     */
-    @Test
-    public void testBuy() throws IOException, InvalidFormatException {
-        Dice dice = new Dice();
-        Board board = new Board();
-        Bank bank = new Bank(board.getBoardLocations());
-        Token token = Token.CAT;
-        Player player = new Player(board, dice, bank, "name", token);
-
-        player.setPlayerLocation(1);
-        PropertyCards propertyLocation = board.getBoardLocations().get(player.getPlayerLocation());
-        player.buyProperty(propertyLocation, 1);
-
-        Assertions.assertEquals(1, player.getOwnedProperties().size());
-
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+    @Before
+    public void setUp() {
+        player = new Player();
+    }
+    
+    @After
+    public void tearDown() {
     }
     
     @Test
-    public void testToken() throws IOException, InvalidFormatException{
-        Dice dice = new Dice();
-        Board board = new Board();
-        Bank bank = new Bank(board.getBoardLocations());
-        Token token = Token.CAT;
-        Player player = new Player(board, dice, bank, "name", token);
-        Assertions.assertEquals("CAT", player.getToken());
+    public void nameTest(){
+        String name = "Jekyll";
+        player.setName(name);
+        assertEquals(player.getName(), name);
     }
-
-
+    
+    @Test
+    public void locationTest(){
+        assertEquals(player.getLocation(), 0);
+        player.setLocation(10);
+        assertEquals(player.getLocation(), 10);
+    }
+    
+    @Test
+    public void ownedPropertiesTest(){
+        ArrayList<Property> props = new ArrayList<>();
+        Property prop = new Property("London Road", "Blue", 20, "5");
+        props.add(prop);
+        player.setOwnedProperties(props);
+        assertEquals(player.getOwnedProperties(), props);
+    }
+    
+    @Test
+    public void balanceTest(){
+        assertEquals(player.getBalance(), 1500);
+        player.setBalance(2500);
+        assertEquals(player.getBalance(), 2500);
+    }
+    
+    @Test
+    public void inJailTest(){
+        assertEquals(player.isInJail(), false);
+        player.setInJail(true);
+        assertEquals(player.isInJail(), true);
+    }
+    
+    @Test
+    public void tokenTest(){
+        String token = "cat";
+        player.setToken(token);
+        assertEquals(player.getToken(), token);
+        
+    }
 }

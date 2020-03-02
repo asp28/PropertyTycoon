@@ -1,27 +1,28 @@
 package com.mycompany.propertytycoon;
 
+import com.mycompany.propertytycoon.boardpieces.BoardPiece;
+import com.mycompany.propertytycoon.boardpieces.Property;
 import java.util.ArrayList;
 
 /**
  * PropertyTycoon Bank
  *
- * @author Duarte
- * @version 1.0
+ * @author Big Nerd Notation
  */
 public class Bank {
 
     private int totalMoney;
-    private ArrayList<PropertyCards> unownedProperties = new ArrayList<PropertyCards>();
+    private ArrayList<BoardPiece> unownedProperties = new ArrayList<>();
 
     /**
      * Bank constructor
      *
      * @param properties property cards
      */
-    public Bank(ArrayList<PropertyCards> properties) {
+    public Bank(ArrayList<BoardPiece> properties) {
         totalMoney = 50000;
-        for (PropertyCards pc : properties) {
-            if (pc.isCanBeBought()) {
+        for (BoardPiece pc : properties) {
+            if (pc instanceof Property) {
                 unownedProperties.add(pc);
             }
         }
@@ -68,9 +69,9 @@ public class Bank {
      * @param name property name
      * @return property object or null if it doesn't exist
      */
-    public PropertyCards getProperties(String name) {
-        for (PropertyCards p : unownedProperties) {
-            if (name.equals(p.getName())) {
+    public BoardPiece getProperties(String name) {
+        for (BoardPiece p : unownedProperties) {
+            if (name.equals(p.getTitle())) {
                 return p;
             }
         }
@@ -82,7 +83,7 @@ public class Bank {
      *
      * @param property property object
      */
-    public void addProperties(PropertyCards property) {
+    public void addProperties(BoardPiece property) {
         unownedProperties.add(property);
     }
 
