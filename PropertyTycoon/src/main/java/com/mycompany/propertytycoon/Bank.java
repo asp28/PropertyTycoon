@@ -3,6 +3,7 @@ package com.mycompany.propertytycoon;
 import com.mycompany.propertytycoon.boardpieces.BoardPiece;
 import com.mycompany.propertytycoon.boardpieces.Property;
 import java.util.ArrayList;
+import java.util.Properties;
 
 /**
  * PropertyTycoon Bank
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 public class Bank {
 
     private int totalMoney;
-    private ArrayList<BoardPiece> unownedProperties = new ArrayList<>();
+    private ArrayList<Property> unownedProperties = new ArrayList<>();
 
     /**
      * Bank constructor
@@ -23,7 +24,7 @@ public class Bank {
         totalMoney = 50000;
         for (BoardPiece pc : properties) {
             if (pc instanceof Property) {
-                unownedProperties.add(pc);
+                unownedProperties.add((Property) pc);
             }
         }
     }
@@ -83,7 +84,7 @@ public class Bank {
      *
      * @param property property object
      */
-    public void addProperties(BoardPiece property) {
+    public void addProperties(Property property) {
         unownedProperties.add(property);
     }
 
