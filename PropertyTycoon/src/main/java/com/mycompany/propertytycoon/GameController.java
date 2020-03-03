@@ -1,17 +1,6 @@
 package com.mycompany.propertytycoon;
 
-import com.mycompany.propertytycoon.boardpieces.PotLuckPiece;
-import com.mycompany.propertytycoon.boardpieces.JailPiece;
-import com.mycompany.propertytycoon.boardpieces.BoardPiece;
-import com.mycompany.propertytycoon.boardpieces.FreeParkingPiece;
-import com.mycompany.propertytycoon.boardpieces.GoPiece;
-import com.mycompany.propertytycoon.boardpieces.GoToJailPiece;
-import com.mycompany.propertytycoon.boardpieces.StationProperty;
-import com.mycompany.propertytycoon.boardpieces.UtilityProperty;
-import com.mycompany.propertytycoon.boardpieces.ColouredProperty;
-import com.mycompany.propertytycoon.boardpieces.OpportunityKnocksPiece;
-import com.mycompany.propertytycoon.boardpieces.TaxPiece;
-import com.mycompany.propertytycoon.boardpieces.Property;
+import com.mycompany.propertytycoon.boardpieces.*;
 import com.mycompany.propertytycoon.cards.OpportunityKnocks;
 import com.mycompany.propertytycoon.cards.PotLuck;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -93,6 +82,7 @@ public class GameController {
      */
     public void move() {
         int[] roll = roll();
+        int newLocation = 0;
         if (roll[0] == roll[1] && doublesRolled < 3) {
             //GUI.updateLog("The player has rolled a double")
             moveTotal += roll[0] + roll[1];
@@ -106,9 +96,17 @@ public class GameController {
         } else {
             moveTotal += roll[0] + roll[1];
             //Set location values
-            activePlayer.setLocation(moveTotal);
+            if (activePlayer.getLocation() + moveTotal > 40) {
+                activePlayer.incrementGameloops();
+                moveTotal = (activePlayer.getLocation() + moveTotal) - 40;
+                newLocation = moveTotal;
+
+            } else {
+                newLocation = activePlayer.getLocation() + moveTotal;
+            }
+            activePlayer.setLocation(newLocation);
             int i = amountOfPlayers.indexOf(activePlayer);
-            playerLocations.set(i, moveTotal);
+            playerLocations.set(i, newLocation);
 
             //GUI.update(doActions())
         }
@@ -130,6 +128,11 @@ public class GameController {
                 if (buyable.getCost() <= activePlayer.getBalance()) {
                     playerActions.add("BUY");
                 }
+            } else if (buyable.getOwnedBuy().equals(activePlayer.getName())) {
+                if (checkAllColoursOwned(buyable) && checkHouseCount(buyable)) {
+                    playerActions.add("BUYHOUSE");
+                }
+
             } else {
                 playerActions.add("RENT");
             }
@@ -173,6 +176,17 @@ public class GameController {
         if (activePlayer.getOwnedProperties().size() > 0) {
             playerActions.add("SELL");
         }
+        int amountOfHouses = 0;
+        for (Property p : activePlayer.getOwnedProperties()) {
+            if (p instanceof ColouredProperty) {
+                ColouredProperty cp = (ColouredProperty) p;
+                amountOfHouses += cp.getHouseCount();
+            }
+        }
+        if (amountOfHouses > 0) {
+            playerActions.add("SELLHOUSE");
+        }
+
         playerActions.add("END");
 
         return playerActions;
@@ -242,11 +256,15 @@ public class GameController {
     public void buyProperty(BoardPiece bp) {
         if (bp instanceof Property) {
             Property prop = (Property) bp;
-            if (prop.getOwnedBuy().equalsIgnoreCase("bank")) {
+
+            if (prop.getOwnedBuy().equalsIgnoreCase("The Bank")) {
                 activePlayer.increaseBalance(-prop.getCost());
                 bank.deposit(prop.getCost());
                 bank.removeProperties(prop.getTitle());
                 activePlayer.addProperty(prop);
+                prop.setOwnedBuy(activePlayer.getName());
+
+
             }
 
         }
@@ -266,6 +284,7 @@ public class GameController {
     public void endTurn() {
         doublesRolled = 0;
         moveTotal = 0;
+        activePlayer.incrementPlayerTurns();
         if (amountOfPlayers.indexOf(activePlayer) == amountOfPlayers.size() - 1) {
             activePlayer = amountOfPlayers.get(0);
         } else {
@@ -472,6 +491,61 @@ public class GameController {
     private void passingGo() {
         bank.withdraw(200);
         activePlayer.increaseBalance(200);
+    }
+
+    private boolean checkAllColoursOwned(ColouredProperty prop) {
+        String colourGroup = prop.getGroup();
+        int countOfColours = 0;
+        for (Property ownedProperties : activePlayer.getOwnedProperties()) {
+            if (ownedProperties instanceof ColouredProperty) {
+                if (ownedProperties.getGroup().equals(colourGroup)) {
+                    countOfColours++;
+                }
+
+            }
+        }
+        if (colourGroup.equals("Brown") || colourGroup.equals("Deep blue")) {
+            if (countOfColours == 2) {
+                return true;
+            }
+        } else {
+            if (countOfColours == 3) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkHouseCount(Property prop) {
+        ColouredProperty property = (ColouredProperty) prop;
+        if (property.getHouseCount() >= 5) {
+            return false;
+        }
+        ArrayList<ColouredProperty> cp = new ArrayList<>();
+
+        for (Property ownedProperties : activePlayer.getOwnedProperties()) {
+            if (prop.getGroup().equals(ownedProperties.getGroup()) && !ownedProperties.getTitle().equals(property.getTitle())) {
+                cp.add((ColouredProperty) ownedProperties);
+            }
+        }
+        for (ColouredProperty check : cp) {
+            if (Math.abs(property.getHouseCount() - check.getHouseCount()) >= 1) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void buyHouse() {
+        ColouredProperty prop = (ColouredProperty) board.getProperty(activePlayer.getLocation());
+        if (prop.getHouseCount() < activePlayer.getBalance()) {
+            activePlayer.decreaseBalance(prop.getHouseCost());
+            prop.setHouseCount(prop.getHouseCount() + 1);
+            int rentValue = prop.getHouses().get(prop.getHouseCount());
+            prop.setRent(Integer.toString(rentValue));
+
+
+        }
     }
 
 }
