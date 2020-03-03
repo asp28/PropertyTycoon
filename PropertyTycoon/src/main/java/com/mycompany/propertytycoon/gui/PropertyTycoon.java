@@ -97,6 +97,10 @@ public class PropertyTycoon extends Application {
         primaryStage.show();
 
     }
+    
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     /**
      *
@@ -107,6 +111,7 @@ public class PropertyTycoon extends Application {
      */
     public GameController createGame(int num) throws IOException, InvalidFormatException {
         gl = new GameController(num);
+        gl.getActivePlayer().setToken("CAT");
         return gl;
     }
 
