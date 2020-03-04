@@ -285,7 +285,7 @@ public class GameController {
      * @param bidder
      * 
      */
-    public void buyProperty(BoardPiece bp, Pair<Player, Integer> bidder) {
+    public void buyProperty(BoardPiece bp, Pair<Player, Integer> bidder) throws NotAProperty {
         Player player = bidder.getKey();
         int bid = bidder.getValue();
         if (bp instanceof Property) {
