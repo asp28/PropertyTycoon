@@ -9,6 +9,8 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.Random;
 import javafx.util.Pair;
 
@@ -326,7 +328,7 @@ public class GameController {
     }
 
     private void payRent() {
-        Property p = (Property) board.getProperty(activePlayer.getLocation());
+        Property p = (Property) board.getBoardPiece(activePlayer.getLocation());
         Player owner = null;
         for (Player player : amountOfPlayers) {
             if (player.getName().equalsIgnoreCase(p.getOwnedBuy())) { //make lower case equals
@@ -339,11 +341,11 @@ public class GameController {
     }
 
     private void pickUpCard() {
-        if (board.getProperty(activePlayer.getLocation()) instanceof OpportunityKnocksPiece) {
+        if (board.getBoardPiece(activePlayer.getLocation()) instanceof OpportunityKnocksPiece) {
             OpportunityKnocks card = oppocards.get(0);
             doCardAction(card);
             Collections.rotate(oppocards, -1);
-        } else if (board.getProperty(activePlayer.getLocation()) instanceof PotLuckPiece) {
+        } else if (board.getBoardPiece(activePlayer.getLocation()) instanceof PotLuckPiece) {
             PotLuck card = potluckcards.get(0);
             doCardAction(card);
             Collections.rotate(potluckcards, -1);
@@ -515,7 +517,7 @@ public class GameController {
     }
 
     private void acquireFreeParkingMoney() {
-        FreeParkingPiece fp = (FreeParkingPiece) board.getProperty(activePlayer.getLocation());
+        FreeParkingPiece fp = (FreeParkingPiece) board.getBoardPiece(activePlayer.getLocation());
         activePlayer.increaseBalance(fp.getBalance());
         fp.setBalance(0);
     }
@@ -569,7 +571,7 @@ public class GameController {
     }
 
     public void buyHouse() {
-        ColouredProperty prop = (ColouredProperty) board.getProperty(activePlayer.getLocation());
+        ColouredProperty prop = (ColouredProperty) board.getBoardPiece(activePlayer.getLocation());
         if (prop.getHouseCount() < activePlayer.getBalance()) {
             activePlayer.decreaseBalance(prop.getHouseCost());
             prop.setHouseCount(prop.getHouseCount() + 1);
@@ -578,6 +580,25 @@ public class GameController {
 
 
         }
+    }
+    
+    public Pair<Player,Integer> getHighestBid(HashMap<Player,Integer> bids){
+        int maxBid = 0;
+        Player maxBidPlayer = null;
+        for (Entry<Player,Integer> pair : bids.entrySet()){
+            if (pair.getValue() > maxBid){
+                maxBid = pair.getValue();
+                maxBidPlayer = pair.getKey();
+            }
+        }
+        Pair<Player,Integer> max = new Pair<>(maxBidPlayer,maxBid);
+        return max;
+    }
+    
+    public void mortgageProperty(Property prop){
+        prop.setMortgaged(true);
+        bank.withdraw(prop.getCost()/2);
+        activePlayer.increaseBalance(prop.getCost()/2);  
     }
     
     public void updateGUI() {

@@ -3,12 +3,14 @@ package com.mycompany.propertytycoon;
 import com.mycompany.propertytycoon.boardpieces.BoardPiece;
 import com.mycompany.propertytycoon.boardpieces.ColouredProperty;
 import com.mycompany.propertytycoon.boardpieces.Property;
+import com.mycompany.propertytycoon.exceptions.NotAProperty;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GameControllerTest {
 
@@ -115,7 +117,7 @@ public class GameControllerTest {
     }
 
     @Test
-    public void testBuyButton() throws IOException, InvalidFormatException {
+    public void testBuyButton() throws IOException, InvalidFormatException, NotAProperty {
         GameController controller = new GameController(2);
         controller.getActivePlayer().setLocation(6);
         ColouredProperty cp = (ColouredProperty) controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation());
@@ -128,7 +130,7 @@ public class GameControllerTest {
     }
 
     @Test
-    public void buyHouse() throws IOException, InvalidFormatException {
+    public void buyHouse() throws IOException, InvalidFormatException, NotAProperty {
         GameController controller = new GameController(2);
         controller.getActivePlayer().setLocation(3);
         ColouredProperty cp = (ColouredProperty) controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation());
@@ -142,7 +144,7 @@ public class GameControllerTest {
     }
 
     @Test
-    public void testIfAllColoursOwned() throws IOException, InvalidFormatException {
+    public void testIfAllColoursOwned() throws IOException, InvalidFormatException, NotAProperty {
         GameController controller = new GameController(2);
 
         controller.getActivePlayer().setLocation(1);
@@ -164,7 +166,7 @@ public class GameControllerTest {
     }
 
     @Test
-    public void testHouseInLineCountAndSellHouse() throws IOException, InvalidFormatException {
+    public void testHouseInLineCountAndSellHouse() throws IOException, InvalidFormatException, NotAProperty {
         GameController controller = new GameController(2);
 
         controller.getActivePlayer().setLocation(1);
@@ -191,6 +193,35 @@ public class GameControllerTest {
         actions.add("END");
         Assert.assertEquals(actions, controller.getPlayerActions());
 
+    }
+    
+    @Test
+    public void getMaxBidTest() throws InvalidFormatException, IOException{
+        GameController controller = new GameController(2);
+        
+        HashMap<Player,Integer> bids = new HashMap<>();
+        controller.getActivePlayer().setName("Jekyll");
+        bids.put(controller.getActivePlayer(), 100);
+        controller.endTurn();
+        controller.getActivePlayer().setName("Hyde");
+        bids.put(controller.getActivePlayer(), 200);
+        
+        Assert.assertEquals(controller.getHighestBid(bids).getKey().getName(), "Hyde");
+        Assert.assertEquals(controller.getHighestBid(bids).getValue().intValue(), 200);
+        
+    }
+    
+    @Test
+    public void mortgagePropertyTest() throws IOException, InvalidFormatException{
+        GameController controller = new GameController(2);
+        controller.getActivePlayer().setLocation(3);
+        Property prop = (Property) controller.getBoard().getBoardPiece(controller.getActivePlayer().getLocation());
+        int initialBalance = controller.getActivePlayer().getBalance();
+        int propPrice = prop.getCost();
+        Assert.assertEquals(prop.isMortgaged(), false);
+        controller.mortgageProperty(prop);
+        Assert.assertEquals(prop.isMortgaged(), true);
+        Assert.assertEquals(controller.getActivePlayer().getBalance(), initialBalance + propPrice/2);
     }
 
 

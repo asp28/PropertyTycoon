@@ -10,6 +10,7 @@ public class Property extends BoardPiece {
     private final int cost;
     private String rent;
     private String ownedBuy;
+    private boolean isMortgaged;
 
     /**
      * Each object is created in the Parser class
@@ -24,6 +25,7 @@ public class Property extends BoardPiece {
         this.rent = rent;
         this.group = group;
         this.cost = cost;
+        this.isMortgaged = false;
         ownedBuy = "The Bank";
     }
 
@@ -74,5 +76,23 @@ public class Property extends BoardPiece {
     public void setOwnedBuy(String ownedBuy) {
         this.ownedBuy = ownedBuy;
     }
+
+    /**
+     * Check if property is isMortgaged
+     * @return true if isMortgaged; false otherwise
+     */
+    public boolean isMortgaged() {
+        return isMortgaged;
+    }
+
+    /**
+     * Sets property to be mortgaged or not
+     * @param isMortgaged 
+     */
+    public void setMortgaged(boolean isMortgaged) {
+        this.isMortgaged = isMortgaged;
+    }
+    
+    
 
 }
