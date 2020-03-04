@@ -7,6 +7,7 @@ package com.mycompany.propertytycoon.gui;
 
 import com.mycompany.propertytycoon.*;
 import com.mycompany.propertytycoon.boardpieces.Property;
+import com.mycompany.propertytycoon.exceptions.NotAProperty;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.FileInputStream;
@@ -48,7 +49,7 @@ public class PropertyTycoon extends Application {
     private Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 
     @Override
-    public void start(Stage primaryStage) throws IOException, InvalidFormatException {
+    public void start(Stage primaryStage) throws IOException, InvalidFormatException, NotAProperty {
         gl = createGame(2);
         BorderPane bPane = new BorderPane();
         VBox all = new VBox();
@@ -145,6 +146,7 @@ public class PropertyTycoon extends Application {
             playerCards.getChildren().add(new Label(pc.getTitle()));
         }
         playerCards.setStyle("-fx-border-color: black;");
+        playerCards.setPrefSize(250, 250);
         return playerCards;
     }
 
@@ -201,7 +203,7 @@ public class PropertyTycoon extends Application {
     /**
      * create all the buttons the player needs
      */
-    public VBox buttons() {
+    public VBox buttons() throws NotAProperty {
         VBox buttons = new VBox();
         HBox first = new HBox();
         Button roll = new Button("Roll");
@@ -217,7 +219,12 @@ public class PropertyTycoon extends Application {
             addLogTextBox(gl.getActivePlayer().getName() + " has rolled " + gl.getRolls().getKey() + " and " + gl.getRolls().getValue() + "\n");
         });
         buy.setOnAction((event) -> {
-            gl.buyProperty(gl.getBoard().getProperty(gl.getActivePlayer().getLocation()));
+            try {
+                gl.buyProperty(gl.getBoard().getProperty(gl.getActivePlayer().getLocation()));
+            } catch (NotAProperty e) {
+                
+            }
+            
             addLogTextBox(gl.getActivePlayer().getName() + " has bought " + gl.getBoard().getProperty(gl.getActivePlayer().getLocation()).getTitle() + "\n");
         });
         first.getChildren().addAll(roll, buy);
@@ -258,7 +265,7 @@ public class PropertyTycoon extends Application {
         third.setSpacing(20);
         buttons.getChildren().addAll(first, second, third);
         buttons.setSpacing(10);
-        buttons.setStyle("-fx-border-color: black;");
+        //buttons.setStyle("-fx-border-color: black;");
         buttons.setPadding(new Insets(10, 10, 10, 45));
         return buttons;
     }
@@ -530,7 +537,7 @@ public class PropertyTycoon extends Application {
      *
      * GAME CAN THEN BEGIN
      */
-    public void playGame() {
+    public void playGame() throws IOException, InvalidFormatException {
         createGame(0);
         for (Player p : gl.getAmountOfPlayers()) {
             p.setName("GET NAME");
