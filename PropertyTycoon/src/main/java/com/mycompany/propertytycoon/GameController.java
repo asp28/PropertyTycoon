@@ -3,12 +3,14 @@ package com.mycompany.propertytycoon;
 import com.mycompany.propertytycoon.boardpieces.*;
 import com.mycompany.propertytycoon.cards.OpportunityKnocks;
 import com.mycompany.propertytycoon.cards.PotLuck;
+import com.mycompany.propertytycoon.exceptions.NotAProperty;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import javafx.util.Pair;
 
 public class GameController {
 
@@ -21,6 +23,7 @@ public class GameController {
     //private PropertyTycoon GUI;
 
     private Player activePlayer;
+    private Pair<Integer, Integer> rolls;
     private int moveTotal;
     private int doublesRolled;
     private ArrayList<String> tokens = new ArrayList<String>(){{
@@ -65,13 +68,12 @@ public class GameController {
      *
      * @return an array that holds the 2 dice values
      */
-    private int[] roll() {
+    private Pair<Integer, Integer> roll() {
         Random rn = new Random();
-        int[] roll = new int[2];
-        roll[0] = rn.nextInt(6) + 1;
-        roll[1] = rn.nextInt(6) + 1;
-
-        return roll;
+        int roll1 = rn.nextInt(6) + 1;
+        int roll2 = rn.nextInt(6) + 1;
+        rolls = new Pair<>(roll1,roll2);
+        return rolls;
     }
 
     /**
@@ -81,11 +83,11 @@ public class GameController {
      * again and to move to jail if the dice has rolled 3 doubles
      */
     public void move() {
-        int[] roll = roll();
+        Pair<Integer, Integer> roll = roll();
         int newLocation = 0;
-        if (roll[0] == roll[1] && doublesRolled < 3) {
+        if (rolls.getKey() == rolls.getValue() && doublesRolled < 3) {
             //GUI.updateLog("The player has rolled a double")
-            moveTotal += roll[0] + roll[1];
+            moveTotal += rolls.getKey() + rolls.getValue();
             doublesRolled++;
             ArrayList<String> actions = new ArrayList<>();
             actions.add("ROLL");
@@ -94,7 +96,7 @@ public class GameController {
             //Move player to jail
             activePlayer.setLocation(11);
         } else {
-            moveTotal += roll[0] + roll[1];
+            moveTotal += rolls.getKey() + rolls.getValue();
             //Set location values
             if (activePlayer.getLocation() + moveTotal > 40) {
                 activePlayer.incrementGameloops();
@@ -253,12 +255,12 @@ public class GameController {
         return activePlayer;
     }
 
-    public void buyProperty(BoardPiece bp) {
+    public void buyProperty(BoardPiece bp) throws NotAProperty {
         if (bp instanceof Property) {
             Property prop = (Property) bp;
 
             if (prop.getOwnedBuy().equalsIgnoreCase("The Bank")) {
-                activePlayer.increaseBalance(-prop.getCost());
+                activePlayer.decreaseBalance(prop.getCost());
                 bank.deposit(prop.getCost());
                 bank.removeProperties(prop.getTitle());
                 activePlayer.addProperty(prop);
@@ -267,10 +269,40 @@ public class GameController {
 
             }
 
+        } else {
+            throw new NotAProperty("");
         }
 
     }
+   
+    /**
+     * 
+     * Buy property for auctioning
+     * 
+     * @param bp
+     * @param bidder
+     * 
+     */
+    public void buyProperty(BoardPiece bp, Pair<Player, Integer> bidder) {
+        Player player = bidder.getKey();
+        int bid = bidder.getValue();
+        if (bp instanceof Property) {
+            Property prop = (Property) bp;
 
+            if (prop.getOwnedBuy().equalsIgnoreCase("The Bank")) {
+                player.decreaseBalance(bid);
+                bank.deposit(bid);
+                bank.removeProperties(prop.getTitle());
+                player.addProperty(prop);
+                prop.setOwnedBuy(player.getName());
+
+
+            }
+
+        }
+
+    }
+    
     public void sellProperty(Property prop) {
         if (prop.getOwnedBuy().equals(activePlayer.getName())) {
             activePlayer.increaseBalance(prop.getCost());
@@ -546,6 +578,14 @@ public class GameController {
 
 
         }
+    }
+    
+    public void updateGUI() {
+        
+    }
+
+    public Pair<Integer, Integer> getRolls() {
+        return rolls;
     }
 
 }

@@ -7,6 +7,8 @@ package com.mycompany.propertytycoon.gui;
 
 import com.mycompany.propertytycoon.*;
 import com.mycompany.propertytycoon.boardpieces.Property;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -43,6 +45,7 @@ public class PropertyTycoon extends Application {
     private Label activePlayer, activePlayerMoney;
     private GridPane gPane;
     private ImageView profileToken, catToken, bootToken, spoonToken, gobletToken, hatstandToken, phoneToken;
+    private Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 
     @Override
     public void start(Stage primaryStage) throws IOException, InvalidFormatException {
@@ -103,7 +106,7 @@ public class PropertyTycoon extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
+    
     /**
      *
      * @param num
@@ -190,8 +193,8 @@ public class PropertyTycoon extends Application {
         Image image = new Image(inputstream) {
         };
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(800);
-        imageView.setFitWidth(800);
+        imageView.setFitHeight(screen.getHeight() - 100);
+        imageView.setFitWidth(screen.getHeight() - 100);
         return imageView;
     }
 
@@ -211,10 +214,11 @@ public class PropertyTycoon extends Application {
         buy.setStyle("-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey; -fx-text-size: 50;");
         roll.setOnAction((event) -> {
             gl.move();
-            addLogTextBox(gl.getActivePlayer().getName() + " has rolled \n");
+            addLogTextBox(gl.getActivePlayer().getName() + " has rolled " + gl.getRolls().getKey() + " and " + gl.getRolls().getValue() + "\n");
         });
         buy.setOnAction((event) -> {
             gl.buyProperty(gl.getBoard().getProperty(gl.getActivePlayer().getLocation()));
+            addLogTextBox(gl.getActivePlayer().getName() + " has bought " + gl.getBoard().getProperty(gl.getActivePlayer().getLocation()).getTitle() + "\n");
         });
         first.getChildren().addAll(roll, buy);
         first.setSpacing(20);
