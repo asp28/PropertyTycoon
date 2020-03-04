@@ -226,12 +226,12 @@ public class PropertyTycoon extends Application {
         });
         buy.setOnAction((event) -> {
             try {
-                gl.buyProperty(gl.getBoard().getProperty(gl.getActivePlayer().getLocation()));
+                gl.buyProperty(gl.getBoard().getBoardPiece(gl.getActivePlayer().getLocation()));
             } catch (NotAProperty e) {
 
             }
 
-            addLogTextBox(gl.getActivePlayer().getName() + " has bought " + gl.getBoard().getProperty(gl.getActivePlayer().getLocation()).getTitle() + "\n");
+            addLogTextBox(gl.getActivePlayer().getName() + " has bought " + gl.getBoard().getBoardPiece(gl.getActivePlayer().getLocation()).getTitle() + "\n");
         });
         first.getChildren().addAll(roll, buy);
         first.setSpacing(20);
