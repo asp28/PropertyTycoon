@@ -357,7 +357,7 @@ public class GameController {
      *
      * @param opportunityKnocks
      */
-    public void doCardAction(OpportunityKnocks opportunityKnocks) {
+    private void doCardAction(OpportunityKnocks opportunityKnocks) {
         String action = opportunityKnocks.getAction();
         switch (action) {
             case "Bank pays player £50":
@@ -445,7 +445,7 @@ public class GameController {
      *
      * @param potluck
      */
-    public void doCardAction(PotLuck potluck) {
+    private void doCardAction(PotLuck potluck) {
         String action = potluck.getAction();
         switch (action) {
             case "Bank pays player £20":
