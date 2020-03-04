@@ -27,6 +27,7 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
@@ -55,7 +56,8 @@ public class PropertyTycoon extends Application {
         all.getChildren().add(Players());
         all.getChildren().addAll(PlayerCards(), buttons(), log());
         all.setSpacing(10);
-        all.setPadding(new Insets(10, 10, 10, 10));
+        all.setPadding(new Insets(10, 50, 10, 10));
+        hBox.setPadding(new Insets(50, 0, 0, 0));
         bPane.setRight(hBox);
         //(amount and tokens of players)
         gPane.setGridLinesVisible(true);
@@ -97,7 +99,7 @@ public class PropertyTycoon extends Application {
         primaryStage.show();
 
     }
-    
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -188,8 +190,8 @@ public class PropertyTycoon extends Application {
         Image image = new Image(inputstream) {
         };
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(1000);
-        imageView.setFitWidth(1000);
+        imageView.setFitHeight(800);
+        imageView.setFitWidth(800);
         return imageView;
     }
 
@@ -200,44 +202,78 @@ public class PropertyTycoon extends Application {
         VBox buttons = new VBox();
         HBox first = new HBox();
         Button roll = new Button("Roll");
-        roll.setPadding(new Insets(10, 10, 10, 10));
+        //roll.setPadding(new Insets(10, 10, 10, 10));
+        roll.setPrefSize(80, 60);
+        roll.setStyle("-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey; -fx-text-size: 50;");
         Button buy = new Button("Buy");
-        buy.setPadding(new Insets(10, 10, 10, 10));
+        //buy.setPadding(new Insets(10, 10, 10, 10));
+        buy.setPrefSize(80, 60);
+        buy.setStyle("-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey; -fx-text-size: 50;");
         roll.setOnAction((event) -> {
             gl.move();
+            addLogTextBox(gl.getActivePlayer().getName() + " has rolled \n");
         });
         buy.setOnAction((event) -> {
             gl.buyProperty(gl.getBoard().getProperty(gl.getActivePlayer().getLocation()));
         });
         first.getChildren().addAll(roll, buy);
-        first.setSpacing(50);
+        first.setSpacing(20);
         HBox second = new HBox();
         Button sell = new Button("Sell");
-        sell.setPadding(new Insets(10, 10, 10, 10));
+        sell.setPrefSize(80, 60);
+        sell.setStyle("-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey; -fx-text-size: 50;");
+        //sell.setPadding(new Insets(10, 10, 10, 10));
         Button house = new Button("Houses");
-        house.setPadding(new Insets(10, 10, 10, 10));
+        //house.setPadding(new Insets(10, 10, 10, 10));
+        house.setPrefSize(80, 60);
+        house.setStyle("-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey; -fx-text-size: 50;");
         sell.setOnAction((event) -> {
-            
+            //open sell menu for player
         });
         house.setOnAction((event) -> {
-
+            //open houses menu for player
         });
         second.getChildren().addAll(sell, house);
-        second.setSpacing(50);
-        buttons.getChildren().addAll(first, second);
-        buttons.setSpacing(50);
+        second.setSpacing(20);
+        HBox third = new HBox();
+        Button mortgage = new Button("Mortgage");
+        //mortgage.setPadding(new Insets(10, 10, 10, 10));
+        mortgage.setPrefSize(80, 60);
+        mortgage.setStyle("-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey; -fx-text-size: 50;");
+        mortgage.setOnAction((event) -> {
+            //open mortgage menu
+        });
+        Button endTurn = new Button("End Turn");
+        //endTurn.setPadding(new Insets(10, 10, 10, 10));
+        endTurn.setPrefSize(80, 60);
+        endTurn.setStyle("-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey; -fx-text-size: 50;");
+        endTurn.setOnAction((event) -> {
+            // end turn
+        });
+        third.getChildren().addAll(mortgage, endTurn);
+        third.setSpacing(20);
+        buttons.getChildren().addAll(first, second, third);
+        buttons.setSpacing(10);
         buttons.setStyle("-fx-border-color: black;");
+        buttons.setPadding(new Insets(10, 10, 10, 45));
         return buttons;
     }
 
     /**
      * creates a log of all the moves made.
      */
-    public ScrollPane log() {
+    public VBox log() {
+        VBox log = new VBox();
+        Text t = new Text("Log");
         sp = new ScrollPane();
-        logTextBox = new Text(" ");
+        sp.setPrefSize(250, 250);
+        logTextBox = new Text("");
         sp.setContent(logTextBox);
-        return sp;
+        log.getChildren().addAll(t, sp);
+        log.setStyle("-fx-border-color: black;");
+        log.setPadding(new Insets(10, 10, 10, 10));
+        log.setSpacing(10);
+        return log;
     }
 
     public Text getLogTextBox() {
@@ -246,11 +282,13 @@ public class PropertyTycoon extends Application {
 
     public void setLogTextBox(Text logTextBox) {
         this.logTextBox = logTextBox;
+        sp.setContent(logTextBox);
     }
 
     public void addLogTextBox(String text) {
         Text log = new Text(logTextBox.getText() + text);
         this.logTextBox = log;
+        sp.setContent(logTextBox);
     }
 
     public ScrollPane getLog() {
@@ -479,5 +517,25 @@ public class PropertyTycoon extends Application {
                 break;
 
         }
+    }
+
+    /**
+     * Create a pop up that takes number input to make game
+     *
+     * Then a second page that then lets player choose name and token
+     *
+     * GAME CAN THEN BEGIN
+     */
+    public void playGame() {
+        createGame(0);
+        for (Player p : gl.getAmountOfPlayers()) {
+            p.setName("GET NAME");
+            p.setToken("GET TOKEN");
+        }
+
+        //generate board scene here. Player 1 starts
+        //method to display allowed buttons here
+        //while loop to carry on until quit button is pressed or only one player is left
+        //player wins screen for 15 seconds then back to main menu.
     }
 }
