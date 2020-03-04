@@ -34,7 +34,7 @@ public class Board {
      * @param num
      * @return 
      */
-    public BoardPiece getProperty(int num) {
+    public BoardPiece getBoardPiece(int num) {
         return boardLocations.get(num);
     }
 
