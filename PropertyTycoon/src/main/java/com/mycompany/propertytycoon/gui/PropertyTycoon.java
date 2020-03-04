@@ -13,6 +13,7 @@ import java.awt.Toolkit;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -47,6 +48,9 @@ public class PropertyTycoon extends Application {
     private GridPane gPane;
     private ImageView profileToken, catToken, bootToken, spoonToken, gobletToken, hatstandToken, phoneToken;
     private Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+
+    private Button roll, buy, sell, mortgage, endTurn, house;
+    private ArrayList<String> actions;
 
     @Override
     public void start(Stage primaryStage) throws IOException, InvalidFormatException, NotAProperty {
@@ -96,6 +100,7 @@ public class PropertyTycoon extends Application {
         gPane.setAlignment(Pos.CENTER);
         sPane.getChildren().addAll(board(), gPane);
         bPane.setCenter(sPane);
+        updateButtons();
         Scene scene = new Scene(bPane, 1500, 1000);
         primaryStage.setTitle("Property Tycoon");
         primaryStage.setScene(scene);
@@ -107,7 +112,7 @@ public class PropertyTycoon extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
     /**
      *
      * @param num
@@ -206,35 +211,36 @@ public class PropertyTycoon extends Application {
     public VBox buttons() throws NotAProperty {
         VBox buttons = new VBox();
         HBox first = new HBox();
-        Button roll = new Button("Roll");
+        roll = new Button("Roll");
         //roll.setPadding(new Insets(10, 10, 10, 10));
         roll.setPrefSize(80, 60);
         roll.setStyle("-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey; -fx-text-size: 50;");
-        Button buy = new Button("Buy");
+        buy = new Button("Buy");
         //buy.setPadding(new Insets(10, 10, 10, 10));
         buy.setPrefSize(80, 60);
         buy.setStyle("-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey; -fx-text-size: 50;");
         roll.setOnAction((event) -> {
             gl.move();
             addLogTextBox(gl.getActivePlayer().getName() + " has rolled " + gl.getRolls().getKey() + " and " + gl.getRolls().getValue() + "\n");
+            updateButtons();
         });
         buy.setOnAction((event) -> {
             try {
                 gl.buyProperty(gl.getBoard().getProperty(gl.getActivePlayer().getLocation()));
             } catch (NotAProperty e) {
-                
+
             }
-            
+
             addLogTextBox(gl.getActivePlayer().getName() + " has bought " + gl.getBoard().getProperty(gl.getActivePlayer().getLocation()).getTitle() + "\n");
         });
         first.getChildren().addAll(roll, buy);
         first.setSpacing(20);
         HBox second = new HBox();
-        Button sell = new Button("Sell");
+        sell = new Button("Sell");
         sell.setPrefSize(80, 60);
         sell.setStyle("-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey; -fx-text-size: 50;");
         //sell.setPadding(new Insets(10, 10, 10, 10));
-        Button house = new Button("Houses");
+        house = new Button("Houses");
         //house.setPadding(new Insets(10, 10, 10, 10));
         house.setPrefSize(80, 60);
         house.setStyle("-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey; -fx-text-size: 50;");
@@ -247,14 +253,14 @@ public class PropertyTycoon extends Application {
         second.getChildren().addAll(sell, house);
         second.setSpacing(20);
         HBox third = new HBox();
-        Button mortgage = new Button("Mortgage");
+        mortgage = new Button("Mortgage");
         //mortgage.setPadding(new Insets(10, 10, 10, 10));
         mortgage.setPrefSize(80, 60);
         mortgage.setStyle("-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey; -fx-text-size: 50;");
         mortgage.setOnAction((event) -> {
             //open mortgage menu
         });
-        Button endTurn = new Button("End Turn");
+        endTurn = new Button("End Turn");
         //endTurn.setPadding(new Insets(10, 10, 10, 10));
         endTurn.setPrefSize(80, 60);
         endTurn.setStyle("-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey; -fx-text-size: 50;");
@@ -548,5 +554,42 @@ public class PropertyTycoon extends Application {
         //method to display allowed buttons here
         //while loop to carry on until quit button is pressed or only one player is left
         //player wins screen for 15 seconds then back to main menu.
+    }
+
+    public void disableButton(Button name, Boolean type) {
+        name.setDisable(type);
+    }
+    
+    public void getActions() {
+        ArrayList<String> actionsBefore = gl.getPlayerActions();
+        gl.performActions(actionsBefore);
+        this.actions = actionsBefore;
+    }
+
+    public void updateButtons() {
+        getActions();
+        for (String s : actions) {
+            if (s.equalsIgnoreCase("BUY")) {
+                disableButton(buy, false);
+            } else {
+                disableButton(buy, true);
+            }
+            if (s.equalsIgnoreCase("SELL")) {
+                disableButton(sell, false);
+            } else {
+                disableButton(sell, true);
+            }
+            if (s.equalsIgnoreCase("BUYHOUSE") || s.equalsIgnoreCase("SELLHOUSE")) {
+                disableButton(house, false);
+            } else {
+                disableButton(house, true);
+            }
+            if (s.equalsIgnoreCase("END")) {
+                disableButton(endTurn, false);
+            }
+            if (s.equalsIgnoreCase("ROLL")) {
+                disableButton(roll, false);
+            }
+        }
     }
 }
