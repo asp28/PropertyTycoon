@@ -100,7 +100,7 @@ public class PropertyTycoon extends Application {
         boardLocations = gl.getBoard().getBoardLocations();
 
         for (int i = 0; i < 40; i++) {
-            LocationNames(i,boardLocations.get(i).getTitle());
+            LocationNames(i, boardLocations.get(i).getTitle());
         }
 
         gPane.setAlignment(Pos.CENTER);
@@ -576,38 +576,47 @@ public class PropertyTycoon extends Application {
 
             case 1:
                 gPane.add(labelName, 0, 9);
+                labelName.setRotate(90);
                 break;
 
             case 2:
                 gPane.add(labelName, 0, 8);
+                labelName.setRotate(90);
                 break;
 
             case 3:
                 gPane.add(labelName, 0, 7);
+                labelName.setRotate(90);
                 break;
 
             case 4:
                 gPane.add(labelName, 0, 6);
+                labelName.setRotate(90);
                 break;
 
             case 5:
                 gPane.add(labelName, 0, 5);
+                labelName.setRotate(90);
                 break;
 
             case 6:
                 gPane.add(labelName, 0, 4);
+                labelName.setRotate(90);
                 break;
 
             case 7:
                 gPane.add(labelName, 0, 3);
+                labelName.setRotate(90);
                 break;
 
             case 8:
                 gPane.add(labelName, 0, 2);
+                labelName.setRotate(90);
                 break;
 
             case 9:
                 gPane.add(labelName, 0, 1);
+                labelName.setRotate(90);
                 break;
 
             case 10:
@@ -615,38 +624,47 @@ public class PropertyTycoon extends Application {
                 break;
             case 11:
                 gPane.add(labelName, 1, 0);
+                 labelName.setRotate(180);
                 break;
 
             case 12:
                 gPane.add(labelName, 2, 0);
+                 labelName.setRotate(180);
                 break;
 
             case 13:
                 gPane.add(labelName, 3, 0);
+                 labelName.setRotate(180);
                 break;
 
             case 14:
                 gPane.add(labelName, 4, 0);
+                 labelName.setRotate(180);
                 break;
 
             case 15:
                 gPane.add(labelName, 5, 0);
+                 labelName.setRotate(180);
                 break;
 
             case 16:
                 gPane.add(labelName, 6, 0);
+                 labelName.setRotate(180);
                 break;
 
             case 17:
                 gPane.add(labelName, 7, 0);
+                 labelName.setRotate(180);
                 break;
 
             case 18:
                 gPane.add(labelName, 8, 0);
+                 labelName.setRotate(180);
                 break;
 
             case 19:
                 gPane.add(labelName, 9, 0);
+                 labelName.setRotate(180);
                 break;
 
             case 20:
@@ -655,38 +673,47 @@ public class PropertyTycoon extends Application {
 
             case 21:
                 gPane.add(labelName, 10, 1);
+                 labelName.setRotate(-90);
                 break;
 
             case 22:
                 gPane.add(labelName, 10, 2);
+                labelName.setRotate(-90);
                 break;
 
             case 23:
                 gPane.add(labelName, 10, 3);
+                labelName.setRotate(-90);
                 break;
 
             case 24:
                 gPane.add(labelName, 10, 4);
+                labelName.setRotate(-90);
                 break;
 
             case 25:
                 gPane.add(labelName, 10, 5);
+                labelName.setRotate(-90);
                 break;
 
             case 26:
                 gPane.add(labelName, 10, 6);
+                labelName.setRotate(-90);
                 break;
 
             case 27:
                 gPane.add(labelName, 10, 7);
+                labelName.setRotate(-90);
                 break;
 
             case 28:
                 gPane.add(labelName, 10, 8);
+                labelName.setRotate(-90);
                 break;
 
             case 29:
                 gPane.add(labelName, 10, 9);
+                labelName.setRotate(-90);
                 break;
 
             case 30:
