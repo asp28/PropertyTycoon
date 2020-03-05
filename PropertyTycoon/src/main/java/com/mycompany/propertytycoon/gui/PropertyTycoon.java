@@ -16,12 +16,16 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -37,6 +41,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.sl.usermodel.TextBox;
 
 /**
  *
@@ -48,7 +53,7 @@ public class PropertyTycoon extends Application {
     private ScrollPane sp;
     private Text logTextBox;
     private Label activePlayer, activePlayerMoney;
-    private GridPane gPane, editor;
+    private GridPane gPane, editor, gp;
     private ImageView profileToken, catToken, bootToken, spoonToken, gobletToken, hatstandToken, phoneToken;
     private Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
     private HBox controls;
@@ -62,6 +67,7 @@ public class PropertyTycoon extends Application {
         gl = createGame(2);
         StackPane pane = new StackPane();
         editor = new GridPane();
+        gp = new GridPane();
         try {
             newGameMenu();
 
@@ -73,6 +79,7 @@ public class PropertyTycoon extends Application {
 
         }
         editor.setPickOnBounds(false);
+        gp.setPickOnBounds(false);
         Button start = new Button("New Game");
         Button quit = new Button("Quit");
         start.setOnAction(event -> {
@@ -85,7 +92,7 @@ public class PropertyTycoon extends Application {
         HBox startScreen = new HBox();
         startScreen.getChildren().addAll(start, quit);
 
-        pane.getChildren().addAll(startScreen, editor);
+        pane.getChildren().addAll(startScreen, editor, gp);
         Scene scene = new Scene(pane, 1500, 1000);
         primaryStage.setTitle("Property Tycoon");
         primaryStage.setScene(scene);
@@ -105,7 +112,8 @@ public class PropertyTycoon extends Application {
                 if (intsize < 9 && intsize > 1) {
                     try {
                         makeGame(intsize);
-
+                        setGamePlayers();
+                        gp.setVisible(true);
                     } catch (IOException e) {
 
                     } catch (InvalidFormatException e) {
@@ -136,6 +144,78 @@ public class PropertyTycoon extends Application {
         editor.add(confirm, 0, 2);
         editor.add(cancel, 0, 3);
         editor.setVisible(false);
+    }
+
+    public void setGamePlayers() {
+        gp = new GridPane();
+        ListView<String> tokens1 = new ListView<>();
+        tokens1.setOrientation(Orientation.VERTICAL);
+        tokens1.getItems().addAll(gl.getTokens());
+        /**
+        tokens.setCellFactory(param -> new ListCell<String>() {
+            @Override
+            public void updateItem(String name, boolean empty) {
+                super.updateItem(name, empty);
+                if (empty) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    if (name.equals("cat")) {
+                        setGraphic(catToken);
+                    } else if (name.equals("boot")) {
+                        setGraphic(bootToken);
+                    } else if (name.equals("smartphone")) {
+                        setGraphic(phoneToken);
+                    } else if (name.equals("goblet")) {
+                        setGraphic(gobletToken);
+                    } else if (name.equals("hatstand")) {
+                        setGraphic(hatstandToken);
+                    } else if (name.equals("spoon")) {
+                        setGraphic(spoonToken);
+                    }
+                    setText(name);
+                }
+            }
+        });*/
+        for (int i = 0; i < gl.getAmountOfPlayers().size(); i++) {
+            gp = new GridPane();
+            Label name = new Label("Enter name");
+            TextField nameVal = new TextField("Player " + (i + 1);
+            Label token = new Label("Choose a token");
+            Button confirm = new Button("Confirm");
+            confirm.setOnAction(event -> {
+                if (!nameVal.getText().isEmpty()) {
+                    gl.getAmountOfPlayers().get(i).setName(nameVal.getText());
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Choose a name");
+                    alert.setHeaderText("Choose a name");
+                    alert.setContentText("Enter value");
+                    alert.showAndWait();
+                }
+                if (!tokens1.getSelectionModel().getSelectedItem().isEmpty()) {
+                    gl.getAmountOfPlayers().get(i).setToken(tokens1.getSelectionModel().getSelectedItem());
+                    tokens1.getItems().remove(tokens1.getSelectionModel().getSelectedItem());
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Choose token");
+                    alert.setHeaderText("Choose token");
+                    alert.setContentText("Select a token from the list");
+                    alert.showAndWait();
+                }
+            });
+            gp.setAlignment(Pos.CENTER);
+            gp.setMaxSize(300, 250);
+            gp.setHgap(10);
+            gp.setVgap(10);
+            gp.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-padding: 10");
+            gp.add(name, 0, 0);
+            gp.add(nameVal, 0, 1);
+            gp.add(token, 0, 2);
+            gp.add(tokens1, 0, 3);
+            gp.add(confirm, 0, 4);
+        }
+        gp.setVisible(false);
     }
 
     public void makeGame(int players) throws IOException, InvalidFormatException {
