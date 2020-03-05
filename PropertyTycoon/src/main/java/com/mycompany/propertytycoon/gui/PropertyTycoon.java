@@ -6,6 +6,7 @@
 package com.mycompany.propertytycoon.gui;
 
 import com.mycompany.propertytycoon.*;
+import com.mycompany.propertytycoon.boardpieces.BoardPiece;
 import com.mycompany.propertytycoon.boardpieces.Property;
 import com.mycompany.propertytycoon.exceptions.NotAProperty;
 import java.awt.Dimension;
@@ -89,9 +90,7 @@ public class PropertyTycoon extends Application {
         primaryStage.setScene(scene);
         primaryStage.maximizedProperty();
         primaryStage.show();
-
     }
-
     public void newGameMenu() throws IOException, InvalidFormatException, NotAProperty {
         Label amountOfPlayers = new Label("Enter number of players");
         TextField size = new TextField("2");
@@ -139,6 +138,7 @@ public class PropertyTycoon extends Application {
 
     public void makeGame(int players) throws IOException, InvalidFormatException {
         gl = createGame(players);
+		ArrayList<BoardPiece> boardLocations;
         bPane = new BorderPane();
         gPane = new GridPane();
         StackPane sPane = new StackPane();
@@ -189,7 +189,6 @@ public class PropertyTycoon extends Application {
         bPane.setCenter(sPane);
         updateButtons();
     }
-
     public static void main(String[] args) {
         launch(args);
     }
@@ -630,6 +629,205 @@ public class PropertyTycoon extends Application {
             case 40:
                 gPane.setColumnIndex(token, 1);
                 gPane.setRowIndex(token, 10);
+                break;
+
+        }
+    }
+
+    /**
+     * Location names
+     *
+     * @param num
+     * @param name
+     */
+    public void LocationNames(int num, String name) {
+        Label labelName = new Label(name);
+        switch (num) {
+
+            case 0:
+                gPane.add(labelName, 0, 10);
+                break;
+
+            case 1:
+                gPane.add(labelName, 0, 9);
+                labelName.setRotate(90);
+                break;
+
+            case 2:
+                gPane.add(labelName, 0, 8);
+                labelName.setRotate(90);
+                break;
+
+            case 3:
+                gPane.add(labelName, 0, 7);
+                labelName.setRotate(90);
+                break;
+
+            case 4:
+                gPane.add(labelName, 0, 6);
+                labelName.setRotate(90);
+                break;
+
+            case 5:
+                gPane.add(labelName, 0, 5);
+                labelName.setRotate(90);
+                break;
+
+            case 6:
+                gPane.add(labelName, 0, 4);
+                labelName.setRotate(90);
+                break;
+
+            case 7:
+                gPane.add(labelName, 0, 3);
+                labelName.setRotate(90);
+                break;
+
+            case 8:
+                gPane.add(labelName, 0, 2);
+                labelName.setRotate(90);
+                break;
+
+            case 9:
+                gPane.add(labelName, 0, 1);
+                labelName.setRotate(90);
+                break;
+
+            case 10:
+                gPane.add(labelName, 0, 0);
+                break;
+            case 11:
+                gPane.add(labelName, 1, 0);
+                 labelName.setRotate(180);
+                break;
+
+            case 12:
+                gPane.add(labelName, 2, 0);
+                 labelName.setRotate(180);
+                break;
+
+            case 13:
+                gPane.add(labelName, 3, 0);
+                 labelName.setRotate(180);
+                break;
+
+            case 14:
+                gPane.add(labelName, 4, 0);
+                 labelName.setRotate(180);
+                break;
+
+            case 15:
+                gPane.add(labelName, 5, 0);
+                 labelName.setRotate(180);
+                break;
+
+            case 16:
+                gPane.add(labelName, 6, 0);
+                 labelName.setRotate(180);
+                break;
+
+            case 17:
+                gPane.add(labelName, 7, 0);
+                 labelName.setRotate(180);
+                break;
+
+            case 18:
+                gPane.add(labelName, 8, 0);
+                 labelName.setRotate(180);
+                break;
+
+            case 19:
+                gPane.add(labelName, 9, 0);
+                 labelName.setRotate(180);
+                break;
+
+            case 20:
+                gPane.add(labelName, 10, 0);
+                break;
+
+            case 21:
+                gPane.add(labelName, 10, 1);
+                 labelName.setRotate(-90);
+                break;
+
+            case 22:
+                gPane.add(labelName, 10, 2);
+                labelName.setRotate(-90);
+                break;
+
+            case 23:
+                gPane.add(labelName, 10, 3);
+                labelName.setRotate(-90);
+                break;
+
+            case 24:
+                gPane.add(labelName, 10, 4);
+                labelName.setRotate(-90);
+                break;
+
+            case 25:
+                gPane.add(labelName, 10, 5);
+                labelName.setRotate(-90);
+                break;
+
+            case 26:
+                gPane.add(labelName, 10, 6);
+                labelName.setRotate(-90);
+                break;
+
+            case 27:
+                gPane.add(labelName, 10, 7);
+                labelName.setRotate(-90);
+                break;
+
+            case 28:
+                gPane.add(labelName, 10, 8);
+                labelName.setRotate(-90);
+                break;
+
+            case 29:
+                gPane.add(labelName, 10, 9);
+                labelName.setRotate(-90);
+                break;
+
+            case 30:
+                gPane.add(labelName, 10, 10);
+                break;
+
+            case 31:
+                gPane.add(labelName, 9, 10);
+                break;
+
+            case 32:
+                gPane.add(labelName, 8, 10);
+                break;
+
+            case 33:
+                gPane.add(labelName, 7, 10);
+                break;
+
+            case 34:
+                gPane.add(labelName, 6, 10);
+                break;
+
+            case 35:
+                gPane.add(labelName, 5, 10);
+                break;
+
+            case 36:
+                gPane.add(labelName, 4, 10);
+                break;
+
+            case 37:
+                gPane.add(labelName, 3, 10);
+                break;
+
+            case 38:
+                gPane.add(labelName, 2, 10);
+                break;
+
+            case 39:
+                gPane.add(labelName, 1, 10);
                 break;
 
         }
