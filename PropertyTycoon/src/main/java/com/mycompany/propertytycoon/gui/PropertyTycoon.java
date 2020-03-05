@@ -18,9 +18,11 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -45,7 +47,7 @@ public class PropertyTycoon extends Application {
     private ScrollPane sp;
     private Text logTextBox;
     private Label activePlayer, activePlayerMoney;
-    private GridPane gPane;
+    private GridPane gPane, editor;
     private ImageView profileToken, catToken, bootToken, spoonToken, gobletToken, hatstandToken, phoneToken;
     private Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
     private HBox controls;
@@ -56,14 +58,101 @@ public class PropertyTycoon extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException, InvalidFormatException, NotAProperty {
-        gl = createGame(2);
+        StackPane pane = new StackPane();
+        editor = new GridPane();
+        try {
+            newGameMenu();
+
+        } catch (IOException e) {
+
+        } catch (InvalidFormatException e) {
+
+        } catch (NotAProperty e) {
+
+        }
+        editor.setPickOnBounds(false);
+        Button start = new Button("New Game");
+        Button quit = new Button("Quit");
+        start.setOnAction(event -> {
+            editor.setVisible(true);
+        });
+        quit.setOnAction(event -> {
+            primaryStage.close();
+
+        });
+        HBox startScreen = new HBox();
+        startScreen.getChildren().addAll(start, quit);
+
+        pane.getChildren().addAll(startScreen, editor);
+        Scene scene = new Scene(pane, 1500, 1000);
+        primaryStage.setTitle("Property Tycoon");
+        primaryStage.setScene(scene);
+        primaryStage.maximizedProperty();
+        primaryStage.show();
+
+    }
+
+    public void newGameMenu() throws IOException, InvalidFormatException, NotAProperty {
+        Label amountOfPlayers = new Label("Enter number of players");
+        TextField size = new TextField("2");
+        size.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-border-color: black");
+        Button confirm = new Button("confirm");
+        confirm.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-border-color: black");
+        confirm.setOnAction(event2 -> {
+            if (!size.getText().isEmpty()) {
+                int intsize = Integer.parseInt(size.getText());
+                if (intsize < 9 && intsize > 1) {
+                    try {
+                        makeGame(intsize);
+
+                    } catch (IOException e) {
+
+                    } catch (InvalidFormatException e) {
+
+                    }
+
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Cannot make game");
+                    alert.setHeaderText("value not in range");
+                    alert.setContentText("Change value");
+                    alert.showAndWait();
+                }
+            }
+        });
+        Button cancel = new Button("cancel");
+        cancel.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-border-color: black");
+        cancel.setOnAction(event2 -> {
+            editor.setVisible(false);
+        });
+        editor.setAlignment(Pos.CENTER);
+        editor.setMaxSize(300, 250);
+        editor.setHgap(10);
+        editor.setVgap(10);
+        editor.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-padding: 10");
+        editor.add(amountOfPlayers, 0, 0);
+        editor.add(size, 0, 1);
+        editor.add(confirm, 0, 2);
+        editor.add(cancel, 0, 3);
+        editor.setVisible(false);
+    }
+
+    public void makeGame(int players) throws IOException, InvalidFormatException {
+        gl = createGame(players);
         bPane = new BorderPane();
         gPane = new GridPane();
         StackPane sPane = new StackPane();
-        
+
         log = log();
-        updateControls();
-        //(amount and tokens of players)
+        try {
+            updateControls();
+        } catch (IOException e) {
+            
+        } catch (NotAProperty e) {
+            
+        }
+            
+        
         gPane.setGridLinesVisible(true);
         gPane.getChildren().addAll(playersTokenOnBoard());
         ColumnConstraints column;
@@ -99,12 +188,6 @@ public class PropertyTycoon extends Application {
         sPane.getChildren().addAll(board(), gPane);
         bPane.setCenter(sPane);
         updateButtons();
-        Scene scene = new Scene(bPane, 1500, 1000);
-        primaryStage.setTitle("Property Tycoon");
-        primaryStage.setScene(scene);
-        primaryStage.maximizedProperty();
-        primaryStage.show();
-
     }
 
     public static void main(String[] args) {
@@ -277,11 +360,11 @@ public class PropertyTycoon extends Application {
             try {
                 updateControls();
             } catch (NotAProperty e) {
-                
+
             } catch (FileNotFoundException e) {
-                
+
             }
-            
+
         });
         third.getChildren().addAll(mortgage, endTurn);
         third.setSpacing(20);
@@ -608,7 +691,7 @@ public class PropertyTycoon extends Application {
         }
     }
 
-    public void updateControls() throws NotAProperty, FileNotFoundException{
+    public void updateControls() throws NotAProperty, FileNotFoundException {
         VBox all = new VBox();
         controls = new HBox();
         all.getChildren().add(Players());
