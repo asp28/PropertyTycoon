@@ -26,6 +26,7 @@ public class GameController {
 
     private Player activePlayer;
     private Pair<Integer, Integer> rolls;
+    private ArrayList<String> actions;
     private int moveTotal;
     private int doublesRolled;
     private ArrayList<String> tokens = new ArrayList<String>(){{
@@ -192,7 +193,6 @@ public class GameController {
         }
 
         playerActions.add("END");
-
         return playerActions;
     }
 
@@ -239,6 +239,7 @@ public class GameController {
                     break;
             }
         }
+        actions = remaining;
         return remaining;
     }
 
@@ -607,6 +608,10 @@ public class GameController {
 
     public Pair<Integer, Integer> getRolls() {
         return rolls;
+    }
+
+    public ArrayList<String> getActions() {
+        return actions;
     }
 
 }

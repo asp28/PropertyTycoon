@@ -48,37 +48,33 @@ public class PropertyTycoon extends Application {
     private GridPane gPane;
     private ImageView profileToken, catToken, bootToken, spoonToken, gobletToken, hatstandToken, phoneToken;
     private Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+    private HBox controls;
+    private VBox log;
+    private BorderPane bPane;
 
     private Button roll, buy, sell, mortgage, endTurn, house;
-    private ArrayList<String> actions;
 
     @Override
     public void start(Stage primaryStage) throws IOException, InvalidFormatException, NotAProperty {
         gl = createGame(2);
-        BorderPane bPane = new BorderPane();
-        VBox all = new VBox();
-        HBox hBox = new HBox();
+        bPane = new BorderPane();
         gPane = new GridPane();
         StackPane sPane = new StackPane();
-        hBox.getChildren().addAll(playerProfilePic(), all);
-        all.getChildren().add(Players());
-        all.getChildren().addAll(PlayerCards(), buttons(), log());
-        all.setSpacing(10);
-        all.setPadding(new Insets(10, 50, 10, 10));
-        hBox.setPadding(new Insets(50, 0, 0, 0));
-        bPane.setRight(hBox);
+        
+        log = log();
+        updateControls();
         //(amount and tokens of players)
         gPane.setGridLinesVisible(true);
         gPane.getChildren().addAll(playersTokenOnBoard());
         ColumnConstraints column;
         for (int i = 0; i < 11; i++) {
             if (i == 0 || i == 10) {
-                column = new ColumnConstraints(130);
+                column = new ColumnConstraints(135);
 
             } else if (i == 5) {
-                column = new ColumnConstraints(110);
+                column = new ColumnConstraints(100);
             } else {
-                column = new ColumnConstraints(80);
+                column = new ColumnConstraints(70);
             }
             gPane.getColumnConstraints().add(column);
 
@@ -90,6 +86,8 @@ public class PropertyTycoon extends Application {
             if (i == 0 || i == 10) {
                 row = new RowConstraints(130);
 
+            } else if (i == 7) {
+                row = new RowConstraints(67);
             } else {
                 row = new RowConstraints(80);
             }
@@ -123,6 +121,9 @@ public class PropertyTycoon extends Application {
     public GameController createGame(int num) throws IOException, InvalidFormatException {
         gl = new GameController(num);
         gl.getActivePlayer().setToken("CAT");
+        gl.getActivePlayer().setName("Banana Hamock");
+        gl.getAmountOfPlayers().get(1).setToken("spoon");
+        gl.getAmountOfPlayers().get(1).setName("Crap bag");
         return gl;
     }
 
@@ -220,6 +221,12 @@ public class PropertyTycoon extends Application {
         buy.setPrefSize(80, 60);
         buy.setStyle("-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey; -fx-text-size: 50;");
         roll.setOnAction((event) -> {
+            for (int i = 0; i < gl.getActions().size(); i++) {
+                if (gl.getActions().get(i).equalsIgnoreCase("ROLL")) {
+                    gl.getActions().remove(i);
+                    break;
+                }
+            }
             gl.move();
             addLogTextBox(gl.getActivePlayer().getName() + " has rolled " + gl.getRolls().getKey() + " and " + gl.getRolls().getValue() + "\n");
             updateButtons();
@@ -265,7 +272,16 @@ public class PropertyTycoon extends Application {
         endTurn.setPrefSize(80, 60);
         endTurn.setStyle("-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey; -fx-text-size: 50;");
         endTurn.setOnAction((event) -> {
-            // end turn
+            addLogTextBox(gl.getActivePlayer().getName() + " has ended their turn.\n");
+            gl.endTurn();
+            try {
+                updateControls();
+            } catch (NotAProperty e) {
+                
+            } catch (FileNotFoundException e) {
+                
+            }
+            
         });
         third.getChildren().addAll(mortgage, endTurn);
         third.setSpacing(20);
@@ -559,16 +575,15 @@ public class PropertyTycoon extends Application {
     public void disableButton(Button name, Boolean type) {
         name.setDisable(type);
     }
-    
+
     public void getActions() {
         ArrayList<String> actionsBefore = gl.getPlayerActions();
         gl.performActions(actionsBefore);
-        this.actions = actionsBefore;
     }
 
     public void updateButtons() {
         getActions();
-        for (String s : actions) {
+        for (String s : gl.getActions()) {
             if (s.equalsIgnoreCase("BUY")) {
                 disableButton(buy, false);
             } else {
@@ -591,5 +606,17 @@ public class PropertyTycoon extends Application {
                 disableButton(roll, false);
             }
         }
+    }
+
+    public void updateControls() throws NotAProperty, FileNotFoundException{
+        VBox all = new VBox();
+        controls = new HBox();
+        all.getChildren().add(Players());
+        all.getChildren().addAll(PlayerCards(), buttons(), log);
+        all.setSpacing(10);
+        controls.getChildren().addAll(playerProfilePic(), all);
+        all.setPadding(new Insets(10, 50, 10, 10));
+        controls.setPadding(new Insets(50, 0, 0, 0));
+        bPane.setRight(controls);
     }
 }
