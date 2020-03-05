@@ -6,6 +6,7 @@
 package com.mycompany.propertytycoon.gui;
 
 import com.mycompany.propertytycoon.*;
+import com.mycompany.propertytycoon.boardpieces.BoardPiece;
 import com.mycompany.propertytycoon.boardpieces.Property;
 import com.mycompany.propertytycoon.exceptions.NotAProperty;
 import java.awt.Dimension;
@@ -57,10 +58,11 @@ public class PropertyTycoon extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException, InvalidFormatException, NotAProperty {
         gl = createGame(2);
+        ArrayList<BoardPiece> boardLocations;
         bPane = new BorderPane();
         gPane = new GridPane();
         StackPane sPane = new StackPane();
-        
+
         log = log();
         updateControls();
         //(amount and tokens of players)
@@ -93,6 +95,12 @@ public class PropertyTycoon extends Application {
             }
 
             gPane.getRowConstraints().add(row);
+        }
+
+        boardLocations = gl.getBoard().getBoardLocations();
+
+        for (int i = 0; i < 40; i++) {
+            LocationNames(i,boardLocations.get(i).getTitle());
         }
 
         gPane.setAlignment(Pos.CENTER);
@@ -277,11 +285,11 @@ public class PropertyTycoon extends Application {
             try {
                 updateControls();
             } catch (NotAProperty e) {
-                
+
             } catch (FileNotFoundException e) {
-                
+
             }
-            
+
         });
         third.getChildren().addAll(mortgage, endTurn);
         third.setSpacing(20);
@@ -553,6 +561,178 @@ public class PropertyTycoon extends Application {
     }
 
     /**
+     * Location names
+     *
+     * @param num
+     * @param name
+     */
+    public void LocationNames(int num, String name) {
+        Label labelName = new Label(name);
+        switch (num) {
+
+            case 0:
+                gPane.add(labelName, 0, 10);
+                break;
+
+            case 1:
+                gPane.add(labelName, 0, 9);
+                break;
+
+            case 2:
+                gPane.add(labelName, 0, 8);
+                break;
+
+            case 3:
+                gPane.add(labelName, 0, 7);
+                break;
+
+            case 4:
+                gPane.add(labelName, 0, 6);
+                break;
+
+            case 5:
+                gPane.add(labelName, 0, 5);
+                break;
+
+            case 6:
+                gPane.add(labelName, 0, 4);
+                break;
+
+            case 7:
+                gPane.add(labelName, 0, 3);
+                break;
+
+            case 8:
+                gPane.add(labelName, 0, 2);
+                break;
+
+            case 9:
+                gPane.add(labelName, 0, 1);
+                break;
+
+            case 10:
+                gPane.add(labelName, 0, 0);
+                break;
+            case 11:
+                gPane.add(labelName, 1, 0);
+                break;
+
+            case 12:
+                gPane.add(labelName, 2, 0);
+                break;
+
+            case 13:
+                gPane.add(labelName, 3, 0);
+                break;
+
+            case 14:
+                gPane.add(labelName, 4, 0);
+                break;
+
+            case 15:
+                gPane.add(labelName, 5, 0);
+                break;
+
+            case 16:
+                gPane.add(labelName, 6, 0);
+                break;
+
+            case 17:
+                gPane.add(labelName, 7, 0);
+                break;
+
+            case 18:
+                gPane.add(labelName, 8, 0);
+                break;
+
+            case 19:
+                gPane.add(labelName, 9, 0);
+                break;
+
+            case 20:
+                gPane.add(labelName, 10, 0);
+                break;
+
+            case 21:
+                gPane.add(labelName, 10, 1);
+                break;
+
+            case 22:
+                gPane.add(labelName, 10, 2);
+                break;
+
+            case 23:
+                gPane.add(labelName, 10, 3);
+                break;
+
+            case 24:
+                gPane.add(labelName, 10, 4);
+                break;
+
+            case 25:
+                gPane.add(labelName, 10, 5);
+                break;
+
+            case 26:
+                gPane.add(labelName, 10, 6);
+                break;
+
+            case 27:
+                gPane.add(labelName, 10, 7);
+                break;
+
+            case 28:
+                gPane.add(labelName, 10, 8);
+                break;
+
+            case 29:
+                gPane.add(labelName, 10, 9);
+                break;
+
+            case 30:
+                gPane.add(labelName, 10, 10);
+                break;
+
+            case 31:
+                gPane.add(labelName, 9, 10);
+                break;
+
+            case 32:
+                gPane.add(labelName, 8, 10);
+                break;
+
+            case 33:
+                gPane.add(labelName, 7, 10);
+                break;
+
+            case 34:
+                gPane.add(labelName, 6, 10);
+                break;
+
+            case 35:
+                gPane.add(labelName, 5, 10);
+                break;
+
+            case 36:
+                gPane.add(labelName, 4, 10);
+                break;
+
+            case 37:
+                gPane.add(labelName, 3, 10);
+                break;
+
+            case 38:
+                gPane.add(labelName, 2, 10);
+                break;
+
+            case 39:
+                gPane.add(labelName, 1, 10);
+                break;
+
+        }
+    }
+
+    /**
      * Create a pop up that takes number input to make game
      *
      * Then a second page that then lets player choose name and token
@@ -608,7 +788,7 @@ public class PropertyTycoon extends Application {
         }
     }
 
-    public void updateControls() throws NotAProperty, FileNotFoundException{
+    public void updateControls() throws NotAProperty, FileNotFoundException {
         VBox all = new VBox();
         controls = new HBox();
         all.getChildren().add(Players());
