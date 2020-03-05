@@ -59,6 +59,7 @@ public class PropertyTycoon extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException, InvalidFormatException, NotAProperty {
+        gl = createGame(2);
         StackPane pane = new StackPane();
         editor = new GridPane();
         try {
@@ -91,6 +92,7 @@ public class PropertyTycoon extends Application {
         primaryStage.maximizedProperty();
         primaryStage.show();
     }
+
     public void newGameMenu() throws IOException, InvalidFormatException, NotAProperty {
         Label amountOfPlayers = new Label("Enter number of players");
         TextField size = new TextField("2");
@@ -138,7 +140,7 @@ public class PropertyTycoon extends Application {
 
     public void makeGame(int players) throws IOException, InvalidFormatException {
         gl = createGame(players);
-		ArrayList<BoardPiece> boardLocations;
+        ArrayList<BoardPiece> boardLocations;
         bPane = new BorderPane();
         gPane = new GridPane();
         StackPane sPane = new StackPane();
@@ -147,12 +149,11 @@ public class PropertyTycoon extends Application {
         try {
             updateControls();
         } catch (IOException e) {
-            
+
         } catch (NotAProperty e) {
-            
+
         }
-            
-        
+
         gPane.setGridLinesVisible(true);
         gPane.getChildren().addAll(playersTokenOnBoard());
         ColumnConstraints column;
@@ -184,11 +185,18 @@ public class PropertyTycoon extends Application {
             gPane.getRowConstraints().add(row);
         }
 
+        boardLocations = gl.getBoard().getBoardLocations();
+
+        for (int i = 0; i < 40; i++) {
+            LocationNames(i, boardLocations.get(i).getTitle());
+        }
+
         gPane.setAlignment(Pos.CENTER);
         sPane.getChildren().addAll(board(), gPane);
         bPane.setCenter(sPane);
         updateButtons();
     }
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -698,47 +706,47 @@ public class PropertyTycoon extends Application {
                 break;
             case 11:
                 gPane.add(labelName, 1, 0);
-                 labelName.setRotate(180);
+                labelName.setRotate(180);
                 break;
 
             case 12:
                 gPane.add(labelName, 2, 0);
-                 labelName.setRotate(180);
+                labelName.setRotate(180);
                 break;
 
             case 13:
                 gPane.add(labelName, 3, 0);
-                 labelName.setRotate(180);
+                labelName.setRotate(180);
                 break;
 
             case 14:
                 gPane.add(labelName, 4, 0);
-                 labelName.setRotate(180);
+                labelName.setRotate(180);
                 break;
 
             case 15:
                 gPane.add(labelName, 5, 0);
-                 labelName.setRotate(180);
+                labelName.setRotate(180);
                 break;
 
             case 16:
                 gPane.add(labelName, 6, 0);
-                 labelName.setRotate(180);
+                labelName.setRotate(180);
                 break;
 
             case 17:
                 gPane.add(labelName, 7, 0);
-                 labelName.setRotate(180);
+                labelName.setRotate(180);
                 break;
 
             case 18:
                 gPane.add(labelName, 8, 0);
-                 labelName.setRotate(180);
+                labelName.setRotate(180);
                 break;
 
             case 19:
                 gPane.add(labelName, 9, 0);
-                 labelName.setRotate(180);
+                labelName.setRotate(180);
                 break;
 
             case 20:
@@ -747,7 +755,7 @@ public class PropertyTycoon extends Application {
 
             case 21:
                 gPane.add(labelName, 10, 1);
-                 labelName.setRotate(-90);
+                labelName.setRotate(-90);
                 break;
 
             case 22:
