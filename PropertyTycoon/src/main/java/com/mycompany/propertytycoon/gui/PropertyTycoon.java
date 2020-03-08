@@ -507,10 +507,9 @@ public class PropertyTycoon extends Application {
      */
     public GameController createGame(int num) throws IOException, InvalidFormatException {
         gl = new GameController(num);
-        gl.getActivePlayer().setToken("CAT");
-        gl.getActivePlayer().setName("Banana Hamock");
-        gl.getAmountOfPlayers().get(1).setToken("spoon");
-        gl.getAmountOfPlayers().get(1).setName("Crap bag");
+        for (Player p : gl.getAmountOfPlayers()) {
+            p.setToken("spoon");
+        }
         return gl;
     }
 
