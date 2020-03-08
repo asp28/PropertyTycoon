@@ -4,16 +4,12 @@ import com.mycompany.propertytycoon.boardpieces.*;
 import com.mycompany.propertytycoon.cards.OpportunityKnocks;
 import com.mycompany.propertytycoon.cards.PotLuck;
 import com.mycompany.propertytycoon.exceptions.NotAProperty;
+import javafx.util.Pair;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Objects;
-import java.util.Random;
-import javafx.util.Pair;
 
 public class GameController {
 
@@ -582,12 +578,21 @@ public class GameController {
 
         }
     }
-    
-    public Pair<Player,Integer> getHighestBid(HashMap<Player,Integer> bids){
+
+    public void sellHouse(ColouredProperty property) {
+        if (property.getHouseCount() > 0) {
+            activePlayer.increaseBalance(property.getHouseCost());
+            property.setHouseCount(property.getHouseCount() - 1);
+            int rentValue = property.getHouses().get(property.getHouseCount());
+            property.setRent(Integer.toString(rentValue));
+        }
+    }
+
+    public Pair<Player, Integer> getHighestBid(HashMap<Player, Integer> bids) {
         int maxBid = 0;
         Player maxBidPlayer = null;
-        for (Entry<Player,Integer> pair : bids.entrySet()){
-            if (pair.getValue() > maxBid){
+        for (Entry<Player, Integer> pair : bids.entrySet()) {
+            if (pair.getValue() > maxBid) {
                 maxBid = pair.getValue();
                 maxBidPlayer = pair.getKey();
             }
