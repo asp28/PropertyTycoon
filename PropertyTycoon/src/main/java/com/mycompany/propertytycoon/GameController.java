@@ -614,4 +614,8 @@ public class GameController {
         return actions;
     }
 
+    public ArrayList<String> getTokens() {
+        return tokens;
+    }
+
 }

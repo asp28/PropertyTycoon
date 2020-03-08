@@ -34,6 +34,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -59,11 +60,12 @@ public class PropertyTycoon extends Application {
     private HBox controls;
     private VBox log;
     private BorderPane bPane;
-
+    private Stage primaryStage;
     private Button roll, buy, sell, mortgage, endTurn, house;
 
     @Override
     public void start(Stage primaryStage) throws IOException, InvalidFormatException, NotAProperty {
+        this.primaryStage = primaryStage;
         gl = createGame(2);
         StackPane pane = new StackPane();
         editor = new GridPane();
@@ -81,23 +83,28 @@ public class PropertyTycoon extends Application {
         editor.setPickOnBounds(false);
         gp.setPickOnBounds(false);
         Button start = new Button("New Game");
+        start.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-border-color: black");
+        start.setPrefSize(80, 60);
         Button quit = new Button("Quit");
+        quit.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-border-color: black");
+        quit.setPrefSize(80, 60);
         start.setOnAction(event -> {
             editor.setVisible(true);
         });
         quit.setOnAction(event -> {
-            primaryStage.close();
+            this.primaryStage.close();
 
         });
         HBox startScreen = new HBox();
         startScreen.getChildren().addAll(start, quit);
-
+        startScreen.setAlignment(Pos.CENTER);
+        startScreen.setSpacing(20);
         pane.getChildren().addAll(startScreen, editor, gp);
         Scene scene = new Scene(pane, 1500, 1000);
-        primaryStage.setTitle("Property Tycoon");
-        primaryStage.setScene(scene);
-        primaryStage.maximizedProperty();
-        primaryStage.show();
+        this.primaryStage.setTitle("Property Tycoon");
+        this.primaryStage.setScene(scene);
+        this.primaryStage.maximizedProperty();
+        this.primaryStage.show();
     }
 
     public void newGameMenu() throws IOException, InvalidFormatException, NotAProperty {
@@ -111,9 +118,10 @@ public class PropertyTycoon extends Application {
                 int intsize = Integer.parseInt(size.getText());
                 if (intsize < 9 && intsize > 1) {
                     try {
-                        makeGame(intsize);
-                        setGamePlayers();
+                        setGamePlayers(intsize);
                         gp.setVisible(true);
+                        makeGame();
+
                     } catch (IOException e) {
 
                     } catch (InvalidFormatException e) {
@@ -146,41 +154,30 @@ public class PropertyTycoon extends Application {
         editor.setVisible(false);
     }
 
-    public void setGamePlayers() {
+    public void setGamePlayers(int players) throws IOException, InvalidFormatException {
+        gl = createGame(players);
         gp = new GridPane();
         ListView<String> tokens1 = new ListView<>();
         tokens1.setOrientation(Orientation.VERTICAL);
         tokens1.getItems().addAll(gl.getTokens());
         /**
-        tokens.setCellFactory(param -> new ListCell<String>() {
-            @Override
-            public void updateItem(String name, boolean empty) {
-                super.updateItem(name, empty);
-                if (empty) {
-                    setText(null);
-                    setGraphic(null);
-                } else {
-                    if (name.equals("cat")) {
-                        setGraphic(catToken);
-                    } else if (name.equals("boot")) {
-                        setGraphic(bootToken);
-                    } else if (name.equals("smartphone")) {
-                        setGraphic(phoneToken);
-                    } else if (name.equals("goblet")) {
-                        setGraphic(gobletToken);
-                    } else if (name.equals("hatstand")) {
-                        setGraphic(hatstandToken);
-                    } else if (name.equals("spoon")) {
-                        setGraphic(spoonToken);
-                    }
-                    setText(name);
-                }
-            }
-        });*/
+         * tokens.setCellFactory(param -> new ListCell<String>() {
+         *
+         * @Override public void updateItem(String name, boolean empty) {
+         * super.updateItem(name, empty); if (empty) { setText(null);
+         * setGraphic(null); } else { if (name.equals("cat")) {
+         * setGraphic(catToken); } else if (name.equals("boot")) {
+         * setGraphic(bootToken); } else if (name.equals("smartphone")) {
+         * setGraphic(phoneToken); } else if (name.equals("goblet")) {
+         * setGraphic(gobletToken); } else if (name.equals("hatstand")) {
+         * setGraphic(hatstandToken); } else if (name.equals("spoon")) {
+         * setGraphic(spoonToken); } setText(name); } }
+        });
+         */
         for (int i = 0; i < gl.getAmountOfPlayers().size(); i++) {
             gp = new GridPane();
             Label name = new Label("Enter name");
-            TextField nameVal = new TextField("Player " + (i + 1);
+            TextField nameVal = new TextField("Player " + (i + 1));
             Label token = new Label("Choose a token");
             Button confirm = new Button("Confirm");
             confirm.setOnAction(event -> {
@@ -218,8 +215,7 @@ public class PropertyTycoon extends Application {
         gp.setVisible(false);
     }
 
-    public void makeGame(int players) throws IOException, InvalidFormatException {
-        gl = createGame(players);
+    public void makeGame() throws FileNotFoundException {
         ArrayList<BoardPiece> boardLocations;
         bPane = new BorderPane();
         gPane = new GridPane();
@@ -275,6 +271,8 @@ public class PropertyTycoon extends Application {
         sPane.getChildren().addAll(board(), gPane);
         bPane.setCenter(sPane);
         updateButtons();
+        Scene scene = new Scene(bPane, 1500, 1000);
+        primaryStage.setScene(scene);
     }
 
     public static void main(String[] args) {
@@ -459,6 +457,11 @@ public class PropertyTycoon extends Application {
         buttons.setSpacing(10);
         //buttons.setStyle("-fx-border-color: black;");
         buttons.setPadding(new Insets(10, 10, 10, 45));
+        buy.setDisable(true);
+        sell.setDisable(true);
+        mortgage.setDisable(true);
+        house.setDisable(true);
+        endTurn.setDisable(true);
         return buttons;
     }
 
