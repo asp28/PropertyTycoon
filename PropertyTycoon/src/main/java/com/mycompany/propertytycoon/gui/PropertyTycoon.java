@@ -66,7 +66,6 @@ public class PropertyTycoon extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException, InvalidFormatException, NotAProperty {
         this.primaryStage = primaryStage;
-        gl = createGame(2);
         StackPane pane = new StackPane();
         editor = new GridPane();
         gp = new GridPane();
@@ -109,38 +108,260 @@ public class PropertyTycoon extends Application {
 
     public void newGameMenu() throws IOException, InvalidFormatException, NotAProperty {
         Label amountOfPlayers = new Label("Enter number of players");
-        TextField size = new TextField("2");
-        size.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-border-color: black");
-        Button confirm = new Button("confirm");
-        confirm.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-border-color: black");
-        confirm.setOnAction(event2 -> {
-            if (!size.getText().isEmpty()) {
-                int intsize = Integer.parseInt(size.getText());
-                if (intsize < 9 && intsize > 1) {
-                    try {
-                        setGamePlayers(intsize);
-                        gp.setVisible(true);
-                        makeGame();
-
-                    } catch (IOException e) {
-
-                    } catch (InvalidFormatException e) {
-
-                    }
-
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Cannot make game");
-                    alert.setHeaderText("value not in range");
-                    alert.setContentText("Change value");
-                    alert.showAndWait();
-                }
-            }
-        });
+        Button two = new Button("2");
+        Button three = new Button("3");
+        Button four = new Button("4");
+        Button five = new Button("5");
+        Button six = new Button("6");
+        two.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-border-color: black");
+        three.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-border-color: black");
+        four.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-border-color: black");
+        five.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-border-color: black");
+        six.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-border-color: black");
+        HBox but = new HBox();
+        but.getChildren().addAll(two, three, four, five, six);
+        but.setSpacing(10);
         Button cancel = new Button("cancel");
         cancel.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-border-color: black");
-        cancel.setOnAction(event2 -> {
+        cancel.setOnAction(event -> {
             editor.setVisible(false);
+        });
+        two.setOnAction(event -> {
+            try {
+                gl = createGame(2);
+            } catch (IOException e) {
+
+            } catch (InvalidFormatException e) {
+
+            }
+            Label player1 = new Label("Player 1");
+            TextField player1Name = new TextField();
+            Label player2 = new Label("Player 2");
+            TextField player2Name = new TextField();
+            Button confirm = new Button("Confirm");
+            confirm.setOnAction(event2 -> {
+                if (!player1Name.getText().isEmpty() && !player2Name.getText().isEmpty()) {
+                    gl.getAmountOfPlayers().get(0).setName(player1Name.getText());
+                    gl.getAmountOfPlayers().get(1).setName(player2Name.getText());
+                    try {
+                        makeGame();
+                    } catch (FileNotFoundException e) {
+
+                    }
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Missing name");
+                    alert.setHeaderText("Enter player names");
+                    alert.setContentText("");
+                    alert.showAndWait();
+                }
+
+            });
+            gp.setAlignment(Pos.CENTER);
+            gp.setMaxSize(300, 250);
+            gp.setHgap(10);
+            gp.setVgap(10);
+            gp.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-padding: 10");
+            gp.add(player1, 0, 0);
+            gp.add(player1Name, 0, 1);
+            gp.add(player2, 0, 2);
+            gp.add(player2Name, 0, 3);
+            gp.add(confirm, 0, 4);
+            gp.setVisible(true);
+        });
+        three.setOnAction(event -> {
+            try {
+                gl = createGame(3);
+            } catch (IOException e) {
+
+            } catch (InvalidFormatException e) {
+
+            }
+            Label player1 = new Label("Player 1");
+            TextField player1Name = new TextField();
+            Label player2 = new Label("Player 2");
+            TextField player2Name = new TextField();
+            Label player3 = new Label("Player 3");
+            TextField player3Name = new TextField();
+            Button confirm = new Button("Confirm");
+            confirm.setOnAction(event2 -> {
+                if (!player1Name.getText().isEmpty() && !player2Name.getText().isEmpty() && !player3Name.getText().isEmpty()) {
+                    gl.getAmountOfPlayers().get(0).setName(player1Name.getText());
+                    gl.getAmountOfPlayers().get(1).setName(player2Name.getText());
+                    gl.getAmountOfPlayers().get(2).setName(player3Name.getText());
+                    try {
+                        makeGame();
+                    } catch (FileNotFoundException e) {
+
+                    }
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Missing name");
+                    alert.setHeaderText("Enter player names");
+                    alert.setContentText("");
+                    alert.showAndWait();
+                }
+            });
+            VBox names = new VBox();
+            names.getChildren().addAll(player1, player1Name, player2, player2Name, player3, player3Name);
+            gp.setAlignment(Pos.CENTER);
+            gp.setMaxSize(300, 250);
+            gp.setHgap(10);
+            gp.setVgap(10);
+            gp.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-padding: 10");
+            gp.add(names, 0, 0);
+            gp.add(confirm, 0, 4);
+            gp.setVisible(true);
+        });
+        four.setOnAction(event -> {
+            try {
+                gl = createGame(4);
+            } catch (IOException e) {
+
+            } catch (InvalidFormatException e) {
+
+            }
+            Label player1 = new Label("Player 1");
+            TextField player1Name = new TextField();
+            Label player2 = new Label("Player 2");
+            TextField player2Name = new TextField();
+            Label player3 = new Label("Player 3");
+            TextField player3Name = new TextField();
+            Label player4 = new Label("Player 4");
+            TextField player4Name = new TextField();
+            Button confirm = new Button("Confirm");
+            confirm.setOnAction(event2 -> {
+                if (!player1Name.getText().isEmpty() && !player2Name.getText().isEmpty() && !player3Name.getText().isEmpty() && !player4Name.getText().isEmpty()) {
+                    gl.getAmountOfPlayers().get(0).setName(player1Name.getText());
+                    gl.getAmountOfPlayers().get(1).setName(player2Name.getText());
+                    gl.getAmountOfPlayers().get(2).setName(player3Name.getText());
+                    gl.getAmountOfPlayers().get(3).setName(player4Name.getText());
+                    try {
+                        makeGame();
+                    } catch (FileNotFoundException e) {
+
+                    }
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Missing name");
+                    alert.setHeaderText("Enter player names");
+                    alert.setContentText("");
+                    alert.showAndWait();
+                }
+            });
+            VBox names = new VBox();
+            names.getChildren().addAll(player1, player1Name, player2, player2Name, player3, player3Name, player4, player4Name);
+            gp.setAlignment(Pos.CENTER);
+            gp.setMaxSize(300, 250);
+            gp.setHgap(10);
+            gp.setVgap(10);
+            gp.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-padding: 10");
+            gp.add(names, 0, 0);
+            gp.add(confirm, 0, 4);
+            gp.setVisible(true);
+        });
+        five.setOnAction(event -> {
+            try {
+                gl = createGame(5);
+            } catch (IOException e) {
+
+            } catch (InvalidFormatException e) {
+
+            }
+            Label player1 = new Label("Player 1");
+            TextField player1Name = new TextField();
+            Label player2 = new Label("Player 2");
+            TextField player2Name = new TextField();
+            Label player3 = new Label("Player 3");
+            TextField player3Name = new TextField();
+            Label player4 = new Label("Player 4");
+            TextField player4Name = new TextField();
+            Label player5 = new Label("Player 5");
+            TextField player5Name = new TextField();
+            Button confirm = new Button("Confirm");
+            confirm.setOnAction(event2 -> {
+                if (!player1Name.getText().isEmpty() && !player2Name.getText().isEmpty() && !player3Name.getText().isEmpty() && !player4Name.getText().isEmpty() && !player5Name.getText().isEmpty()) {
+                    gl.getAmountOfPlayers().get(0).setName(player1Name.getText());
+                    gl.getAmountOfPlayers().get(1).setName(player2Name.getText());
+                    gl.getAmountOfPlayers().get(2).setName(player3Name.getText());
+                    gl.getAmountOfPlayers().get(3).setName(player4Name.getText());
+                    gl.getAmountOfPlayers().get(4).setName(player5Name.getText());
+                    try {
+                        makeGame();
+                    } catch (FileNotFoundException e) {
+
+                    }
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Missing name");
+                    alert.setHeaderText("Enter player names");
+                    alert.setContentText("");
+                    alert.showAndWait();
+                }
+            });
+            VBox names = new VBox();
+            names.getChildren().addAll(player1, player1Name, player2, player2Name, player3, player3Name, player4, player4Name, player5, player5Name);
+            gp.setAlignment(Pos.CENTER);
+            gp.setMaxSize(300, 250);
+            gp.setHgap(10);
+            gp.setVgap(10);
+            gp.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-padding: 10");
+            gp.add(names, 0, 0);
+            gp.add(confirm, 0, 4);
+            gp.setVisible(true);
+        });
+        six.setOnAction(event -> {
+            try {
+                gl = createGame(6);
+            } catch (IOException e) {
+
+            } catch (InvalidFormatException e) {
+
+            }
+            Label player1 = new Label("Player 1");
+            TextField player1Name = new TextField();
+            Label player2 = new Label("Player 2");
+            TextField player2Name = new TextField();
+            Label player3 = new Label("Player 3");
+            TextField player3Name = new TextField();
+            Label player4 = new Label("Player 4");
+            TextField player4Name = new TextField();
+            Label player5 = new Label("Player 5");
+            TextField player5Name = new TextField();
+            Label player6 = new Label("Player 6");
+            TextField player6Name = new TextField();
+            Button confirm = new Button("Confirm");
+            confirm.setOnAction(event2 -> {
+                if (!player1Name.getText().isEmpty() && !player2Name.getText().isEmpty() && !player3Name.getText().isEmpty() && !player4Name.getText().isEmpty() && !player5Name.getText().isEmpty() && !player6Name.getText().isEmpty()) {
+                    gl.getAmountOfPlayers().get(0).setName(player1Name.getText());
+                    gl.getAmountOfPlayers().get(1).setName(player2Name.getText());
+                    gl.getAmountOfPlayers().get(2).setName(player3Name.getText());
+                    gl.getAmountOfPlayers().get(3).setName(player4Name.getText());
+                    gl.getAmountOfPlayers().get(4).setName(player5Name.getText());
+                    gl.getAmountOfPlayers().get(5).setName(player6Name.getText());
+                    try {
+                        makeGame();
+                    } catch (FileNotFoundException e) {
+
+                    }
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Missing name");
+                    alert.setHeaderText("Enter player names");
+                    alert.setContentText("");
+                    alert.showAndWait();
+                }
+            });
+            VBox names = new VBox();
+            names.getChildren().addAll(player1, player1Name, player2, player2Name, player3, player3Name, player4, player4Name, player5, player5Name, player6, player6Name);
+            gp.setAlignment(Pos.CENTER);
+            gp.setMaxSize(300, 250);
+            gp.setHgap(10);
+            gp.setVgap(10);
+            gp.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-padding: 10");
+            gp.add(names, 0, 0);
+            gp.add(confirm, 0, 4);
+            gp.setVisible(true);
         });
         editor.setAlignment(Pos.CENTER);
         editor.setMaxSize(300, 250);
@@ -148,9 +369,8 @@ public class PropertyTycoon extends Application {
         editor.setVgap(10);
         editor.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-padding: 10");
         editor.add(amountOfPlayers, 0, 0);
-        editor.add(size, 0, 1);
-        editor.add(confirm, 0, 2);
-        editor.add(cancel, 0, 3);
+        editor.add(but, 0, 1);
+        editor.add(cancel, 0, 4);
         editor.setVisible(false);
     }
 
@@ -171,8 +391,7 @@ public class PropertyTycoon extends Application {
          * setGraphic(phoneToken); } else if (name.equals("goblet")) {
          * setGraphic(gobletToken); } else if (name.equals("hatstand")) {
          * setGraphic(hatstandToken); } else if (name.equals("spoon")) {
-         * setGraphic(spoonToken); } setText(name); } }
-        });
+         * setGraphic(spoonToken); } setText(name); } } });
          */
         for (int i = 0; i < gl.getAmountOfPlayers().size(); i++) {
             gp = new GridPane();
@@ -182,7 +401,7 @@ public class PropertyTycoon extends Application {
             Button confirm = new Button("Confirm");
             confirm.setOnAction(event -> {
                 if (!nameVal.getText().isEmpty()) {
-                    gl.getAmountOfPlayers().get(i).setName(nameVal.getText());
+                    //ERROR HERE//gl.getAmountOfPlayers().get(i).setName(nameVal.getText());
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Choose a name");
@@ -191,7 +410,7 @@ public class PropertyTycoon extends Application {
                     alert.showAndWait();
                 }
                 if (!tokens1.getSelectionModel().getSelectedItem().isEmpty()) {
-                    gl.getAmountOfPlayers().get(i).setToken(tokens1.getSelectionModel().getSelectedItem());
+                    //ERROR HERE//gl.getAmountOfPlayers().get(i).setToken(tokens1.getSelectionModel().getSelectedItem());
                     tokens1.getItems().remove(tokens1.getSelectionModel().getSelectedItem());
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Random;
 import javafx.util.Pair;
 
@@ -88,7 +89,7 @@ public class GameController {
     public void move() {
         Pair<Integer, Integer> roll = roll();
         int newLocation = 0;
-        if (rolls.getKey() == rolls.getValue() && doublesRolled < 3) {
+        if (Objects.equals(rolls.getKey(), rolls.getValue()) && doublesRolled < 3) {
             //GUI.updateLog("The player has rolled a double")
             moveTotal += rolls.getKey() + rolls.getValue();
             doublesRolled++;
@@ -96,8 +97,7 @@ public class GameController {
             actions.add("ROLL");
             //GUI.update(actions)
         } else if (doublesRolled > 2) {
-            //Move player to jail
-            activePlayer.setLocation(11);
+            goToJail();
         } else {
             moveTotal += rolls.getKey() + rolls.getValue();
             //Set location values
