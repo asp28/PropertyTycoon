@@ -72,11 +72,7 @@ public class PropertyTycoon extends Application {
         try {
             newGameMenu();
 
-        } catch (IOException e) {
-
-        } catch (InvalidFormatException e) {
-
-        } catch (NotAProperty e) {
+        } catch (IOException | InvalidFormatException | NotAProperty e) {
 
         }
         editor.setPickOnBounds(false);
@@ -129,9 +125,7 @@ public class PropertyTycoon extends Application {
         two.setOnAction(event -> {
             try {
                 gl = createGame(2);
-            } catch (IOException e) {
-
-            } catch (InvalidFormatException e) {
+            } catch (IOException | InvalidFormatException e) {
 
             }
             Label player1 = new Label("Player 1");
@@ -172,9 +166,7 @@ public class PropertyTycoon extends Application {
         three.setOnAction(event -> {
             try {
                 gl = createGame(3);
-            } catch (IOException e) {
-
-            } catch (InvalidFormatException e) {
+            } catch (IOException | InvalidFormatException e) {
 
             }
             Label player1 = new Label("Player 1");
@@ -216,9 +208,7 @@ public class PropertyTycoon extends Application {
         four.setOnAction(event -> {
             try {
                 gl = createGame(4);
-            } catch (IOException e) {
-
-            } catch (InvalidFormatException e) {
+            } catch (IOException | InvalidFormatException e) {
 
             }
             Label player1 = new Label("Player 1");
@@ -263,9 +253,7 @@ public class PropertyTycoon extends Application {
         five.setOnAction(event -> {
             try {
                 gl = createGame(5);
-            } catch (IOException e) {
-
-            } catch (InvalidFormatException e) {
+            } catch (IOException | InvalidFormatException e) {
 
             }
             Label player1 = new Label("Player 1");
@@ -313,9 +301,7 @@ public class PropertyTycoon extends Application {
         six.setOnAction(event -> {
             try {
                 gl = createGame(6);
-            } catch (IOException e) {
-
-            } catch (InvalidFormatException e) {
+            } catch (IOException | InvalidFormatException e) {
 
             }
             Label player1 = new Label("Player 1");
@@ -443,9 +429,7 @@ public class PropertyTycoon extends Application {
         log = log();
         try {
             updateControls();
-        } catch (IOException e) {
-
-        } catch (NotAProperty e) {
+        } catch (IOException | NotAProperty e) {
 
         }
 
@@ -599,11 +583,9 @@ public class PropertyTycoon extends Application {
         VBox buttons = new VBox();
         HBox first = new HBox();
         roll = new Button("Roll");
-        //roll.setPadding(new Insets(10, 10, 10, 10));
         roll.setPrefSize(80, 60);
         roll.setStyle("-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey; -fx-text-size: 50;");
         buy = new Button("Buy");
-        //buy.setPadding(new Insets(10, 10, 10, 10));
         buy.setPrefSize(80, 60);
         buy.setStyle("-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey; -fx-text-size: 50;");
         roll.setOnAction((event) -> {
@@ -632,9 +614,7 @@ public class PropertyTycoon extends Application {
         sell = new Button("Sell");
         sell.setPrefSize(80, 60);
         sell.setStyle("-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey; -fx-text-size: 50;");
-        //sell.setPadding(new Insets(10, 10, 10, 10));
         house = new Button("Houses");
-        //house.setPadding(new Insets(10, 10, 10, 10));
         house.setPrefSize(80, 60);
         house.setStyle("-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey; -fx-text-size: 50;");
         sell.setOnAction((event) -> {
@@ -673,7 +653,6 @@ public class PropertyTycoon extends Application {
         third.setSpacing(20);
         buttons.getChildren().addAll(first, second, third);
         buttons.setSpacing(10);
-        //buttons.setStyle("-fx-border-color: black;");
         buttons.setPadding(new Insets(10, 10, 10, 45));
         buy.setDisable(true);
         sell.setDisable(true);
