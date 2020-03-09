@@ -89,6 +89,7 @@ public class GameController {
             //GUI.updateLog("The player has rolled a double")
             moveTotal += rolls.getKey() + rolls.getValue();
             doublesRolled++;
+            System.out.println(rolls.getKey() +" "+ rolls.getValue());
             ArrayList<String> actions = new ArrayList<>();
             actions.add("ROLL");
             //GUI.update(actions)
