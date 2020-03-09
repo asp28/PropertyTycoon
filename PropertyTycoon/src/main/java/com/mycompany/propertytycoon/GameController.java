@@ -1,25 +1,15 @@
 package com.mycompany.propertytycoon;
 
-import com.mycompany.propertytycoon.boardpieces.PotLuckPiece;
-import com.mycompany.propertytycoon.boardpieces.JailPiece;
-import com.mycompany.propertytycoon.boardpieces.BoardPiece;
-import com.mycompany.propertytycoon.boardpieces.FreeParkingPiece;
-import com.mycompany.propertytycoon.boardpieces.GoPiece;
-import com.mycompany.propertytycoon.boardpieces.GoToJailPiece;
-import com.mycompany.propertytycoon.boardpieces.StationProperty;
-import com.mycompany.propertytycoon.boardpieces.UtilityProperty;
-import com.mycompany.propertytycoon.boardpieces.ColouredProperty;
-import com.mycompany.propertytycoon.boardpieces.OpportunityKnocksPiece;
-import com.mycompany.propertytycoon.boardpieces.TaxPiece;
-import com.mycompany.propertytycoon.boardpieces.Property;
+import com.mycompany.propertytycoon.boardpieces.*;
 import com.mycompany.propertytycoon.cards.OpportunityKnocks;
 import com.mycompany.propertytycoon.cards.PotLuck;
+import com.mycompany.propertytycoon.exceptions.NotAProperty;
+import javafx.util.Pair;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
+import java.util.*;
+import java.util.Map.Entry;
 
 public class GameController {
 
@@ -32,6 +22,8 @@ public class GameController {
     //private PropertyTycoon GUI;
 
     private Player activePlayer;
+    private Pair<Integer, Integer> rolls;
+    private ArrayList<String> actions;
     private int moveTotal;
     private int doublesRolled;
     private ArrayList<String> tokens = new ArrayList<String>(){{
@@ -76,13 +68,12 @@ public class GameController {
      *
      * @return an array that holds the 2 dice values
      */
-    private int[] roll() {
+    private Pair<Integer, Integer> roll() {
         Random rn = new Random();
-        int[] roll = new int[2];
-        roll[0] = rn.nextInt(6) + 1;
-        roll[1] = rn.nextInt(6) + 1;
-
-        return roll;
+        int roll1 = rn.nextInt(6) + 1;
+        int roll2 = rn.nextInt(6) + 1;
+        rolls = new Pair<>(roll1,roll2);
+        return rolls;
     }
 
     /**
@@ -92,23 +83,32 @@ public class GameController {
      * again and to move to jail if the dice has rolled 3 doubles
      */
     public void move() {
-        int[] roll = roll();
-        if (roll[0] == roll[1] && doublesRolled < 3) {
+        Pair<Integer, Integer> roll = roll();
+        int newLocation = 0;
+        if (Objects.equals(rolls.getKey(), rolls.getValue()) && doublesRolled < 3) {
             //GUI.updateLog("The player has rolled a double")
-            moveTotal += roll[0] + roll[1];
+            moveTotal += rolls.getKey() + rolls.getValue();
             doublesRolled++;
+            System.out.println(rolls.getKey() +" "+ rolls.getValue());
             ArrayList<String> actions = new ArrayList<>();
             actions.add("ROLL");
             //GUI.update(actions)
         } else if (doublesRolled > 2) {
-            //Move player to jail
-            activePlayer.setLocation(11);
+            goToJail();
         } else {
-            moveTotal += roll[0] + roll[1];
+            moveTotal += rolls.getKey() + rolls.getValue();
             //Set location values
-            activePlayer.setLocation(moveTotal);
+            if (activePlayer.getLocation() + moveTotal > 40) {
+                activePlayer.incrementGameloops();
+                moveTotal = (activePlayer.getLocation() + moveTotal) - 40;
+                newLocation = moveTotal;
+
+            } else {
+                newLocation = activePlayer.getLocation() + moveTotal;
+            }
+            activePlayer.setLocation(newLocation);
             int i = amountOfPlayers.indexOf(activePlayer);
-            playerLocations.set(i, moveTotal);
+            playerLocations.set(i, newLocation);
 
             //GUI.update(doActions())
         }
@@ -130,6 +130,11 @@ public class GameController {
                 if (buyable.getCost() <= activePlayer.getBalance()) {
                     playerActions.add("BUY");
                 }
+            } else if (buyable.getOwnedBuy().equals(activePlayer.getName())) {
+                if (checkAllColoursOwned(buyable) && checkHouseCount(buyable)) {
+                    playerActions.add("BUYHOUSE");
+                }
+
             } else {
                 playerActions.add("RENT");
             }
@@ -173,8 +178,18 @@ public class GameController {
         if (activePlayer.getOwnedProperties().size() > 0) {
             playerActions.add("SELL");
         }
-        playerActions.add("END");
+        int amountOfHouses = 0;
+        for (Property p : activePlayer.getOwnedProperties()) {
+            if (p instanceof ColouredProperty) {
+                ColouredProperty cp = (ColouredProperty) p;
+                amountOfHouses += cp.getHouseCount();
+            }
+        }
+        if (amountOfHouses > 0) {
+            playerActions.add("SELLHOUSE");
+        }
 
+        playerActions.add("END");
         return playerActions;
     }
 
@@ -221,6 +236,7 @@ public class GameController {
                     break;
             }
         }
+        actions = remaining;
         return remaining;
     }
 
@@ -239,20 +255,54 @@ public class GameController {
         return activePlayer;
     }
 
-    public void buyProperty(BoardPiece bp) {
+    public void buyProperty(BoardPiece bp) throws NotAProperty {
         if (bp instanceof Property) {
             Property prop = (Property) bp;
-            if (prop.getOwnedBuy().equalsIgnoreCase("bank")) {
-                activePlayer.increaseBalance(-prop.getCost());
+
+            if (prop.getOwnedBuy().equalsIgnoreCase("The Bank")) {
+                activePlayer.decreaseBalance(prop.getCost());
                 bank.deposit(prop.getCost());
                 bank.removeProperties(prop.getTitle());
                 activePlayer.addProperty(prop);
+                prop.setOwnedBuy(activePlayer.getName());
+
+
+            }
+
+        } else {
+            throw new NotAProperty("");
+        }
+
+    }
+   
+    /**
+     * 
+     * Buy property for auctioning
+     * 
+     * @param bp
+     * @param bidder
+     * 
+     */
+    public void buyProperty(BoardPiece bp, Pair<Player, Integer> bidder) throws NotAProperty {
+        Player player = bidder.getKey();
+        int bid = bidder.getValue();
+        if (bp instanceof Property) {
+            Property prop = (Property) bp;
+
+            if (prop.getOwnedBuy().equalsIgnoreCase("The Bank")) {
+                player.decreaseBalance(bid);
+                bank.deposit(bid);
+                bank.removeProperties(prop.getTitle());
+                player.addProperty(prop);
+                prop.setOwnedBuy(player.getName());
+
+
             }
 
         }
 
     }
-
+    
     public void sellProperty(Property prop) {
         if (prop.getOwnedBuy().equals(activePlayer.getName())) {
             activePlayer.increaseBalance(prop.getCost());
@@ -266,6 +316,7 @@ public class GameController {
     public void endTurn() {
         doublesRolled = 0;
         moveTotal = 0;
+        activePlayer.incrementPlayerTurns();
         if (amountOfPlayers.indexOf(activePlayer) == amountOfPlayers.size() - 1) {
             activePlayer = amountOfPlayers.get(0);
         } else {
@@ -275,7 +326,7 @@ public class GameController {
     }
 
     private void payRent() {
-        Property p = (Property) board.getProperty(activePlayer.getLocation());
+        Property p = (Property) board.getBoardPiece(activePlayer.getLocation());
         Player owner = null;
         for (Player player : amountOfPlayers) {
             if (player.getName().equalsIgnoreCase(p.getOwnedBuy())) { //make lower case equals
@@ -288,11 +339,11 @@ public class GameController {
     }
 
     private void pickUpCard() {
-        if (board.getProperty(activePlayer.getLocation()) instanceof OpportunityKnocksPiece) {
+        if (board.getBoardPiece(activePlayer.getLocation()) instanceof OpportunityKnocksPiece) {
             OpportunityKnocks card = oppocards.get(0);
             doCardAction(card);
             Collections.rotate(oppocards, -1);
-        } else if (board.getProperty(activePlayer.getLocation()) instanceof PotLuckPiece) {
+        } else if (board.getBoardPiece(activePlayer.getLocation()) instanceof PotLuckPiece) {
             PotLuck card = potluckcards.get(0);
             doCardAction(card);
             Collections.rotate(potluckcards, -1);
@@ -306,7 +357,7 @@ public class GameController {
      *
      * @param opportunityKnocks
      */
-    public void doCardAction(OpportunityKnocks opportunityKnocks) {
+    private void doCardAction(OpportunityKnocks opportunityKnocks) {
         String action = opportunityKnocks.getAction();
         switch (action) {
             case "Bank pays player £50":
@@ -394,7 +445,7 @@ public class GameController {
      *
      * @param potluck
      */
-    public void doCardAction(PotLuck potluck) {
+    private void doCardAction(PotLuck potluck) {
         String action = potluck.getAction();
         switch (action) {
             case "Bank pays player £20":
@@ -464,7 +515,7 @@ public class GameController {
     }
 
     private void acquireFreeParkingMoney() {
-        FreeParkingPiece fp = (FreeParkingPiece) board.getProperty(activePlayer.getLocation());
+        FreeParkingPiece fp = (FreeParkingPiece) board.getBoardPiece(activePlayer.getLocation());
         activePlayer.increaseBalance(fp.getBalance());
         fp.setBalance(0);
     }
@@ -472,6 +523,105 @@ public class GameController {
     private void passingGo() {
         bank.withdraw(200);
         activePlayer.increaseBalance(200);
+    }
+
+    private boolean checkAllColoursOwned(ColouredProperty prop) {
+        String colourGroup = prop.getGroup();
+        int countOfColours = 0;
+        for (Property ownedProperties : activePlayer.getOwnedProperties()) {
+            if (ownedProperties instanceof ColouredProperty) {
+                if (ownedProperties.getGroup().equals(colourGroup)) {
+                    countOfColours++;
+                }
+
+            }
+        }
+        if (colourGroup.equals("Brown") || colourGroup.equals("Deep blue")) {
+            if (countOfColours == 2) {
+                return true;
+            }
+        } else {
+            if (countOfColours == 3) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkHouseCount(Property prop) {
+        ColouredProperty property = (ColouredProperty) prop;
+        if (property.getHouseCount() >= 5) {
+            return false;
+        }
+        ArrayList<ColouredProperty> cp = new ArrayList<>();
+
+        for (Property ownedProperties : activePlayer.getOwnedProperties()) {
+            if (prop.getGroup().equals(ownedProperties.getGroup()) && !ownedProperties.getTitle().equals(property.getTitle())) {
+                cp.add((ColouredProperty) ownedProperties);
+            }
+        }
+        for (ColouredProperty check : cp) {
+            if (Math.abs(property.getHouseCount() - check.getHouseCount()) >= 1) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void buyHouse() {
+        ColouredProperty prop = (ColouredProperty) board.getBoardPiece(activePlayer.getLocation());
+        if (prop.getHouseCount() < activePlayer.getBalance()) {
+            activePlayer.decreaseBalance(prop.getHouseCost());
+            prop.setHouseCount(prop.getHouseCount() + 1);
+            int rentValue = prop.getHouses().get(prop.getHouseCount());
+            prop.setRent(Integer.toString(rentValue));
+
+
+        }
+    }
+
+    public void sellHouse(ColouredProperty property) {
+        if (property.getHouseCount() > 0) {
+            activePlayer.increaseBalance(property.getHouseCost());
+            property.setHouseCount(property.getHouseCount() - 1);
+            int rentValue = property.getHouses().get(property.getHouseCount());
+            property.setRent(Integer.toString(rentValue));
+        }
+    }
+
+    public Pair<Player, Integer> getHighestBid(HashMap<Player, Integer> bids) {
+        int maxBid = 0;
+        Player maxBidPlayer = null;
+        for (Entry<Player, Integer> pair : bids.entrySet()) {
+            if (pair.getValue() > maxBid) {
+                maxBid = pair.getValue();
+                maxBidPlayer = pair.getKey();
+            }
+        }
+        Pair<Player,Integer> max = new Pair<>(maxBidPlayer,maxBid);
+        return max;
+    }
+    
+    public void mortgageProperty(Property prop){
+        prop.setMortgaged(true);
+        bank.withdraw(prop.getCost()/2);
+        activePlayer.increaseBalance(prop.getCost()/2);  
+    }
+    
+    public void updateGUI() {
+        
+    }
+
+    public Pair<Integer, Integer> getRolls() {
+        return rolls;
+    }
+
+    public ArrayList<String> getActions() {
+        return actions;
+    }
+
+    public ArrayList<String> getTokens() {
+        return tokens;
     }
 
 }

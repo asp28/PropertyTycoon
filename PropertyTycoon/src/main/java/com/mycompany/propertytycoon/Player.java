@@ -2,6 +2,7 @@ package com.mycompany.propertytycoon;
 
 
 import com.mycompany.propertytycoon.boardpieces.Property;
+
 import java.util.ArrayList;
 
 /**
@@ -15,12 +16,16 @@ public class Player {
     private int balance;
     private boolean inJail;
     private String token;
+    private int gameloops;
+    private int playerTurns;
 
     /**
      * Player constructor
      */
     public Player() {
         this.location = 0;
+        this.gameloops = 0;
+        this.playerTurns = 0;
         this.ownedProperties = new ArrayList<>();
         this.balance = 1500;
         this.inJail = false;
@@ -153,9 +158,27 @@ public class Player {
     public void increaseBalance(int value) {
         balance += value;
     }
-    
+
     public void decreaseBalance(int value) {
         balance -= value;
     }
+
+    public int getGameloops() {
+        return gameloops;
+    }
+
+    public void incrementGameloops() {
+        this.gameloops++;
+    }
+
+    public int getPlayerTurns() {
+        return playerTurns;
+    }
+
+    public void incrementPlayerTurns() {
+        this.playerTurns++;
+    }
+
+
 }
     
