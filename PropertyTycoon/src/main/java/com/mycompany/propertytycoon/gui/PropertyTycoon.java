@@ -567,7 +567,7 @@ public class PropertyTycoon extends Application {
      * @return @throws FileNotFoundException
      */
     public ImageView board() throws FileNotFoundException {
-        FileInputStream inputstream = new FileInputStream("./src/main/java/resources/img/PropertyTycoon.png");
+        FileInputStream inputstream = new FileInputStream("./src/main/java/resources/img/PropertyTycoon.svg");
         Image image = new Image(inputstream) {
         };
         ImageView imageView = new ImageView(image);
