@@ -11,6 +11,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class GameControllerTest {
 
@@ -101,6 +102,7 @@ public class GameControllerTest {
     public void testMove() throws IOException, InvalidFormatException {
         GameController controller = new GameController(2);
         controller.move();
+        System.out.println(controller.getActivePlayer().getLocation());
         Assert.assertTrue(controller.getActivePlayer().getLocation() > 0);
 
     }
@@ -111,8 +113,12 @@ public class GameControllerTest {
         controller.getActivePlayer().setLocation(40);
         controller.move();
         System.out.println(controller.getActivePlayer().getLocation());
-        Assert.assertTrue(controller.getActivePlayer().getGameloops() > 0);
-
+        if (controller.getActivePlayer().getLocation() == 10){
+            Assert.assertEquals(0, controller.getActivePlayer().getGameloops());
+        }
+        else{
+            Assert.assertTrue(controller.getActivePlayer().getGameloops() > 0);
+        }
 
     }
 
@@ -121,9 +127,9 @@ public class GameControllerTest {
         GameController controller = new GameController(2);
         controller.getActivePlayer().setLocation(6);
         ColouredProperty cp = (ColouredProperty) controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation());
-        System.out.println(cp.getTitle());
+        //System.out.println(cp.getTitle());
         controller.buyProperty(controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation()));
-        System.out.println(cp.getOwnedBuy());
+        //System.out.println(cp.getOwnedBuy());
         Assert.assertTrue(controller.getActivePlayer().getName().equals(cp.getOwnedBuy()));
 
 
@@ -134,11 +140,11 @@ public class GameControllerTest {
         GameController controller = new GameController(2);
         controller.getActivePlayer().setLocation(3);
         ColouredProperty cp = (ColouredProperty) controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation());
-        System.out.println(cp.getTitle());
+        //System.out.println(cp.getTitle());
         controller.buyProperty(controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation()));
         controller.buyHouse();
 
-        System.out.println(cp.getRent());
+        //System.out.println(cp.getRent());
 
         Assert.assertTrue(cp.getHouseCount() > 0);
     }
@@ -149,15 +155,15 @@ public class GameControllerTest {
 
         controller.getActivePlayer().setLocation(1);
         ColouredProperty cp = (ColouredProperty) controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation());
-        System.out.println(cp.getTitle());
+        //System.out.println(cp.getTitle());
         controller.buyProperty(controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation()));
 
         controller.getActivePlayer().setLocation(3);
         cp = (ColouredProperty) controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation());
-        System.out.println(cp.getTitle());
+        //System.out.println(cp.getTitle());
         controller.buyProperty(controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation()));
 
-        System.out.println(controller.getPlayerActions());
+        //System.out.println(controller.getPlayerActions());
         ArrayList<String> actions = new ArrayList<>();
         actions.add("BUYHOUSE");
         actions.add("SELL");
@@ -171,19 +177,19 @@ public class GameControllerTest {
 
         controller.getActivePlayer().setLocation(1);
         ColouredProperty cp = (ColouredProperty) controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation());
-        System.out.println(cp.getTitle());
+        //System.out.println(cp.getTitle());
         controller.buyProperty(controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation()));
         controller.buyHouse();
 
-        System.out.println(controller.getPlayerActions());
+        //System.out.println(controller.getPlayerActions());
         controller.getActivePlayer().setLocation(3);
         cp = (ColouredProperty) controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation());
-        System.out.println(cp.getTitle());
+        //System.out.println(cp.getTitle());
         controller.buyProperty(controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation()));
         controller.buyHouse();
 
         controller.getActivePlayer().setLocation(1);
-        System.out.println(controller.getPlayerActions());
+        //System.out.println(controller.getPlayerActions());
         //controller.buyHouse();
 
         ArrayList<String> actions = new ArrayList<>();
