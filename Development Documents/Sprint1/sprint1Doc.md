@@ -41,11 +41,15 @@
 - NF1
     - The language the software shall be written in Java.
 - NF2
-    - Maven shall be used to manage the project including but not limited to managing dependencies and construct the build of the project.
-
-
+    - Maven shall be used to manage the project including but not limited to managing dependencies and building the parser.
+- NF3
+    - The implementation of the project will vary between NetBeans and Intellij.
+- D1
+    - The version control of the project should be stored on GitHub, iteration by iteration. Need more information on how to edit and update repository.
 
 ## Design
+
+
 
 ## Test Plan
 
