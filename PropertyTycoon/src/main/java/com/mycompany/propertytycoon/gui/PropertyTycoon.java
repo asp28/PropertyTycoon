@@ -95,7 +95,7 @@ public class PropertyTycoon extends Application {
         startScreen.setAlignment(Pos.CENTER);
         startScreen.setSpacing(20);
         pane.getChildren().addAll(startScreen, editor, gp);
-        Scene scene = new Scene(pane, 1500, 1000);
+        Scene scene = new Scene(pane, screen.getWidth()- 100,screen.getHeight() - 100);
         this.primaryStage.setTitle("Property Tycoon");
         this.primaryStage.setScene(scene);
         this.primaryStage.maximizedProperty();
@@ -474,7 +474,7 @@ public class PropertyTycoon extends Application {
         sPane.getChildren().addAll(board(), gPane);
         bPane.setCenter(sPane);
         updateButtons();
-        Scene scene = new Scene(bPane, 1500, 1000);
+        Scene scene = new Scene(bPane, screen.getWidth() - 100,screen.getHeight() - 100);
         primaryStage.setScene(scene);
     }
 
@@ -567,12 +567,12 @@ public class PropertyTycoon extends Application {
      * @return @throws FileNotFoundException
      */
     public ImageView board() throws FileNotFoundException {
-        FileInputStream inputstream = new FileInputStream("./src/main/java/resources/img/PropertyTycoon.svg");
+        FileInputStream inputstream = new FileInputStream("./src/main/java/resources/img/PropertyTycoon.png");
         Image image = new Image(inputstream) {
         };
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(screen.getHeight() - 100);
-        imageView.setFitWidth(screen.getHeight() - 100);
+        imageView.setFitHeight(screen.getHeight() - 150);
+        imageView.setFitWidth(screen.getHeight() - 150);
         return imageView;
     }
 
