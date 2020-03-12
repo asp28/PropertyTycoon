@@ -55,11 +55,7 @@ SWAP CARD AND PARSER OBJECTS AROUND
 
 ## Design
 
-![UML](/DevelopmentDocuments/Sprint1/UML1.png)
 
-![Use Diagram](/DevelopmentDocuments/Sprint1/useDiagram1.png)
-
-![Sequence Diagrams]()
 
 ## Test Plan
 
