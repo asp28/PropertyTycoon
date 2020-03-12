@@ -56,14 +56,17 @@ SWAP CARD AND PARSER OBJECTS AROUND
 ## Design
 
 ### UML Diagram
+___
 
 ![UML](/DevelopmentDocuments/Sprint1/UML1.png)
 
 ### Usage Diagram
+___
 
 ![Use Diagram](/DevelopmentDocuments/Sprint1/useDiagram1.png)
 
 ### Sequence Diagrams
+___
 
 ![Sequence Diagrams]()
 
