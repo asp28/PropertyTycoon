@@ -6,6 +6,7 @@
 package com.mycompany.propertytycoon;
 
 import com.mycompany.propertytycoon.gui.PropertyTycoon;
+import org.lwjgl.*;
 
 /**
  *
@@ -14,6 +15,7 @@ import com.mycompany.propertytycoon.gui.PropertyTycoon;
 public class Game {
 
     public static void main(String[] args) {
+        System.out.println(org.lwjgl.Version.getVersion());
         new Thread() {
             @Override
             public void run() {
