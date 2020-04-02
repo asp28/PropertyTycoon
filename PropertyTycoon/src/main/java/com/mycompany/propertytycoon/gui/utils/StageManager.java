@@ -7,6 +7,7 @@ package com.mycompany.propertytycoon.gui.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -40,7 +41,7 @@ public class StageManager {
         } catch (IOException e) {
             
         }
-        Parent root = loadHierarchy("src\\main\\java\\com\\mycompany\\propertytycoon\\gui\\mainmenu\\Homepage.fxml");
+        Parent root = loadHierarchy("src/main/java/com/mycompany/propertytycoon/gui/mainmenu/homepage.fxml");
         Scene scene = new Scene(root);
 
         currStage.setTitle("Property Tycoon");
@@ -51,8 +52,9 @@ public class StageManager {
     private Parent loadHierarchy(String fxmlFilePath) {
         Parent p = null;
         try {
+            URL url = new File(fxmlFilePath).toURI().toURL();
             FXMLLoader loader = new FXMLLoader();
-            p = FXMLLoader.load(getClass().getResource(fxmlFilePath));
+            p = FXMLLoader.load(url);
         } catch (IOException e) {
             System.err.print("Caught IO exception");
         }
@@ -68,7 +70,7 @@ public class StageManager {
             
         }
         catch (Exception e) {
-            System.err.print("There was a problem");
+            System.err.print("");
         }
     }
     

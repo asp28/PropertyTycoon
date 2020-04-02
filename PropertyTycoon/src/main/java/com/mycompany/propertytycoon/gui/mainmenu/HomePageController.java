@@ -18,7 +18,8 @@ import javafx.scene.control.Button;
  * @author ankeet
  */
 public class HomePageController implements Initializable {
-    private StageManager SM;
+    
+    private StageManager SM = StageManager.getInstance();
     
     @FXML
     private Button normal;
@@ -29,8 +30,8 @@ public class HomePageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        normal.setOnAction(e -> SM.changeScene(View.INIT_2));
-        timed.setOnAction(e -> SM.changeScene(View.INIT_3));
+        normal.setOnAction(e -> SM.changeScene(View.PLAYER_BOT_COUNT));
+        timed.setOnAction(e -> SM.changeScene(View.PLAYER_BOT_COUNT));
         quit.setOnAction(e -> SM.quit());
     }
     

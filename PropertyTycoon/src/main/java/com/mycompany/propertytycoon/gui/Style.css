@@ -26,13 +26,29 @@
 .button {
     -fx-background-color: white;
     -fx-text-fill: black;
-    -fx-border-color: black
+    -fx-border-color: black;
 }
 
 .button:hover {
-    
+    -fx-background-color: lightgrey;
+    -fx-text-fill: black;
+    -fx-border-color: black;
 }
 
-.button:active {
-    
+.text-field {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+}
+
+.list-view {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+}
+
+.list-view:active {
+    -fx-background-color: lightgrey;
+    -fx-text-fill: black;
+    -fx-border-color: black;
 }
