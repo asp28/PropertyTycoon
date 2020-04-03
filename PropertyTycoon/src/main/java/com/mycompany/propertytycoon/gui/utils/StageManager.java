@@ -5,6 +5,7 @@
  */
 package com.mycompany.propertytycoon.gui.utils;
 
+import com.mycompany.propertytycoon.GameController;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -12,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 /**
  *
@@ -22,6 +24,10 @@ public class StageManager {
     private static StageManager instance;
 
     private Stage currStage;
+    
+    private int playerNum;
+    
+    private GameController game;
 
     public static StageManager getInstance() {
         if (instance == null) {
@@ -76,6 +82,26 @@ public class StageManager {
     
     public void quit() {
         currStage.close();
+    }
+    
+    public void setPlayerNumber(int num) {
+        playerNum = num;
+    }
+    
+    public int getPlayerNum() {
+        return playerNum;
+    }
+    
+    public void createGameController(int players) {
+        try {
+            game = new GameController(players);
+        } catch (IOException | InvalidFormatException e) {
+
+        }
+    }
+    
+    public GameController getGame() {
+        return game;
     }
     
 }

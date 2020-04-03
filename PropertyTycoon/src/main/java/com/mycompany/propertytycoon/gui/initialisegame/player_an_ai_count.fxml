@@ -5,20 +5,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.propertytycoon.gui.initialisegame.Player_an_ai_countController">
+<AnchorPane minHeight="400.0" minWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.propertytycoon.gui.initialisegame.Player_an_ai_countController">
     <stylesheets>
         <URL value="@../Style.css" />
     </stylesheets>
    <children>
-      <Text layoutX="294.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Players" />
-      <Button fx:id="playerMinus" layoutX="259.0" layoutY="137.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="23.0" text="-" />
-      <Text fx:id="PlayerCount" layoutX="260.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" x="50.0" />
-      <Button fx:id="PlayerPlus" layoutX="338.0" layoutY="137.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" text="+" />
-      <Button fx:id="confirm" layoutX="290.0" layoutY="343.0" mnemonicParsing="false" text="Confirm" />
+      <Text layoutX="332.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Players" />
+      <Button fx:id="playerMinus" layoutX="297.0" layoutY="97.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="23.0" text="-" />
+      <Text fx:id="PlayerCount" layoutX="298.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" x="50.0" />
+      <Button fx:id="PlayerPlus" layoutX="376.0" layoutY="97.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" text="+" />
+      <Button fx:id="confirm" layoutX="328.0" layoutY="303.0" mnemonicParsing="false" text="Confirm" />
       <Button fx:id="Back" layoutX="31.0" layoutY="26.0" mnemonicParsing="false" text="Back" />
-      <Text layoutX="298.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bots" />
-      <Button fx:id="BotMinus" layoutX="260.0" layoutY="231.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" text="-" />
-      <Text fx:id="BotCount" layoutX="307.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
-      <Button fx:id="BotPlus" layoutX="338.0" layoutY="230.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" text="+" />
+      <Text layoutX="336.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bots" />
+      <Button fx:id="BotMinus" layoutX="298.0" layoutY="191.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" text="-" />
+      <Text fx:id="BotCount" layoutX="345.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+      <Button fx:id="BotPlus" layoutX="376.0" layoutY="190.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" text="+" />
    </children>
 </AnchorPane>
