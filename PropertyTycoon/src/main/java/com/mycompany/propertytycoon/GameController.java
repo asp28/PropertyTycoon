@@ -129,7 +129,7 @@ public class GameController {
         if (boardPiece instanceof ColouredProperty) {
             ColouredProperty buyable = (ColouredProperty) boardPiece;
             if (buyable.getOwnedBuy().equals("The Bank")) {
-                if (buyable.getCost() <= activePlayer.getBalance()) {
+                if (buyable.getCost() <= activePlayer.getBalance() && activePlayer.getGameloops() > 0) {
                     playerActions.add("BUY");
                 }
             } else if (buyable.getOwnedBuy().equals(activePlayer.getName())) {
@@ -305,6 +305,7 @@ public class GameController {
 
     public void sellProperty(Property prop) {
         if (prop.getOwnedBuy().equals(activePlayer.getName())) {
+            prop.setOwnedBuy("The Bank");
             activePlayer.increaseBalance(prop.getCost());
             bank.withdraw(prop.getCost());
             activePlayer.removeProperty(prop);
@@ -355,8 +356,38 @@ public class GameController {
                 break;
             }
         }
-        activePlayer.increaseBalance(-Integer.parseInt(p.getRent()));
-        owner.increaseBalance(-Integer.parseInt(p.getRent()));
+        if (doubleRent(p, owner)) {
+            activePlayer.increaseBalance(-(2 * Integer.parseInt(p.getRent())));
+            owner.increaseBalance(2 * Integer.parseInt(p.getRent()));
+        } else {
+            activePlayer.increaseBalance(-Integer.parseInt(p.getRent()));
+            owner.increaseBalance(Integer.parseInt(p.getRent()));
+        }
+    }
+
+    private boolean doubleRent(Property property, Player owner) {
+        if (property instanceof ColouredProperty) {
+            String colourGroup = property.getGroup();
+            int countOfColours = 0;
+            for (Property ownedProperties : owner.getOwnedProperties()) {
+                if (ownedProperties instanceof ColouredProperty) {
+                    if (ownedProperties.getGroup().equals(colourGroup) && ((ColouredProperty) ownedProperties).getHouseCount() < 1) {
+                        countOfColours++;
+                    }
+
+                }
+            }
+            if (colourGroup.equals("Brown") || colourGroup.equals("Deep blue")) {
+                if (countOfColours == 2) {
+                    return true;
+                }
+            } else {
+                if (countOfColours == 3) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private void pickUpCard() {
@@ -591,7 +622,7 @@ public class GameController {
 
     public void buyHouse() {
         ColouredProperty prop = (ColouredProperty) board.getBoardPiece(activePlayer.getLocation());
-        if (prop.getHouseCount() < activePlayer.getBalance()) {
+        if (prop.getHouseCount() < activePlayer.getBalance() && prop.getHouseCount() <= 5) {
             activePlayer.decreaseBalance(prop.getHouseCost());
             prop.setHouseCount(prop.getHouseCount() + 1);
             int rentValue = prop.getHouses().get(prop.getHouseCount());
