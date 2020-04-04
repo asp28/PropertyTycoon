@@ -52,3 +52,20 @@
     -fx-text-fill: black;
     -fx-border-color: black;
 }
+
+.scroll-pane {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:white;
+    -fx-border-color: black;
+}

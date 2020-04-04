@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -30,7 +31,7 @@ public class GameController implements Initializable {
     @FXML
     private Label playerName, playerMoney;
     @FXML
-    private ImageView profileToken, catToken, bootToken, spoonToken, gobletToken, hatstandToken, phoneToken;
+    private Image profileToken;
     @FXML
     private BorderPane bPane;
     @FXML
