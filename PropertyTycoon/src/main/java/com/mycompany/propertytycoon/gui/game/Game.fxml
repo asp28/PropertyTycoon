@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -15,8 +16,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1084.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <left>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="760.0" minWidth="1084.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@../Style.css" />
+    </stylesheets>
+    <left>
       <VBox prefHeight="760.0" prefWidth="174.0" BorderPane.alignment="CENTER" />
    </left>
    <right>
@@ -26,7 +30,7 @@
                <children>
                   <ImageView fitHeight="68.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@BOOT.png" />
+                        <Image url="@../../../../../resources/img/BOOT.png" />
                      </image></ImageView>
                   <VBox prefHeight="26.0" prefWidth="130.0" style="-fx-border-color: lightgrey;">
                      <children>
