@@ -6,6 +6,7 @@
 package com.mycompany.propertytycoon.gui.utils;
 
 import com.mycompany.propertytycoon.GameController;
+import com.mycompany.propertytycoon.log.Log;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -28,6 +29,8 @@ public class StageManager {
     private int playerNum;
     
     private GameController game;
+    
+    private Log log;
 
     public static StageManager getInstance() {
         if (instance == null) {
@@ -102,6 +105,14 @@ public class StageManager {
     
     public GameController getGame() {
         return game;
+    }
+    
+    public void createLog() {
+        log = new Log();
+    }
+    
+    public Log getLog() {
+        return log;
     }
     
 }
