@@ -6,10 +6,12 @@
 package com.mycompany.propertytycoon.gui.utils;
 
 import com.mycompany.propertytycoon.GameController;
+import com.mycompany.propertytycoon.Player;
 import com.mycompany.propertytycoon.log.Log;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -31,6 +33,8 @@ public class StageManager {
     private GameController game;
     
     private Log log;
+    
+    private ArrayList<Player> players;
 
     public static StageManager getInstance() {
         if (instance == null) {
@@ -113,6 +117,19 @@ public class StageManager {
     
     public Log getLog() {
         return log;
+    }
+    
+    public void tradePlayers(Player trader, Player other) {
+        players = new ArrayList<Player>() {
+            {
+                add(trader);
+                add(other);
+            }
+        };
+    }
+    
+    public ArrayList<Player> getTraders() {
+        return players;
     }
     
 }

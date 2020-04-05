@@ -5,8 +5,7 @@
  */
 package com.mycompany.propertytycoon;
 
-import com.mycompany.propertytycoon.gui.PropertyTycoon;
-
+import com.mycompany.propertytycoon.gui.LoadNewGameGUI;
 /**
  *
  * @author Big Nerd Notation
@@ -17,7 +16,7 @@ public class Game {
         new Thread() {
             @Override
             public void run() {
-                javafx.application.Application.launch(PropertyTycoon.class);
+                javafx.application.Application.launch(LoadNewGameGUI.class);
             }
         }.start();
     }
