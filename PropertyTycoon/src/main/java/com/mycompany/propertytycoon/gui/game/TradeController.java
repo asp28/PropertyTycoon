@@ -84,7 +84,7 @@ public class TradeController implements Initializable {
                 p2_tempObserv.forEach((p) -> {
                     p2_temp.add(p);
                 });
-                SM.getGame().trade(p1_temp, Integer.parseInt(p1_money.getText()), p2_temp, players.get(1));
+                SM.getGame().trade(p1_temp, Integer.parseInt(p1_money.getText()), Integer.parseInt(p2_money.getText()), p2_temp, players.get(1));
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
