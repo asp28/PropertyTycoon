@@ -7,6 +7,7 @@ package com.mycompany.propertytycoon.gui.utils;
 
 import com.mycompany.propertytycoon.GameController;
 import com.mycompany.propertytycoon.Player;
+import com.mycompany.propertytycoon.boardpieces.Property;
 import com.mycompany.propertytycoon.log.Log;
 import java.io.File;
 import java.io.IOException;
@@ -35,6 +36,10 @@ public class StageManager {
     private Log log;
     
     private ArrayList<Player> players;
+    
+    private Property auctionProperty;
+    
+    private boolean timed;
 
     public static StageManager getInstance() {
         if (instance == null) {
@@ -132,4 +137,19 @@ public class StageManager {
         return players;
     }
     
+    public void setAuctionProperty(Property prop) {
+        auctionProperty = prop;
+    }
+    
+    public Property getAuctionProperty() {
+        return auctionProperty;
+    }
+    
+    public boolean getTimed() {
+        return timed;
+    }
+    
+    public void isTimed(boolean yn) {
+        timed = yn;
+    }
 }
