@@ -2,24 +2,26 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.mycompany.propertytycoon.gui.game.TradeController">
+<AnchorPane id="AnchorPane" minHeight="760.0" minWidth="1084.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.propertytycoon.gui.game.TradeController">
     <stylesheets>
-        <URL value="@/com/mycompany/propertytycoon/gui/Style.css" />
+        <URL value="@../Style.css" />
     </stylesheets>
    <children>
-      <Text layoutX="113.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text layoutX="402.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text layoutX="113.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text layoutX="402.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Button layoutX="46.0" layoutY="310.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="157.0" layoutY="309.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="329.0" layoutY="318.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="472.0" layoutY="318.0" mnemonicParsing="false" text="Button" />
-      <ListView layoutX="24.0" layoutY="91.0" prefHeight="200.0" prefWidth="200.0" />
-      <ListView layoutX="313.0" layoutY="91.0" prefHeight="200.0" prefWidth="200.0" />
+      <Text fx:id="p1_name" layoutX="313.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player name" />
+      <Text fx:id="p2_name" layoutX="709.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player name" />
+      <ListView fx:id="p1_list" layoutX="245.0" layoutY="268.0" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="p2_list" layoutX="640.0" layoutY="274.0" prefHeight="200.0" prefWidth="200.0" />
+      <TextField fx:id="p1_money" layoutX="271.0" layoutY="484.0" promptText="Money" />
+      <TextField fx:id="p2_money" layoutX="666.0" layoutY="491.0" promptText="Money" />
+      <CheckBox fx:id="p1_check" layoutX="309.0" layoutY="579.0" mnemonicParsing="false" text="Agree trade" />
+      <CheckBox fx:id="p2_check" layoutX="705.0" layoutY="579.0" mnemonicParsing="false" text="Agree Trade" />
+      <Button fx:id="confirm" layoutX="445.0" layoutY="657.0" mnemonicParsing="false" text="Confirm" />
+      <Button fx:id="cancel" layoutX="588.0" layoutY="658.0" mnemonicParsing="false" text="Cancel" />
    </children>
 </AnchorPane>
