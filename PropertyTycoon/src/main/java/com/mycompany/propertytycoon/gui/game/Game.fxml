@@ -28,9 +28,9 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="210.0">
                <children>
-                  <ImageView fitHeight="68.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="profileToken" fitHeight="68.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image fx:id="profileToken" url="@../../../../../resources/img/BOOT.png" />
+                        <Image  url="@../../../../../resources/img/BOOT.png" />
                      </image></ImageView>
                   <VBox prefHeight="26.0" prefWidth="130.0" style="-fx-border-color: lightgrey;">
                      <children>
@@ -122,7 +122,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: lightgrey;">
                <children>
                   <Label text="Log" />
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0" />
+                  <ScrollPane fx:id="log" prefHeight="200.0" prefWidth="200.0" />
                </children>
             </VBox>
          </children>

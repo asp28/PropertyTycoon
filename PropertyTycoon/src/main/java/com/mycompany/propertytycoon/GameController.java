@@ -314,7 +314,7 @@ public class GameController {
 
     }
 
-    public void trade(ArrayList<Property> tradingP, int cash, ArrayList<Property> desiredP, Player choosenPlayer) {
+    public void trade(ArrayList<Property> tradingP, int cash, int desiredCash, ArrayList<Property> desiredP, Player choosenPlayer) {
 
         if (tradingP.size() > 0) {
             for (Property t : tradingP) {
@@ -328,9 +328,16 @@ public class GameController {
             choosenPlayer.increaseBalance(cash);
         }
 
-        for (Property d : desiredP) {
-            choosenPlayer.removeProperty(d);
-            activePlayer.addProperty(d);
+        if (desiredCash > 0) {
+            choosenPlayer.decreaseBalance(desiredCash);
+            activePlayer.increaseBalance(desiredCash);
+        }
+
+        if (desiredP.size() > 0) {
+            for (Property d : desiredP) {
+                choosenPlayer.removeProperty(d);
+                activePlayer.addProperty(d);
+            }
         }
 
     }
