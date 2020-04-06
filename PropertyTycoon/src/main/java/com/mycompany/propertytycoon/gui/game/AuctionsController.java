@@ -5,7 +5,6 @@
  */
 package com.mycompany.propertytycoon.gui.game;
 
-import com.mycompany.propertytycoon.boardpieces.Property;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
 import java.net.URL;
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ import javafx.scene.text.Text;
  *
  * @author ankeet
  */
-public class AuctionController implements Initializable {
+public class AuctionsController implements Initializable {
 
     @FXML
     private Text property_name, property_colour, property_original_price, p1_name, p2_name, p3_name, p4_name, p5_name, p6_name;
@@ -37,7 +36,7 @@ public class AuctionController implements Initializable {
     private Button confirm;
 
     private StageManager SM = StageManager.getInstance();
-    
+
     private ArrayList<TextField> bids = new ArrayList<>();
     private ArrayList<CheckBox> checks = new ArrayList<>();
 
@@ -46,11 +45,9 @@ public class AuctionController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Property p = SM.getAuctionProperty();
-        property_name.setText("Name: " + p.getTitle());
-        property_colour.setText("Group: " + p.getGroup());
-        property_original_price.setText("Original Price: " + String.valueOf(p.getCost()));
-
+        property_name.setText("Name: " + SM.getAuctionProperty().getTitle());
+        property_colour.setText("Group: " + SM.getAuctionProperty().getGroup());
+        property_original_price.setText("Original Cost: £" + SM.getAuctionProperty().getCost());
         int players = SM.getGame().getAmountOfPlayers().size();
         switch (players) {
             case 2:
@@ -128,7 +125,6 @@ public class AuctionController implements Initializable {
                 checks.add(p5_check);
                 break;
         }
-
         p1_name.setText(SM.getGame().getAmountOfPlayers().get(0).getName());
         p2_name.setText(SM.getGame().getAmountOfPlayers().get(1).getName());
         p3_name.setText(SM.getGame().getAmountOfPlayers().get(2).getName());
@@ -140,25 +136,24 @@ public class AuctionController implements Initializable {
                 //SM.getGame().
             }
         });
-
     }
 
-    public boolean numbersOnly() {
+    private boolean numbersOnly() {
         boolean num = true;
         for (TextField tf : bids) {
-            if(!tf.getText().matches("[0-9]*")) {
+            if (!tf.getText().matches("[0-9]*")) {
                 num = false;
                 break;
-            } 
+            }
         }
-        
+
         return num;
     }
 
-    public boolean checkedBoxes() {
+    private boolean checkedBoxes() {
         boolean checked = true;
         for (CheckBox cb : checks) {
-            if(!cb.isSelected()) {
+            if (!cb.isSelected()) {
                 checked = false;
                 break;
             }

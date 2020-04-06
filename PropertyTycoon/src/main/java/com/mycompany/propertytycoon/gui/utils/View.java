@@ -18,7 +18,12 @@ public enum View {
     INIT_4("src/main/java/com/mycompany/propertytycoon/gui/initialisegame/init_4.fxml"),
     INIT_5("src/main/java/com/mycompany/propertytycoon/gui/initialisegame/init_5.fxml"),
     INIT_6("src/main/java/com/mycompany/propertytycoon/gui/initialisegame/init_6.fxml"),
-    GAME("src/main/java/com/mycompany/propertytycoon/gui/game/Game.fxml");
+    GAME("src/main/java/com/mycompany/propertytycoon/gui/game/Game.fxml"),
+    TRADE("src/main/java/com/mycompany/propertytycoon/gui/game/Trade.fxml"),
+    TRADERCHOICE("src/main/java/com/mycompany/propertytycoon/gui/game/TradeChoicePage.fxml"),
+    MORTGAGE("src/main/java/com/mycompany/propertytycoon/gui/game/Mortgage.fxml"),
+    AUCTION("src/main/java/com/mycompany/propertytycoon/gui/game/auctions.fxml");
+    
 
     private String fxmlPath;
 

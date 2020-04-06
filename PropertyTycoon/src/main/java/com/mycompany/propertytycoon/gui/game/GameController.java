@@ -7,6 +7,7 @@ package com.mycompany.propertytycoon.gui.game;
 
 import com.mycompany.propertytycoon.Player;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
+import com.mycompany.propertytycoon.gui.utils.View;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -79,10 +80,10 @@ public class GameController implements Initializable {
 
         });
         trade.setOnAction(e -> {
-
+            SM.changeScene(View.TRADERCHOICE);
         });
         mortgage.setOnAction(e -> {
-
+            SM.changeScene(View.MORTGAGE);
         });
         endTurn.setOnAction(e -> {
             SM.getGame().endTurn();

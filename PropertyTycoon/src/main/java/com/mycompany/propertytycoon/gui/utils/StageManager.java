@@ -40,6 +40,8 @@ public class StageManager {
     private Property auctionProperty;
     
     private boolean timed;
+    
+    private Player trader;
 
     public static StageManager getInstance() {
         if (instance == null) {
@@ -53,12 +55,6 @@ public class StageManager {
     }
 
     public void init() {
-        try {
-            String canon = new File(".").getCanonicalPath();
-            System.out.print("\n\n\n" + canon + "\n\n\n");
-        } catch (IOException e) {
-            
-        }
         Parent root = loadHierarchy("src/main/java/com/mycompany/propertytycoon/gui/mainmenu/homepage.fxml");
         Scene scene = new Scene(root);
 
@@ -151,5 +147,13 @@ public class StageManager {
     
     public void isTimed(boolean yn) {
         timed = yn;
+    }
+    
+    public void setTrader(Player p) {
+        trader = p;
+    }
+    
+    public Player getTrader() {
+        return trader;
     }
 }
