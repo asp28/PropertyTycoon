@@ -180,4 +180,32 @@ public class GameControllerTestV2 {
     @Test
     public void testDoActions() {
     }
+    
+    @Test
+    public void testAuctionPass() throws IOException, InvalidFormatException, NotAProperty{
+        GameController gc = new GameController(2);
+        gc.getActivePlayer().setLocation(3);
+        HashMap<Player, Integer> bids = new HashMap<>();
+        bids.put(gc.getAmountOfPlayers().get(0), 100);
+        bids.put(gc.getAmountOfPlayers().get(1), 200);
+        gc.auction(bids);
+        Assert.assertTrue(gc.getAmountOfPlayers().get(1).getOwnedProperties().size() > 0);
+        Assert.assertEquals(1300, gc.getAmountOfPlayers().get(1).getBalance()); 
+    }
+    
+    @Test
+    public void testAuctionFail() throws IOException, InvalidFormatException, NotAProperty{
+        GameController gc = new GameController(2);
+        gc.getActivePlayer().setLocation(0);
+        HashMap<Player, Integer> bids = new HashMap<>();
+        bids.put(gc.getAmountOfPlayers().get(0), 100);
+        bids.put(gc.getAmountOfPlayers().get(1), 200);
+        int propCount = gc.getAmountOfPlayers().get(1).getOwnedProperties().size();
+        try{
+            gc.auction(bids);
+        }
+        catch (NotAProperty np){
+            Assert.assertEquals(propCount, gc.getAmountOfPlayers().get(1).getOwnedProperties().size());
+        }
+    }
 }

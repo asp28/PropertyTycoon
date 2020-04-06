@@ -659,11 +659,34 @@ public class GameController {
         Pair<Player, Integer> max = new Pair<>(maxBidPlayer, maxBid);
         return max;
     }
+    
+    public void auction(HashMap<Player, Integer> bids) throws NotAProperty{
+        if (!(board.getBoardPiece(activePlayer.getLocation()) instanceof Property)){
+            throw new NotAProperty("Player's current location is not a Property");
+        }
+        else{
+            Property prop = (Property) board.getBoardPiece(activePlayer.getLocation());
+            Entry<Player, Integer> winner = null;
+            for (Entry<Player, Integer> playerBid : bids.entrySet()){
+                if ((winner == null) || (playerBid.getValue() > winner.getValue())){
+                    winner = playerBid;
+                }
+            }
+            buyProperty(prop, new Pair<>(winner.getKey(),winner.getValue()));
+        }
+        
+    }
 
     public void mortgageProperty(Property prop) {
         prop.setMortgaged(true);
         bank.withdraw(prop.getCost() / 2);
         activePlayer.increaseBalance(prop.getCost() / 2);
+    }
+    
+    public void unmortgageProperty(Property prop){
+        prop.setMortgaged(false);
+        bank.deposit(prop.getCost() / 2);
+        activePlayer.decreaseBalance(prop.getCost() / 2);
     }
 
     public void updateGUI() {
