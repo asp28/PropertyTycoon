@@ -4,6 +4,7 @@ import com.mycompany.propertytycoon.boardpieces.*;
 import com.mycompany.propertytycoon.cards.OpportunityKnocks;
 import com.mycompany.propertytycoon.cards.PotLuck;
 import com.mycompany.propertytycoon.exceptions.NotAProperty;
+import com.mycompany.propertytycoon.log.Log;
 import javafx.util.Pair;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
@@ -12,13 +13,17 @@ import java.util.*;
 import java.util.Map.Entry;
 
 public class GameController {
-
+    
+    private static Log log = Log.getInstance();
+    
     private ArrayList<Player> amountOfPlayers = new ArrayList<>();
     private ArrayList<Integer> playerLocations = new ArrayList<>();
     private ArrayList<OpportunityKnocks> oppocards = new ArrayList<>();
     private ArrayList<PotLuck> potluckcards = new ArrayList<>();
     private Board board;
     private Bank bank;
+    
+    
 
     private Player activePlayer;
     private Pair<Integer, Integer> rolls;
@@ -87,7 +92,7 @@ public class GameController {
         Pair<Integer, Integer> roll = roll();
         int newLocation = 0;
         if (Objects.equals(rolls.getKey(), rolls.getValue()) && doublesRolled < 3) {
-            //GUI.updateLog("The player has rolled a double")
+            log.addToLog(activePlayer.getName() + " has rolled a double.");
             moveTotal += rolls.getKey() + rolls.getValue();
             doublesRolled++;
             System.out.println(rolls.getKey() + " " + rolls.getValue());
@@ -95,9 +100,11 @@ public class GameController {
             actions.add("ROLL");
             //GUI.update(actions)
         } else if (doublesRolled > 2) {
+            log.addToLog(activePlayer.getName() + " was sent to jail for rolling 3 doubles in a row.");
             goToJail();
         } else {
             moveTotal += rolls.getKey() + rolls.getValue();
+            log.addToLog(activePlayer.getName() + "has rolled " + rolls.getKey() + " and " + rolls.getValue() + ".");
             //Set location values
             if (activePlayer.getLocation() + moveTotal > 40) {
                 activePlayer.incrementGameloops();
@@ -266,6 +273,7 @@ public class GameController {
                 bank.removeProperties(prop.getTitle());
                 activePlayer.addProperty(prop);
                 prop.setOwnedBuy(activePlayer.getName());
+                log.addToLog(activePlayer.getName() + " has bought " + bp.getTitle() + ".");
 
             }
 
@@ -295,6 +303,7 @@ public class GameController {
                 bank.removeProperties(prop.getTitle());
                 player.addProperty(prop);
                 prop.setOwnedBuy(player.getName());
+                log.addToLog(bidder.getKey() + " has bought" + bp.getTitle() + " for £" + bidder.getValue() + ".");
 
             }
 
@@ -309,6 +318,7 @@ public class GameController {
             bank.withdraw(prop.getCost());
             activePlayer.removeProperty(prop);
             bank.addProperties(prop);
+            log.addToLog(activePlayer.getName() + " has sold " + prop.getTitle() + ".");
         }
 
     }
@@ -338,6 +348,7 @@ public class GameController {
                 activePlayer.addProperty(d);
             }
         }
+        log.addToLog(activePlayer.getName() + " has traded with " + choosenPlayer.getName() + ".");
 
     }
 
@@ -345,6 +356,7 @@ public class GameController {
         doublesRolled = 0;
         moveTotal = 0;
         activePlayer.incrementPlayerTurns();
+        log.addToLog(activePlayer.getName() + " has ended their turn.");
         if (amountOfPlayers.indexOf(activePlayer) == amountOfPlayers.size() - 1) {
             activePlayer = amountOfPlayers.get(0);
         } else {
@@ -365,9 +377,11 @@ public class GameController {
         if (doubleRent(p, owner)) {
             activePlayer.increaseBalance(-(2 * Integer.parseInt(p.getRent())));
             owner.increaseBalance(2 * Integer.parseInt(p.getRent()));
+            log.addToLog(activePlayer.getName() + " has paid rent to " + owner.getName() + " of £" + (2 * Integer.parseInt(p.getRent())));
         } else {
             activePlayer.increaseBalance(-Integer.parseInt(p.getRent()));
             owner.increaseBalance(Integer.parseInt(p.getRent()));
+            log.addToLog(activePlayer.getName() + " has paid rent to " + owner.getName() + " of £" + p.getRent());
         }
     }
 
@@ -398,10 +412,12 @@ public class GameController {
 
     private void pickUpCard() {
         if (board.getBoardPiece(activePlayer.getLocation()) instanceof OpportunityKnocksPiece) {
+            log.addToLog(activePlayer.getName() + " has picked up an opportunity knocks card.");
             OpportunityKnocks card = oppocards.get(0);
             doCardAction(card);
             Collections.rotate(oppocards, -1);
         } else if (board.getBoardPiece(activePlayer.getLocation()) instanceof PotLuckPiece) {
+            log.addToLog(activePlayer.getName() + " has picked up a potluck card.");
             PotLuck card = potluckcards.get(0);
             doCardAction(card);
             Collections.rotate(potluckcards, -1);
@@ -570,17 +586,20 @@ public class GameController {
     private void goToJail() {
         activePlayer.setLocation(10);
         activePlayer.setInJail(true);
+        log.addToLog(activePlayer.getName() + " was sent to jail.");
     }
 
     private void acquireFreeParkingMoney() {
         FreeParkingPiece fp = (FreeParkingPiece) board.getBoardPiece(activePlayer.getLocation());
         activePlayer.increaseBalance(fp.getBalance());
         fp.setBalance(0);
+        log.addToLog(activePlayer.getName() + " has acquired the free parking balance.");
     }
 
     private void passingGo() {
         bank.withdraw(200);
         activePlayer.increaseBalance(200);
+        log.addToLog(activePlayer.getName() + " has passed Go and collected £200.");
     }
 
     private boolean checkAllColoursOwned(ColouredProperty prop) {
@@ -633,6 +652,7 @@ public class GameController {
             prop.setHouseCount(prop.getHouseCount() + 1);
             int rentValue = prop.getHouses().get(prop.getHouseCount());
             prop.setRent(Integer.toString(rentValue));
+            log.addToLog(activePlayer.getName() + "has bought a house.");
 
         }
     }
@@ -643,6 +663,7 @@ public class GameController {
             property.setHouseCount(property.getHouseCount() - 1);
             int rentValue = property.getHouses().get(property.getHouseCount());
             property.setRent(Integer.toString(rentValue));
+            log.addToLog(activePlayer.getName() + " has sold a house.");
         }
     }
 
@@ -692,12 +713,14 @@ public class GameController {
         prop.setMortgaged(true);
         bank.withdraw(prop.getCost() / 2);
         activePlayer.increaseBalance(prop.getCost() / 2);
+        log.addToLog(activePlayer.getName() + " has mortgaged " + prop.getTitle() + ".");
     }
     
     public void unmortgageProperty(Property prop){
         prop.setMortgaged(false);
         bank.deposit(prop.getCost() / 2);
         activePlayer.decreaseBalance(prop.getCost() / 2);
+        log.addToLog(activePlayer.getName() + "has paid his debt to the bank for " + prop.getTitle() + ".");
     }
 
     public void updateGUI() {
