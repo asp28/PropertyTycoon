@@ -6,6 +6,7 @@
 package com.mycompany.propertytycoon.gui.game;
 
 import com.mycompany.propertytycoon.Player;
+import com.mycompany.propertytycoon.exceptions.NotAProperty;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
 import com.mycompany.propertytycoon.gui.utils.View;
 import java.io.FileInputStream;
@@ -68,16 +69,20 @@ public class GameController implements Initializable {
             Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
         }
         roll.setOnAction(e -> {
-
+            SM.getGame().move();
         });
         buy.setOnAction(e -> {
-
+            try {
+            SM.getGame().buyProperty(SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()));
+            } catch (NotAProperty exp) {
+                System.err.print(exp);
+            }
         });
         sell.setOnAction(e -> {
             SM.changeScene(View.SELL);
         });
         houses.setOnAction(e -> {
-
+            SM.changeScene(View.HOUSES);
         });
         trade.setOnAction(e -> {
             SM.changeScene(View.TRADERCHOICE);
