@@ -61,7 +61,7 @@ public class PropertyTycoon extends Application {
     private VBox log;
     private BorderPane bPane;
     private Stage primaryStage;
-    private Button roll, buy, sell, mortgage, endTurn, house;
+    private Button roll, buy, sell, mortgage, endTurn, house, trade;
 
     @Override
     public void start(Stage primaryStage) throws IOException, InvalidFormatException, NotAProperty {
@@ -95,7 +95,7 @@ public class PropertyTycoon extends Application {
         startScreen.setAlignment(Pos.CENTER);
         startScreen.setSpacing(20);
         pane.getChildren().addAll(startScreen, editor, gp);
-        Scene scene = new Scene(pane, 1500, 1000);
+        Scene scene = new Scene(pane, screen.getWidth() - 100, screen.getHeight() - 100);
         this.primaryStage.setTitle("Property Tycoon");
         this.primaryStage.setScene(scene);
         this.primaryStage.maximizedProperty();
@@ -474,7 +474,7 @@ public class PropertyTycoon extends Application {
         sPane.getChildren().addAll(board(), gPane);
         bPane.setCenter(sPane);
         updateButtons();
-        Scene scene = new Scene(bPane, 1500, 1000);
+        Scene scene = new Scene(bPane, screen.getWidth() - 100, screen.getHeight() - 100);
         primaryStage.setScene(scene);
     }
 
@@ -548,9 +548,9 @@ public class PropertyTycoon extends Application {
      * @return board tokens
      */
     public ImageView playersTokenOnBoard() throws FileNotFoundException {
-        // String pic = gl.getActivePlayer().getToken() + ".png";
+        String pic = gl.getActivePlayer().getToken() + ".png";
         // needs a loop for all players to assign all tokens
-        FileInputStream inputstream = new FileInputStream("./src/main/java/resources/img/CAT.png");
+        FileInputStream inputstream = new FileInputStream("./src/main/java/resources/img/" + pic);
         Image image = new Image(inputstream) {
         };
         catToken = new ImageView(image);
@@ -567,12 +567,12 @@ public class PropertyTycoon extends Application {
      * @return @throws FileNotFoundException
      */
     public ImageView board() throws FileNotFoundException {
-        FileInputStream inputstream = new FileInputStream("./src/main/java/resources/img/PropertyTycoon.svg");
+        FileInputStream inputstream = new FileInputStream("./src/main/java/resources/img/PropertyTycoon.png");
         Image image = new Image(inputstream) {
         };
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(screen.getHeight() - 100);
-        imageView.setFitWidth(screen.getHeight() - 100);
+        imageView.setFitHeight(screen.getHeight() - 150);
+        imageView.setFitWidth(screen.getHeight() - 150);
         return imageView;
     }
 
@@ -633,6 +633,17 @@ public class PropertyTycoon extends Application {
         mortgage.setOnAction((event) -> {
             //open mortgage menu
         });
+
+        trade = new Button("Trade");
+        trade.setPrefSize(80, 60);
+        trade.setStyle("-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey; -fx-text-size: 50;");
+        trade.setOnAction((event) -> {
+            //open trade menu
+        });
+
+        third.getChildren().addAll(mortgage, trade);
+        third.setSpacing(20);
+        HBox fourth = new HBox();
         endTurn = new Button("End Turn");
         //endTurn.setPadding(new Insets(10, 10, 10, 10));
         endTurn.setPrefSize(80, 60);
@@ -649,14 +660,16 @@ public class PropertyTycoon extends Application {
             }
 
         });
-        third.getChildren().addAll(mortgage, endTurn);
-        third.setSpacing(20);
-        buttons.getChildren().addAll(first, second, third);
+        fourth.getChildren().addAll(endTurn);
+        fourth.setSpacing(20);
+
+        buttons.getChildren().addAll(first, second, third, fourth);
         buttons.setSpacing(10);
         buttons.setPadding(new Insets(10, 10, 10, 45));
         buy.setDisable(true);
         sell.setDisable(true);
         mortgage.setDisable(true);
+        trade.setDisable(true);
         house.setDisable(true);
         endTurn.setDisable(true);
         return buttons;

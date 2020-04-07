@@ -1,0 +1,73 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.root {
+    
+    
+}
+
+.board-pane {
+    -fx-background-image: url("./src/main/java/resources/img/PropertyTycoon.png");
+}
+
+.grid-pane {
+    
+}
+
+.h-box {
+    
+}
+
+.v-box {
+    
+}
+
+.button {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -border-radius: 25px;
+}
+
+.button:hover {
+    -fx-background-color: lightgrey;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -border-radius: 25px;
+}
+
+.text-field {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+}
+
+.list-view {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+}
+
+.list-view:active {
+    -fx-background-color: lightgrey;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+}
+
+.scroll-pane {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:white;
+    -fx-border-color: black;
+}

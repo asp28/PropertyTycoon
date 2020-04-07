@@ -26,15 +26,17 @@ public class GameController {
     private ArrayList<String> actions;
     private int moveTotal;
     private int doublesRolled;
-    private ArrayList<String> tokens = new ArrayList<String>(){{
-        add("boot");
-        add("smartphone");
-        add("goblet");
-        add("hatstand");
-        add("cat");
-        add("spoon");
-        
-    }};
+    private ArrayList<String> tokens = new ArrayList<String>() {
+        {
+            add("boot");
+            add("smartphone");
+            add("goblet");
+            add("hatstand");
+            add("cat");
+            add("spoon");
+
+        }
+    };
 
     /**
      * The constructor
@@ -72,7 +74,7 @@ public class GameController {
         Random rn = new Random();
         int roll1 = rn.nextInt(6) + 1;
         int roll2 = rn.nextInt(6) + 1;
-        rolls = new Pair<>(roll1,roll2);
+        rolls = new Pair<>(roll1, roll2);
         return rolls;
     }
 
@@ -89,7 +91,7 @@ public class GameController {
             //GUI.updateLog("The player has rolled a double")
             moveTotal += rolls.getKey() + rolls.getValue();
             doublesRolled++;
-            System.out.println(rolls.getKey() +" "+ rolls.getValue());
+            System.out.println(rolls.getKey() + " " + rolls.getValue());
             ArrayList<String> actions = new ArrayList<>();
             actions.add("ROLL");
             //GUI.update(actions)
@@ -127,7 +129,7 @@ public class GameController {
         if (boardPiece instanceof ColouredProperty) {
             ColouredProperty buyable = (ColouredProperty) boardPiece;
             if (buyable.getOwnedBuy().equals("The Bank")) {
-                if (buyable.getCost() <= activePlayer.getBalance()) {
+                if (buyable.getCost() <= activePlayer.getBalance() && activePlayer.getGameloops() > 0) {
                     playerActions.add("BUY");
                 }
             } else if (buyable.getOwnedBuy().equals(activePlayer.getName())) {
@@ -266,7 +268,6 @@ public class GameController {
                 activePlayer.addProperty(prop);
                 prop.setOwnedBuy(activePlayer.getName());
 
-
             }
 
         } else {
@@ -274,14 +275,14 @@ public class GameController {
         }
 
     }
-   
+
     /**
-     * 
+     *
      * Buy property for auctioning
-     * 
+     *
      * @param bp
      * @param bidder
-     * 
+     *
      */
     public void buyProperty(BoardPiece bp, Pair<Player, Integer> bidder) throws NotAProperty {
         Player player = bidder.getKey();
@@ -296,19 +297,47 @@ public class GameController {
                 player.addProperty(prop);
                 prop.setOwnedBuy(player.getName());
 
-
             }
 
         }
 
     }
-    
+
     public void sellProperty(Property prop) {
         if (prop.getOwnedBuy().equals(activePlayer.getName())) {
+            prop.setOwnedBuy("The Bank");
             activePlayer.increaseBalance(prop.getCost());
             bank.withdraw(prop.getCost());
             activePlayer.removeProperty(prop);
             bank.addProperties(prop);
+        }
+
+    }
+
+    public void trade(ArrayList<Property> tradingP, int cash, int desiredCash, ArrayList<Property> desiredP, Player choosenPlayer) {
+
+        if (tradingP.size() > 0) {
+            for (Property t : tradingP) {
+                activePlayer.removeProperty(t);
+                choosenPlayer.addProperty(t);
+            }
+        }
+
+        if (cash > 0) {
+            activePlayer.decreaseBalance(cash);
+            choosenPlayer.increaseBalance(cash);
+        }
+
+        if (desiredCash > 0) {
+            choosenPlayer.decreaseBalance(desiredCash);
+            activePlayer.increaseBalance(desiredCash);
+        }
+
+        if (desiredP.size() > 0) {
+            for (Property d : desiredP) {
+                choosenPlayer.removeProperty(d);
+                activePlayer.addProperty(d);
+            }
         }
 
     }
@@ -334,8 +363,38 @@ public class GameController {
                 break;
             }
         }
-        activePlayer.increaseBalance(-Integer.parseInt(p.getRent()));
-        owner.increaseBalance(-Integer.parseInt(p.getRent()));
+        if (doubleRent(p, owner)) {
+            activePlayer.increaseBalance(-(2 * Integer.parseInt(p.getRent())));
+            owner.increaseBalance(2 * Integer.parseInt(p.getRent()));
+        } else {
+            activePlayer.increaseBalance(-Integer.parseInt(p.getRent()));
+            owner.increaseBalance(Integer.parseInt(p.getRent()));
+        }
+    }
+
+    private boolean doubleRent(Property property, Player owner) {
+        if (property instanceof ColouredProperty) {
+            String colourGroup = property.getGroup();
+            int countOfColours = 0;
+            for (Property ownedProperties : owner.getOwnedProperties()) {
+                if (ownedProperties instanceof ColouredProperty) {
+                    if (ownedProperties.getGroup().equals(colourGroup) && ((ColouredProperty) ownedProperties).getHouseCount() < 1) {
+                        countOfColours++;
+                    }
+
+                }
+            }
+            if (colourGroup.equals("Brown") || colourGroup.equals("Deep blue")) {
+                if (countOfColours == 2) {
+                    return true;
+                }
+            } else {
+                if (countOfColours == 3) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private void pickUpCard() {
@@ -570,12 +629,11 @@ public class GameController {
 
     public void buyHouse() {
         ColouredProperty prop = (ColouredProperty) board.getBoardPiece(activePlayer.getLocation());
-        if (prop.getHouseCount() < activePlayer.getBalance()) {
+        if (prop.getHouseCount() < activePlayer.getBalance() && prop.getHouseCount() <= 5) {
             activePlayer.decreaseBalance(prop.getHouseCost());
             prop.setHouseCount(prop.getHouseCount() + 1);
             int rentValue = prop.getHouses().get(prop.getHouseCount());
             prop.setRent(Integer.toString(rentValue));
-
 
         }
     }
@@ -598,18 +656,41 @@ public class GameController {
                 maxBidPlayer = pair.getKey();
             }
         }
-        Pair<Player,Integer> max = new Pair<>(maxBidPlayer,maxBid);
+        Pair<Player, Integer> max = new Pair<>(maxBidPlayer, maxBid);
         return max;
     }
     
-    public void mortgageProperty(Property prop){
+    public void auction(HashMap<Player, Integer> bids) throws NotAProperty{
+        if (!(board.getBoardPiece(activePlayer.getLocation()) instanceof Property)){
+            throw new NotAProperty("Player's current location is not a Property");
+        }
+        else{
+            Property prop = (Property) board.getBoardPiece(activePlayer.getLocation());
+            Entry<Player, Integer> winner = null;
+            for (Entry<Player, Integer> playerBid : bids.entrySet()){
+                if ((winner == null) || (playerBid.getValue() > winner.getValue())){
+                    winner = playerBid;
+                }
+            }
+            buyProperty(prop, new Pair<>(winner.getKey(),winner.getValue()));
+        }
+        
+    }
+
+    public void mortgageProperty(Property prop) {
         prop.setMortgaged(true);
-        bank.withdraw(prop.getCost()/2);
-        activePlayer.increaseBalance(prop.getCost()/2);  
+        bank.withdraw(prop.getCost() / 2);
+        activePlayer.increaseBalance(prop.getCost() / 2);
     }
     
+    public void unmortgageProperty(Property prop){
+        prop.setMortgaged(false);
+        bank.deposit(prop.getCost() / 2);
+        activePlayer.decreaseBalance(prop.getCost() / 2);
+    }
+
     public void updateGUI() {
-        
+
     }
 
     public Pair<Integer, Integer> getRolls() {
