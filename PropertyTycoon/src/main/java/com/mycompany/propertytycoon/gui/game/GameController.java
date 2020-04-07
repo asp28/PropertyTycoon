@@ -68,7 +68,7 @@ public class GameController implements Initializable {
             Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
         }
         roll.setOnAction(e -> {
-
+           
         });
         buy.setOnAction(e -> {
 
@@ -388,6 +388,23 @@ public class GameController implements Initializable {
         }
     }
 
+    public ImageView getPlayerTokenImage() {
+        if (SM.getGame().getActivePlayer().getToken() == "cat") {
+            return catToken;
+        } else if (SM.getGame().getActivePlayer().getToken() == "boot") {
+            return bootToken;
+        } else if (SM.getGame().getActivePlayer().getToken() == "spoon") {
+            return spoonToken;
+        } else if (SM.getGame().getActivePlayer().getToken() == "cup") {
+            return gobletToken;
+        } else if (SM.getGame().getActivePlayer().getToken() == "phone") {
+            return phoneToken;
+        } else {
+            return hatstandToken;
+        }
+
+    }
+
     public void LocationNames(int num, String name) {
         Label labelName = new Label(name);
         switch (num) {
@@ -437,7 +454,7 @@ public class GameController implements Initializable {
                 break;
 
             case 5:
-                 labelName.setRotate(90);
+                labelName.setRotate(90);
                 labelName.setAlignment(Pos.CENTER);
                 labelName.setWrapText(true);
                 labelName.setPrefWidth(55);
@@ -795,6 +812,7 @@ public class GameController implements Initializable {
 
     public void updateControls() throws FileNotFoundException {
         playerProfile();
+        PlayerPosition(getPlayerTokenImage());
 
     }
 
