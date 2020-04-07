@@ -68,13 +68,13 @@ public class GameController implements Initializable {
             Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
         }
         roll.setOnAction(e -> {
-           
+
         });
         buy.setOnAction(e -> {
 
         });
         sell.setOnAction(e -> {
-
+            SM.changeScene(View.SELL);
         });
         houses.setOnAction(e -> {
 

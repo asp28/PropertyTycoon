@@ -22,6 +22,7 @@ public enum View {
     TRADE("src/main/java/com/mycompany/propertytycoon/gui/game/Trade.fxml"),
     TRADERCHOICE("src/main/java/com/mycompany/propertytycoon/gui/game/TradeChoicePage.fxml"),
     MORTGAGE("src/main/java/com/mycompany/propertytycoon/gui/game/Mortgage.fxml"),
+    SELL("src/main/java/com/mycompany/propertytycoon/gui/game/sell.fxml"),
     AUCTION("src/main/java/com/mycompany/propertytycoon/gui/game/auctions.fxml");
     
 
