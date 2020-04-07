@@ -32,7 +32,7 @@ public class MortgageController implements Initializable {
     private Text player_name, property_value;
     
     @FXML
-    private ListView<String> player_properties;
+    private ListView<String> player_properties, player_mortgaged;
     
     @FXML
     private Button confirm;
@@ -51,12 +51,30 @@ public class MortgageController implements Initializable {
         });
         ObservableList<String> p1_names = FXCollections.<String>observableArrayList(p1);
         player_properties = new ListView(p1_names);
+       
+        List<String> p2 = new ArrayList<>();
+        SM.getGame().getActivePlayer().getOwnedProperties().forEach((p) -> {
+            if (p.isMortgaged()) {
+                p2.add(p.getTitle());
+            }
+        });
+        ObservableList<String> p2_names = FXCollections.<String>observableArrayList(p2);
+        player_mortgaged = new ListView(p2_names);
         confirm.setOnAction(e -> {
             ObservableList<String> propToSell = player_properties.getSelectionModel().getSelectedItems();
+            ObservableList<String> propToUnMortgage = player_mortgaged.getSelectionModel().getSelectedItems();
             for (String s : propToSell) {
                 for (Property p: SM.getGame().getActivePlayer().getOwnedProperties()) {
                     if (p.getTitle().equalsIgnoreCase(s)) {
                         SM.getGame().mortgageProperty(p);
+                        break;
+                    }
+                }
+            }
+            for (String s : propToUnMortgage) {
+                for (Property p: SM.getGame().getActivePlayer().getOwnedProperties()) {
+                    if (p.getTitle().equalsIgnoreCase(s)) {
+                        SM.getGame().unmortgageProperty(p);
                         break;
                     }
                 }
