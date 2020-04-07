@@ -19,7 +19,6 @@ public class GameController {
     private ArrayList<PotLuck> potluckcards = new ArrayList<>();
     private Board board;
     private Bank bank;
-    //private PropertyTycoon GUI;
 
     private Player activePlayer;
     private Pair<Integer, Integer> rolls;
@@ -647,27 +646,39 @@ public class GameController {
         }
     }
 
-    public Pair<Player, Integer> getHighestBid(HashMap<Player, Integer> bids) {
+    public boolean checkValidAuction(HashMap<Player,Integer> bids){
         int maxBid = 0;
-        Player maxBidPlayer = null;
-        for (Entry<Player, Integer> pair : bids.entrySet()) {
-            if (pair.getValue() > maxBid) {
-                maxBid = pair.getValue();
-                maxBidPlayer = pair.getKey();
+        for (Entry<Player,Integer> playerBid : bids.entrySet()){
+            if (playerBid.getValue() > maxBid){ //find max bid
+                maxBid = playerBid.getValue();
             }
         }
-        Pair<Player, Integer> max = new Pair<>(maxBidPlayer, maxBid);
-        return max;
+        
+        int maxBidOccurances = 0;
+        for (Entry<Player,Integer> playerBid : bids.entrySet()){
+            if (playerBid.getValue() == maxBid){
+                maxBidOccurances++;
+            }
+            if (maxBidOccurances > 1){
+                //If more than 1 player inputs the same highest bid
+                return false;
+            }
+            if ((playerBid.getKey().getBalance() < playerBid.getValue()) || (playerBid.getValue() < 0)){
+                //If player's balance is less than bid OR bid is less than 0
+                return false;
+            }
+        }
+        return true;
     }
     
-    public void auction(HashMap<Player, Integer> bids) throws NotAProperty{
+    public void auction(HashMap<Player,Integer> bids) throws NotAProperty{
         if (!(board.getBoardPiece(activePlayer.getLocation()) instanceof Property)){
             throw new NotAProperty("Player's current location is not a Property");
         }
         else{
             Property prop = (Property) board.getBoardPiece(activePlayer.getLocation());
             Entry<Player, Integer> winner = null;
-            for (Entry<Player, Integer> playerBid : bids.entrySet()){
+            for (Entry<Player,Integer> playerBid : bids.entrySet()){
                 if ((winner == null) || (playerBid.getValue() > winner.getValue())){
                     winner = playerBid;
                 }
