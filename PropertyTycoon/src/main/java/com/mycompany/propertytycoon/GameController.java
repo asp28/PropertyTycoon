@@ -5,12 +5,12 @@ import com.mycompany.propertytycoon.cards.OpportunityKnocks;
 import com.mycompany.propertytycoon.cards.PotLuck;
 import com.mycompany.propertytycoon.exceptions.NotAProperty;
 import com.mycompany.propertytycoon.log.Log;
-import javafx.util.Pair;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import java.io.IOException;
 import java.util.*;
 import java.util.Map.Entry;
+import javafx.util.Pair;
 
 public class GameController {
     
