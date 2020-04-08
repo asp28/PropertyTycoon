@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GameControllerTestV2 {
@@ -54,13 +55,48 @@ public class GameControllerTestV2 {
     }
     
     @Test
+    public void testListOfUpgradableProperties() throws IOException, InvalidFormatException, NotAProperty{
+        GameController gc = new GameController(2);
+        ArrayList<ColouredProperty> props = new ArrayList<>();
+        
+        gc.buyProperty(gc.getBoard().getBoardPiece(1));
+        gc.buyProperty(gc.getBoard().getBoardPiece(3));
+        gc.buyProperty(gc.getBoard().getBoardPiece(5));
+        gc.buyProperty(gc.getBoard().getBoardPiece(6));
+        
+        props.add((ColouredProperty) gc.getBoard().getBoardPiece(1));
+        props.add((ColouredProperty) gc.getBoard().getBoardPiece(3));
+        ArrayList<ColouredProperty> houseProps = gc.listOfHousableProps();
+        Assert.assertEquals(props, houseProps);
+        props.clear();
+        
+        gc.buyHouse((Property)gc.getBoard().getBoardPiece(1));
+        gc.buyHouse((Property)gc.getBoard().getBoardPiece(3));
+        gc.buyHouse((Property)gc.getBoard().getBoardPiece(3));
+        props.add((ColouredProperty) gc.getBoard().getBoardPiece(1));
+        ArrayList<ColouredProperty> houseProps1 = gc.listOfHousableProps();
+        Assert.assertEquals(props, houseProps1);
+        props.clear();
+        
+        gc.buyHouse((Property)gc.getBoard().getBoardPiece(1));
+        gc.buyHouse((Property)gc.getBoard().getBoardPiece(3));
+        gc.buyHouse((Property)gc.getBoard().getBoardPiece(1));
+        gc.buyHouse((Property)gc.getBoard().getBoardPiece(3));
+        gc.buyHouse((Property)gc.getBoard().getBoardPiece(1));
+        gc.buyHouse((Property)gc.getBoard().getBoardPiece(3));
+        props.add((ColouredProperty) gc.getBoard().getBoardPiece(1));
+        Assert.assertEquals(props, gc.listOfHousableProps());
+        props.clear();
+        
+        gc.buyHouse((Property)gc.getBoard().getBoardPiece(1));
+        Assert.assertEquals(props, gc.listOfHousableProps());
+    }
+    
+    @Test
     public void testBuyHouseProp() throws IOException, InvalidFormatException, NotAProperty{
         GameController gc = new GameController(2);
-        gc.getActivePlayer().setLocation(1);
-        gc.buyProperty(gc.getBoard().getBoardPiece(gc.getActivePlayer().getLocation()));
-        gc.getActivePlayer().setLocation(3);
-        gc.buyProperty(gc.getBoard().getBoardPiece(gc.getActivePlayer().getLocation()));
-        gc.getActivePlayer().setLocation(7);
+        gc.buyProperty(gc.getBoard().getBoardPiece(1));
+        gc.buyProperty(gc.getBoard().getBoardPiece(3));
         gc.buyHouse(gc.getActivePlayer().getOwnedProperties().get(0));
         ColouredProperty propHouse = (ColouredProperty)gc.getActivePlayer().getOwnedProperties().get(0);
         Assert.assertEquals(1, propHouse.getHouseCount());
