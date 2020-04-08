@@ -92,7 +92,7 @@ public class GameController {
         Pair<Integer, Integer> roll = roll();
         int newLocation = 0;
         if (Objects.equals(rolls.getKey(), rolls.getValue()) && doublesRolled < 3) {
-            log.addToLog(activePlayer.getName() + " has rolled a double.");
+            log.addToLog(activePlayer.getName() + " has rolled a double " + rolls.getKey() + ".");
             moveTotal += rolls.getKey() + rolls.getValue();
             doublesRolled++;
             System.out.println(rolls.getKey() + " " + rolls.getValue());
@@ -104,7 +104,7 @@ public class GameController {
             goToJail();
         } else {
             moveTotal += rolls.getKey() + rolls.getValue();
-            log.addToLog(activePlayer.getName() + "has rolled " + rolls.getKey() + " and " + rolls.getValue() + ".");
+            log.addToLog(activePlayer.getName() + " has rolled " + rolls.getKey() + " and " + rolls.getValue() + ".");
             //Set location values
             if (activePlayer.getLocation() + moveTotal > 40) {
                 activePlayer.incrementGameloops();
