@@ -5,12 +5,16 @@
  */
 package com.mycompany.propertytycoon.gui.game;
 
+import com.mycompany.propertytycoon.Player;
+import com.mycompany.propertytycoon.exceptions.NotAProperty;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -133,7 +137,40 @@ public class AuctionsController implements Initializable {
         p6_name.setText(SM.getGame().getAmountOfPlayers().get(5).getName());
         confirm.setOnAction(e -> {
             if (numbersOnly() && checkedBoxes()) {
-                //SM.getGame().
+                HashMap<Player, Integer> hm = new HashMap<>();
+                hm.put(SM.getGame().getAmountOfPlayers().get(0), Integer.parseInt(p1_bid.getText()));
+                hm.put(SM.getGame().getAmountOfPlayers().get(1), Integer.parseInt(p2_bid.getText()));
+                if (!p3_bid.getText().isEmpty()) {
+                    hm.put(SM.getGame().getAmountOfPlayers().get(2), Integer.parseInt(p3_bid.getText()));
+                }
+                if (!p4_bid.getText().isEmpty()) {
+                    hm.put(SM.getGame().getAmountOfPlayers().get(3), Integer.parseInt(p4_bid.getText()));
+                }
+                if (!p5_bid.getText().isEmpty()) {
+                    hm.put(SM.getGame().getAmountOfPlayers().get(4), Integer.parseInt(p5_bid.getText()));
+                }
+                if (!p6_bid.getText().isEmpty()) {
+                    hm.put(SM.getGame().getAmountOfPlayers().get(5), Integer.parseInt(p6_bid.getText()));
+                }
+                if (SM.getGame().checkValidAuction(hm)) {
+                    try {
+                        SM.getGame().auction(hm);
+                    } catch (NotAProperty exp) {
+                        System.err.print(exp);
+                    }
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Player bids");
+                    alert.setHeaderText("Two or more players have the same maximum bid.");
+                    alert.setContentText("Please bid again.");
+                    alert.showAndWait();
+                }
+
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Player bids");
+                alert.setHeaderText("Bids must be valid numbers and confirm must be checked.");
+                alert.showAndWait();
             }
         });
     }

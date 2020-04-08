@@ -6,7 +6,6 @@
 package com.mycompany.propertytycoon.gui.game;
 
 import com.mycompany.propertytycoon.Player;
-import com.mycompany.propertytycoon.boardpieces.Property;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
 import com.mycompany.propertytycoon.gui.utils.View;
 import java.net.URL;

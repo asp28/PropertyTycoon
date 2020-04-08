@@ -9,6 +9,7 @@ import com.mycompany.propertytycoon.Player;
 import com.mycompany.propertytycoon.exceptions.NotAProperty;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
 import com.mycompany.propertytycoon.gui.utils.View;
+import com.mycompany.propertytycoon.log.Log;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -23,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -55,6 +57,8 @@ public class GameController implements Initializable {
     private BorderPane bPane;
     @FXML
     private VBox right;
+    
+    private Log logObject = Log.getInstance();
 
     private StageManager SM = StageManager.getInstance();
 
@@ -70,6 +74,7 @@ public class GameController implements Initializable {
         }
         roll.setOnAction(e -> {
             SM.getGame().move();
+            log();
         });
         buy.setOnAction(e -> {
             try {
@@ -77,6 +82,7 @@ public class GameController implements Initializable {
             } catch (NotAProperty exp) {
                 System.err.print(exp);
             }
+            log();
         });
         sell.setOnAction(e -> {
             SM.changeScene(View.SELL);
@@ -97,6 +103,7 @@ public class GameController implements Initializable {
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            log();
         });
         try {
             placePlayersOnBoard();
@@ -128,7 +135,7 @@ public class GameController implements Initializable {
     }
 
     public void log() {
-
+        log.setContent(new Text(logObject.getLog()));
     }
 
     public void placePlayersOnBoard() throws FileNotFoundException {

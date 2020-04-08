@@ -67,23 +67,8 @@ public class Player_an_ai_countController implements Initializable {
         });
         confirm.setOnAction(e -> {
             if (player_count + bot_count <= 6 && player_count + bot_count >= 2) {
-                switch (player_count + bot_count) {
-                    case 2:
-                        SM.changeScene(View.INIT_2);
-                        break;
-                    case 3:
-                        SM.changeScene(View.INIT_3);
-                        break;
-                    case 4:
-                        SM.changeScene(View.INIT_4);
-                        break;
-                    case 5:
-                        SM.changeScene(View.INIT_5);
-                        break;
-                    case 6:
-                        SM.changeScene(View.INIT_6);
-                        break;
-                }
+                SM.setPlayerNumber(bot_count + player_count);
+                SM.changeScene(View.INIT);
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Player Count");
