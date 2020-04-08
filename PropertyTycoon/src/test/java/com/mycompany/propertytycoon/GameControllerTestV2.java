@@ -1,5 +1,6 @@
 package com.mycompany.propertytycoon;
 
+import com.mycompany.propertytycoon.boardpieces.BoardPiece;
 import com.mycompany.propertytycoon.boardpieces.ColouredProperty;
 import com.mycompany.propertytycoon.boardpieces.Property;
 import com.mycompany.propertytycoon.exceptions.NotAProperty;
@@ -50,6 +51,24 @@ public class GameControllerTestV2 {
         ColouredProperty cp = (ColouredProperty) controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation());
         controller.buyProperty(controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation()));
         Assert.assertTrue(controller.getActivePlayer().getName().equals(cp.getOwnedBuy()));
+    }
+    
+    @Test
+    public void testBuyHouseProp() throws IOException, InvalidFormatException, NotAProperty{
+        GameController gc = new GameController(2);
+        gc.getActivePlayer().setLocation(1);
+        gc.buyProperty(gc.getBoard().getBoardPiece(gc.getActivePlayer().getLocation()));
+        gc.getActivePlayer().setLocation(3);
+        gc.buyProperty(gc.getBoard().getBoardPiece(gc.getActivePlayer().getLocation()));
+        gc.getActivePlayer().setLocation(7);
+        gc.buyHouse(gc.getActivePlayer().getOwnedProperties().get(0));
+        ColouredProperty propHouse = (ColouredProperty)gc.getActivePlayer().getOwnedProperties().get(0);
+        Assert.assertEquals(1, propHouse.getHouseCount());
+        Assert.assertEquals("10", propHouse.getRent());
+
+        gc.buyHouse(gc.getActivePlayer().getOwnedProperties().get(0));
+        Assert.assertEquals(1, propHouse.getHouseCount());
+        Assert.assertEquals("10", propHouse.getRent());
     }
 
     @Test
@@ -217,5 +236,17 @@ public class GameControllerTestV2 {
         catch (NotAProperty np){
             Assert.assertEquals(propCount, gc.getAmountOfPlayers().get(1).getOwnedProperties().size());
         }
+    }
+    
+    @Test
+    public void testPossibleHouseImprovements() throws IOException, InvalidFormatException, NotAProperty{
+        GameController gc = new GameController(2);
+        Player player = gc.getActivePlayer();
+        gc.getActivePlayer().setBalance(10000);
+        BoardPiece prop1 = gc.getBoard().getBoardLocations().get(1);
+        BoardPiece prop2 = gc.getBoard().getBoardLocations().get(3);
+        gc.buyProperty(prop1);
+        gc.buyProperty(prop2);
+        
     }
 }

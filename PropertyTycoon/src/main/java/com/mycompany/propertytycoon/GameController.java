@@ -602,7 +602,7 @@ public class GameController {
         log.addToLog(activePlayer.getName() + " has passed Go and collected £200.");
     }
 
-    private boolean checkAllColoursOwned(ColouredProperty prop) {
+    public boolean checkAllColoursOwned(ColouredProperty prop) {
         String colourGroup = prop.getGroup();
         int countOfColours = 0;
         for (Property ownedProperties : activePlayer.getOwnedProperties()) {
@@ -643,6 +643,20 @@ public class GameController {
             }
         }
         return true;
+    }
+    
+    public void buyHouse(Property prop){
+        ColouredProperty propColour = (ColouredProperty) prop;
+        if (propColour.getHouseCost() <= activePlayer.getBalance() && propColour.getHouseCount() <= 5 && checkHouseCount(prop)){
+            activePlayer.decreaseBalance(propColour.getHouseCost());
+            propColour.setHouseCount(propColour.getHouseCount() + 1);
+            int rentValue = propColour.getHouses().get(propColour.getHouseCount());
+            propColour.setRent(Integer.toString(rentValue));
+            log.addToLog(activePlayer.getName() + "has bought a house on" + prop.getTitle());
+        }
+        else{
+            log.addToLog(activePlayer.getName() + "has insuffient funds or has the maximum amount of houses");
+        }
     }
 
     public void buyHouse() {
@@ -705,8 +719,7 @@ public class GameController {
                 }
             }
             buyProperty(prop, new Pair<>(winner.getKey(),winner.getValue()));
-        }
-        
+        }  
     }
 
     public void mortgageProperty(Property prop) {
