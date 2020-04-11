@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -13,24 +15,25 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import java.net.*?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane fx:id="bPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1084.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.propertytycoon.gui.game.GameController">
     <stylesheets>
-        <URL value="@../Style.css"/>
+        <URL value="@../Style.css" />
     </stylesheets>
     <left>
       <VBox prefHeight="760.0" prefWidth="174.0" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <VBox fx:id="right" prefHeight="760.0" prefWidth="210.0" style="-fx-spacing: 10;" BorderPane.alignment="CENTER" >
+      <VBox fx:id="right" prefHeight="760.0" prefWidth="210.0" style="-fx-spacing: 10;" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="210.0">
                <children>
                   <ImageView fx:id="profileToken" fitHeight="68.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image  url="@../../../../../resources/img/BOOT.png" />
+                        <Image url="@../../../../../resources/img/BOOT.png" />
                      </image></ImageView>
                   <VBox prefHeight="26.0" prefWidth="130.0" style="-fx-border-color: lightgrey;">
                      <children>
@@ -175,6 +178,18 @@
                   <ImageView fx:id="phoneToken" fitHeight="31.0" fitWidth="27.0" layoutX="69.0" layoutY="504.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="10" GridPane.valignment="BOTTOM" />
                </children>
             </GridPane>
+            <AnchorPane fx:id="anchorpane" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="250.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="200.0" />
+                  <Text layoutX="293.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Buy Property">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="buy_yes" layoutX="333.0" layoutY="373.0" mnemonicParsing="false" text="Yes" />
+                  <Button fx:id="buy_no" layoutX="334.0" layoutY="425.0" mnemonicParsing="false" text="No" />
+               </children>
+            </AnchorPane>
          </children>
       </StackPane>
    </center>

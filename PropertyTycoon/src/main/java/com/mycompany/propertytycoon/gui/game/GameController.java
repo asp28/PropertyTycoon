@@ -6,6 +6,7 @@
 package com.mycompany.propertytycoon.gui.game;
 
 import com.mycompany.propertytycoon.Player;
+import com.mycompany.propertytycoon.boardpieces.Property;
 import com.mycompany.propertytycoon.exceptions.NotAProperty;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
 import com.mycompany.propertytycoon.gui.utils.View;
@@ -27,6 +28,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -43,7 +45,7 @@ import javafx.scene.text.TextAlignment;
 public class GameController implements Initializable {
 
     @FXML
-    private Button roll, buy, sell, houses, trade, mortgage, endTurn;
+    private Button roll, buy, sell, houses, trade, mortgage, endTurn, buy_yes, buy_no;
     @FXML
     private Label playerName, playerMoney;
     @FXML
@@ -57,7 +59,9 @@ public class GameController implements Initializable {
     private BorderPane bPane;
     @FXML
     private VBox right;
-    
+    @FXML
+    private AnchorPane anchorpane;
+
     private Log logObject = Log.getInstance();
 
     private StageManager SM = StageManager.getInstance();
@@ -67,6 +71,7 @@ public class GameController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        anchorpane.setVisible(false);
         try {
             updateControls();
         } catch (FileNotFoundException ex) {
@@ -75,10 +80,13 @@ public class GameController implements Initializable {
         roll.setOnAction(e -> {
             SM.getGame().move();
             log();
+            if (SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()) instanceof Property) {
+                anchorpane.setVisible(true);
+            }
         });
         buy.setOnAction(e -> {
             try {
-            SM.getGame().buyProperty(SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()));
+                SM.getGame().buyProperty(SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()));
             } catch (NotAProperty exp) {
                 System.err.print(exp);
             }
@@ -104,6 +112,18 @@ public class GameController implements Initializable {
                 Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
             }
             log();
+        });
+        buy_yes.setOnAction(e -> {
+            try {
+                SM.getGame().buyProperty(SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()));
+            } catch (NotAProperty exp) {
+                System.err.print(exp);
+            }
+            anchorpane.setVisible(false);
+        });
+        buy_no.setOnAction(e -> {
+            SM.setAuctionProperty((Property) SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()));
+            SM.changeScene(View.AUCTION);
         });
         try {
             placePlayersOnBoard();
