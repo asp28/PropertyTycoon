@@ -72,6 +72,7 @@ public class GameController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         anchorpane.setVisible(false);
+        log();
         try {
             updateControls();
         } catch (FileNotFoundException ex) {
@@ -122,7 +123,7 @@ public class GameController implements Initializable {
             anchorpane.setVisible(false);
         });
         buy_no.setOnAction(e -> {
-            SM.setAuctionProperty((Property) SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()));
+            SM.setAuctionProperty(SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()));
             SM.changeScene(View.AUCTION);
         });
         try {
