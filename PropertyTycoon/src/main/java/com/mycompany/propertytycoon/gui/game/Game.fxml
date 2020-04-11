@@ -46,7 +46,12 @@
                   </VBox>
                </children>
             </HBox>
-            <Label alignment="TOP_LEFT" prefHeight="251.0" prefWidth="207.0" style="-fx-border-color: lightgrey;" text=" Cards Owned by PLayer" />
+           <VBox layoutX="10.0" layoutY="545.0" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: lightgrey;">
+               <children>
+                  <Label text="Cards Owned" />
+                  <ScrollPane fx:id="ownedCards" prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-spacing: 20;">
                <children>
                   <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="207.0" style="-fx-spacing: 20;">

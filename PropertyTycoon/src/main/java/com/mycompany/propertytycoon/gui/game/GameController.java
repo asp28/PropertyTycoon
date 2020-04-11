@@ -52,7 +52,7 @@ public class GameController implements Initializable {
     private ImageView profileToken, catToken, bootToken, spoonToken, gobletToken, hatstandToken, phoneToken;
 
     @FXML
-    private ScrollPane log;
+    private ScrollPane log, ownedCards;
     @FXML
     private GridPane gPane;
     @FXML
@@ -149,6 +149,12 @@ public class GameController implements Initializable {
     }
 
     public void playerCards() {
+        String properties = new String();
+
+        for (Property p : SM.getGame().getActivePlayer().getOwnedProperties()) {
+            properties = properties + p.getTitle() + "\n";
+        }
+        ownedCards.setContent(new Text(properties));
     }
 
     public void buttons() {
@@ -806,7 +812,7 @@ public class GameController implements Initializable {
             case 36:
                 labelName.setAlignment(Pos.BOTTOM_CENTER);
                 labelName.setWrapText(true);
-                labelName.setMinSize(40, 95);
+                labelName.setMinSize(40, 85);
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 4, 10);
@@ -845,6 +851,7 @@ public class GameController implements Initializable {
     public void updateControls() throws FileNotFoundException {
         playerProfile();
         PlayerPosition(getPlayerTokenImage());
+        playerCards();
 
     }
 
