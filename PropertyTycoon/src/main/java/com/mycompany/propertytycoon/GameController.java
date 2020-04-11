@@ -625,7 +625,7 @@ public class GameController {
         return false;
     }
 
-    private boolean checkHouseCount(Property prop) {
+    public boolean checkHouseCount(Property prop) {
         ColouredProperty property = (ColouredProperty) prop;
         if (property.getHouseCount() >= 5) {
             return false;
@@ -638,11 +638,26 @@ public class GameController {
             }
         }
         for (ColouredProperty check : cp) {
-            if (Math.abs(property.getHouseCount() - check.getHouseCount()) >= 1) {
+            if ((property.getHouseCount() - check.getHouseCount()) >= 1) {
                 return false;
             }
         }
         return true;
+    }
+    
+    public ArrayList<ColouredProperty> listOfHousableProps(){
+        ArrayList<ColouredProperty> housableProps = new ArrayList<>();
+        for (Property prop : activePlayer.getOwnedProperties()){
+            if (prop instanceof ColouredProperty){
+                ColouredProperty propColour = (ColouredProperty) prop;
+                boolean checkColour = checkAllColoursOwned(propColour);
+                boolean checkHouse = checkHouseCount(propColour);
+                if (checkColour && checkHouse){
+                    housableProps.add(propColour);
+                }
+            }
+        }
+        return housableProps;
     }
     
     public void buyHouse(Property prop){
@@ -661,7 +676,7 @@ public class GameController {
 
     public void buyHouse() {
         ColouredProperty prop = (ColouredProperty) board.getBoardPiece(activePlayer.getLocation());
-        if (prop.getHouseCount() < activePlayer.getBalance() && prop.getHouseCount() <= 5) {
+        if (prop.getHouseCost() < activePlayer.getBalance() && prop.getHouseCount() <= 5) {
             activePlayer.decreaseBalance(prop.getHouseCost());
             prop.setHouseCount(prop.getHouseCount() + 1);
             int rentValue = prop.getHouses().get(prop.getHouseCount());
