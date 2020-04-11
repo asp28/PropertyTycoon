@@ -83,6 +83,11 @@ public class GameController implements Initializable {
             if (SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()) instanceof Property) {
                 anchorpane.setVisible(true);
             }
+            try {
+                updateControls();
+            } catch (FileNotFoundException ex) {
+                
+            }
         });
         buy.setOnAction(e -> {
             try {
@@ -420,6 +425,11 @@ public class GameController implements Initializable {
 
             case 40:
                 gPane.setColumnIndex(token, 1);
+                gPane.setRowIndex(token, 10);
+                break;
+                
+             case 0:
+                gPane.setColumnIndex(token, 0);
                 gPane.setRowIndex(token, 10);
                 break;
 
