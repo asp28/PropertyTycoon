@@ -20,10 +20,10 @@ public enum View {
     MORTGAGE("src/main/java/com/mycompany/propertytycoon/gui/game/Mortgage.fxml"),
     SELL("src/main/java/com/mycompany/propertytycoon/gui/game/sell.fxml"),
     HOUSES("src/main/java/com/mycompany/propertytycoon/gui/game/houses.fxml"),
-    AUCTION("src/main/java/com/mycompany/propertytycoon/gui/game/auctions.fxml");
+    AUCTION("src/main/java/com/mycompany/propertytycoon/gui/game/auction.fxml");
     
 
-    private String fxmlPath;
+    private final String fxmlPath;
 
     public String getFXMLPath() {
         return fxmlPath;

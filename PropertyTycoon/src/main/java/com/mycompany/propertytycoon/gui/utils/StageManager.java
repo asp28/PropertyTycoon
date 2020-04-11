@@ -7,6 +7,7 @@ package com.mycompany.propertytycoon.gui.utils;
 
 import com.mycompany.propertytycoon.GameController;
 import com.mycompany.propertytycoon.Player;
+import com.mycompany.propertytycoon.boardpieces.BoardPiece;
 import com.mycompany.propertytycoon.boardpieces.Property;
 import com.mycompany.propertytycoon.log.Log;
 import java.io.File;
@@ -33,15 +34,13 @@ public class StageManager {
     
     private GameController game;
     
-    private Log log;
+    private Log log = Log.getInstance();
     
     private ArrayList<Player> players;
     
     private Property auctionProperty;
     
     private boolean timed;
-    
-    private Player trader;
 
     public static StageManager getInstance() {
         if (instance == null) {
@@ -70,7 +69,8 @@ public class StageManager {
             FXMLLoader loader = new FXMLLoader();
             p = FXMLLoader.load(url);
         } catch (IOException e) {
-            System.err.print("Caught IO exception");
+            System.err.print(e + " at " + fxmlFilePath + "\n\n");
+            quit();
         }
         return p;
     }
@@ -112,9 +112,6 @@ public class StageManager {
         return game;
     }
     
-    public void createLog() {
-        log = new Log();
-    }
     
     public Log getLog() {
         return log;
@@ -133,8 +130,8 @@ public class StageManager {
         return players;
     }
     
-    public void setAuctionProperty(Property prop) {
-        auctionProperty = prop;
+    public void setAuctionProperty(BoardPiece prop) {
+        auctionProperty = (Property) prop;
     }
     
     public Property getAuctionProperty() {
@@ -149,11 +146,4 @@ public class StageManager {
         timed = yn;
     }
     
-    public void setTrader(Player p) {
-        trader = p;
-    }
-    
-    public Player getTrader() {
-        return trader;
-    }
 }

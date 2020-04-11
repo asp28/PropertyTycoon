@@ -6,7 +6,6 @@
 package com.mycompany.propertytycoon.gui.game;
 
 import com.mycompany.propertytycoon.Player;
-import com.mycompany.propertytycoon.boardpieces.BoardPiece;
 import com.mycompany.propertytycoon.boardpieces.Property;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
 import com.mycompany.propertytycoon.gui.utils.View;
@@ -57,14 +56,20 @@ public class TradeController implements Initializable {
         ArrayList<Player> players = SM.getTraders();
 
         p1_name.setText(players.get(0).getName());
-        p2_name.setText(players.get(0).getName());
+        p2_name.setText(players.get(1).getName());
 
-        List<Property> p1 = players.get(0).getOwnedProperties();
-        ObservableList<Property> p1_properties = FXCollections.<Property>observableArrayList(p1);
-        p1_list = new ListView(p1_properties);
-        List<Property> p2 = players.get(0).getOwnedProperties();
-        ObservableList<Property> p2_properties = FXCollections.<Property>observableArrayList(p2);
-        p1_list = new ListView(p2_properties);
+        List<String> p1 = new ArrayList<>();
+        for (Property p : players.get(0).getOwnedProperties()) {
+            p1.add(p.getTitle());
+        }
+        ObservableList<String> p1_properties = FXCollections.<String>observableArrayList(p1);
+        p1_list.getItems().addAll(p1_properties);
+        List<String> p2 = new ArrayList<>();
+        for (Property p :players.get(1).getOwnedProperties()) {
+            p2.add(p.getTitle());
+        }
+        ObservableList<String> p2_properties = FXCollections.<String>observableArrayList(p2);
+        p2_list.getItems().addAll(p2_properties);
 
         cancel.setOnAction(e -> {
             SM.getLog().addToLog("Trade between " + players.get(0).getName() + " and " + players.get(1).getName() + " was cancelled.");
@@ -76,15 +81,29 @@ public class TradeController implements Initializable {
                 ArrayList<Property> p1_temp = new ArrayList<>();
                 ArrayList<Property> p2_temp = new ArrayList<>();
                 
-                ObservableList<Property> p1_tempObserv = p1_list.getSelectionModel().getSelectedIndices();
-                ObservableList<Property> p2_tempObserv = p2_list.getSelectionModel().getSelectedIndices();
-                p1_tempObserv.forEach((p) -> {
-                    p1_temp.add(p);
+                ObservableList<String> p1_tempObserv = p1_list.getSelectionModel().getSelectedItems();
+                ObservableList<String> p2_tempObserv = p2_list.getSelectionModel().getSelectedItems();
+                p1_tempObserv.forEach((prop) -> {
+                    for (Property p : players.get(0).getOwnedProperties()) {
+                        if (p.getTitle().equalsIgnoreCase(prop)) {
+                            p1_temp.add(p);
+                            break;
+                        }
+                    }
+                    
                 });
-                p2_tempObserv.forEach((p) -> {
-                    p2_temp.add(p);
+                p2_tempObserv.forEach((prop) -> {
+                    for (Property p : players.get(1).getOwnedProperties()) {
+                        if (p.getTitle().equalsIgnoreCase(prop)) {
+                            p2_temp.add(p);
+                            break;
+                        }
+                    }
+                    
                 });
                 SM.getGame().trade(p1_temp, Integer.parseInt(p1_money.getText()), Integer.parseInt(p2_money.getText()), p2_temp, players.get(1));
+                SM.changeScene(View.GAME);
+                
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
@@ -97,7 +116,7 @@ public class TradeController implements Initializable {
 
     public boolean numbersOnly() {
         boolean num = false;
-        if (p1_money.getText().matches("[0-9]*") && p2_money.getText().matches("[0-9]*")) {
+        if (p1_money.getText().matches("[0-9]+") && p2_money.getText().matches("[0-9]+")) {
             num = true;
         }
         return num;

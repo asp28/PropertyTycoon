@@ -8,6 +8,7 @@ package com.mycompany.propertytycoon.gui.game;
 import com.mycompany.propertytycoon.Player;
 import com.mycompany.propertytycoon.exceptions.NotAProperty;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
+import com.mycompany.propertytycoon.gui.utils.View;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +26,7 @@ import javafx.scene.text.Text;
  *
  * @author ankeet
  */
-public class AuctionsController implements Initializable {
+public class AuctionController implements Initializable {
 
     @FXML
     private Text property_name, property_colour, property_original_price, p1_name, p2_name, p3_name, p4_name, p5_name, p6_name;
@@ -68,6 +69,8 @@ public class AuctionsController implements Initializable {
                 bids.add(p2_bid);
                 checks.add(p1_check);
                 checks.add(p2_check);
+                p1_name.setText(SM.getGame().getAmountOfPlayers().get(0).getName());
+                p2_name.setText(SM.getGame().getAmountOfPlayers().get(1).getName());
                 break;
             case 3:
                 //disable 4-6
@@ -83,6 +86,9 @@ public class AuctionsController implements Initializable {
                 checks.add(p1_check);
                 checks.add(p2_check);
                 checks.add(p3_check);
+                p1_name.setText(SM.getGame().getAmountOfPlayers().get(0).getName());
+                p2_name.setText(SM.getGame().getAmountOfPlayers().get(1).getName());
+                p3_name.setText(SM.getGame().getAmountOfPlayers().get(2).getName());
                 break;
             case 4:
                 //disable 5-6
@@ -98,6 +104,10 @@ public class AuctionsController implements Initializable {
                 checks.add(p2_check);
                 checks.add(p3_check);
                 checks.add(p4_check);
+                p1_name.setText(SM.getGame().getAmountOfPlayers().get(0).getName());
+                p2_name.setText(SM.getGame().getAmountOfPlayers().get(1).getName());
+                p3_name.setText(SM.getGame().getAmountOfPlayers().get(2).getName());
+                p4_name.setText(SM.getGame().getAmountOfPlayers().get(3).getName());
                 break;
             case 5:
                 //disable 6
@@ -113,6 +123,11 @@ public class AuctionsController implements Initializable {
                 checks.add(p3_check);
                 checks.add(p4_check);
                 checks.add(p5_check);
+                p1_name.setText(SM.getGame().getAmountOfPlayers().get(0).getName());
+                p2_name.setText(SM.getGame().getAmountOfPlayers().get(1).getName());
+                p3_name.setText(SM.getGame().getAmountOfPlayers().get(2).getName());
+                p4_name.setText(SM.getGame().getAmountOfPlayers().get(3).getName());
+                p5_name.setText(SM.getGame().getAmountOfPlayers().get(4).getName());
                 break;
             case 6:
                 bids.add(p1_bid);
@@ -127,14 +142,14 @@ public class AuctionsController implements Initializable {
                 checks.add(p3_check);
                 checks.add(p4_check);
                 checks.add(p5_check);
+                p1_name.setText(SM.getGame().getAmountOfPlayers().get(0).getName());
+                p2_name.setText(SM.getGame().getAmountOfPlayers().get(1).getName());
+                p3_name.setText(SM.getGame().getAmountOfPlayers().get(2).getName());
+                p4_name.setText(SM.getGame().getAmountOfPlayers().get(3).getName());
+                p5_name.setText(SM.getGame().getAmountOfPlayers().get(4).getName());
+                p6_name.setText(SM.getGame().getAmountOfPlayers().get(5).getName());
                 break;
         }
-        p1_name.setText(SM.getGame().getAmountOfPlayers().get(0).getName());
-        p2_name.setText(SM.getGame().getAmountOfPlayers().get(1).getName());
-        p3_name.setText(SM.getGame().getAmountOfPlayers().get(2).getName());
-        p4_name.setText(SM.getGame().getAmountOfPlayers().get(3).getName());
-        p5_name.setText(SM.getGame().getAmountOfPlayers().get(4).getName());
-        p6_name.setText(SM.getGame().getAmountOfPlayers().get(5).getName());
         confirm.setOnAction(e -> {
             if (numbersOnly() && checkedBoxes()) {
                 HashMap<Player, Integer> hm = new HashMap<>();
@@ -158,6 +173,7 @@ public class AuctionsController implements Initializable {
                     } catch (NotAProperty exp) {
                         System.err.print(exp);
                     }
+                    SM.changeScene(View.GAME);
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Player bids");
@@ -175,7 +191,7 @@ public class AuctionsController implements Initializable {
         });
     }
 
-    private boolean numbersOnly() {
+    public boolean numbersOnly() {
         boolean num = true;
         for (TextField tf : bids) {
             if (!tf.getText().matches("[0-9]*")) {
@@ -187,7 +203,7 @@ public class AuctionsController implements Initializable {
         return num;
     }
 
-    private boolean checkedBoxes() {
+    public boolean checkedBoxes() {
         boolean checked = true;
         for (CheckBox cb : checks) {
             if (!cb.isSelected()) {

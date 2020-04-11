@@ -303,7 +303,7 @@ public class GameController {
                 bank.removeProperties(prop.getTitle());
                 player.addProperty(prop);
                 prop.setOwnedBuy(player.getName());
-                log.addToLog(bidder.getKey() + " has bought" + bp.getTitle() + " for £" + bidder.getValue() + ".");
+                log.addToLog(bidder.getKey().getName() + " has bought" + bp.getTitle() + " for £" + bidder.getValue() + ".");
 
             }
 
