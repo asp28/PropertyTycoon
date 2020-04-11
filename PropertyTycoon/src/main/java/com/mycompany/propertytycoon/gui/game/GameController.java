@@ -83,14 +83,14 @@ public class GameController implements Initializable {
         }
         roll.setOnAction(e -> {
             SM.getGame().move();
-            log();
-            if (SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()) instanceof Property) {
-                anchorpane.setVisible(true);
-            }
             try {
                 updateControls();
             } catch (FileNotFoundException ex) {
 
+            }
+            log();
+            if (SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()) instanceof Property) {
+                anchorpane.setVisible(true);
             }
         });
         buy.setOnAction(e -> {
@@ -103,16 +103,20 @@ public class GameController implements Initializable {
         });
         sell.setOnAction(e -> {
             SM.changeScene(View.SELL);
+            log();
         });
         houses.setOnAction(e -> {
             SM.changeScene(View.HOUSES);
+            log();
 
         });
         trade.setOnAction(e -> {
             SM.changeScene(View.TRADERCHOICE);
+            log();
         });
         mortgage.setOnAction(e -> {
             SM.changeScene(View.MORTGAGE);
+            log();
         });
         endTurn.setOnAction(e -> {
             SM.getGame().endTurn();
@@ -130,10 +134,12 @@ public class GameController implements Initializable {
                 System.err.print(exp);
             }
             anchorpane.setVisible(false);
+            log();
         });
         buy_no.setOnAction(e -> {
             SM.setAuctionProperty(SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()));
             SM.changeScene(View.AUCTION);
+            log();
         });
         try {
             placePlayersOnBoard();
