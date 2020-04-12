@@ -6,15 +6,26 @@
 package com.mycompany.propertytycoon.gui.game;
 
 import com.mycompany.propertytycoon.Player;
+import com.mycompany.propertytycoon.boardpieces.FreeParkingPiece;
+import com.mycompany.propertytycoon.boardpieces.GoPiece;
+import com.mycompany.propertytycoon.boardpieces.GoToJailPiece;
+import com.mycompany.propertytycoon.boardpieces.OpportunityKnocksPiece;
+import com.mycompany.propertytycoon.boardpieces.PotLuckPiece;
 import com.mycompany.propertytycoon.boardpieces.Property;
+import com.mycompany.propertytycoon.boardpieces.TaxPiece;
+import com.mycompany.propertytycoon.cards.Card;
+import com.mycompany.propertytycoon.cards.OpportunityKnocks;
 import com.mycompany.propertytycoon.exceptions.NotAProperty;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
 import com.mycompany.propertytycoon.gui.utils.View;
 import com.mycompany.propertytycoon.log.Log;
+import com.sun.javafx.scene.CameraHelper;
 import java.awt.event.MouseEvent;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,9 +71,9 @@ public class GameController implements Initializable {
     @FXML
     private BorderPane bPane;
     @FXML
-    private VBox right;
+    private VBox right, middle_gray;
     @FXML
-    private AnchorPane anchorpane;
+    private AnchorPane anchorpane_left, anchorpane_right;
 
     private Log logObject = Log.getInstance();
 
@@ -74,7 +85,9 @@ public class GameController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        anchorpane.setVisible(false);
+        anchorpane_left.setVisible(false);
+        anchorpane_right.setVisible(false);
+        middle_gray.setVisible(false);
         log();
         try {
             updateControls();
@@ -88,18 +101,24 @@ public class GameController implements Initializable {
             } catch (FileNotFoundException ex) {
 
             }
-            log();
-            if (SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()) instanceof Property) {
-                anchorpane.setVisible(true);
+
+            ArrayList<String> actions = SM.getGame().getPlayerActions();
+            ArrayList<String> remaining = SM.getGame().performActions(actions);
+
+            if (remaining.contains("BUY")) {
+                anchorpane_right.setVisible(true);
+                anchorpane_left.setVisible(true);
+                middle_gray.setVisible(true);
+                sell.setDisable(true);
+                houses.setDisable(true);
+                trade.setDisable(true);
+                mortgage.setDisable(true);
+                endTurn.setDisable(true);
             }
-        });
-        buy.setOnAction(e -> {
-            try {
-                SM.getGame().buyProperty(SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()));
-            } catch (NotAProperty exp) {
-                System.err.print(exp);
-            }
             log();
+            if (!remaining.contains("ROLL")) {
+                roll.setDisable(true);
+            }
         });
         sell.setOnAction(e -> {
             SM.changeScene(View.SELL);
@@ -120,6 +139,7 @@ public class GameController implements Initializable {
         });
         endTurn.setOnAction(e -> {
             SM.getGame().endTurn();
+            roll.setDisable(false);
             try {
                 updateControls();
             } catch (FileNotFoundException ex) {
@@ -133,7 +153,14 @@ public class GameController implements Initializable {
             } catch (NotAProperty exp) {
                 System.err.print(exp);
             }
-            anchorpane.setVisible(false);
+            anchorpane_right.setVisible(false);
+            anchorpane_left.setVisible(false);
+            middle_gray.setVisible(false);
+            sell.setDisable(false);
+            houses.setDisable(false);
+            trade.setDisable(false);
+            mortgage.setDisable(false);
+            endTurn.setDisable(false);
             log();
         });
         buy_no.setOnAction(e -> {
@@ -174,6 +201,9 @@ public class GameController implements Initializable {
     }
 
     public void buttons() {
+        for (String s : SM.getGame().getPlayerActions()) {
+
+        }
     }
 
     public void log() {
@@ -238,7 +268,6 @@ public class GameController implements Initializable {
     }
 
     public void PlayerPosition(ImageView token) {
-        System.out.print(SM.getGame().getActivePlayer().getLocation());
         switch (SM.getGame().getActivePlayer().getLocation()) {
 
             case 0:

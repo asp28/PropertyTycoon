@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.text.Text;
 
 /**
@@ -28,18 +29,17 @@ import javafx.scene.text.Text;
  */
 public class SellController implements Initializable {
 
-    
     @FXML
     private Button confirm;
-    
+
     @FXML
     private ListView<String> owned_properties;
-    
+
     @FXML
     private Text player_name;
-    
+
     private StageManager SM = StageManager.getInstance();
-    
+
     /**
      * Initializes the controller class.
      */
@@ -51,8 +51,9 @@ public class SellController implements Initializable {
         for (Property p : owned) {
             props.add(p.getTitle());
         }
-        owned_properties = new ListView(props);
-        
+        owned_properties.getItems().addAll(props);
+        owned_properties.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
         confirm.setOnAction(e -> {
             ObservableList<String> chosen = owned_properties.getSelectionModel().getSelectedItems();
             for (String s : chosen) {
@@ -64,10 +65,9 @@ public class SellController implements Initializable {
                 }
             }
             SM.changeScene(View.GAME);
-            
+
         });
-        
-    
-    }    
-    
+
+    }
+
 }

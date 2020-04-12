@@ -5,15 +5,19 @@
  */
 package com.mycompany.propertytycoon.gui.game;
 
+import com.mycompany.propertytycoon.boardpieces.ColouredProperty;
 import com.mycompany.propertytycoon.boardpieces.Property;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.text.Text;
 
 /**
@@ -42,7 +46,14 @@ public class HousesController implements Initializable {
         hotel_count = 0;
         houses_count = 0;
         
-        List<Property> properties = SM.getGame().getActivePlayer().getOwnedProperties();
+        List<ColouredProperty> properties = SM.getGame().listOfHousableProps();
+        ObservableList<String> props = FXCollections.<String>observableArrayList();
+        for (ColouredProperty p : properties) {
+            props.add(p.getTitle());
+        }
+        
+        canAddHouses.getItems().addAll(props);
+        canAddHouses.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         
     }    
     

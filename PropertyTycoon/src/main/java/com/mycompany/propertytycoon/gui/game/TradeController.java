@@ -21,6 +21,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
@@ -64,12 +65,14 @@ public class TradeController implements Initializable {
         }
         ObservableList<String> p1_properties = FXCollections.<String>observableArrayList(p1);
         p1_list.getItems().addAll(p1_properties);
+        p1_list.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         List<String> p2 = new ArrayList<>();
         for (Property p :players.get(1).getOwnedProperties()) {
             p2.add(p.getTitle());
         }
         ObservableList<String> p2_properties = FXCollections.<String>observableArrayList(p2);
         p2_list.getItems().addAll(p2_properties);
+        p2_list.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         cancel.setOnAction(e -> {
             SM.getLog().addToLog("Trade between " + players.get(0).getName() + " and " + players.get(1).getName() + " was cancelled.");

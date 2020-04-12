@@ -95,7 +95,6 @@ public class GameController {
             log.addToLog(activePlayer.getName() + " has rolled a double " + rolls.getKey() + ".");
             moveTotal += rolls.getKey() + rolls.getValue();
             doublesRolled++;
-            System.out.println(rolls.getKey() + " " + rolls.getValue());
             ArrayList<String> actions = new ArrayList<>();
             actions.add("ROLL");
             //GUI.update(actions)
@@ -110,6 +109,7 @@ public class GameController {
                 activePlayer.incrementGameloops();
                 moveTotal = (activePlayer.getLocation() + moveTotal) - 40;
                 newLocation = moveTotal;
+                passingGo();
 
             } else {
                 newLocation = activePlayer.getLocation() + moveTotal;
@@ -238,7 +238,7 @@ public class GameController {
                     remaining.add("END");
                     break;
                 case "TAX":
-                    remaining.add("TAX");
+                    payTax((TaxPiece) getBoard().getBoardPiece(activePlayer.getLocation()));
                     break;
                 case "INJAIL":
                     break;
@@ -414,11 +414,13 @@ public class GameController {
         if (board.getBoardPiece(activePlayer.getLocation()) instanceof OpportunityKnocksPiece) {
             log.addToLog(activePlayer.getName() + " has picked up an opportunity knocks card.");
             OpportunityKnocks card = oppocards.get(0);
+            log.addToLog(card.getDescription());
             doCardAction(card);
             Collections.rotate(oppocards, -1);
         } else if (board.getBoardPiece(activePlayer.getLocation()) instanceof PotLuckPiece) {
             log.addToLog(activePlayer.getName() + " has picked up a potluck card.");
             PotLuck card = potluckcards.get(0);
+            log.addToLog(card.getDescription());
             doCardAction(card);
             Collections.rotate(potluckcards, -1);
         } else {
@@ -765,6 +767,13 @@ public class GameController {
 
     public ArrayList<String> getTokens() {
         return tokens;
+    }
+    
+    public void payTax(TaxPiece tp) {
+        FreeParkingPiece fpp = (FreeParkingPiece) getBoard().getBoardPiece(20);
+        getActivePlayer().decreaseBalance(tp.getTaxAmount());
+        fpp.setBalance(fpp.getBalance() + tp.getTaxAmount());
+        
     }
 
 }
