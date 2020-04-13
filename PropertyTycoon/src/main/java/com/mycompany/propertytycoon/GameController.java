@@ -5,12 +5,12 @@ import com.mycompany.propertytycoon.cards.OpportunityKnocks;
 import com.mycompany.propertytycoon.cards.PotLuck;
 import com.mycompany.propertytycoon.exceptions.NotAProperty;
 import com.mycompany.propertytycoon.log.Log;
+import javafx.util.Pair;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import java.io.IOException;
 import java.util.*;
 import java.util.Map.Entry;
-import javafx.util.Pair;
 
 public class GameController {
     
@@ -97,7 +97,10 @@ public class GameController {
             doublesRolled++;
             ArrayList<String> actions = new ArrayList<>();
             actions.add("ROLL");
-            //GUI.update(actions)
+            newLocation = moveTotal;
+            activePlayer.setLocation(newLocation);
+            int i = amountOfPlayers.indexOf(activePlayer);
+            playerLocations.set(i, newLocation);
         } else if (doublesRolled > 2) {
             log.addToLog(activePlayer.getName() + " was sent to jail for rolling 3 doubles in a row.");
             goToJail();
@@ -312,13 +315,20 @@ public class GameController {
     }
 
     public void sellProperty(Property prop) {
-        if (prop.getOwnedBuy().equals(activePlayer.getName())) {
+        if (prop.getOwnedBuy().equals(activePlayer.getName()) && prop.isMortgaged() == false) {
             prop.setOwnedBuy("The Bank");
             activePlayer.increaseBalance(prop.getCost());
             bank.withdraw(prop.getCost());
             activePlayer.removeProperty(prop);
             bank.addProperties(prop);
             log.addToLog(activePlayer.getName() + " has sold " + prop.getTitle() + ".");
+        } else {
+            prop.setOwnedBuy("The Bank");
+            activePlayer.increaseBalance(prop.getCost() / 2);
+            bank.withdraw(prop.getCost() / 2);
+            activePlayer.removeProperty(prop);
+            bank.addProperties(prop);
+            log.addToLog(activePlayer.getName() + " has sold " + prop.getTitle() + ". Only recieved half due to prop being on mortage");
         }
 
     }
