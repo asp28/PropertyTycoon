@@ -104,6 +104,7 @@ public class GameController implements Initializable {
 
             ArrayList<String> actions = SM.getGame().getPlayerActions();
             ArrayList<String> remaining = SM.getGame().performActions(actions);
+            System.out.print(actions + " " + remaining + "\n");
 
             if (remaining.contains("BUY")) {
                 anchorpane_right.setVisible(true);
@@ -115,10 +116,11 @@ public class GameController implements Initializable {
                 mortgage.setDisable(true);
                 endTurn.setDisable(true);
             }
-            log();
+            
             if (!remaining.contains("ROLL")) {
                 roll.setDisable(true);
             }
+            log();
         });
         sell.setOnAction(e -> {
             SM.changeScene(View.SELL);

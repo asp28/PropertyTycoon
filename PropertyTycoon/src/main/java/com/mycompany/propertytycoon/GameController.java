@@ -74,12 +74,11 @@ public class GameController {
      *
      * @return an array that holds the 2 dice values
      */
-    private Pair<Integer, Integer> roll() {
+    private void roll() {
         Random rn = new Random();
         int roll1 = rn.nextInt(6) + 1;
         int roll2 = rn.nextInt(6) + 1;
         rolls = new Pair<>(roll1, roll2);
-        return rolls;
     }
 
     /**
@@ -89,13 +88,13 @@ public class GameController {
      * again and to move to jail if the dice has rolled 3 doubles
      */
     public void move() {
-        Pair<Integer, Integer> roll = roll();
+        actions = new ArrayList<>();
+        roll();
         int newLocation = 0;
         if (Objects.equals(rolls.getKey(), rolls.getValue()) && doublesRolled < 3) {
             log.addToLog(activePlayer.getName() + " has rolled a double " + rolls.getKey() + ".");
             moveTotal += rolls.getKey() + rolls.getValue();
             doublesRolled++;
-            ArrayList<String> actions = new ArrayList<>();
             actions.add("ROLL");
             newLocation = moveTotal;
             activePlayer.setLocation(newLocation);
@@ -113,7 +112,6 @@ public class GameController {
                 moveTotal = (activePlayer.getLocation() + moveTotal) - 40;
                 newLocation = moveTotal;
                 passingGo();
-
             } else {
                 newLocation = activePlayer.getLocation() + moveTotal;
             }
@@ -123,7 +121,6 @@ public class GameController {
 
             //GUI.update(doActions())
         }
-
     }
 
     /**
@@ -244,6 +241,9 @@ public class GameController {
                     payTax((TaxPiece) getBoard().getBoardPiece(activePlayer.getLocation()));
                     break;
                 case "INJAIL":
+                    break;
+                case "ROLL":
+                    remaining.add("ROLL");
                     break;
             }
         }
