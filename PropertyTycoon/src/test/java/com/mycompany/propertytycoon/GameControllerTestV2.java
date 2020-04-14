@@ -25,7 +25,7 @@ public class GameControllerTestV2 {
     @Test
     public void testIncreasingLoopAroundBoard() throws IOException, InvalidFormatException {
         GameController controller = new GameController(2);
-        controller.getActivePlayer().setLocation(40);
+        controller.getActivePlayer().setLocation(38);
         controller.move();
         if (controller.getActivePlayer().getLocation() == 10) {
             Assert.assertEquals(0, controller.getActivePlayer().getGameloops());

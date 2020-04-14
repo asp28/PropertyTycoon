@@ -149,7 +149,7 @@ public class GameController {
         } else if (boardPiece instanceof StationProperty) {
             StationProperty buyable = (StationProperty) boardPiece;
             if (buyable.getOwnedBuy().equals("The Bank")) {
-                if (buyable.getCost() <= activePlayer.getBalance()) {
+                if ((buyable.getCost() <= activePlayer.getBalance()) && (activePlayer.getGameloops() > 0)) {
                     playerActions.add("BUY");
                 }
             } else {
@@ -158,7 +158,7 @@ public class GameController {
         } else if (boardPiece instanceof UtilityProperty) {
             UtilityProperty buyable = (UtilityProperty) boardPiece;
             if (buyable.getOwnedBuy().equals("The Bank")) {
-                if (buyable.getCost() <= activePlayer.getBalance()) {
+                if ((buyable.getCost() <= activePlayer.getBalance()) && (activePlayer.getGameloops() > 0)) {
                     playerActions.add("BUY");
                 }
             } else {
