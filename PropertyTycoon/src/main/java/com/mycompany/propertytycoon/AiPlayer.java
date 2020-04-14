@@ -22,7 +22,7 @@ public class AiPlayer extends Player {
     }
 
     public boolean DoesAiBuy() {
-        int answer = rn.nextInt(1);
+        int answer = rn.nextInt(2);
         if (answer == 1) {
             return true;
         } else {
@@ -38,7 +38,7 @@ public class AiPlayer extends Player {
 
     public boolean tryBuyHouse() {
         if (getBalance() > 500) {
-            int answer = rn.nextInt(1);
+            int answer = rn.nextInt(2);
             if (answer == 1) {
                 return true;
             } else {
@@ -51,7 +51,7 @@ public class AiPlayer extends Player {
     public boolean trySellProperty() {
         if (getBalance() < 300) {
 
-            int answer = rn.nextInt(1);
+            int answer = rn.nextInt(2);
             if (answer == 1) {
                 return true;
             } else {
