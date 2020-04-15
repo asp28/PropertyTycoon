@@ -6,7 +6,6 @@
 package com.mycompany.propertytycoon.gui.game;
 
 import com.mycompany.propertytycoon.Player;
-import com.mycompany.propertytycoon.boardpieces.Property;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
 import com.mycompany.propertytycoon.gui.utils.View;
 import java.net.URL;
@@ -30,12 +29,13 @@ public class TradeChoicePageController implements Initializable {
 
     @FXML
     private ListView<String> player_list;
-    
+
     @FXML
-    private Button confirm;
-    
+    private Button confirm, back;
+
     private StageManager SM = StageManager.getInstance();
-    
+    private GameVariableStorage GVS = GameVariableStorage.getInstance();
+
     /**
      * Initializes the controller class.
      */
@@ -43,21 +43,26 @@ public class TradeChoicePageController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         List<String> p1 = new ArrayList<>();
         for (Player p : SM.getGame().getAmountOfPlayers()) {
-            p1.add(p.getName());
+            if (!p.getName().equalsIgnoreCase(SM.getGame().getActivePlayer().getName())) {
+                p1.add(p.getName());
+            }
+
         }
         ObservableList<String> p1_names = FXCollections.<String>observableArrayList(p1);
-        player_list = new ListView(p1_names);
-        
+        player_list.getItems().addAll(p1_names);
+
         confirm.setOnAction(e -> {
             //DO CHECK FOR 1 PERSON BEING SELECTED
             if (player_list.getSelectionModel().getSelectedItem() != null) {
                 String player = player_list.getSelectionModel().getSelectedItem();
+                Player other = null;
                 for (Player p : SM.getGame().getAmountOfPlayers()) {
                     if (p.getName().equalsIgnoreCase(player)) {
-                        SM.setTrader(p);
+                        other = p;
                         break;
                     }
                 }
+                GVS.tradePlayers(SM.getGame().getActivePlayer(), other);
                 SM.changeScene(View.TRADE);
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -66,8 +71,11 @@ public class TradeChoicePageController implements Initializable {
                 alert.setContentText("Only one player can be selected.");
                 alert.showAndWait();
             }
-            
+
         });
-    }    
-    
+        back.setOnAction(e -> {
+            SM.changeScene(View.GAME);
+        });
+    }
+
 }

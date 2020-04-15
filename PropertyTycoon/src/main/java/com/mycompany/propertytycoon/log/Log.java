@@ -13,7 +13,7 @@ public class Log {
     
     private static Log instance;
     
-    private String log;
+    private String log = "";
     
     public static Log getInstance() {
         if (instance == null) {

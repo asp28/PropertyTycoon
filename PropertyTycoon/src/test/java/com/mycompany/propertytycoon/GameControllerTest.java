@@ -201,22 +201,6 @@ public class GameControllerTest {
     }
     
     @Test
-    public void getMaxBidTest() throws InvalidFormatException, IOException{
-        GameController controller = new GameController(2);
-        
-        HashMap<Player,Integer> bids = new HashMap<>();
-        controller.getActivePlayer().setName("Jekyll");
-        bids.put(controller.getActivePlayer(), 100);
-        controller.endTurn();
-        controller.getActivePlayer().setName("Hyde");
-        bids.put(controller.getActivePlayer(), 200);
-        
-        Assert.assertEquals(controller.getHighestBid(bids).getKey().getName(), "Hyde");
-        Assert.assertEquals(controller.getHighestBid(bids).getValue().intValue(), 200);
-        
-    }
-    
-    @Test
     public void mortgagePropertyTest() throws IOException, InvalidFormatException{
         GameController controller = new GameController(2);
         controller.getActivePlayer().setLocation(3);

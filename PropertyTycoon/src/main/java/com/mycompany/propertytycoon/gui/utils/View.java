@@ -13,19 +13,17 @@ public enum View {
 
     MAIN_MENU("src/main/java/com/mycompany/propertytycoon/gui/mainmenu/homepage.fxml"),
     PLAYER_BOT_COUNT("src/main/java/com/mycompany/propertytycoon/gui/initialisegame/player_an_ai_count.fxml"),
-    INIT_2("src/main/java/com/mycompany/propertytycoon/gui/initialisegame/init_2.fxml"),
-    INIT_3("src/main/java/com/mycompany/propertytycoon/gui/initialisegame/init_3.fxml"),
-    INIT_4("src/main/java/com/mycompany/propertytycoon/gui/initialisegame/init_4.fxml"),
-    INIT_5("src/main/java/com/mycompany/propertytycoon/gui/initialisegame/init_5.fxml"),
-    INIT_6("src/main/java/com/mycompany/propertytycoon/gui/initialisegame/init_6.fxml"),
+    INIT("src/main/java/com/mycompany/propertytycoon/gui/initialisegame/init.fxml"),
     GAME("src/main/java/com/mycompany/propertytycoon/gui/game/Game.fxml"),
     TRADE("src/main/java/com/mycompany/propertytycoon/gui/game/Trade.fxml"),
     TRADERCHOICE("src/main/java/com/mycompany/propertytycoon/gui/game/TradeChoicePage.fxml"),
     MORTGAGE("src/main/java/com/mycompany/propertytycoon/gui/game/Mortgage.fxml"),
-    AUCTION("src/main/java/com/mycompany/propertytycoon/gui/game/auctions.fxml");
+    SELL("src/main/java/com/mycompany/propertytycoon/gui/game/sell.fxml"),
+    HOUSES("src/main/java/com/mycompany/propertytycoon/gui/game/houses.fxml"),
+    AUCTION("src/main/java/com/mycompany/propertytycoon/gui/game/auction.fxml");
     
 
-    private String fxmlPath;
+    private final String fxmlPath;
 
     public String getFXMLPath() {
         return fxmlPath;

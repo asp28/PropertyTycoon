@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" minHeight="760.0" minWidth="1084.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.mycompany.propertytycoon.gui.game.SellController">
+    <stylesheets>
+        <URL value="@../Style.css" />
+    </stylesheets>
+   <children>
+      <Text layoutX="64.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sell Property">
+         <font>
+            <Font size="60.0" />
+         </font>
+      </Text>
+      <Text fx:id="player_name" layoutX="859.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player: XXXX" textAlignment="RIGHT" wrappingWidth="194.1875" />
+      <ListView fx:id="owned_properties" layoutX="442.0" layoutY="201.0" prefHeight="369.0" prefWidth="200.0" />
+      <Button fx:id="confirm" layoutX="512.0" layoutY="637.0" mnemonicParsing="false" text="Confirm" />
+   </children>
+</AnchorPane>

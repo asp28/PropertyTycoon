@@ -18,6 +18,8 @@ public class Player {
     private String token;
     private int gameloops;
     private int playerTurns;
+    private boolean isAI;
+
 
     /**
      * Player constructor
@@ -29,14 +31,24 @@ public class Player {
         this.ownedProperties = new ArrayList<>();
         this.balance = 1500;
         this.inJail = false;
+        this.isAI = false;
     }
-    
-    
+
+
     //Getters and Setters
-    
+
+    public boolean isIsAI() {
+        return isAI;
+    }
+
+    public void setIsAI(boolean isAI) {
+        this.isAI = isAI;
+    }
+
 
     /**
      * Gets the player's name
+     *
      * @return name
      */
     public String getName() {
