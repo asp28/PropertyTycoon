@@ -180,6 +180,8 @@ public class GameController {
             playerActions.add("FREEPARKING");
         } else if (boardPiece instanceof TaxPiece) {
             playerActions.add("TAX");
+        } else if (actions.contains("ROLL")) {
+            playerActions.add("ROLL");
         }
 
         //Add other actions
@@ -247,6 +249,7 @@ public class GameController {
                     break;
             }
         }
+        actions.clear();
         actions = remaining;
         return remaining;
     }

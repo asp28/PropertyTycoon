@@ -6,7 +6,10 @@
 package com.mycompany.propertytycoon.gui.initialisegame;
 
 import com.mycompany.propertytycoon.gui.utils.StageManager;
+import com.mycompany.propertytycoon.gui.utils.Tokens;
 import com.mycompany.propertytycoon.gui.utils.View;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -16,8 +19,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -45,6 +51,282 @@ public class InitController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        p1_list.setCellFactory(listview -> new ListCell<String>() {
+            private ImageView image = new ImageView();
+
+            @Override
+            public void updateItem(String a, boolean b) {
+                super.updateItem(a, b);
+                if (b) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    FileInputStream ab = null;
+                    try {
+                        switch (a) {
+                            case "cat":
+                                ab = new FileInputStream(Tokens.CAT.getPath());
+                                break;
+                            case "boot":
+                                ab = new FileInputStream(Tokens.BOOT.getPath());
+                                break;
+                            case "cup":
+                                ab = new FileInputStream(Tokens.CUP.getPath());
+                                break;
+                            case "hat_hanger":
+                                ab = new FileInputStream(Tokens.HAT_HANGER.getPath());
+                                break;
+                            case "phone":
+                                ab = new FileInputStream(Tokens.PHONE.getPath());
+                                break;
+                            case "spoon":
+                                ab = new FileInputStream(Tokens.SPOON.getPath());
+                                break;
+                        }
+                    } catch (FileNotFoundException e) {
+
+                    }
+                    Image imag = new Image(ab);
+                    image.setImage(imag);
+                    image.setFitHeight(50);
+                    image.setFitWidth(50);
+                    setText(null);
+                    setGraphic(image);
+
+                }
+            }
+
+        });
+        p2_list.setCellFactory(listview -> new ListCell<String>() {
+            private ImageView image = new ImageView();
+
+            @Override
+            public void updateItem(String a, boolean b) {
+                super.updateItem(a, b);
+                if (b) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    FileInputStream ab = null;
+                    try {
+                        switch (a) {
+                            case "cat":
+                                ab = new FileInputStream(Tokens.CAT.getPath());
+                                break;
+                            case "boot":
+                                ab = new FileInputStream(Tokens.BOOT.getPath());
+                                break;
+                            case "cup":
+                                ab = new FileInputStream(Tokens.CUP.getPath());
+                                break;
+                            case "hat_hanger":
+                                ab = new FileInputStream(Tokens.HAT_HANGER.getPath());
+                                break;
+                            case "phone":
+                                ab = new FileInputStream(Tokens.PHONE.getPath());
+                                break;
+                            case "spoon":
+                                ab = new FileInputStream(Tokens.SPOON.getPath());
+                                break;
+                        }
+                    } catch (FileNotFoundException e) {
+
+                    }
+                    Image imag = new Image(ab);
+                    image.setImage(imag);
+                    image.setFitHeight(50);
+                    image.setFitWidth(50);
+                    setText(null);
+                    setGraphic(image);
+
+                }
+            }
+
+        });
+        p3_list.setCellFactory(listview -> new ListCell<String>() {
+            private ImageView image = new ImageView();
+
+            @Override
+            public void updateItem(String a, boolean b) {
+                super.updateItem(a, b);
+                if (b) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    FileInputStream ab = null;
+                    try {
+                        switch (a) {
+                            case "cat":
+                                ab = new FileInputStream(Tokens.CAT.getPath());
+                                break;
+                            case "boot":
+                                ab = new FileInputStream(Tokens.BOOT.getPath());
+                                break;
+                            case "cup":
+                                ab = new FileInputStream(Tokens.CUP.getPath());
+                                break;
+                            case "hat_hanger":
+                                ab = new FileInputStream(Tokens.HAT_HANGER.getPath());
+                                break;
+                            case "phone":
+                                ab = new FileInputStream(Tokens.PHONE.getPath());
+                                break;
+                            case "spoon":
+                                ab = new FileInputStream(Tokens.SPOON.getPath());
+                                break;
+                        }
+                    } catch (FileNotFoundException e) {
+
+                    }
+                    Image imag = new Image(ab);
+                    image.setImage(imag);
+                    image.setFitHeight(50);
+                    image.setFitWidth(50);
+                    setText(null);
+                    setGraphic(image);
+
+                }
+            }
+
+        });
+        p4_list.setCellFactory(listview -> new ListCell<String>() {
+            private ImageView image = new ImageView();
+
+            @Override
+            public void updateItem(String a, boolean b) {
+                super.updateItem(a, b);
+                if (b) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    FileInputStream ab = null;
+                    try {
+                        switch (a) {
+                            case "cat":
+                                ab = new FileInputStream(Tokens.CAT.getPath());
+                                break;
+                            case "boot":
+                                ab = new FileInputStream(Tokens.BOOT.getPath());
+                                break;
+                            case "cup":
+                                ab = new FileInputStream(Tokens.CUP.getPath());
+                                break;
+                            case "hat_hanger":
+                                ab = new FileInputStream(Tokens.HAT_HANGER.getPath());
+                                break;
+                            case "phone":
+                                ab = new FileInputStream(Tokens.PHONE.getPath());
+                                break;
+                            case "spoon":
+                                ab = new FileInputStream(Tokens.SPOON.getPath());
+                                break;
+                        }
+                    } catch (FileNotFoundException e) {
+
+                    }
+                    Image imag = new Image(ab);
+                    image.setImage(imag);
+                    image.setFitHeight(50);
+                    image.setFitWidth(50);
+                    setText(null);
+                    setGraphic(image);
+
+                }
+            }
+
+        });
+        p5_list.setCellFactory(listview -> new ListCell<String>() {
+            private ImageView image = new ImageView();
+
+            @Override
+            public void updateItem(String a, boolean b) {
+                super.updateItem(a, b);
+                if (b) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    FileInputStream ab = null;
+                    try {
+                        switch (a) {
+                            case "cat":
+                                ab = new FileInputStream(Tokens.CAT.getPath());
+                                break;
+                            case "boot":
+                                ab = new FileInputStream(Tokens.BOOT.getPath());
+                                break;
+                            case "cup":
+                                ab = new FileInputStream(Tokens.CUP.getPath());
+                                break;
+                            case "hat_hanger":
+                                ab = new FileInputStream(Tokens.HAT_HANGER.getPath());
+                                break;
+                            case "phone":
+                                ab = new FileInputStream(Tokens.PHONE.getPath());
+                                break;
+                            case "spoon":
+                                ab = new FileInputStream(Tokens.SPOON.getPath());
+                                break;
+                        }
+                    } catch (FileNotFoundException e) {
+
+                    }
+                    Image imag = new Image(ab);
+                    image.setImage(imag);
+                    image.setFitHeight(50);
+                    image.setFitWidth(50);
+                    setText(null);
+                    setGraphic(image);
+
+                }
+            }
+
+        });
+        p6_list.setCellFactory(listview -> new ListCell<String>() {
+            private ImageView image = new ImageView();
+
+            @Override
+            public void updateItem(String a, boolean b) {
+                super.updateItem(a, b);
+                if (b) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    FileInputStream ab = null;
+                    try {
+                        switch (a) {
+                            case "cat":
+                                ab = new FileInputStream(Tokens.CAT.getPath());
+                                break;
+                            case "boot":
+                                ab = new FileInputStream(Tokens.BOOT.getPath());
+                                break;
+                            case "cup":
+                                ab = new FileInputStream(Tokens.CUP.getPath());
+                                break;
+                            case "hat_hanger":
+                                ab = new FileInputStream(Tokens.HAT_HANGER.getPath());
+                                break;
+                            case "phone":
+                                ab = new FileInputStream(Tokens.PHONE.getPath());
+                                break;
+                            case "spoon":
+                                ab = new FileInputStream(Tokens.SPOON.getPath());
+                                break;
+                        }
+                    } catch (FileNotFoundException e) {
+
+                    }
+                    Image imag = new Image(ab);
+                    image.setImage(imag);
+                    image.setFitHeight(50);
+                    image.setFitWidth(50);
+                    setText(null);
+                    setGraphic(image);
+
+                }
+            }
+
+        });
 
         switch (SM.getPlayerNum()) {
             case 2:

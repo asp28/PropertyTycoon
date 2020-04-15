@@ -34,6 +34,7 @@ public class TradeChoicePageController implements Initializable {
     private Button confirm, back;
 
     private StageManager SM = StageManager.getInstance();
+    private GameVariableStorage GVS = GameVariableStorage.getInstance();
 
     /**
      * Initializes the controller class.
@@ -61,7 +62,7 @@ public class TradeChoicePageController implements Initializable {
                         break;
                     }
                 }
-                SM.tradePlayers(SM.getGame().getActivePlayer(), other);
+                GVS.tradePlayers(SM.getGame().getActivePlayer(), other);
                 SM.changeScene(View.TRADE);
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);

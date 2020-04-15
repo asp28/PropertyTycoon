@@ -41,6 +41,7 @@ public class AuctionController implements Initializable {
     private Button confirm;
 
     private StageManager SM = StageManager.getInstance();
+    private GameVariableStorage GVS = GameVariableStorage.getInstance();
 
     private ArrayList<TextField> bids = new ArrayList<>();
     private ArrayList<CheckBox> checks = new ArrayList<>();
@@ -50,13 +51,62 @@ public class AuctionController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        property_name.setText("Name: " + SM.getAuctionProperty().getTitle());
-        property_colour.setText("Group: " + SM.getAuctionProperty().getGroup());
-        property_original_price.setText("Original Cost: £" + SM.getAuctionProperty().getCost());
-        int players = SM.getGame().getAmountOfPlayers().size();
-        switch (players) {
+        property_name.setText("Name: " + GVS.getAuctionProperty().getTitle());
+        property_colour.setText("Group: " + GVS.getAuctionProperty().getGroup());
+        property_original_price.setText("Original Cost: £" + GVS.getAuctionProperty().getCost());
+        ArrayList<Player> playersWhoCanBid = new ArrayList<>();
+        for (Player p : SM.getGame().getAmountOfPlayers()) {
+            if (p.getGameloops() > 0) {
+                playersWhoCanBid.add(p);
+            }
+        }
+        switch (playersWhoCanBid.size()) {
+            case 0:
+                p1_name.setText("");
+                p2_name.setText("");
+                p3_name.setText("");
+                p4_name.setText("");
+                p5_name.setText("");
+                p6_name.setText("");
+                p1_bid.setDisable(true);
+                p1_check.setDisable(true);
+                p2_bid.setDisable(true);
+                p2_check.setDisable(true);
+                p3_bid.setDisable(true);
+                p3_check.setDisable(true);
+                p4_bid.setDisable(true);
+                p4_check.setDisable(true);
+                p5_bid.setDisable(true);
+                p5_check.setDisable(true);
+                p6_bid.setDisable(true);
+                p6_check.setDisable(true);
+                break;
+            case 1:
+                p2_name.setText("");
+                p3_name.setText("");
+                p4_name.setText("");
+                p5_name.setText("");
+                p6_name.setText("");
+                p2_bid.setDisable(true);
+                p2_check.setDisable(true);
+                p3_bid.setDisable(true);
+                p3_check.setDisable(true);
+                p4_bid.setDisable(true);
+                p4_check.setDisable(true);
+                p5_bid.setDisable(true);
+                p5_check.setDisable(true);
+                p6_bid.setDisable(true);
+                p6_check.setDisable(true);
+                bids.add(p1_bid);
+                checks.add(p1_check);
+                p1_name.setText(playersWhoCanBid.get(0).getName());
+                break;
             case 2:
                 //disabled 3-6
+                p3_name.setText("");
+                p4_name.setText("");
+                p5_name.setText("");
+                p6_name.setText("");
                 p3_bid.setDisable(true);
                 p3_check.setDisable(true);
                 p4_bid.setDisable(true);
@@ -69,11 +119,14 @@ public class AuctionController implements Initializable {
                 bids.add(p2_bid);
                 checks.add(p1_check);
                 checks.add(p2_check);
-                p1_name.setText(SM.getGame().getAmountOfPlayers().get(0).getName());
-                p2_name.setText(SM.getGame().getAmountOfPlayers().get(1).getName());
+                p1_name.setText(playersWhoCanBid.get(0).getName());
+                p2_name.setText(playersWhoCanBid.get(1).getName());
                 break;
             case 3:
                 //disable 4-6
+                p4_name.setText("");
+                p5_name.setText("");
+                p6_name.setText("");
                 p4_bid.setDisable(true);
                 p4_check.setDisable(true);
                 p5_bid.setDisable(true);
@@ -86,12 +139,14 @@ public class AuctionController implements Initializable {
                 checks.add(p1_check);
                 checks.add(p2_check);
                 checks.add(p3_check);
-                p1_name.setText(SM.getGame().getAmountOfPlayers().get(0).getName());
-                p2_name.setText(SM.getGame().getAmountOfPlayers().get(1).getName());
-                p3_name.setText(SM.getGame().getAmountOfPlayers().get(2).getName());
+                p1_name.setText(playersWhoCanBid.get(0).getName());
+                p2_name.setText(playersWhoCanBid.get(1).getName());
+                p3_name.setText(playersWhoCanBid.get(2).getName());
                 break;
             case 4:
                 //disable 5-6
+                p5_name.setText("");
+                p6_name.setText("");
                 p5_bid.setDisable(true);
                 p5_check.setDisable(true);
                 p6_bid.setDisable(true);
@@ -104,13 +159,14 @@ public class AuctionController implements Initializable {
                 checks.add(p2_check);
                 checks.add(p3_check);
                 checks.add(p4_check);
-                p1_name.setText(SM.getGame().getAmountOfPlayers().get(0).getName());
-                p2_name.setText(SM.getGame().getAmountOfPlayers().get(1).getName());
-                p3_name.setText(SM.getGame().getAmountOfPlayers().get(2).getName());
-                p4_name.setText(SM.getGame().getAmountOfPlayers().get(3).getName());
+                p1_name.setText(playersWhoCanBid.get(0).getName());
+                p2_name.setText(playersWhoCanBid.get(1).getName());
+                p3_name.setText(playersWhoCanBid.get(2).getName());
+                p4_name.setText(playersWhoCanBid.get(3).getName());
                 break;
             case 5:
                 //disable 6
+                p6_name.setText("");
                 p6_bid.setDisable(true);
                 p6_check.setDisable(true);
                 bids.add(p1_bid);
@@ -123,11 +179,11 @@ public class AuctionController implements Initializable {
                 checks.add(p3_check);
                 checks.add(p4_check);
                 checks.add(p5_check);
-                p1_name.setText(SM.getGame().getAmountOfPlayers().get(0).getName());
-                p2_name.setText(SM.getGame().getAmountOfPlayers().get(1).getName());
-                p3_name.setText(SM.getGame().getAmountOfPlayers().get(2).getName());
-                p4_name.setText(SM.getGame().getAmountOfPlayers().get(3).getName());
-                p5_name.setText(SM.getGame().getAmountOfPlayers().get(4).getName());
+                p1_name.setText(playersWhoCanBid.get(0).getName());
+                p2_name.setText(playersWhoCanBid.get(1).getName());
+                p3_name.setText(playersWhoCanBid.get(2).getName());
+                p4_name.setText(playersWhoCanBid.get(3).getName());
+                p5_name.setText(playersWhoCanBid.get(4).getName());
                 break;
             case 6:
                 bids.add(p1_bid);
@@ -142,19 +198,26 @@ public class AuctionController implements Initializable {
                 checks.add(p3_check);
                 checks.add(p4_check);
                 checks.add(p5_check);
-                p1_name.setText(SM.getGame().getAmountOfPlayers().get(0).getName());
-                p2_name.setText(SM.getGame().getAmountOfPlayers().get(1).getName());
-                p3_name.setText(SM.getGame().getAmountOfPlayers().get(2).getName());
-                p4_name.setText(SM.getGame().getAmountOfPlayers().get(3).getName());
-                p5_name.setText(SM.getGame().getAmountOfPlayers().get(4).getName());
-                p6_name.setText(SM.getGame().getAmountOfPlayers().get(5).getName());
+                p1_name.setText(playersWhoCanBid.get(0).getName());
+                p2_name.setText(playersWhoCanBid.get(1).getName());
+                p3_name.setText(playersWhoCanBid.get(2).getName());
+                p4_name.setText(playersWhoCanBid.get(3).getName());
+                p5_name.setText(playersWhoCanBid.get(4).getName());
+                p6_name.setText(playersWhoCanBid.get(5).getName());
                 break;
         }
         confirm.setOnAction(e -> {
             if (numbersOnly() && checkedBoxes()) {
                 HashMap<Player, Integer> hm = new HashMap<>();
-                hm.put(SM.getGame().getAmountOfPlayers().get(0), Integer.parseInt(p1_bid.getText()));
-                hm.put(SM.getGame().getAmountOfPlayers().get(1), Integer.parseInt(p2_bid.getText()));
+                /*
+                if (!p1_bid.getText().isEmpty()) {
+                    hm.put(SM.getGame().getAmountOfPlayers().get(0), Integer.parseInt(p1_bid.getText()));
+                }
+                
+                if (!p2_bid.getText().isEmpty()) {
+                    hm.put(SM.getGame().getAmountOfPlayers().get(1), Integer.parseInt(p2_bid.getText()));
+                }
+                
                 if (!p3_bid.getText().isEmpty()) {
                     hm.put(SM.getGame().getAmountOfPlayers().get(2), Integer.parseInt(p3_bid.getText()));
                 }
@@ -166,6 +229,12 @@ public class AuctionController implements Initializable {
                 }
                 if (!p6_bid.getText().isEmpty()) {
                     hm.put(SM.getGame().getAmountOfPlayers().get(5), Integer.parseInt(p6_bid.getText()));
+                }
+                */
+                for (int i = 0; i < bids.size(); i++) {
+                    if(!bids.get(i).getText().isEmpty()) {
+                        hm.put(SM.getGame().getAmountOfPlayers().get(i), Integer.parseInt(bids.get(i).getText()));
+                    }
                 }
                 if (SM.getGame().checkValidAuction(hm)) {
                     try {

@@ -78,6 +78,9 @@ public class GameController implements Initializable {
     private Log logObject = Log.getInstance();
 
     private StageManager SM = StageManager.getInstance();
+
+    private GameVariableStorage GVS = GameVariableStorage.getInstance();
+
     private int i = 0;
 
     /**
@@ -85,10 +88,26 @@ public class GameController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         anchorpane_left.setVisible(false);
         anchorpane_right.setVisible(false);
         middle_gray.setVisible(false);
+
         log();
+
+        if (GVS.getRoll()) {
+            if (!Objects.equals(SM.getGame().getRolls().getKey(), SM.getGame().getRolls().getValue())) {
+                roll.setDisable(true);
+                endTurn.setDisable(false);
+            } else {
+                roll.setDisable(false);
+                endTurn.setDisable(true);
+            }
+        } else {
+            roll.setDisable(false);
+            endTurn.setDisable(true);
+        }
+
         try {
             updateControls();
         } catch (FileNotFoundException ex) {
@@ -96,17 +115,26 @@ public class GameController implements Initializable {
         }
         roll.setOnAction(e -> {
             SM.getGame().move();
+            if (!Objects.equals(SM.getGame().getRolls().getKey(), SM.getGame().getRolls().getValue())) {
+                GVS.setRolled(true);
+                endTurn.setDisable(false);
+                roll.setDisable(true);
+            } else {
+                roll.setDisable(false);
+                endTurn.setDisable(true);
+            }
+
             try {
                 updateControls();
             } catch (FileNotFoundException ex) {
 
             }
 
-            ArrayList<String> actions = SM.getGame().getPlayerActions();
-            ArrayList<String> remaining = SM.getGame().performActions(actions);
-            System.out.print(actions + " " + remaining + "\n");
+            ArrayList<String> remaining = SM.getGame().performActions(SM.getGame().getPlayerActions());
+            GVS.setActions(remaining);
+            System.out.print(GVS.getActions() + " " + remaining + "\n");
 
-            if (remaining.contains("BUY")) {
+            if (GVS.getActions().contains("BUY")) {
                 anchorpane_right.setVisible(true);
                 anchorpane_left.setVisible(true);
                 middle_gray.setVisible(true);
@@ -115,11 +143,9 @@ public class GameController implements Initializable {
                 trade.setDisable(true);
                 mortgage.setDisable(true);
                 endTurn.setDisable(true);
+                remaining.remove("BUY");
             }
-            
-            if (!remaining.contains("ROLL")) {
-                roll.setDisable(true);
-            }
+
             log();
         });
         sell.setOnAction(e -> {
@@ -141,7 +167,9 @@ public class GameController implements Initializable {
         });
         endTurn.setOnAction(e -> {
             SM.getGame().endTurn();
+            GVS.setRolled(false);
             roll.setDisable(false);
+            endTurn.setDisable(true);
             try {
                 updateControls();
             } catch (FileNotFoundException ex) {
@@ -166,8 +194,27 @@ public class GameController implements Initializable {
             log();
         });
         buy_no.setOnAction(e -> {
-            SM.setAuctionProperty(SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()));
-            SM.changeScene(View.AUCTION);
+            ArrayList<Player> players = new ArrayList<>();
+            for (Player p : SM.getGame().getAmountOfPlayers()) {
+                if (p.getGameloops() > 0) {
+                    players.add(p);
+                }
+            }
+            if (players.size() > 0) {
+                GVS.setAuctionProperty(SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()));
+                SM.changeScene(View.AUCTION);
+            } else {
+                anchorpane_right.setVisible(false);
+                anchorpane_left.setVisible(false);
+                middle_gray.setVisible(false);
+                sell.setDisable(false);
+                houses.setDisable(false);
+                trade.setDisable(false);
+                mortgage.setDisable(false);
+                endTurn.setDisable(false);
+                logObject.addToLog("No players can bid on property.");
+            }
+
             log();
         });
         try {

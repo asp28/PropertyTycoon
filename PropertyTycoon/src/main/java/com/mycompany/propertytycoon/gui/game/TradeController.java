@@ -48,13 +48,15 @@ public class TradeController implements Initializable {
     private CheckBox p1_check, p2_check;
 
     private StageManager SM = StageManager.getInstance();
+    
+    private GameVariableStorage GVS = GameVariableStorage.getInstance();
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ArrayList<Player> players = SM.getTraders();
+        ArrayList<Player> players = GVS.getTraders();
 
         p1_name.setText(players.get(0).getName());
         p2_name.setText(players.get(1).getName());
