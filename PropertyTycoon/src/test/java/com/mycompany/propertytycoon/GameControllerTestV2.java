@@ -17,14 +17,14 @@ public class GameControllerTestV2 {
     //Moving around the bored and ending turn
     @Test
     public void testMove() throws IOException, InvalidFormatException {
-        GameController controller = new GameController(2);
+        GameController controller = new GameController(2,0);
         controller.move();
         Assert.assertTrue(controller.getActivePlayer().getLocation() > 0);
     }
 
     @Test
     public void testIncreasingLoopAroundBoard() throws IOException, InvalidFormatException {
-        GameController controller = new GameController(2);
+        GameController controller = new GameController(2,0);
         controller.getActivePlayer().setLocation(38);
         controller.move();
         if (controller.getActivePlayer().getLocation() == 10) {
@@ -36,7 +36,7 @@ public class GameControllerTestV2 {
 
     @Test
     public void testEndTurn() throws IOException, InvalidFormatException {
-        GameController controller = new GameController(2);
+        GameController controller = new GameController(2,0);
         controller.getAmountOfPlayers().get(0).setName("Player 1");
         controller.getAmountOfPlayers().get(1).setName("Player 2");
         controller.endTurn();
@@ -47,7 +47,7 @@ public class GameControllerTestV2 {
     //Buying and selling properties buttons logic
     @Test
     public void testBuyProperty() throws IOException, InvalidFormatException, NotAProperty {
-        GameController controller = new GameController(2);
+        GameController controller = new GameController(2,0);
         controller.getActivePlayer().setLocation(6);
         ColouredProperty cp = (ColouredProperty) controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation());
         controller.buyProperty(controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation()));
@@ -56,7 +56,7 @@ public class GameControllerTestV2 {
     
     @Test
     public void testListOfUpgradableProperties() throws IOException, InvalidFormatException, NotAProperty{
-        GameController gc = new GameController(2);
+        GameController gc = new GameController(2,0);
         ArrayList<ColouredProperty> props = new ArrayList<>();
         
         gc.buyProperty(gc.getBoard().getBoardPiece(1));
@@ -94,7 +94,7 @@ public class GameControllerTestV2 {
     
     @Test
     public void testBuyHouseProp() throws IOException, InvalidFormatException, NotAProperty{
-        GameController gc = new GameController(2);
+        GameController gc = new GameController(2,0);
         gc.buyProperty(gc.getBoard().getBoardPiece(1));
         gc.buyProperty(gc.getBoard().getBoardPiece(3));
         gc.buyHouse(gc.getActivePlayer().getOwnedProperties().get(0));
@@ -109,7 +109,7 @@ public class GameControllerTestV2 {
 
     @Test
     public void testBuyHouse() throws IOException, InvalidFormatException, NotAProperty {
-        GameController controller = new GameController(2);
+        GameController controller = new GameController(2,0);
         controller.getActivePlayer().setLocation(3);
         ColouredProperty cp = (ColouredProperty) controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation());
         controller.buyProperty(controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation()));
@@ -120,7 +120,7 @@ public class GameControllerTestV2 {
 
     @Test
     public void testSellHouse() throws IOException, InvalidFormatException, NotAProperty {
-        GameController controller = new GameController(2);
+        GameController controller = new GameController(2,0);
         controller.getActivePlayer().setLocation(3);
         ColouredProperty cp = (ColouredProperty) controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation());
         controller.buyProperty(controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation()));
@@ -132,7 +132,7 @@ public class GameControllerTestV2 {
 
     @Test
     public void testSellProperty() throws IOException, InvalidFormatException, NotAProperty {
-        GameController controller = new GameController(2);
+        GameController controller = new GameController(2,0);
         controller.getActivePlayer().setLocation(6);
         ColouredProperty cp = (ColouredProperty) controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation());
         controller.buyProperty(controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation()));
@@ -143,7 +143,7 @@ public class GameControllerTestV2 {
     //Paying rent
     @Test
     public void paySingleRent() throws IOException, InvalidFormatException, NotAProperty {
-        GameController controller = new GameController(2);
+        GameController controller = new GameController(2,0);
         controller.getActivePlayer().setLocation(3);
         controller.buyProperty(controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation()));
         controller.endTurn();
@@ -154,7 +154,7 @@ public class GameControllerTestV2 {
 
     @Test
     public void payDoubleRent() throws IOException, InvalidFormatException, NotAProperty {
-        GameController controller = new GameController(2);
+        GameController controller = new GameController(2,0);
         controller.getActivePlayer().setLocation(1);
         controller.buyProperty(controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation()));
         controller.getActivePlayer().setLocation(3);
@@ -168,7 +168,7 @@ public class GameControllerTestV2 {
 
     @Test
     public void PayRentWithHouse() throws IOException, InvalidFormatException, NotAProperty {
-        GameController controller = new GameController(2);
+        GameController controller = new GameController(2,0);
         controller.getActivePlayer().setLocation(1);
         controller.buyProperty(controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation()));
         controller.getActivePlayer().setLocation(3);
@@ -186,7 +186,7 @@ public class GameControllerTestV2 {
 
     @Test
     public void testMortageProperty() throws IOException, InvalidFormatException {
-        GameController controller = new GameController(2);
+        GameController controller = new GameController(2,0);
         controller.getActivePlayer().setLocation(3);
         Property prop = (Property) controller.getBoard().getBoardPiece(controller.getActivePlayer().getLocation());
         int initialBalance = controller.getActivePlayer().getBalance();
@@ -212,7 +212,7 @@ public class GameControllerTestV2 {
 
     @Test
     public void testValidAuction() throws IOException, InvalidFormatException{
-        GameController gc = new GameController(3);
+        GameController gc = new GameController(3,0);
         HashMap<Player, Integer> bids = new HashMap<>();
         
         //Test for highest bid duplicates
@@ -248,7 +248,7 @@ public class GameControllerTestV2 {
     
     @Test
     public void testAuctionPass() throws IOException, InvalidFormatException, NotAProperty{
-        GameController gc = new GameController(2);
+        GameController gc = new GameController(2,0);
         gc.getActivePlayer().setLocation(3);
         HashMap<Player, Integer> bids = new HashMap<>();
         bids.put(gc.getAmountOfPlayers().get(0), 100);
@@ -260,7 +260,7 @@ public class GameControllerTestV2 {
     
     @Test
     public void testAuctionPropFail() throws IOException, InvalidFormatException, NotAProperty{
-        GameController gc = new GameController(2);
+        GameController gc = new GameController(2,0);
         gc.getActivePlayer().setLocation(0);
         HashMap<Player, Integer> bids = new HashMap<>();
         bids.put(gc.getAmountOfPlayers().get(0), 100);
@@ -276,7 +276,7 @@ public class GameControllerTestV2 {
     
     @Test
     public void testPossibleHouseImprovements() throws IOException, InvalidFormatException, NotAProperty{
-        GameController gc = new GameController(2);
+        GameController gc = new GameController(2,0);
         Player player = gc.getActivePlayer();
         gc.getActivePlayer().setBalance(10000);
         BoardPiece prop1 = gc.getBoard().getBoardLocations().get(1);

@@ -9,9 +9,11 @@ import com.mycompany.propertytycoon.Player;
 import com.mycompany.propertytycoon.exceptions.NotAProperty;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
 import com.mycompany.propertytycoon.gui.utils.View;
+import com.mycompany.propertytycoon.log.Log;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -42,6 +44,7 @@ public class AuctionController implements Initializable {
 
     private StageManager SM = StageManager.getInstance();
     private GameVariableStorage GVS = GameVariableStorage.getInstance();
+    private Log log = Log.getInstance();
 
     private ArrayList<TextField> bids = new ArrayList<>();
     private ArrayList<CheckBox> checks = new ArrayList<>();
@@ -209,46 +212,30 @@ public class AuctionController implements Initializable {
         confirm.setOnAction(e -> {
             if (numbersOnly() && checkedBoxes()) {
                 HashMap<Player, Integer> hm = new HashMap<>();
-                /*
-                if (!p1_bid.getText().isEmpty()) {
-                    hm.put(SM.getGame().getAmountOfPlayers().get(0), Integer.parseInt(p1_bid.getText()));
-                }
-                
-                if (!p2_bid.getText().isEmpty()) {
-                    hm.put(SM.getGame().getAmountOfPlayers().get(1), Integer.parseInt(p2_bid.getText()));
-                }
-                
-                if (!p3_bid.getText().isEmpty()) {
-                    hm.put(SM.getGame().getAmountOfPlayers().get(2), Integer.parseInt(p3_bid.getText()));
-                }
-                if (!p4_bid.getText().isEmpty()) {
-                    hm.put(SM.getGame().getAmountOfPlayers().get(3), Integer.parseInt(p4_bid.getText()));
-                }
-                if (!p5_bid.getText().isEmpty()) {
-                    hm.put(SM.getGame().getAmountOfPlayers().get(4), Integer.parseInt(p5_bid.getText()));
-                }
-                if (!p6_bid.getText().isEmpty()) {
-                    hm.put(SM.getGame().getAmountOfPlayers().get(5), Integer.parseInt(p6_bid.getText()));
-                }
-                */
                 for (int i = 0; i < bids.size(); i++) {
-                    if(!bids.get(i).getText().isEmpty()) {
+                    if (!bids.get(i).getText().isEmpty()) {
                         hm.put(SM.getGame().getAmountOfPlayers().get(i), Integer.parseInt(bids.get(i).getText()));
                     }
                 }
-                if (SM.getGame().checkValidAuction(hm)) {
-                    try {
-                        SM.getGame().auction(hm);
-                    } catch (NotAProperty exp) {
-                        System.err.print(exp);
+                if (!allZero(hm)) {
+                    if (SM.getGame().checkValidAuction(hm)) {
+                        try {
+                            SM.getGame().auction(hm);
+                        } catch (NotAProperty exp) {
+                            System.err.print(exp);
+                        }
+                        SM.changeScene(View.GAME);
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Player bids");
+                        alert.setHeaderText("Two or more players have the same maximum bid.");
+                        alert.setContentText("Please bid again.");
+                        alert.showAndWait();
                     }
-                    SM.changeScene(View.GAME);
                 } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Player bids");
-                    alert.setHeaderText("Two or more players have the same maximum bid.");
-                    alert.setContentText("Please bid again.");
-                    alert.showAndWait();
+                    SM.changeScene(View.GAME);
+                    log.addToLog("No players bid on property.");
+                    
                 }
 
             } else {
@@ -281,6 +268,16 @@ public class AuctionController implements Initializable {
             }
         }
         return checked;
+    }
+
+    public boolean allZero(HashMap<Player, Integer> bids) {
+        boolean allZero = true;
+        for (Entry<Player, Integer> bid : bids.entrySet()) {
+            if (bid.getValue() != 0) {
+                allZero = false;
+            }
+        }
+        return allZero;
     }
 
 }

@@ -6,21 +6,11 @@
 package com.mycompany.propertytycoon.gui.game;
 
 import com.mycompany.propertytycoon.Player;
-import com.mycompany.propertytycoon.boardpieces.FreeParkingPiece;
-import com.mycompany.propertytycoon.boardpieces.GoPiece;
-import com.mycompany.propertytycoon.boardpieces.GoToJailPiece;
-import com.mycompany.propertytycoon.boardpieces.OpportunityKnocksPiece;
-import com.mycompany.propertytycoon.boardpieces.PotLuckPiece;
 import com.mycompany.propertytycoon.boardpieces.Property;
-import com.mycompany.propertytycoon.boardpieces.TaxPiece;
-import com.mycompany.propertytycoon.cards.Card;
-import com.mycompany.propertytycoon.cards.OpportunityKnocks;
 import com.mycompany.propertytycoon.exceptions.NotAProperty;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
 import com.mycompany.propertytycoon.gui.utils.View;
 import com.mycompany.propertytycoon.log.Log;
-import com.sun.javafx.scene.CameraHelper;
-import java.awt.event.MouseEvent;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -31,20 +21,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -75,13 +60,11 @@ public class GameController implements Initializable {
     @FXML
     private AnchorPane anchorpane_left, anchorpane_right;
 
-    private Log logObject = Log.getInstance();
+    private final Log logObject = Log.getInstance();
 
-    private StageManager SM = StageManager.getInstance();
+    private final StageManager SM = StageManager.getInstance();
 
-    private GameVariableStorage GVS = GameVariableStorage.getInstance();
-
-    private int i = 0;
+    private final GameVariableStorage GVS = GameVariableStorage.getInstance();
 
     /**
      * Initializes the controller class.

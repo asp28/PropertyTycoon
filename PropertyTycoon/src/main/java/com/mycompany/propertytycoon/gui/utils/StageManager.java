@@ -30,7 +30,7 @@ public class StageManager {
 
     private Stage currStage;
     
-    private int playerNum;
+    private int playerNum, botNum;
     
     private GameController game;
     
@@ -100,9 +100,17 @@ public class StageManager {
         return playerNum;
     }
     
-    public void createGameController(int players) {
+    public void setBotNumber(int num) {
+        botNum = num;
+    }
+    
+    public int getBotNum() {
+        return botNum;
+    }
+    
+    public void createGameController(int players, int bots) {
         try {
-            game = new GameController(players);
+            game = new GameController(players, bots);
         } catch (IOException | InvalidFormatException e) {
 
         }

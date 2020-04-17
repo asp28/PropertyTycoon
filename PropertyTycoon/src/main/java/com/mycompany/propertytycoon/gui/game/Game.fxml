@@ -92,7 +92,7 @@
       </StackPane>
    </center>
    <right>
-      <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <StackPane prefHeight="150.0" prefWidth="250.0" BorderPane.alignment="CENTER">
          <children>
             <VBox fx:id="right" prefHeight="760.0" prefWidth="210.0" style="-fx-spacing: 10;">
                <children>
