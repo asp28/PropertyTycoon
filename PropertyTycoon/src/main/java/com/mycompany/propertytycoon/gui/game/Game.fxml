@@ -96,14 +96,14 @@
          <children>
             <VBox fx:id="right" prefHeight="760.0" prefWidth="210.0" style="-fx-spacing: 10;">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="210.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="210.0" spacing="10.0">
                      <children>
                         <ImageView fx:id="profileToken" fitHeight="68.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../../resources/img/BOOT.png" />
                            </image>
                         </ImageView>
-                        <VBox prefHeight="26.0" prefWidth="130.0" style="-fx-border-color: lightgrey;">
+                        <VBox prefHeight="41.0" prefWidth="161.0" style="-fx-border-color: lightgrey;">
                            <children>
                               <Label fx:id="playerName" prefHeight="19.0" prefWidth="174.0" style="-fx-border-width: 0;" text="Player" />
                               <Label fx:id="playerMoney" prefHeight="17.0" prefWidth="144.0" style="-fx-border-width: 0;" text="Money" />
