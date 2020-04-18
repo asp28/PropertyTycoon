@@ -213,8 +213,8 @@ public class GameController implements Initializable {
     }
 
     public void playerProfile() throws FileNotFoundException {
-        String pic = SM.getGame().getActivePlayer().getToken() + ".png";
-        FileInputStream inputstream = new FileInputStream("./src/main/java/resources/img/" + pic);
+        String pic = SM.getGame().getActivePlayer().getToken() + ".gif";
+        FileInputStream inputstream = new FileInputStream("./src/main/java/resources/img/ProfileAnimations/" + pic);
         Image image = new Image(inputstream) {
         };
         playerName.setText("Player: " + SM.getGame().getActivePlayer().getName());
