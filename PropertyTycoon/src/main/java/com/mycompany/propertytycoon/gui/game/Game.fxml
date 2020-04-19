@@ -66,7 +66,7 @@
                   <ImageView fx:id="phoneToken" fitHeight="31.0" fitWidth="27.0" layoutX="69.0" layoutY="504.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="10" GridPane.valignment="BOTTOM" />
                </children>
             </GridPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
+            <BorderPane fx:id="bPane" prefHeight="200.0" prefWidth="200.0">
                <center>
                   <VBox fx:id="middle_gray" alignment="CENTER" fillWidth="false" prefHeight="493.0" prefWidth="436.0" style="-fx-background-color: grey; -fx-opacity: 0.8;" BorderPane.alignment="CENTER">
                      <children>
@@ -218,8 +218,8 @@
                            </VBox.margin>
                            <children>
                               <Label alignment="CENTER" prefHeight="17.0" prefWidth="208.0" text="Board Piece Info" />
-                              <ImageView fitHeight="206.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label alignment="TOP_LEFT" prefHeight="67.0" prefWidth="214.0" style="-fx-border-color: lightGrey;" text="Label" />
+                              <ImageView  fx:id="leftPic" fitHeight="206.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label fx:id="leftSide" alignment="CENTER" prefHeight="67.0" prefWidth="214.0" style="-fx-border-color: lightGrey;" />
                            </children>
                            <opaqueInsets>
                               <Insets />

@@ -27,6 +27,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -43,9 +44,9 @@ import javafx.scene.text.TextAlignment;
 public class GameController implements Initializable {
 
     @FXML
-    private Button roll, buy, sell, houses, trade, mortgage, endTurn, buy_yes, buy_no;
+    private Button roll, gg, sell, houses, trade, mortgage, endTurn, buy_yes, buy_no;
     @FXML
-    private Label playerName, playerMoney;
+    private Label playerName, playerMoney, leftSide;
     @FXML
     private ImageView profileToken, catToken, bootToken, spoonToken, gobletToken, hatstandToken, phoneToken;
 
@@ -75,6 +76,7 @@ public class GameController implements Initializable {
         anchorpane_left.setVisible(false);
         anchorpane_right.setVisible(false);
         middle_gray.setVisible(false);
+        bPane.toBack();
 
         log();
 
@@ -118,6 +120,7 @@ public class GameController implements Initializable {
             System.out.print(GVS.getActions() + " " + remaining + "\n");
 
             if (GVS.getActions().contains("BUY")) {
+                bPane.toFront();
                 anchorpane_right.setVisible(true);
                 anchorpane_left.setVisible(true);
                 middle_gray.setVisible(true);
@@ -187,6 +190,7 @@ public class GameController implements Initializable {
                 GVS.setAuctionProperty(SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()));
                 SM.changeScene(View.AUCTION);
             } else {
+                bPane.toBack();
                 anchorpane_right.setVisible(false);
                 anchorpane_left.setVisible(false);
                 middle_gray.setVisible(false);
@@ -206,7 +210,7 @@ public class GameController implements Initializable {
             Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        for (int i = 1; i < 40; i++) {
+        for (int i = 0; i < 40; i++) {
             LocationNames(i, SM.getGame().getBoard().getBoardLocations().get(i).getTitle());
         }
 
@@ -528,7 +532,20 @@ public class GameController implements Initializable {
 
     public void LocationNames(int num, String name) {
         Label labelName = new Label(name);
+        System.out.print(name);
+
         switch (num) {
+
+            case 0:
+                labelName.setAlignment(Pos.TOP_CENTER);
+                labelName.setWrapText(true);
+                labelName.setPrefWidth(100);
+                labelName.setText(name);
+                labelName.setMinHeight(100);
+                labelName.setTextAlignment(TextAlignment.CENTER);
+                labelName.setFont(new Font(0));
+                gPane.add(labelName, 0, 10);
+                break;
 
             case 1:
                 labelName.setRotate(90);
@@ -632,6 +649,18 @@ public class GameController implements Initializable {
 
                 break;
 
+            case 10:
+                labelName.setRotate(90);
+                labelName.setAlignment(Pos.TOP_CENTER);
+                labelName.setWrapText(true);
+                labelName.setPrefWidth(100);
+                labelName.setMinHeight(100);
+                labelName.setTextAlignment(TextAlignment.CENTER);
+                labelName.setFont(new Font(0));
+                gPane.add(labelName, 0, 0);
+
+                break;
+
             case 11:
                 labelName.setRotate(180);
                 labelName.setAlignment(Pos.CENTER);
@@ -727,6 +756,17 @@ public class GameController implements Initializable {
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 9, 0);
+
+                break;
+
+            case 20:
+                labelName.setRotate(180);
+                labelName.setAlignment(Pos.CENTER);
+                labelName.setWrapText(true);
+                labelName.setMinSize(100, 100);
+                labelName.setTextAlignment(TextAlignment.CENTER);
+                labelName.setFont(new Font(0));
+                gPane.add(labelName, 10, 0);
 
                 break;
 
@@ -929,6 +969,9 @@ public class GameController implements Initializable {
                 break;
 
         }
+
+        labelName.addEventFilter(MouseEvent.MOUSE_PRESSED, event
+                -> leftSide(labelName));
     }
 
     public void updateControls() throws FileNotFoundException {
@@ -938,11 +981,8 @@ public class GameController implements Initializable {
 
     }
 
-//   @FXML
-//    private void mouseEntered(MouseEvent e) {
-//        Node source = (Node)e.getSource() ;
-//        Integer colIndex = gPane.getColumnIndex(source);
-//        Integer rowIndex = gPane.getRowIndex(source);
-//        System.out.printf("Mouse entered cell [%d, %d]%n", colIndex.intValue(), rowIndex.intValue());
-//    }
+    public void leftSide(Label n) {
+        leftSide.setText(n.getText());
+    }
+
 }
