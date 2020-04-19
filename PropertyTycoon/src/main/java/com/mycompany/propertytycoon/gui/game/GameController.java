@@ -169,6 +169,7 @@ public class GameController implements Initializable {
             } catch (NotAProperty exp) {
                 System.err.print(exp);
             }
+             bPane.toBack();
             anchorpane_right.setVisible(false);
             anchorpane_left.setVisible(false);
             middle_gray.setVisible(false);
