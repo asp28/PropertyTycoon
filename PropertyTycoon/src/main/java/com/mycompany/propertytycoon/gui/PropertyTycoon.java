@@ -124,7 +124,7 @@ public class PropertyTycoon extends Application {
         });
         two.setOnAction(event -> {
             try {
-                gl = createGame(2);
+                gl = createGame(2, 0);
             } catch (IOException | InvalidFormatException e) {
 
             }
@@ -165,7 +165,7 @@ public class PropertyTycoon extends Application {
         });
         three.setOnAction(event -> {
             try {
-                gl = createGame(3);
+                gl = createGame(3, 0);
             } catch (IOException | InvalidFormatException e) {
 
             }
@@ -207,7 +207,7 @@ public class PropertyTycoon extends Application {
         });
         four.setOnAction(event -> {
             try {
-                gl = createGame(4);
+                gl = createGame(4, 0);
             } catch (IOException | InvalidFormatException e) {
 
             }
@@ -252,7 +252,7 @@ public class PropertyTycoon extends Application {
         });
         five.setOnAction(event -> {
             try {
-                gl = createGame(5);
+                gl = createGame(5, 0);
             } catch (IOException | InvalidFormatException e) {
 
             }
@@ -300,7 +300,7 @@ public class PropertyTycoon extends Application {
         });
         six.setOnAction(event -> {
             try {
-                gl = createGame(6);
+                gl = createGame(6, 0);
             } catch (IOException | InvalidFormatException e) {
 
             }
@@ -361,7 +361,7 @@ public class PropertyTycoon extends Application {
     }
 
     public void setGamePlayers(int players) throws IOException, InvalidFormatException {
-        gl = createGame(players);
+        gl = createGame(players, players);
         gp = new GridPane();
         ListView<String> tokens1 = new ListView<>();
         tokens1.setOrientation(Orientation.VERTICAL);
@@ -489,8 +489,8 @@ public class PropertyTycoon extends Application {
      * @throws IOException
      * @throws InvalidFormatException
      */
-    public GameController createGame(int num) throws IOException, InvalidFormatException {
-        gl = new GameController(num);
+    public GameController createGame(int num, int bot) throws IOException, InvalidFormatException {
+        gl = new GameController(num, bot);
         for (Player p : gl.getAmountOfPlayers()) {
             p.setToken("spoon");
         }
@@ -1142,7 +1142,7 @@ public class PropertyTycoon extends Application {
      * GAME CAN THEN BEGIN
      */
     public void playGame() throws IOException, InvalidFormatException {
-        createGame(0);
+        createGame(0, 0);
         for (Player p : gl.getAmountOfPlayers()) {
             p.setName("GET NAME");
             p.setToken("GET TOKEN");

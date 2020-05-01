@@ -16,7 +16,7 @@ public class GameControllerTest {
 
     @Test
     public void testGetAction() throws IOException, InvalidFormatException {
-        GameController controller = new GameController(2);
+        GameController controller = new GameController(2,0);
 
         // Test what actions are in the arrayList if the player lands at Go and owns 0 properties
         ArrayList<String> expected = new ArrayList<>();
@@ -85,7 +85,7 @@ public class GameControllerTest {
 
     @Test
     public void testDoActions() throws IOException, InvalidFormatException {
-        GameController controller = new GameController(2);
+        GameController controller = new GameController(2,0);
         ArrayList<String> actions = new ArrayList<>();
         actions.add("GOTOJAIL");
         actions.add("END");
@@ -99,7 +99,7 @@ public class GameControllerTest {
 
     @Test
     public void testMove() throws IOException, InvalidFormatException {
-        GameController controller = new GameController(2);
+        GameController controller = new GameController(2,0);
         controller.move();
         System.out.println(controller.getActivePlayer().getLocation());
         Assert.assertTrue(controller.getActivePlayer().getLocation() > 0);
@@ -108,7 +108,7 @@ public class GameControllerTest {
 
     @Test
     public void gameloopsAroundBoard() throws IOException, InvalidFormatException {
-        GameController controller = new GameController(2);
+        GameController controller = new GameController(2,0);
         controller.getActivePlayer().setLocation(40);
         controller.move();
         System.out.println(controller.getActivePlayer().getLocation());
@@ -123,7 +123,7 @@ public class GameControllerTest {
 
     @Test
     public void testBuyButton() throws IOException, InvalidFormatException, NotAProperty {
-        GameController controller = new GameController(2);
+        GameController controller = new GameController(2,0);
         controller.getActivePlayer().setLocation(6);
         ColouredProperty cp = (ColouredProperty) controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation());
         //System.out.println(cp.getTitle());
@@ -136,7 +136,7 @@ public class GameControllerTest {
 
     @Test
     public void buyHouse() throws IOException, InvalidFormatException, NotAProperty {
-        GameController controller = new GameController(2);
+        GameController controller = new GameController(2,0);
         controller.getActivePlayer().setLocation(3);
         ColouredProperty cp = (ColouredProperty) controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation());
         //System.out.println(cp.getTitle());
@@ -150,7 +150,7 @@ public class GameControllerTest {
 
     @Test
     public void testIfAllColoursOwned() throws IOException, InvalidFormatException, NotAProperty {
-        GameController controller = new GameController(2);
+        GameController controller = new GameController(2,0);
 
         controller.getActivePlayer().setLocation(1);
         ColouredProperty cp = (ColouredProperty) controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation());
@@ -172,7 +172,7 @@ public class GameControllerTest {
 
     @Test
     public void testHouseInLineCountAndSellHouse() throws IOException, InvalidFormatException, NotAProperty {
-        GameController controller = new GameController(2);
+        GameController controller = new GameController(2,0);
 
         controller.getActivePlayer().setLocation(1);
         ColouredProperty cp = (ColouredProperty) controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation());
@@ -202,7 +202,7 @@ public class GameControllerTest {
     
     @Test
     public void mortgagePropertyTest() throws IOException, InvalidFormatException{
-        GameController controller = new GameController(2);
+        GameController controller = new GameController(2,0);
         controller.getActivePlayer().setLocation(3);
         Property prop = (Property) controller.getBoard().getBoardPiece(controller.getActivePlayer().getLocation());
         int initialBalance = controller.getActivePlayer().getBalance();

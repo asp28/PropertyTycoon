@@ -6,21 +6,11 @@
 package com.mycompany.propertytycoon.gui.game;
 
 import com.mycompany.propertytycoon.Player;
-import com.mycompany.propertytycoon.boardpieces.FreeParkingPiece;
-import com.mycompany.propertytycoon.boardpieces.GoPiece;
-import com.mycompany.propertytycoon.boardpieces.GoToJailPiece;
-import com.mycompany.propertytycoon.boardpieces.OpportunityKnocksPiece;
-import com.mycompany.propertytycoon.boardpieces.PotLuckPiece;
 import com.mycompany.propertytycoon.boardpieces.Property;
-import com.mycompany.propertytycoon.boardpieces.TaxPiece;
-import com.mycompany.propertytycoon.cards.Card;
-import com.mycompany.propertytycoon.cards.OpportunityKnocks;
 import com.mycompany.propertytycoon.exceptions.NotAProperty;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
 import com.mycompany.propertytycoon.gui.utils.View;
 import com.mycompany.propertytycoon.log.Log;
-import com.sun.javafx.scene.CameraHelper;
-import java.awt.event.MouseEvent;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -31,20 +21,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -58,9 +44,9 @@ import javafx.scene.text.TextAlignment;
 public class GameController implements Initializable {
 
     @FXML
-    private Button roll, buy, sell, houses, trade, mortgage, endTurn, buy_yes, buy_no;
+    private Button roll, gg, sell, houses, trade, mortgage, endTurn, buy_yes, buy_no;
     @FXML
-    private Label playerName, playerMoney;
+    private Label playerName, playerMoney, leftSide;
     @FXML
     private ImageView profileToken, catToken, bootToken, spoonToken, gobletToken, hatstandToken, phoneToken;
 
@@ -75,13 +61,11 @@ public class GameController implements Initializable {
     @FXML
     private AnchorPane anchorpane_left, anchorpane_right;
 
-    private Log logObject = Log.getInstance();
+    private final Log logObject = Log.getInstance();
 
-    private StageManager SM = StageManager.getInstance();
+    private final StageManager SM = StageManager.getInstance();
 
-    private GameVariableStorage GVS = GameVariableStorage.getInstance();
-
-    private int i = 0;
+    private final GameVariableStorage GVS = GameVariableStorage.getInstance();
 
     /**
      * Initializes the controller class.
@@ -92,6 +76,7 @@ public class GameController implements Initializable {
         anchorpane_left.setVisible(false);
         anchorpane_right.setVisible(false);
         middle_gray.setVisible(false);
+        bPane.toBack();
 
         log();
 
@@ -135,6 +120,7 @@ public class GameController implements Initializable {
             System.out.print(GVS.getActions() + " " + remaining + "\n");
 
             if (GVS.getActions().contains("BUY")) {
+                bPane.toFront();
                 anchorpane_right.setVisible(true);
                 anchorpane_left.setVisible(true);
                 middle_gray.setVisible(true);
@@ -183,6 +169,7 @@ public class GameController implements Initializable {
             } catch (NotAProperty exp) {
                 System.err.print(exp);
             }
+             bPane.toBack();
             anchorpane_right.setVisible(false);
             anchorpane_left.setVisible(false);
             middle_gray.setVisible(false);
@@ -204,6 +191,7 @@ public class GameController implements Initializable {
                 GVS.setAuctionProperty(SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()));
                 SM.changeScene(View.AUCTION);
             } else {
+                bPane.toBack();
                 anchorpane_right.setVisible(false);
                 anchorpane_left.setVisible(false);
                 middle_gray.setVisible(false);
@@ -223,15 +211,15 @@ public class GameController implements Initializable {
             Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        for (int i = 1; i < 40; i++) {
+        for (int i = 0; i < 40; i++) {
             LocationNames(i, SM.getGame().getBoard().getBoardLocations().get(i).getTitle());
         }
 
     }
 
     public void playerProfile() throws FileNotFoundException {
-        String pic = SM.getGame().getActivePlayer().getToken() + ".png";
-        FileInputStream inputstream = new FileInputStream("./src/main/java/resources/img/" + pic);
+        String pic = SM.getGame().getActivePlayer().getToken() + ".gif";
+        FileInputStream inputstream = new FileInputStream("./src/main/java/resources/img/ProfileAnimations/" + pic);
         Image image = new Image(inputstream) {
         };
         playerName.setText("Player: " + SM.getGame().getActivePlayer().getName());
@@ -545,7 +533,20 @@ public class GameController implements Initializable {
 
     public void LocationNames(int num, String name) {
         Label labelName = new Label(name);
+        System.out.print(name);
+
         switch (num) {
+
+            case 0:
+                labelName.setAlignment(Pos.TOP_CENTER);
+                labelName.setWrapText(true);
+                labelName.setPrefWidth(100);
+                labelName.setText(name);
+                labelName.setMinHeight(100);
+                labelName.setTextAlignment(TextAlignment.CENTER);
+                labelName.setFont(new Font(0));
+                gPane.add(labelName, 0, 10);
+                break;
 
             case 1:
                 labelName.setRotate(90);
@@ -649,6 +650,18 @@ public class GameController implements Initializable {
 
                 break;
 
+            case 10:
+                labelName.setRotate(90);
+                labelName.setAlignment(Pos.TOP_CENTER);
+                labelName.setWrapText(true);
+                labelName.setPrefWidth(100);
+                labelName.setMinHeight(100);
+                labelName.setTextAlignment(TextAlignment.CENTER);
+                labelName.setFont(new Font(0));
+                gPane.add(labelName, 0, 0);
+
+                break;
+
             case 11:
                 labelName.setRotate(180);
                 labelName.setAlignment(Pos.CENTER);
@@ -744,6 +757,17 @@ public class GameController implements Initializable {
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 9, 0);
+
+                break;
+
+            case 20:
+                labelName.setRotate(180);
+                labelName.setAlignment(Pos.CENTER);
+                labelName.setWrapText(true);
+                labelName.setMinSize(100, 100);
+                labelName.setTextAlignment(TextAlignment.CENTER);
+                labelName.setFont(new Font(0));
+                gPane.add(labelName, 10, 0);
 
                 break;
 
@@ -946,6 +970,9 @@ public class GameController implements Initializable {
                 break;
 
         }
+
+        labelName.addEventFilter(MouseEvent.MOUSE_PRESSED, event
+                -> leftSide(labelName));
     }
 
     public void updateControls() throws FileNotFoundException {
@@ -955,11 +982,8 @@ public class GameController implements Initializable {
 
     }
 
-//   @FXML
-//    private void mouseEntered(MouseEvent e) {
-//        Node source = (Node)e.getSource() ;
-//        Integer colIndex = gPane.getColumnIndex(source);
-//        Integer rowIndex = gPane.getRowIndex(source);
-//        System.out.printf("Mouse entered cell [%d, %d]%n", colIndex.intValue(), rowIndex.intValue());
-//    }
+    public void leftSide(Label n) {
+        leftSide.setText(n.getText());
+    }
+
 }

@@ -66,7 +66,7 @@
                   <ImageView fx:id="phoneToken" fitHeight="31.0" fitWidth="27.0" layoutX="69.0" layoutY="504.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="10" GridPane.valignment="BOTTOM" />
                </children>
             </GridPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
+            <BorderPane fx:id="bPane" prefHeight="200.0" prefWidth="200.0">
                <center>
                   <VBox fx:id="middle_gray" alignment="CENTER" fillWidth="false" prefHeight="493.0" prefWidth="436.0" style="-fx-background-color: grey; -fx-opacity: 0.8;" BorderPane.alignment="CENTER">
                      <children>
@@ -92,18 +92,18 @@
       </StackPane>
    </center>
    <right>
-      <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <StackPane prefHeight="150.0" prefWidth="250.0" BorderPane.alignment="CENTER">
          <children>
             <VBox fx:id="right" prefHeight="760.0" prefWidth="210.0" style="-fx-spacing: 10;">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="210.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="210.0" spacing="10.0">
                      <children>
                         <ImageView fx:id="profileToken" fitHeight="68.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../../resources/img/BOOT.png" />
                            </image>
                         </ImageView>
-                        <VBox prefHeight="26.0" prefWidth="130.0" style="-fx-border-color: lightgrey;">
+                        <VBox prefHeight="41.0" prefWidth="161.0" style="-fx-border-color: lightgrey;">
                            <children>
                               <Label fx:id="playerName" prefHeight="19.0" prefWidth="174.0" style="-fx-border-width: 0;" text="Player" />
                               <Label fx:id="playerMoney" prefHeight="17.0" prefWidth="144.0" style="-fx-border-width: 0;" text="Money" />
@@ -218,8 +218,8 @@
                            </VBox.margin>
                            <children>
                               <Label alignment="CENTER" prefHeight="17.0" prefWidth="208.0" text="Board Piece Info" />
-                              <ImageView fitHeight="206.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label alignment="TOP_LEFT" prefHeight="67.0" prefWidth="214.0" style="-fx-border-color: lightGrey;" text="Label" />
+                              <ImageView  fx:id="leftPic" fitHeight="206.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label fx:id="leftSide" alignment="CENTER" prefHeight="67.0" prefWidth="214.0" style="-fx-border-color: lightGrey;" />
                            </children>
                            <opaqueInsets>
                               <Insets />

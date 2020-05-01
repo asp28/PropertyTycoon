@@ -49,7 +49,7 @@ public class GameController {
      * @throws IOException
      * @throws InvalidFormatException
      */
-    public GameController(int amountOfPlayer) throws IOException, InvalidFormatException {
+    public GameController(int amountOfPlayer, int amountOfBots) throws IOException, InvalidFormatException {
         for (int i = 0; i < amountOfPlayer; i++) {
             Player player = new Player();
             player.setName("Player" + i);
@@ -93,10 +93,9 @@ public class GameController {
         int newLocation = 0;
         if (Objects.equals(rolls.getKey(), rolls.getValue()) && doublesRolled < 3) {
             log.addToLog(activePlayer.getName() + " has rolled a double " + rolls.getKey() + ".");
-            moveTotal += rolls.getKey() + rolls.getValue();
+            newLocation += rolls.getKey() + rolls.getValue();
             doublesRolled++;
             actions.add("ROLL");
-            newLocation = moveTotal;
             activePlayer.setLocation(newLocation);
             int i = amountOfPlayers.indexOf(activePlayer);
             playerLocations.set(i, newLocation);
@@ -104,16 +103,15 @@ public class GameController {
             log.addToLog(activePlayer.getName() + " was sent to jail for rolling 3 doubles in a row.");
             goToJail();
         } else {
-            moveTotal += rolls.getKey() + rolls.getValue();
+            newLocation += rolls.getKey() + rolls.getValue();
             log.addToLog(activePlayer.getName() + " has rolled " + rolls.getKey() + " and " + rolls.getValue() + ".");
             //Set location values
-            if (activePlayer.getLocation() + moveTotal > 40) {
+            if (activePlayer.getLocation() + newLocation > 40) {
                 activePlayer.incrementGameloops();
-                moveTotal = (activePlayer.getLocation() + moveTotal) - 40;
-                newLocation = moveTotal;
+                newLocation = (activePlayer.getLocation() + newLocation) - 40;
                 passingGo();
             } else {
-                newLocation = activePlayer.getLocation() + moveTotal;
+                newLocation = activePlayer.getLocation() + newLocation;
             }
             activePlayer.setLocation(newLocation);
             int i = amountOfPlayers.indexOf(activePlayer);
