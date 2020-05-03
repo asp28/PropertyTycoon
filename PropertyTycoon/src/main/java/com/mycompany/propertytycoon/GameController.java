@@ -13,17 +13,15 @@ import java.util.*;
 import java.util.Map.Entry;
 
 public class GameController {
-    
+
     private static Log log = Log.getInstance();
-    
+
     private ArrayList<Player> amountOfPlayers = new ArrayList<>();
     private ArrayList<Integer> playerLocations = new ArrayList<>();
     private ArrayList<OpportunityKnocks> oppocards = new ArrayList<>();
     private ArrayList<PotLuck> potluckcards = new ArrayList<>();
     private Board board;
     private Bank bank;
-    
-    
 
     private Player activePlayer;
     private Pair<Integer, Integer> rolls;
@@ -427,13 +425,22 @@ public class GameController {
             OpportunityKnocks card = oppocards.get(0);
             log.addToLog(card.getDescription());
             doCardAction(card);
-            Collections.rotate(oppocards, -1);
+            if (card.getAction().equals("Retained by the player until needed. No resale or trade value")) {
+                oppocards.remove(card);
+            } else {
+                Collections.rotate(oppocards, -1);
+            }
+
         } else if (board.getBoardPiece(activePlayer.getLocation()) instanceof PotLuckPiece) {
             log.addToLog(activePlayer.getName() + " has picked up a potluck card.");
             PotLuck card = potluckcards.get(0);
             log.addToLog(card.getDescription());
             doCardAction(card);
-            Collections.rotate(potluckcards, -1);
+            if (card.getAction().equals("Retained by the player until needed. No resale or trade value")) {
+                potluckcards.remove(card);
+            } else {
+                Collections.rotate(potluckcards, -1);
+            }
         } else {
             //throw exception
         }
@@ -484,8 +491,12 @@ public class GameController {
                     break;
                 }
                 if (opportunityKnocks.getDescription().equalsIgnoreCase("go back 3 spaces")) {
-                    //fix error of if location is 2 or less, it should minus the rest from 40
-                    activePlayer.setLocation(activePlayer.getLocation() - 3);
+                    if (activePlayer.getLocation() - 3 < 0) {
+                        int left = 3 - activePlayer.getLocation();
+                        activePlayer.setLocation(40 - left);
+                    } else {
+                        activePlayer.setLocation(activePlayer.getLocation() - 3);
+                    }
                     break;
                 }
                 if (opportunityKnocks.getDescription().equalsIgnoreCase("Advance to Skywalker Drive. If you pass GO collect £200")) {
@@ -522,7 +533,7 @@ public class GameController {
                 fpp2.setBalance(fpp2.getBalance() + 20);
                 break;
             case "Retained by the player until needed. No resale or trade value":
-                //give card to player, move to bottom of pile once used.
+                activePlayer.setGOJF(opportunityKnocks);
                 break;
         }
     }
@@ -571,10 +582,12 @@ public class GameController {
                 activePlayer.increaseBalance(25);
                 break;
             case "Player receives £10 from each player":
-                for (Player p : amountOfPlayers) {
+                amountOfPlayers.stream().map((p) -> {
                     p.increaseBalance(-10);
+                    return p;
+                }).forEachOrdered((_item) -> {
                     activePlayer.increaseBalance(10);
-                }
+                });
                 break;
             case "As the card says":
                 goToJail();
@@ -583,7 +596,7 @@ public class GameController {
                 activePlayer.setLocation(0);
                 break;
             case "Retained by the player until needed. No resale or trade value":
-                //give card to player, move to bottom of pile once used.
+                activePlayer.setGOJF(potluck);
                 break;
             case "Player pays £50 to the bank":
                 activePlayer.increaseBalance(-50);
@@ -657,32 +670,31 @@ public class GameController {
         }
         return true;
     }
-    
-    public ArrayList<ColouredProperty> listOfHousableProps(){
+
+    public ArrayList<ColouredProperty> listOfHousableProps() {
         ArrayList<ColouredProperty> housableProps = new ArrayList<>();
-        for (Property prop : activePlayer.getOwnedProperties()){
-            if (prop instanceof ColouredProperty){
+        for (Property prop : activePlayer.getOwnedProperties()) {
+            if (prop instanceof ColouredProperty) {
                 ColouredProperty propColour = (ColouredProperty) prop;
                 boolean checkColour = checkAllColoursOwned(propColour);
                 boolean checkHouse = checkHouseCount(propColour);
-                if (checkColour && checkHouse){
+                if (checkColour && checkHouse) {
                     housableProps.add(propColour);
                 }
             }
         }
         return housableProps;
     }
-    
-    public void buyHouse(Property prop){
+
+    public void buyHouse(Property prop) {
         ColouredProperty propColour = (ColouredProperty) prop;
-        if (propColour.getHouseCost() <= activePlayer.getBalance() && propColour.getHouseCount() <= 5 && checkHouseCount(prop)){
+        if (propColour.getHouseCost() <= activePlayer.getBalance() && propColour.getHouseCount() <= 5 && checkHouseCount(prop)) {
             activePlayer.decreaseBalance(propColour.getHouseCost());
             propColour.setHouseCount(propColour.getHouseCount() + 1);
             int rentValue = propColour.getHouses().get(propColour.getHouseCount());
             propColour.setRent(Integer.toString(rentValue));
             log.addToLog(activePlayer.getName() + "has bought a house on" + prop.getTitle());
-        }
-        else{
+        } else {
             log.addToLog(activePlayer.getName() + "has insuffient funds or has the maximum amount of houses");
         }
     }
@@ -709,45 +721,44 @@ public class GameController {
         }
     }
 
-    public boolean checkValidAuction(HashMap<Player,Integer> bids){
+    public boolean checkValidAuction(HashMap<Player, Integer> bids) {
         int maxBid = 0;
-        for (Entry<Player,Integer> playerBid : bids.entrySet()){
-            if (playerBid.getValue() > maxBid){ //find max bid
+        for (Entry<Player, Integer> playerBid : bids.entrySet()) {
+            if (playerBid.getValue() > maxBid) { //find max bid
                 maxBid = playerBid.getValue();
             }
         }
-        
+
         int maxBidOccurances = 0;
-        for (Entry<Player,Integer> playerBid : bids.entrySet()){
-            if (playerBid.getValue() == maxBid){
+        for (Entry<Player, Integer> playerBid : bids.entrySet()) {
+            if (playerBid.getValue() == maxBid) {
                 maxBidOccurances++;
             }
-            if (maxBidOccurances > 1){
+            if (maxBidOccurances > 1) {
                 //If more than 1 player inputs the same highest bid
                 return false;
             }
-            if ((playerBid.getKey().getBalance() < playerBid.getValue()) || (playerBid.getValue() < 0)){
+            if ((playerBid.getKey().getBalance() < playerBid.getValue()) || (playerBid.getValue() < 0)) {
                 //If player's balance is less than bid OR bid is less than 0
                 return false;
             }
         }
         return true;
     }
-    
-    public void auction(HashMap<Player,Integer> bids) throws NotAProperty{
-        if (!(board.getBoardPiece(activePlayer.getLocation()) instanceof Property)){
+
+    public void auction(HashMap<Player, Integer> bids) throws NotAProperty {
+        if (!(board.getBoardPiece(activePlayer.getLocation()) instanceof Property)) {
             throw new NotAProperty("Player's current location is not a Property");
-        }
-        else{
+        } else {
             Property prop = (Property) board.getBoardPiece(activePlayer.getLocation());
             Entry<Player, Integer> winner = null;
-            for (Entry<Player,Integer> playerBid : bids.entrySet()){
-                if ((winner == null) || (playerBid.getValue() > winner.getValue())){
+            for (Entry<Player, Integer> playerBid : bids.entrySet()) {
+                if ((winner == null) || (playerBid.getValue() > winner.getValue())) {
                     winner = playerBid;
                 }
             }
-            buyProperty(prop, new Pair<>(winner.getKey(),winner.getValue()));
-        }  
+            buyProperty(prop, new Pair<>(winner.getKey(), winner.getValue()));
+        }
     }
 
     public void mortgageProperty(Property prop) {
@@ -756,8 +767,8 @@ public class GameController {
         activePlayer.increaseBalance(prop.getCost() / 2);
         log.addToLog(activePlayer.getName() + " has mortgaged " + prop.getTitle() + ".");
     }
-    
-    public void unmortgageProperty(Property prop){
+
+    public void unmortgageProperty(Property prop) {
         prop.setMortgaged(false);
         bank.deposit(prop.getCost() / 2);
         activePlayer.decreaseBalance(prop.getCost() / 2);
@@ -779,12 +790,20 @@ public class GameController {
     public ArrayList<String> getTokens() {
         return tokens;
     }
-    
+
     public void payTax(TaxPiece tp) {
         FreeParkingPiece fpp = (FreeParkingPiece) getBoard().getBoardPiece(20);
         getActivePlayer().decreaseBalance(tp.getTaxAmount());
         fpp.setBalance(fpp.getBalance() + tp.getTaxAmount());
-        
+
+    }
+    
+    public void addToOppo(OpportunityKnocks ok) {
+        oppocards.add(ok);
+    }
+    
+    public void addToPotLuck(PotLuck pl) {
+        potluckcards.add(pl);
     }
 
 }

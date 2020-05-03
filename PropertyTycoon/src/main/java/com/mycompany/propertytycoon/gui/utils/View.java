@@ -20,6 +20,7 @@ public enum View {
     MORTGAGE("src/main/java/com/mycompany/propertytycoon/gui/game/Mortgage.fxml"),
     SELL("src/main/java/com/mycompany/propertytycoon/gui/game/sell.fxml"),
     HOUSES("src/main/java/com/mycompany/propertytycoon/gui/game/houses.fxml"),
+    JAIL("src/main/java/com/mycompany/propertytycoon/gui/game/jail.fxml"),
     AUCTION("src/main/java/com/mycompany/propertytycoon/gui/game/auction.fxml");
     
 

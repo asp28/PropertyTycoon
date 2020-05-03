@@ -2,6 +2,9 @@ package com.mycompany.propertytycoon;
 
 
 import com.mycompany.propertytycoon.boardpieces.Property;
+import com.mycompany.propertytycoon.cards.Card;
+import com.mycompany.propertytycoon.cards.OpportunityKnocks;
+import com.mycompany.propertytycoon.cards.PotLuck;
 
 import java.util.ArrayList;
 
@@ -19,6 +22,8 @@ public class Player {
     private int gameloops;
     private int playerTurns;
     private boolean isAI;
+    private OpportunityKnocks GOJFoppoknocks;
+    private PotLuck GOJFpotluck;
 
 
     /**
@@ -189,6 +194,32 @@ public class Player {
 
     public void incrementPlayerTurns() {
         this.playerTurns++;
+    }
+    
+    public Card getOutOfJailCard() {
+        if (GOJFoppoknocks != null && GOJFpotluck == null) {
+            return GOJFoppoknocks;
+        } else if (GOJFpotluck != null && GOJFoppoknocks == null){
+            return GOJFpotluck;
+        } else if (GOJFoppoknocks == null && GOJFpotluck == null) {
+            return null;
+        }
+        return GOJFoppoknocks;
+    }
+    
+    public void setGOJF(OpportunityKnocks card) {
+        GOJFoppoknocks = card;
+    }
+    
+    public void setGOJF(PotLuck card) {
+        GOJFpotluck = card;
+    }
+    public void removeGOJFoppo() {
+        GOJFoppoknocks = null;
+    }
+    
+    public void removeGOJFpotluck() {
+        GOJFpotluck = null;
     }
 
 

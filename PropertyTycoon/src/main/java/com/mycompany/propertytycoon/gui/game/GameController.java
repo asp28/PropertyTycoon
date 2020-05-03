@@ -44,7 +44,7 @@ import javafx.scene.text.TextAlignment;
 public class GameController implements Initializable {
 
     @FXML
-    private Button roll, gg, sell, houses, trade, mortgage, endTurn, buy_yes, buy_no;
+    private Button roll, gg, sell, houses, trade, mortgage, endTurn, buy_yes, buy_no, jail;
     @FXML
     private Label playerName, playerMoney, leftSide;
     @FXML
@@ -147,6 +147,10 @@ public class GameController implements Initializable {
             SM.changeScene(View.TRADERCHOICE);
             log();
         });
+        jail.setOnAction(e -> {
+            SM.changeScene(View.JAIL);
+            log();
+        });
         mortgage.setOnAction(e -> {
             SM.changeScene(View.MORTGAGE);
             log();
@@ -169,7 +173,7 @@ public class GameController implements Initializable {
             } catch (NotAProperty exp) {
                 System.err.print(exp);
             }
-             bPane.toBack();
+            bPane.toBack();
             anchorpane_right.setVisible(false);
             anchorpane_left.setVisible(false);
             middle_gray.setVisible(false);
