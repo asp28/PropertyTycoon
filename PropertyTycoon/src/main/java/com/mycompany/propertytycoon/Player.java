@@ -25,6 +25,10 @@ public class Player {
     private OpportunityKnocks GOJFoppoknocks;
     private PotLuck GOJFpotluck;
 
+    public void setGameloops(int gameloops) {
+        this.gameloops = gameloops;
+    }
+
 
     /**
      * Player constructor
