@@ -35,9 +35,11 @@ public class JailController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if (SM.getGame().getActivePlayer().getOutOfJailCard() == null) {
+            System.out.print(SM.getGame().getActivePlayer().getOutOfJailCard() + "\n");
             card.setDisable(true);
         }
         if (SM.getGame().getActivePlayer().getBalance() < 50) {
+            System.out.print(SM.getGame().getActivePlayer().getBalance() + "\n");
             pay.setDisable(true);
         }
         card.setOnAction(e -> {

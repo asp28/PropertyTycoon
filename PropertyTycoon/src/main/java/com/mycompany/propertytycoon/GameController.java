@@ -453,6 +453,7 @@ public class GameController {
      */
     private void doCardAction(OpportunityKnocks opportunityKnocks) {
         String action = opportunityKnocks.getAction();
+        FreeParkingPiece fpp = (FreeParkingPiece) board.getBoardPiece(20);
         switch (action) {
             case "Bank pays player £50":
                 bank.withdraw(50);
@@ -510,7 +511,6 @@ public class GameController {
                     break;
                 }
             case "Player puts £15 on free parking":
-                FreeParkingPiece fpp = (FreeParkingPiece) board.getBoardLocations().get(20);
                 fpp.setBalance(fpp.getBalance() + 15);
                 break;
             case "Player pays £150 to the bank":
@@ -522,9 +522,37 @@ public class GameController {
                 activePlayer.increaseBalance(150);
                 break;
             case "Player pays money to the bank":
-                //£40 per house and £115 per hotel
+                if (opportunityKnocks.getDescription().equalsIgnoreCase("You are assessed for repairs, £40/house, £115/hotel")) {
+                    int house = 0;
+                    int hotel = 0;
+                    for (Property p : activePlayer.getOwnedProperties()) {
+                        if (p instanceof ColouredProperty) {
+                            if (((ColouredProperty) p).getHouseCost() == 5) {
+                                hotel++;
+                            } else {
+                                house += ((ColouredProperty) p).getHouseCount();
+                            }
+                        }
+                    }
+                    activePlayer.decreaseBalance((house*40) + (hotel*115));
+                    fpp.setBalance(fpp.getBalance() + ((house*40) + (hotel*115)));
+                }
+                if (opportunityKnocks.getDescription().equalsIgnoreCase("You are assessed for repairs, £25/house, £100/hotel")) {
+                    int house = 0;
+                    int hotel = 0;
+                    for (Property p : activePlayer.getOwnedProperties()) {
+                        if (p instanceof ColouredProperty) {
+                            if (((ColouredProperty) p).getHouseCost() == 5) {
+                                hotel++;
+                            } else {
+                                house += ((ColouredProperty) p).getHouseCount();
+                            }
+                        }
+                    }
+                    activePlayer.decreaseBalance((house*25) + (hotel*100));
+                    fpp.setBalance(fpp.getBalance() + ((house*25) + (hotel*100)));
+                }
                 break;
-            //£25 per house and £100 per hotel
             case "As the card says":
                 goToJail();
                 break;
