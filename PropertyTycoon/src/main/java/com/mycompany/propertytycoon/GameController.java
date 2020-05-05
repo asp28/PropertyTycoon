@@ -264,7 +264,6 @@ public class GameController {
             }
         }
         actions.clear();
-        actions = remaining;
         return remaining;
     }
 
@@ -401,6 +400,19 @@ public class GameController {
                 break;
             }
         }
+        
+        if(owner.isInJail())
+        {
+            log.addToLog("No rent is paid as owner of the property is in jail");
+            return ;
+        }
+        
+        if(p.isMortgaged())
+        {
+            log.addToLog("No rent is paid as property is mortaged");
+            return ;
+        }
+        
         if (doubleRent(p, owner)) {
             activePlayer.increaseBalance(-(2 * Integer.parseInt(p.getRent())));
             owner.increaseBalance(2 * Integer.parseInt(p.getRent()));

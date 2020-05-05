@@ -115,9 +115,9 @@ public class GameController implements Initializable {
 
             }
 
-            ArrayList<String> remaining = SM.getGame().performActions(SM.getGame().getPlayerActions());
+           ArrayList<String> remaining = SM.getGame().getPlayerActions();
             GVS.setActions(remaining);
-            System.out.print(GVS.getActions() + " " + remaining + "\n");
+            //System.out.print(GVS.getActions() + " " + remaining + "\n");
 
             if (GVS.getActions().contains("BUY")) {
                 bPane.toFront();
