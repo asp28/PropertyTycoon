@@ -88,35 +88,52 @@ public class GameController {
     public void move() {
         actions = new ArrayList<>();
         roll();
-        int newLocation = 0;
-        if (Objects.equals(rolls.getKey(), rolls.getValue()) && doublesRolled < 3) {
-            log.addToLog(activePlayer.getName() + " has rolled a double " + rolls.getKey() + ".");
-            newLocation += rolls.getKey() + rolls.getValue();
-            doublesRolled++;
-            actions.add("ROLL");
-            activePlayer.setLocation(newLocation);
-            int i = amountOfPlayers.indexOf(activePlayer);
-            playerLocations.set(i, newLocation);
-        } else if (doublesRolled > 2) {
-            log.addToLog(activePlayer.getName() + " was sent to jail for rolling 3 doubles in a row.");
-            goToJail();
-        } else {
-            newLocation += rolls.getKey() + rolls.getValue();
-            log.addToLog(activePlayer.getName() + " has rolled " + rolls.getKey() + " and " + rolls.getValue() + ".");
-            //Set location values
-            if (activePlayer.getLocation() + newLocation > 40) {
-                activePlayer.incrementGameloops();
-                newLocation = (activePlayer.getLocation() + newLocation) - 40;
-                passingGo();
-            } else {
-                newLocation = activePlayer.getLocation() + newLocation;
+        
+        if(activePlayer.isInJail())
+        {
+            if(rolls.getKey() == rolls.getValue())
+            {
+                activePlayer.setInJail(false);
             }
-            activePlayer.setLocation(newLocation);
-            int i = amountOfPlayers.indexOf(activePlayer);
-            playerLocations.set(i, newLocation);
-
-            //GUI.update(doActions())
         }
+        else
+        {
+        if(rolls.getKey() == rolls.getValue() && doublesRolled < 3)
+        {
+            actions.add("ROLL");
+            log.addToLog(activePlayer.getName() + " has rolled a double " + rolls.getKey() + ".");
+            int currentLocation = activePlayer.getLocation();
+            int newLocation = currentLocation + (rolls.getKey() + rolls.getValue());
+            activePlayer.setLocation(newLocation);
+            doublesRolled++;
+        }else if(doublesRolled > 2)
+        {
+             log.addToLog(activePlayer.getName() + " was sent to jail for rolling 3 doubles in a row.");
+             goToJail();
+             doublesRolled = 0;
+        }else
+        {
+            log.addToLog(activePlayer.getName() + " has rolled " + rolls.getKey() + " and " + rolls.getValue() + ".");
+            int currentLocation = activePlayer.getLocation();
+            int newLocation = currentLocation + (rolls.getKey() + rolls.getValue());
+            activePlayer.setLocation(newLocation);
+            doublesRolled = 0;
+        }
+        
+        if(activePlayer.getLocation() >= 40)
+        {
+            log.addToLog(activePlayer.getName() + "Has travelled all the way around the board");
+            passingGo();
+            activePlayer.setGameloops(activePlayer.getGameloops() + 1); 
+            int newLocation = activePlayer.getLocation()-40;
+            activePlayer.setLocation(newLocation);
+            
+        }
+        playerLocations.set(amountOfPlayers.indexOf(activePlayer), activePlayer.getLocation());
+        actions.addAll(getPlayerActions());
+        System.out.println(actions);
+        actions = performActions(actions);
+    }
     }
 
     /**
@@ -210,6 +227,7 @@ public class GameController {
     public ArrayList<String> performActions(ArrayList<String> playerActions) { //local variable as output of getPlayerActions
         ArrayList<String> remaining = new ArrayList<>();
         for (String s : playerActions) {
+            System.out.println(s);
             switch (s) {
                 case "RENT":
                     payRent();
@@ -246,7 +264,6 @@ public class GameController {
             }
         }
         actions.clear();
-        actions = remaining;
         return remaining;
     }
 
@@ -383,6 +400,19 @@ public class GameController {
                 break;
             }
         }
+        
+        if(owner.isInJail())
+        {
+            log.addToLog("No rent is paid as owner of the property is in jail");
+            return ;
+        }
+        
+        if(p.isMortgaged())
+        {
+            log.addToLog("No rent is paid as property is mortaged");
+            return ;
+        }
+        
         if (doubleRent(p, owner)) {
             activePlayer.increaseBalance(-(2 * Integer.parseInt(p.getRent())));
             owner.increaseBalance(2 * Integer.parseInt(p.getRent()));
@@ -421,6 +451,7 @@ public class GameController {
 
     private void pickUpCard() {
         if (board.getBoardPiece(activePlayer.getLocation()) instanceof OpportunityKnocksPiece) {
+            log.addToLog("This is my location");
             log.addToLog(activePlayer.getName() + " has picked up an opportunity knocks card.");
             OpportunityKnocks card = oppocards.get(0);
             log.addToLog(card.getDescription());
