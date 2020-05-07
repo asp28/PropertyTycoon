@@ -27,7 +27,7 @@
 - Create bank that will hold money and properties
 
 The image below shows the tasks set out on Trello during our weekly meeting
-![Trello task cards](trello1.png)
+![Trello task cards](trello1.PNG)
 
 ## Gantt Chart
 
