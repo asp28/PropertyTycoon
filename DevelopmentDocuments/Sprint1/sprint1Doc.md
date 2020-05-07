@@ -31,7 +31,7 @@ The image below shows the tasks set out on Trello during our weekly meeting
 
 ## Gantt Chart
 
-![Gantt Chart](gantt1.png)
+![Gantt Chart](gantt1.PNG)
 
 ## Requirements Analysis
 
@@ -87,11 +87,11 @@ the object was behaving propertly, correctly and error-free.
 In the below image, the results of rolling the dice ensures that the die has
 a minimum value of 1 and a maximum value of 6.
 
-![Dice test](diceTest.png)
+![Dice test](diceTest.PNG)
 
 In the below image, we ensure that the parser has correctly retrieved and saved the information into their corresponding PropertyCard objects. 2 of such tests include
 ensuring the right rent prices for the corresponding houses and ensuring the initial rent price is correct.
 
-![PropertyCard test](propertyCardTest.png)
+![PropertyCard test](propertyCardTest.PNG)
 
 ## Summary of Sprint
