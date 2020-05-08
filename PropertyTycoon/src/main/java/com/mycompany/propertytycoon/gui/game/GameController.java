@@ -48,7 +48,7 @@ public class GameController implements Initializable {
     @FXML
     private Label playerName, playerMoney, leftSide;
     @FXML
-    private ImageView profileToken, catToken, bootToken, spoonToken, gobletToken, hatstandToken, phoneToken;
+    private ImageView profileToken, catToken, bootToken, spoonToken, gobletToken, hatstandToken, phoneToken, leftPic;
 
     @FXML
     private ScrollPane log, ownedCards;
@@ -115,7 +115,7 @@ public class GameController implements Initializable {
 
             }
 
-           ArrayList<String> remaining = SM.getGame().getPlayerActions();
+            ArrayList<String> remaining = SM.getGame().getPlayerActions();
             GVS.setActions(remaining);
             //System.out.print(GVS.getActions() + " " + remaining + "\n");
 
@@ -216,7 +216,11 @@ public class GameController implements Initializable {
         }
 
         for (int i = 0; i < 40; i++) {
-            LocationNames(i, SM.getGame().getBoard().getBoardLocations().get(i).getTitle());
+            try {
+                LocationNames(i, SM.getGame().getBoard().getBoardLocations().get(i).getTitle());
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }
@@ -253,7 +257,7 @@ public class GameController implements Initializable {
 
     public void placePlayersOnBoard() throws FileNotFoundException {
         FileInputStream inputstream;
-        Image image;
+        Image image = null;
         for (Player p : SM.getGame().getAmountOfPlayers()) {
 
             switch (p.getToken()) {
@@ -535,13 +539,13 @@ public class GameController implements Initializable {
 
     }
 
-    public void LocationNames(int num, String name) {
+    public void LocationNames(int num, String name) throws FileNotFoundException {
         Label labelName = new Label(name);
-        System.out.print(name);
 
         switch (num) {
 
             case 0:
+                labelName.setId("go");
                 labelName.setAlignment(Pos.TOP_CENTER);
                 labelName.setWrapText(true);
                 labelName.setPrefWidth(100);
@@ -550,9 +554,11 @@ public class GameController implements Initializable {
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(0));
                 gPane.add(labelName, 0, 10);
+
                 break;
 
             case 1:
+                labelName.setId("brown");
                 labelName.setRotate(90);
                 labelName.setAlignment(Pos.TOP_CENTER);
                 labelName.setWrapText(true);
@@ -561,9 +567,11 @@ public class GameController implements Initializable {
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 0, 9);
+
                 break;
 
             case 2:
+                labelName.setId("potLuck");
                 labelName.setRotate(90);
                 labelName.setAlignment(Pos.TOP_CENTER);
                 labelName.setWrapText(true);
@@ -572,9 +580,11 @@ public class GameController implements Initializable {
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 0, 8);
+
                 break;
 
             case 3:
+                labelName.setId("brown");
                 labelName.setRotate(90);
                 labelName.setAlignment(Pos.TOP_CENTER);
                 labelName.setWrapText(true);
@@ -583,9 +593,11 @@ public class GameController implements Initializable {
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 0, 7);
+
                 break;
 
             case 4:
+                labelName.setId("income");
                 labelName.setRotate(90);
                 labelName.setAlignment(Pos.TOP_CENTER);
                 labelName.setWrapText(true);
@@ -594,9 +606,11 @@ public class GameController implements Initializable {
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 0, 6);
+
                 break;
 
             case 5:
+                labelName.setId("train");
                 labelName.setRotate(90);
                 labelName.setAlignment(Pos.CENTER);
                 labelName.setWrapText(true);
@@ -609,6 +623,7 @@ public class GameController implements Initializable {
                 break;
 
             case 6:
+                labelName.setId("blue");
                 labelName.setRotate(90);
                 labelName.setAlignment(Pos.TOP_CENTER);
                 labelName.setWrapText(true);
@@ -617,9 +632,11 @@ public class GameController implements Initializable {
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 0, 4);
+
                 break;
 
             case 7:
+                labelName.setId("knock");
                 labelName.setRotate(90);
                 labelName.setAlignment(Pos.BOTTOM_CENTER);
                 labelName.setWrapText(true);
@@ -628,9 +645,11 @@ public class GameController implements Initializable {
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 0, 3);
+
                 break;
 
             case 8:
+                labelName.setId("blue");
                 labelName.setRotate(90);
                 labelName.setAlignment(Pos.TOP_CENTER);
                 labelName.setWrapText(true);
@@ -643,6 +662,7 @@ public class GameController implements Initializable {
                 break;
 
             case 9:
+                labelName.setId("blue");
                 labelName.setRotate(90);
                 labelName.setAlignment(Pos.TOP_CENTER);
                 labelName.setWrapText(true);
@@ -655,6 +675,7 @@ public class GameController implements Initializable {
                 break;
 
             case 10:
+                labelName.setId("prison");
                 labelName.setRotate(90);
                 labelName.setAlignment(Pos.TOP_CENTER);
                 labelName.setWrapText(true);
@@ -667,6 +688,7 @@ public class GameController implements Initializable {
                 break;
 
             case 11:
+                labelName.setId("purple");
                 labelName.setRotate(180);
                 labelName.setAlignment(Pos.CENTER);
                 labelName.setWrapText(true);
@@ -678,6 +700,7 @@ public class GameController implements Initializable {
                 break;
 
             case 12:
+                labelName.setId("purple");
                 labelName.setRotate(180);
                 labelName.setAlignment(Pos.CENTER);
                 labelName.setWrapText(true);
@@ -689,6 +712,7 @@ public class GameController implements Initializable {
                 break;
 
             case 13:
+                labelName.setId("thunder");
                 labelName.setRotate(180);
                 labelName.setAlignment(Pos.BOTTOM_CENTER);
                 labelName.setWrapText(true);
@@ -697,9 +721,11 @@ public class GameController implements Initializable {
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 3, 0);
                 labelName.setRotate(180);
+
                 break;
 
             case 14:
+                labelName.setId("purple");
                 labelName.setRotate(180);
                 labelName.setAlignment(Pos.CENTER);
                 labelName.setWrapText(true);
@@ -711,6 +737,7 @@ public class GameController implements Initializable {
                 break;
 
             case 15:
+                labelName.setId("train");
                 labelName.setRotate(180);
                 labelName.setAlignment(Pos.CENTER);
                 labelName.setWrapText(true);
@@ -722,6 +749,7 @@ public class GameController implements Initializable {
                 break;
 
             case 16:
+                labelName.setId("orange");
                 labelName.setRotate(180);
                 labelName.setAlignment(Pos.CENTER);
                 labelName.setWrapText(true);
@@ -733,6 +761,7 @@ public class GameController implements Initializable {
                 break;
 
             case 17:
+                labelName.setId("potLuck");
                 labelName.setRotate(180);
                 labelName.setAlignment(Pos.BOTTOM_CENTER);
                 labelName.setWrapText(true);
@@ -740,9 +769,11 @@ public class GameController implements Initializable {
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 7, 0);
+
                 break;
 
             case 18:
+                labelName.setId("orange");
                 labelName.setRotate(180);
                 labelName.setAlignment(Pos.CENTER);
                 labelName.setWrapText(true);
@@ -754,6 +785,7 @@ public class GameController implements Initializable {
                 break;
 
             case 19:
+                labelName.setId("orange");
                 labelName.setRotate(180);
                 labelName.setAlignment(Pos.CENTER);
                 labelName.setWrapText(true);
@@ -765,6 +797,7 @@ public class GameController implements Initializable {
                 break;
 
             case 20:
+                labelName.setId("free");
                 labelName.setRotate(180);
                 labelName.setAlignment(Pos.CENTER);
                 labelName.setWrapText(true);
@@ -776,7 +809,7 @@ public class GameController implements Initializable {
                 break;
 
             case 21:
-
+                labelName.setId("red");
                 labelName.setRotate(-90);
                 labelName.setAlignment(Pos.BOTTOM_CENTER);
                 labelName.setWrapText(true);
@@ -789,6 +822,7 @@ public class GameController implements Initializable {
                 break;
 
             case 22:
+                labelName.setId("knock");
                 labelName.setRotate(-90);
                 labelName.setAlignment(Pos.BOTTOM_CENTER);
                 labelName.setWrapText(true);
@@ -801,6 +835,7 @@ public class GameController implements Initializable {
                 break;
 
             case 23:
+                labelName.setId("red");
                 labelName.setRotate(-90);
                 labelName.setAlignment(Pos.BOTTOM_CENTER);
                 labelName.setWrapText(true);
@@ -813,6 +848,7 @@ public class GameController implements Initializable {
                 break;
 
             case 24:
+                labelName.setId("red");
                 labelName.setRotate(-90);
                 labelName.setAlignment(Pos.BOTTOM_CENTER);
                 labelName.setWrapText(true);
@@ -825,6 +861,7 @@ public class GameController implements Initializable {
                 break;
 
             case 25:
+                labelName.setId("train");
                 labelName.setRotate(-90);
                 labelName.setAlignment(Pos.BOTTOM_CENTER);
                 labelName.setWrapText(true);
@@ -837,7 +874,7 @@ public class GameController implements Initializable {
                 break;
 
             case 26:
-
+                labelName.setId("yellow");
                 labelName.setRotate(-90);
                 labelName.setAlignment(Pos.BOTTOM_CENTER);
                 labelName.setWrapText(true);
@@ -850,7 +887,7 @@ public class GameController implements Initializable {
                 break;
 
             case 27:
-
+                labelName.setId("yellow");
                 labelName.setRotate(-90);
                 labelName.setAlignment(Pos.BOTTOM_CENTER);
                 labelName.setWrapText(true);
@@ -859,9 +896,11 @@ public class GameController implements Initializable {
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 10, 7);
+
                 break;
 
             case 28:
+                labelName.setId("cup");
                 labelName.setRotate(-90);
                 labelName.setAlignment(Pos.BOTTOM_CENTER);
                 labelName.setWrapText(true);
@@ -870,9 +909,11 @@ public class GameController implements Initializable {
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 10, 8);
+
                 break;
 
             case 29:
+                labelName.setId("yellow");
                 labelName.setRotate(-90);
                 labelName.setAlignment(Pos.BOTTOM_CENTER);
                 labelName.setWrapText(true);
@@ -881,102 +922,129 @@ public class GameController implements Initializable {
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 10, 9);
+
                 break;
 
             case 30:
+                labelName.setId("jail");
                 labelName.setAlignment(Pos.BOTTOM_RIGHT);
                 labelName.setWrapText(true);
                 labelName.setMinSize(88, 87);
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 10, 10);
+
                 break;
 
             case 31:
+                labelName.setId("green");
                 labelName.setAlignment(Pos.CENTER);
                 labelName.setWrapText(true);
                 labelName.setMinSize(44, 87);
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 9, 10);
+
                 break;
 
             case 32:
+                labelName.setId("green");
                 labelName.setAlignment(Pos.CENTER);
                 labelName.setWrapText(true);
                 labelName.setMinSize(44, 87);
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 8, 10);
+
                 break;
 
             case 33:
+                labelName.setId("potLuck");
                 labelName.setAlignment(Pos.BOTTOM_CENTER);
                 labelName.setWrapText(true);
                 labelName.setMinSize(39, 43);
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 7, 10);
+
                 break;
 
             case 34:
+                labelName.setId("green");
                 labelName.setAlignment(Pos.CENTER);
                 labelName.setWrapText(true);
                 labelName.setMinSize(44, 87);
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 6, 10);
+
                 break;
 
             case 35:
+                labelName.setId("train");
                 labelName.setAlignment(Pos.CENTER);
                 labelName.setWrapText(true);
                 labelName.setMinSize(60, 80);
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 5, 10);
+
                 break;
 
             case 36:
+                labelName.setId("knock");
                 labelName.setAlignment(Pos.BOTTOM_CENTER);
                 labelName.setWrapText(true);
                 labelName.setMinSize(40, 85);
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 4, 10);
+
                 break;
 
             case 37:
+                labelName.setId("darkblue");
                 labelName.setAlignment(Pos.CENTER);
                 labelName.setWrapText(true);
                 labelName.setMinSize(44, 87);
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 3, 10);
+
                 break;
 
             case 38:
+                labelName.setId("tax");
                 labelName.setAlignment(Pos.BOTTOM_CENTER);
                 labelName.setWrapText(true);
                 labelName.setMinSize(44, 44);
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 2, 10);
+
                 break;
 
             case 39:
+                labelName.setId("darkblue");
                 labelName.setAlignment(Pos.CENTER);
                 labelName.setWrapText(true);
                 labelName.setMinSize(44, 87);
                 labelName.setTextAlignment(TextAlignment.CENTER);
                 labelName.setFont(new Font(9.0));
                 gPane.add(labelName, 1, 10);
+
                 break;
 
         }
 
         labelName.addEventFilter(MouseEvent.MOUSE_PRESSED, event
-                -> leftSide(labelName));
+                -> {
+            try {
+                leftSide(labelName);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
     }
 
     public void updateControls() throws FileNotFoundException {
@@ -986,8 +1054,123 @@ public class GameController implements Initializable {
 
     }
 
-    public void leftSide(Label n) {
+    public void leftSide(Label n) throws FileNotFoundException {
         leftSide.setText(n.getText());
+        FileInputStream inputstream = null;
+        Image Image = null;
+        switch (n.getId()) {
+            case "red":
+                inputstream = new FileInputStream("./src/main/java/resources/img/boardPieces/red.png");
+                Image = new Image(inputstream) {
+                };
+                break;
+            case "blue":
+                inputstream = new FileInputStream("./src/main/java/resources/img/boardPieces/blue.png");
+                Image = new Image(inputstream) {
+                };
+                break;
+            case "brown":
+                inputstream = new FileInputStream("./src/main/java/resources/img/boardPieces/brown.png");
+                Image = new Image(inputstream) {
+                };
+                break;
+
+            case "darkblue":
+                inputstream = new FileInputStream("./src/main/java/resources/img/boardPieces/darkblue.png");
+                Image = new Image(inputstream) {
+                };
+                break;
+
+            case "purple":
+                inputstream = new FileInputStream("./src/main/java/resources/img/boardPieces/purple.png");
+                Image = new Image(inputstream) {
+                };
+                break;
+
+            case "yellow":
+                inputstream = new FileInputStream("./src/main/java/resources/img/boardPieces/yellow.png");
+                Image = new Image(inputstream) {
+                };
+                break;
+
+            case "orange":
+                inputstream = new FileInputStream("./src/main/java/resources/img/boardPieces/orange.png");
+                Image = new Image(inputstream) {
+                };
+                break;
+
+            case "jail":
+                inputstream = new FileInputStream("./src/main/java/resources/img/boardPieces/jail.png");
+                Image = new Image(inputstream) {
+                };
+                break;
+
+            case "cup":
+                inputstream = new FileInputStream("./src/main/java/resources/img/boardPieces/cup.png");
+                Image = new Image(inputstream) {
+                };
+                break;
+
+            case "free":
+                inputstream = new FileInputStream("./src/main/java/resources/img/boardPieces/free.png");
+                Image = new Image(inputstream) {
+                };
+                break;
+
+            case "green":
+                inputstream = new FileInputStream("./src/main/java/resources/img/boardPieces/green.png");
+                Image = new Image(inputstream) {
+                };
+                break;
+
+            case "go":
+                inputstream = new FileInputStream("./src/main/java/resources/img/boardPieces/go.png");
+                Image = new Image(inputstream) {
+                };
+                break;
+            case "income":
+                inputstream = new FileInputStream("./src/main/java/resources/img/boardPieces/income.png");
+                Image = new Image(inputstream) {
+                };
+                break;
+
+            case "train":
+                inputstream = new FileInputStream("./src/main/java/resources/img/boardPieces/train.png");
+                Image = new Image(inputstream) {
+                };
+                break;
+
+            case "knock":
+                inputstream = new FileInputStream("./src/main/java/resources/img/boardPieces/knock.png");
+                Image = new Image(inputstream) {
+                };
+                break;
+
+            case "prison":
+                inputstream = new FileInputStream("./src/main/java/resources/img/boardPieces/prison.png");
+                Image = new Image(inputstream) {
+                };
+                break;
+
+            case "thunder":
+                inputstream = new FileInputStream("./src/main/java/resources/img/boardPieces/thunder.png");
+                Image = new Image(inputstream) {
+                };
+                break;
+
+            case "tax":
+                inputstream = new FileInputStream("./src/main/java/resources/img/boardPieces/tax.png");
+                Image = new Image(inputstream) {
+                };
+                break;
+
+            case "potLuck":
+                inputstream = new FileInputStream("./src/main/java/resources/img/boardPieces/potLuck.png");
+                Image = new Image(inputstream) {
+                };
+                break;
+        }
+        leftPic.setImage(Image);
     }
 
 }
