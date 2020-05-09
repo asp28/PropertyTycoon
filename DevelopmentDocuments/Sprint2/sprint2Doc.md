@@ -26,11 +26,12 @@
 - Modify objects from previous sprint with the new features
 
 The image below shows the tasks set out on Trello during our weekly meeting
-![Trello task cards](trello2.png)
+
+![Trello task cards](images/trello2.png)
 
 ## Gantt Chart
 
-![Gantt Chart](ganttChart2.png)
+![Gantt Chart](images/ganttChart2.png)
 
 ## Requirements Analysis
 
@@ -57,17 +58,17 @@ The image below shows the tasks set out on Trello during our weekly meeting
 ### UML Diagram
 ___
 
-![UML](UML2.svg)
+![UML](images/UML2.svg)
 
 ### Sequence Diagrams
 ___
 
-#### Sequence 1
-![Sequence1](performActionSequence.svg)
+#### Method to perform valid player actions based on their input
+![Sequence1](images/performActionSequence.svg)
 
-#### Sequence 2
+#### GameLoop initialiser to set the board, bank, dice and players
 
-![Sequence2]()
+![Sequence2](images/GameLoopConstructorSequence.svg)
 
 ## Test Plan
 
