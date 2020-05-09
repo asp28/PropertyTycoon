@@ -57,13 +57,13 @@ The image below shows the tasks set out on Trello during our weekly meeting
 ### UML Diagram
 ___
 
-![UML]()
+![UML](UML2.svg)
 
 ### Sequence Diagrams
 ___
 
 #### Sequence 1
-![Sequence1]()
+![Sequence1](performActionSequence.svg)
 
 #### Sequence 2
 
