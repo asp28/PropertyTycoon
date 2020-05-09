@@ -21,7 +21,8 @@
 - 
 
 The image below shows the tasks set out on Trello during our weekly meeting
-![Trello task cards]()
+
+![Trello task cards](images/trello3.png)
 
 ## Gantt Chart
 
