@@ -27,11 +27,12 @@
 - Create bank that will hold money and properties
 
 The image below shows the tasks set out on Trello during our weekly meeting
-![Trello task cards](trello1.PNG)
+
+![Trello task cards](images/trello1.png)
 
 ## Gantt Chart
 
-![Gantt Chart](gantt1.PNG)
+![Gantt Chart](images/gantt1.png)
 
 ## Requirements Analysis
 
@@ -65,17 +66,17 @@ The image below shows the tasks set out on Trello during our weekly meeting
 ### UML Diagram
 ___
 
-![UML](UML1.png)
+![UML](images/UML1.png)
 
 ### Sequence Diagrams
 ___
 
 #### Creating the board
-![createBoard](createBoardSequence.svg)
+![createBoard](images/createBoardSequence.svg)
 
 #### Buying a property
 
-![buyProperty](buyPropSequence.svg)
+![buyProperty](images/buyPropSequence.svg)
 
 ## Test Plan
 
@@ -87,11 +88,11 @@ the object was behaving propertly, correctly and error-free.
 In the below image, the results of rolling the dice ensures that the die has
 a minimum value of 1 and a maximum value of 6.
 
-![Dice test](diceTest.PNG)
+![Dice test](images/diceTest.png)
 
 In the below image, we ensure that the parser has correctly retrieved and saved the information into their corresponding PropertyCard objects. 2 of such tests include
 ensuring the right rent prices for the corresponding houses and ensuring the initial rent price is correct.
 
-![PropertyCard test](propertyCardTest.PNG)
+![PropertyCard test](images/propertyCardTest.png)
 
 ## Summary of Sprint
