@@ -124,3 +124,4 @@ With the **Dice** test class, the sole method ensured that the amount shown on t
 ![Dice test class](images/diceTest.png)
 
 ## Summary of Sprint
+
