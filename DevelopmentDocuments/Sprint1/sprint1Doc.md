@@ -4,31 +4,34 @@
 
 - **Team Number:** 13
 - **Team Lead:** Chris
-- **Sprint Start:** 10/02/2020
-- **Sprint End:** 17/02/2020
+- **Sprint Start:** 03/02/2020
+- **Sprint End:** 10/02/2020
 
 ## Individual Key Contributions
 
 | Team Member | Key Contributions |
 | :---------: | :---------------: |
-|    Aiden    |   Documentation   |
+|    Aiden    |   Documentation & Implementation   |
 |   Ankeet    |  Implementation   |
-|    Chris    |   Organisation    |
+|    Chris    |   Organisation & Implementation   |
 |   Duarte    |  Implementation   |
 
 ## Task Cards
 
-- Develop Excel parser to create property pieces
+- Establish GitHub repository
+- Create property cards
+- Develop Excel parser to input information about property cards
 - Create individual players
-- Build board with property cards
+- Create board with property cards from parser
 - Create dice that a player can roll
 - Create bank that will hold money and properties
 
-## PERT Chart
+The image below shows the tasks set out on Trello during our weekly meeting
+![Trello task cards](trello1.PNG)
 
-![PERT]()
+## Gantt Chart
 
-SWAP CARD AND PARSER OBJECTS AROUND
+![Gantt Chart](gantt1.PNG)
 
 ## Requirements Analysis
 
@@ -44,12 +47,16 @@ SWAP CARD AND PARSER OBJECTS AROUND
     - The software shall have dice that should be rolled. Each die is 6-sided; therefore, a number between 1 - 6 shall be returned when rolled.
 - F5
     - The software shall have a bank that initially owns all of the properties that can be owned and a sum of money. At the start of the game, the bank shall start with £50,000 in its balance and all ownable properties. If the bank cannot withdraw enough funds to give to a player, the bank shall automatically replenish its funds by adding an additional £50,000. The bank shall add and remove properites from its list of ownable properties.
+
+### Non-Functional Requirements
 - NF1
     - The language the software shall be written in Java.
 - NF2
     - Maven shall be used to manage the project including but not limited to managing dependencies and building the parser.
 - NF3
-    - The implementation of the project will vary between NetBeans and Intellij.
+    - The implementation of the project will vary between the IDEs of NetBeans and Intellij.
+
+### Domain Requirements
 - D1
     - The version control of the project should be stored on GitHub, iteration by iteration. Need more information on how to edit and update repository.
 
@@ -58,18 +65,33 @@ SWAP CARD AND PARSER OBJECTS AROUND
 ### UML Diagram
 ___
 
-![UML](/DevelopmentDocuments/Sprint1/UML1.png)
-
-### Usage Diagram
-___
-
-![Use Diagram](/DevelopmentDocuments/Sprint1/useDiagram1.png)
+![UML](UML1.png)
 
 ### Sequence Diagrams
 ___
 
-![Sequence Diagrams]()
+#### Creating the board
+![createBoard](createBoardSequence.svg)
+
+#### Buying a property
+
+![buyProperty](buyPropSequence.svg)
 
 ## Test Plan
+
+With this sprint being the first, we chose to not have system-wide testing
+due to the face that there was no 'main' class that would control these objects.
+Apart from that, all objects had a JUnit test with multiple test methods to ensure
+the object was behaving propertly, correctly and error-free.
+
+In the below image, the results of rolling the dice ensures that the die has
+a minimum value of 1 and a maximum value of 6.
+
+![Dice test](diceTest.PNG)
+
+In the below image, we ensure that the parser has correctly retrieved and saved the information into their corresponding PropertyCard objects. 2 of such tests include
+ensuring the right rent prices for the corresponding houses and ensuring the initial rent price is correct.
+
+![PropertyCard test](propertyCardTest.PNG)
 
 ## Summary of Sprint
