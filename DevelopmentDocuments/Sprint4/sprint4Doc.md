@@ -18,14 +18,15 @@
 
 ## Task Cards
 
-- 
+- Redesign and rethink the entire project
+- Refactor previous classes
 
 The image below shows the tasks set out on Trello during our weekly meeting
-![Trello task cards]()
+![Trello task cards](images/trello4.png)
 
 ## Gantt Chart
 
-![Gantt Chart]()
+![Gantt Chart](images/gantt4.png)
 
 ## Requirements Analysis
 
@@ -40,7 +41,7 @@ The image below shows the tasks set out on Trello during our weekly meeting
 
 ### Domain Requirements
 - D1
-    - 
+  - 
 
 ## Design
 
