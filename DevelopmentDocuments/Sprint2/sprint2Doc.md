@@ -52,7 +52,7 @@ The image below shows the tasks set out on Trello during our weekly meeting
 
 ### Domain Requirements
 - D1
-    - We are unsure of how the system of rolling 3 doubles and going to jail should function. We will ask the customer in our next meeting.
+  - We are unsure of how the system of rolling 3 doubles and going to jail should function. We will ask the customer in our next meeting.
 
 ## Design
 
