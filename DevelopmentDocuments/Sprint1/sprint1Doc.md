@@ -27,11 +27,12 @@
 - Create bank that will hold money and properties
 
 The image below shows the tasks set out on Trello during our weekly meeting
-![Trello task cards](trello1.PNG)
+
+![Trello task cards](images/trello1.png)
 
 ## Gantt Chart
 
-![Gantt Chart](gantt1.PNG)
+![Gantt Chart](images/gantt1.png)
 
 ## Requirements Analysis
 
@@ -50,48 +51,77 @@ The image below shows the tasks set out on Trello during our weekly meeting
 
 ### Non-Functional Requirements
 - NF1
-    - The language the software shall be written in Java.
+  - The language the software shall be written in Java.
 - NF2
-    - Maven shall be used to manage the project including but not limited to managing dependencies and building the parser.
+  - Maven shall be used to manage the project including but not limited to managing dependencies and building the parser.
 - NF3
-    - The implementation of the project will vary between the IDEs of NetBeans and Intellij.
+  - The implementation of the project will vary between the IDEs of NetBeans and Intellij.
 
 ### Domain Requirements
 - D1
-    - The version control of the project should be stored on GitHub, iteration by iteration. Need more information on how to edit and update repository.
+  - The version control of the project should be stored on GitHub, iteration by iteration. Need more information on how to edit and update repository.
 
 ## Design
 
 ### UML Diagram
 ___
 
-![UML](UML1.png)
+![UML](images/UML1.png)
 
 ### Sequence Diagrams
 ___
 
 #### Creating the board
-![createBoard](createBoardSequence.svg)
+![createBoard](images/createBoardSequence.svg)
 
 #### Buying a property
 
-![buyProperty](buyPropSequence.svg)
+![buyProperty](images/buyPropSequence.svg)
 
 ## Test Plan
 
 With this sprint being the first, we chose to not have system-wide testing
 due to the face that there was no 'main' class that would control these objects.
 Apart from that, all objects had a JUnit test with multiple test methods to ensure
-the object was behaving propertly, correctly and error-free.
+the object was behaving propertly, correctly and error-free. This will apply to every sprint until a function GUI
+is implemented.
 
-In the below image, the results of rolling the dice ensures that the die has
-a minimum value of 1 and a maximum value of 6.
+With the **Player** test class, we have created tests that determine whether:
+1. rolling the dice advances the player
+2. ensures moving completely around the board does not result in an `IndexOutOfBoundsException`
+3. buying a property results in the specific property being added to the player's owned properties
 
-![Dice test](diceTest.PNG)
+![Player test class](images/playerTest.png)
 
-In the below image, we ensure that the parser has correctly retrieved and saved the information into their corresponding PropertyCard objects. 2 of such tests include
-ensuring the right rent prices for the corresponding houses and ensuring the initial rent price is correct.
+With the **PropertyCard** test class, the tests that are implemented show that:
+1. ensure the accessors return the correct values
 
-![PropertyCard test](propertyCardTest.PNG)
+![PropertyCard test class](images/propertyCardTest.png)
+
+With the **Parser** test class, the sole responsibility of this test class to ensure:
+1. the correct number of PropertyCards were being created
+2. the list of PropertyCards were in the correct order
+
+![Parser test class](images/parserTest.png)
+
+With the **Board** test class, the only test method needed was that the Parser
+passed on the PropertyCards to the Board object.
+
+![Board test class](images/boardTest.png)
+
+With the **Bank** test class, our team ensured that:
+1. the initial balance of the bank is £50,000
+2. depositing a certain amount of money resulted in adding said money to the bank's balance
+3. withdrawing a certain amount of moeny resulted in subtracting said money from the bank's balance
+4. if the bank senses that a transaction will make its balance becomes negative, the bank replenishes itself to £50,000
+5. a property can be removed the bank's list of properties
+6. a property can be added back to the bank's list of properties
+
+![Bank test class](images/bankTest.png)
+
+With the **Dice** test class, the sole method ensured that the amount shown on the dice was between 1 and 6.
+
+![Dice test class](images/diceTest.png)
 
 ## Summary of Sprint
+
