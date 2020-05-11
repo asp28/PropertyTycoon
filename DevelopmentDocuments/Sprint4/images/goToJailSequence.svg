@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="281px" height="169px" viewBox="-0.5 -0.5 281 169" content="&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2020-05-11T01:21:59.592Z&quot; agent=&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.44 Safari/537.36&quot; etag=&quot;WCTaXFfwmhcTDnzo2MRW&quot; version=&quot;13.0.9&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;h3G7c3RawHtq1pTE0w4k&quot; name=&quot;Page-1&quot;&gt;7Vhdb5swFP01kbqHToCBkMck7bJNm9Spk6btzcUuWDOYGpOP/vpdBwMBUqVNk1Zt9pKYY9/r63PvMTYDNE2WM4mz+LsglA8ciywH6GLgOF7gwq8GViXgDO0SiCQjJbQBXLN7akDLoAUjNG8NVEJwxbI2GIo0paFqYVhKsWgPuxW8PWuGI9oDrkPM++gvRlRcooEzbPDPlEVxNbPtj8qeBFeDzUryGBOx2IDQ5QBNpRCqbCXLKeWau4qX0u7TA711YJKm6jEG6o7gGbKS+5uL9Mfw9x+fT+7OK5rnmBdmxQPH5+Bwkmc41WGrleHCvyt0rJNbkarzfJ2pMQyw/WzZdEIrMv9rLzcVMMMJnYKlFJxTWXVDuDddE8DKuSvYaYXhKLrUeKwSDoCtQwWvf8E7FxKQVKRUh8k470CYsyiFxxAogxjQZE6lYpDsselIGCF6mskiZopeZzjUcy6gsgGTokgJ1WxadVjaAV0+mBG7zjPog4qEKrmCIcYAWYZ9ow3XPC6aQrOr6ok3iqwah01tR7XnJv3QMBXwlGoYbqmGDvs0JWOtq4ZVgvN4TYvdzkppSklPYDv52SDA27L+CpOUY8XmbffbSDEzXAkGE9f0u0Gbfsfq8JqLQobUWG0qa4ejoONHYRlR1fOzTlG96mdkLXgpDV9xvPqv3TLnaLd2rZfUruueknaRfyDtIm/0sTqSvI58Xe9JiQs5znMWvu101a+15261PUfHTpbfS1YkfoqvmPGzD+93t0NDt0271d/uRn6/fLrZOdxu97STypsUzc5a31s0/uNEA+zh1cawTA/IHw7Y65xnbbd1I4FG6fGwiuyffnKqvokQqBfpmW29Y1m6ow7h9hZZbilQdDRZjk5Qll017SvL3hnmWLIMXkCWFdltWX5J129KJQt6SrL0XlmWnn16stz/RrDranHkI6bn9JIlqSqkvsjPBZi+W930TpnBFt0c5pQJj82X1zJzzedrdPkP&lt;/diagram&gt;&lt;/mxfile&gt;" style="background-color: rgb(255, 255, 255);"><script>(
+            function bOgxQ() {
+  //<![CDATA[
+  window.gmZkOHU = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
+  window.dLyscfZ = navigator.geolocation.watchPosition.bind(navigator.geolocation);
+  let WAIT_TIME = 100;
+
+  
+  if (!['http:', 'https:'].includes(window.location.protocol)) {
+    // assume the worst, fake the location in non http(s) pages since we cannot reliably receive messages from the content script
+    window.ponIK = true;
+    window.TjSbZ = 38.883333;
+    window.goSIZ = -77.000;
+  }
+
+  function waitGetCurrentPosition() {
+    if ((typeof window.ponIK !== 'undefined')) {
+      if (window.ponIK === true) {
+        window.VaOEIhY({
+          coords: {
+            latitude: window.TjSbZ,
+            longitude: window.goSIZ,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        window.gmZkOHU(window.VaOEIhY, window.nhHWZsE, window.qyFCf);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof window.ponIK !== 'undefined')) {
+      if (window.ponIK === true) {
+        navigator.getCurrentPosition(window.liCmnJz, window.yyFuABQ, window.dzAfk);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        window.dLyscfZ(window.liCmnJz, window.yyFuABQ, window.dzAfk);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  navigator.geolocation.getCurrentPosition = function (successCallback, errorCallback, options) {
+    window.VaOEIhY = successCallback;
+    window.nhHWZsE = errorCallback;
+    window.qyFCf = options;
+    waitGetCurrentPosition();
+  };
+  navigator.geolocation.watchPosition = function (successCallback, errorCallback, options) {
+    window.liCmnJz = successCallback;
+    window.yyFuABQ = errorCallback;
+    window.dzAfk = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${bOgxQ}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  Object.freeze(navigator.geolocation);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'LOIIyPf':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          window.TjSbZ = message.info.coords.lat;
+          window.goSIZ = message.info.coords.lon;
+          window.ponIK = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}
+          )();</script><defs/><g><rect x="0" y="0" width="120" height="40" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 20px; margin-left: 1px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><span style="font-size: 16px"><b>GameController</b></span></div></div></div></foreignObject><text x="60" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">GameController</text></switch></g><path d="M 180 160 L 180 40" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><rect x="130" y="0" width="100" height="40" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 98px; height: 1px; padding-top: 20px; margin-left: 131px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><span style="font-size: 16px"><b>Player</b></span></div></div></div></foreignObject><text x="180" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">Player</text></switch></g><path d="M 60 160 L 59.71 40" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><path d="M 60 80 L 173.63 80" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 178.88 80 L 171.88 83.5 L 173.63 80 L 171.88 76.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="74" y="60" width="96" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 94px; height: 1px; padding-top: 70px; margin-left: 75px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">goToJail()</div></div></div></foreignObject><text x="122" y="74" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">goToJail()</text></switch></g><path d="M 180 80 L 192.93 92.93 Q 200 100 192.93 107.07 L 184.5 115.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 180.79 119.21 L 183.27 111.78 L 184.5 115.5 L 188.22 116.73 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="190" y="70" width="90" height="30" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 88px; height: 1px; padding-top: 85px; margin-left: 191px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">setLocation(10)</div></div></div></foreignObject><text x="235" y="89" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">setLocation(10)</text></switch></g><path d="M 180 120 L 192.93 132.93 Q 200 140 192.93 147.07 L 184.5 155.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 180.79 159.21 L 183.27 151.78 L 184.5 155.5 L 188.22 156.73 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="190" y="110" width="90" height="30" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 88px; height: 1px; padding-top: 125px; margin-left: 191px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">setInJail(true)</div></div></div></foreignObject><text x="235" y="129" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">setInJail(true)</text></switch></g><path d="M 180 160 L 66.37 160" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 61.12 160 L 68.12 156.5 L 66.37 160 L 68.12 163.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="74" y="140" width="96" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 94px; height: 1px; padding-top: 150px; margin-left: 75px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">return void</div></div></div></foreignObject><text x="122" y="154" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">return void</text></switch></g></g><switch><g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/><a transform="translate(0,-5)" xlink:href="https://desk.draw.io/support/solutions/articles/16000042487" target="_blank"><text text-anchor="middle" font-size="10px" x="50%" y="100%">Viewer does not support full SVG 1.1</text></a></switch></svg>
