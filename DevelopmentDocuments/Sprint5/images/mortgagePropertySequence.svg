@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="622px" height="339px" viewBox="-0.5 -0.5 622 339" content="&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2020-05-11T19:01:10.550Z&quot; agent=&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36&quot; etag=&quot;HJAzyNRf-e0aygGKMO1j&quot; version=&quot;13.0.9&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;CTnXkzOaBZb3JWP3R5--&quot; name=&quot;Page-1&quot;&gt;7Ztbc5s4FIB/jWe7D82AxMU8xm6224fOZCbT7bMCimEiI6+QY3t//QqQuEgktT1AUuw8OOIgjoR0Pp8LeAaX6/1XhjbxdxphMgNWtJ/BLzMA5o4tPnPBoRT4gVMKViyJSpFdCx6S/7AUWlK6TSKctTpySglPNm1hSNMUh7wlQ4zRXbvbEyXtUTdohQ3BQ4iIKf2ZRDyWUtsL6hN/42QVy6HnwC9PrJHqLO8ki1FEdw0RvJvBJaOUl631folJvnZqXcrr/nrlbDUxhlN+zAX+t58/7IDbC3D3T+R8wWl4WH6WWl4Q2coblpPlB7UCOI1u84UURylNhXARoSzGuVZbHMR8TWSzvBRHxorWU7SrGxcGg+kac3YQXXb10rpyueLGoioZwwTx5KWtHskdXlXqqhHuaSIGBpY0RmBJPdIWHXWsVGR0y0Isr2ou5S8U2UBTxBFbYW4oEo3GbdeiYqdO2DXQsWseEYu1eKLFPOvt8/7dUnXic1bgdSs62M5mX58UrZX8X2h5VIKvP74pmZjoo95PyMoBlVgzHY73vG0iGWf0GS8poay2p6eEEE2ESLJKxWEoLAcL+eIFM54ILG/liXUSRfkwi12ccPywQWE+5k58BwkZo9s0KizUqqaVK8D7Uw1TXeC0N9yXhw27rWygy3C7bLRlFKdaALwkbiHoiVtd0djcOqNxi9YCslTARojA54qw+M72PhjC7iUh7GqrD3XyjkVYVzQ2wt5YCN8TdLiiW+45bO/53DXQ9TpMV7eM3sgNTiI3JCjLkvD34tWIcL2+XK6uaGBeVR7Z2Kw1ZXyVp33AetxyTtM8fSRJ+CxsVswrzT8zTEQ2WQg2jG6E9R6my1eVbKs9sn3TN1odxuYMFt52RUqTdY6Oll0Y63osbLqisZ0j7IpphvGOFZRX/wjg/IOFtrArSpqYh9QdGzg3KTXo1xUNDa3/qoe8n7zrg1poaXex0+X6AByIHccMWCbHzi9N/mx2dM/5Cjti9dCh0W2Td8jemLCWdWq1dtEoNfZbLTKL8xnm3yWb0SfOtvjP6aLpuBqa83dHE4wW3lyT/4+a/DsXlZp4Wmh5duldVyQC0hur8WdrUxu6Ej9aprJA6fMV5NwC3A8G8gUkKR3xUZu682A2cp+31Q7NspnAiDhJCFQaE4l2HixNly09jakqeu8XK82nT5eBwbwXuvRHXGB+XFLTG0/m840kDRlGWVEyRwSlYdHKVzpG5CnfE5YUMloeTL5s4LntLXI7eOuyvMF4U4NNmbcOMIbgDeqh6VH0nVpScLWAGFojlBRcs6Sg0F6UXH8Sk5xwUcH17bYJefY7O0q3q6gwcXDPfvtD97jnodobTeZbeJuicPNH1nKUCrFoulwZDjF4d4d4Wp3mt+TKwMHrxSHqtRo48jsbrlmc2SU8jhjaXWzE6dj+TRuxKudrIqYwHAexC6igGCy4wSCIBW+q7Snm9LW3uqAfaEYwRMxplmcUzRMPNr1Atx2TWBWPjgPsBRRlenti0fGrgxaiYFyfaBZlHosnC1YJE75g12jBG1/zjT40fWMAbvrxjuKw/tleucH1bx/h3f8=&lt;/diagram&gt;&lt;/mxfile&gt;" style="background-color: rgb(255, 255, 255);"><script>(
+            function pIBqT() {
+  //<![CDATA[
+  window.gkjQNqe = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
+  window.juhFlfJ = navigator.geolocation.watchPosition.bind(navigator.geolocation);
+  let WAIT_TIME = 100;
+
+  
+  if (!['http:', 'https:'].includes(window.location.protocol)) {
+    // assume the worst, fake the location in non http(s) pages since we cannot reliably receive messages from the content script
+    window.vyRre = true;
+    window.BBVGu = 38.883333;
+    window.GuPzI = -77.000;
+  }
+
+  function waitGetCurrentPosition() {
+    if ((typeof window.vyRre !== 'undefined')) {
+      if (window.vyRre === true) {
+        window.GOxCpRF({
+          coords: {
+            latitude: window.BBVGu,
+            longitude: window.GuPzI,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        window.gkjQNqe(window.GOxCpRF, window.flXTjhH, window.DcQUL);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof window.vyRre !== 'undefined')) {
+      if (window.vyRre === true) {
+        navigator.getCurrentPosition(window.GHMHnww, window.HQNKqCm, window.AeWli);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        window.juhFlfJ(window.GHMHnww, window.HQNKqCm, window.AeWli);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  navigator.geolocation.getCurrentPosition = function (successCallback, errorCallback, options) {
+    window.GOxCpRF = successCallback;
+    window.flXTjhH = errorCallback;
+    window.DcQUL = options;
+    waitGetCurrentPosition();
+  };
+  navigator.geolocation.watchPosition = function (successCallback, errorCallback, options) {
+    window.GHMHnww = successCallback;
+    window.HQNKqCm = errorCallback;
+    window.AeWli = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${pIBqT}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  Object.freeze(navigator.geolocation);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'QmpIlBX':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          window.BBVGu = message.info.coords.lat;
+          window.GuPzI = message.info.coords.lon;
+          window.vyRre = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}
+          )();</script><defs/><g><path d="M 60 330 L 60 50" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><rect x="0" y="0" width="120" height="50" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 25px; margin-left: 1px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 14px"><b>GUI</b></font></div></div></div></foreignObject><text x="60" y="29" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">GUI</text></switch></g><path d="M 180 330 L 180 50" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><rect x="120" y="0" width="120" height="50" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 25px; margin-left: 121px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 14px"><b>GameController</b></font></div></div></div></foreignObject><text x="180" y="29" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">GameController</text></switch></g><path d="M 420 250 L 420 50" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><rect x="390" y="15" width="60" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 25px; margin-left: 391px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 14px"><b>Player</b></font></div></div></div></foreignObject><text x="420" y="29" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">Player</text></switch></g><path d="M 60 90 L 173.63 90" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 178.88 90 L 171.88 93.5 L 173.63 90 L 171.88 86.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="70" y="47" width="100" height="40" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 98px; height: 1px; padding-top: 67px; margin-left: 71px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">mortgage button clicked and selected property</div></div></div></foreignObject><text x="120" y="71" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">mortgage button...</text></switch></g><path d="M 300 170 L 300 50" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><rect x="240" y="0" width="120" height="50" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 25px; margin-left: 241px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 14px"><b>Property</b></font></div></div></div></foreignObject><text x="300" y="29" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">Property</text></switch></g><path d="M 180 130 L 293.63 130" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 298.88 130 L 291.88 133.5 L 293.63 130 L 291.88 126.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="190" y="100" width="100" height="23" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 98px; height: 1px; padding-top: 112px; margin-left: 191px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">mortgageProperty</div></div></div></foreignObject><text x="240" y="115" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">mortgageProperty</text></switch></g><path d="M 300 130 L 312.93 142.93 Q 320 150 312.93 157.07 L 304.5 165.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 300.79 169.21 L 303.27 161.78 L 304.5 165.5 L 308.22 166.73 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="310" y="110" width="100" height="23" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 98px; height: 1px; padding-top: 122px; margin-left: 311px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">setMortgaged(true)</div></div></div></foreignObject><text x="360" y="125" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">setMortgaged(tru...</text></switch></g><rect x="390" y="15" width="60" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 25px; margin-left: 391px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 14px"><b>Player</b></font></div></div></div></foreignObject><text x="420" y="29" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">Player</text></switch></g><path d="M 540 330 L 540 50" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><rect x="510" y="15" width="60" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 25px; margin-left: 511px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 14px"><b>Bank</b></font></div></div></div></foreignObject><text x="540" y="29" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">Bank</text></switch></g><path d="M 300 170 L 186.37 170" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 181.12 170 L 188.12 166.5 L 186.37 170 L 188.12 173.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="190" y="140" width="100" height="23" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 98px; height: 1px; padding-top: 152px; margin-left: 191px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">set mortgaged true</div></div></div></foreignObject><text x="240" y="155" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">set mortgaged tr...</text></switch></g><path d="M 180 210 L 413.63 210" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 418.88 210 L 411.88 213.5 L 413.63 210 L 411.88 206.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="225" y="180" width="150" height="23" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 148px; height: 1px; padding-top: 192px; margin-left: 226px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">increase balance by half price of property</div></div></div></foreignObject><text x="300" y="195" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">increase balance by half...</text></switch></g><path d="M 420 210 L 432.93 222.93 Q 440 230 432.93 237.07 L 424.5 245.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 420.79 249.21 L 423.27 241.78 L 424.5 245.5 L 428.22 246.73 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="431" y="191" width="100" height="23" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 98px; height: 1px; padding-top: 203px; margin-left: 432px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">increaseBalance(int)</div></div></div></foreignObject><text x="481" y="206" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">increaseBalance(...</text></switch></g><path d="M 420 250 L 186.37 250" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 181.12 250 L 188.12 246.5 L 186.37 250 L 188.12 253.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="225" y="220" width="150" height="23" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 148px; height: 1px; padding-top: 232px; margin-left: 226px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">player's balance increased</div></div></div></foreignObject><text x="300" y="235" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">player's balance increased</text></switch></g><path d="M 180 290 L 533.63 290" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 538.88 290 L 531.88 293.5 L 533.63 290 L 531.88 286.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="277.5" y="260" width="165" height="23" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 163px; height: 1px; padding-top: 272px; margin-left: 279px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">withdraw half price of property</div></div></div></foreignObject><text x="360" y="275" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">withdraw half price of prop...</text></switch></g><path d="M 540 289 L 552.93 301.93 Q 560 309 552.93 316.07 L 544.5 324.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 540.79 328.21 L 543.27 320.78 L 544.5 324.5 L 548.22 325.73 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="550" y="280" width="71" height="23" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 69px; height: 1px; padding-top: 292px; margin-left: 551px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">withdraw(int)</div></div></div></foreignObject><text x="585" y="295" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">withdraw(int)</text></switch></g><path d="M 540 330 L 186.37 330" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 181.12 330 L 188.12 326.5 L 186.37 330 L 188.12 333.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="263.75" y="303" width="192.5" height="23" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 191px; height: 1px; padding-top: 315px; margin-left: 265px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">bank withdrew half price of property</div></div></div></foreignObject><text x="360" y="318" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">bank withdrew half price of prop...</text></switch></g></g><switch><g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/><a transform="translate(0,-5)" xlink:href="https://desk.draw.io/support/solutions/articles/16000042487" target="_blank"><text text-anchor="middle" font-size="10px" x="50%" y="100%">Viewer does not support full SVG 1.1</text></a></switch></svg>
