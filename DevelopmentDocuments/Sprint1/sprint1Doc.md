@@ -86,30 +86,30 @@ Apart from that, all objects had a JUnit test with multiple test methods to ensu
 the object was behaving propertly, correctly and error-free. This will apply to every sprint until a function GUI
 is implemented.
 
-With the **Player** test class, we have created tests that determine whether:
+With the `Player` test class, we have created tests that determine whether:
 1. rolling the dice advances the player
 2. ensures moving completely around the board does not result in an `IndexOutOfBoundsException`
 3. buying a property results in the specific property being added to the player's owned properties
 
 ![Player test class](images/playerTest.png)
 
-With the **PropertyCard** test class, the tests that are implemented show that:
+With the `PropertyCard` test class, the tests that are implemented show that:
 1. ensure the accessors return the correct values
 
 ![PropertyCard test class](images/propertyCardTest.png)
 
-With the **Parser** test class, the sole responsibility of this test class to ensure:
+With the `Parser` test class, the sole responsibility of this test class to ensure:
 1. the correct number of PropertyCards were being created
 2. the list of PropertyCards were in the correct order
 
 ![Parser test class](images/parserTest.png)
 
-With the **Board** test class, the only test method needed was that the Parser
+With the `Board` test class, the only test method needed was that the Parser
 passed on the PropertyCards to the Board object.
 
 ![Board test class](images/boardTest.png)
 
-With the **Bank** test class, our team ensured that:
+With the `Bank` test class, our team ensured that:
 1. the initial balance of the bank is £50,000
 2. depositing a certain amount of money resulted in adding said money to the bank's balance
 3. withdrawing a certain amount of moeny resulted in subtracting said money from the bank's balance
@@ -119,7 +119,7 @@ With the **Bank** test class, our team ensured that:
 
 ![Bank test class](images/bankTest.png)
 
-With the **Dice** test class, the sole method ensured that the amount shown on the dice was between 1 and 6.
+With the `Dice` test class, the sole method ensured that the amount shown on the dice was between 1 and 6.
 
 ![Dice test class](images/diceTest.png)
 
