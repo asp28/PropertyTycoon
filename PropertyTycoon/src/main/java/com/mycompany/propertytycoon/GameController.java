@@ -744,6 +744,35 @@ public class GameController {
         }
         return housableProps;
     }
+    
+    public boolean canAddHouses(ArrayList<ColouredProperty> props, int NumOfHouses) {
+        boolean canAdd = true;
+        //check for difference of 1 (checkhousecount method above)  
+        for (ColouredProperty p : props) {
+            if(checkAllColoursOwned(p)) {
+                if (p.getHouseCount() >= 5) {
+                    return false;
+                }
+                if (p.getHouseCount() + NumOfHouses >= 5) {
+                    
+                }
+            }
+            
+        }
+        return canAdd;
+    }
+    
+    public boolean canAffordHouses(ArrayList<ColouredProperty> props, int NumOfHouses) {
+        boolean canAfford = true;
+        int totalCost = 0;
+        for (ColouredProperty p : props) {
+            totalCost += NumOfHouses * p.getHouseCost();
+        }
+        if (totalCost > activePlayer.getBalance()) {
+            canAfford = false;
+        }
+        return canAfford;
+    }
 
     public void buyHouse(Property prop) {
         ColouredProperty propColour = (ColouredProperty) prop;
