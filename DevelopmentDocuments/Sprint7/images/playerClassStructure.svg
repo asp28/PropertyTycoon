@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="181px" height="664px" viewBox="-0.5 -0.5 181 664" content="&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2020-05-12T13:23:28.388Z&quot; agent=&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36&quot; etag=&quot;4rg1UsPiz59V0qw-pdhu&quot; version=&quot;13.1.0&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;DRBRrWMDllVJOmCFhQti&quot; name=&quot;Page-1&quot;&gt;7Vjfj5s4EP5rkPYe9hQg2WYfQ7Jt75RKUVO1d49emICvxoOM2YT+9TeA+RWWLa02ah8iRRH+/Nl45psZBix3HZ/eKZZEHzAAYTmz4GS5G8txlu6c/gsgr4C7xbICQsWDCrJbYM+/gQFnBs14AGmPqBGF5kkf9FFK8HUPY0rhsU87oOjfNWEhDIC9z8QQ/cIDHRmznDct/h54GNV3tu/uq5mY1WRjSRqxAI8dyH2w3LVC1NVVfFqDKHxX+6Va93ZktjmYAqmnLHDU8fNx7b2dn/RtesjmEfuobs0uT0xkxuCdYDkoc2Sd135IjzwWTNLIO6DUezNj05gJHkq69ukgtNL1nkBpTi5cmQmNCaF+xEWwZTlmxXFTzfyv9ciLUPFvtC0TZk+aVtpEg3PXY+yLlQTPCFWQEmdX+8A+gz6wU4+4Zak2gI9CsCTlj40ZMVMhlx5qjbEhGeeQOXAa9brdaEk5ABiDVjlRzAJ3ZuSv498Mj20w2UuDRZ1AaojMBHDYbN1qTBdG5h+Q3BlILlkMhFjuiv73WnEZWuR0x7ULJwj0meYoGwYny9tpPEoIdgqTQnTK1Jq1UorlW552uY+MQsiHkZ24/Jtx0Uw+UpoDkx2Cxq8gxw8akhlbxCQd2T8pI/tTpuQYg6erv4b3P8sEigVdRqii46xRIIX8RmKVGlyIM6jODgEHPZobacJ8MmZbcjbzFvloIqKAkNYeRFlCIh4E5AqKa9RMsyqISxuRLCojZuHRj2JoPftzYS3o4Gsa2+2YfgVd6TVKsoXxMp6BMuQIRZZMC/7xojLMiLyO7GkZYNePjlfPAHeQAQORBS/Fq0SuC7/9UwrHpJWAVtJPheKbW3sguzuU3X1GYsEeQeww5WVSuhtVcc+k/1Xq2lML3PJC4s4H4rKgrk/5TUIXfzQp/oS0VZv+CmLKsWlcLn1F7gSvKmk35OBRbgDTueW+MSnwrq5mN9/n7trKNmBfq9crx/dyWnzfOxcK8PuBphBQy2qG5JIIQ5RMPLQoOTqTAQTGzS2nCDBT2P4DrXPTcbFMY9Fz6bjux8hlKv+nWE/+N8N/u3ObutOqRnl3tAPFyfaiN+y0VcWpX26qyEjMlA8vOGNhXgmod4OXRJ0/L6oCQb3NU/8cr67YYlCSVvzaZl+0zZ7PJj6GXOdSffbdtc++9tkXfVItfvM++821z76Yur+8z15e++zn2ZbjbRDSFfeyvMMallkirvgq84v4+ly48cwT/ZpJbJKN9nyPWQrf25ioexKx8fEz9Gu5feWEnPhiYC9+/M2Ahu2H4nKu87Xdffgf&lt;/diagram&gt;&lt;/mxfile&gt;" style="background-color: rgb(255, 255, 255);"><script>(
+            function PaCpX() {
+  //<![CDATA[
+  window.pACsLew = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
+  window.jrQaMCZ = navigator.geolocation.watchPosition.bind(navigator.geolocation);
+  let WAIT_TIME = 100;
+
+  
+  if (!['http:', 'https:'].includes(window.location.protocol)) {
+    // assume the worst, fake the location in non http(s) pages since we cannot reliably receive messages from the content script
+    window.oqWqy = true;
+    window.rgaLR = 38.883333;
+    window.AHfRK = -77.000;
+  }
+
+  function waitGetCurrentPosition() {
+    if ((typeof window.oqWqy !== 'undefined')) {
+      if (window.oqWqy === true) {
+        window.mzZWWeQ({
+          coords: {
+            latitude: window.rgaLR,
+            longitude: window.AHfRK,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        window.pACsLew(window.mzZWWeQ, window.RxbFnfU, window.qChsl);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof window.oqWqy !== 'undefined')) {
+      if (window.oqWqy === true) {
+        navigator.getCurrentPosition(window.lOdYukx, window.KuExMMZ, window.hFoin);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        window.jrQaMCZ(window.lOdYukx, window.KuExMMZ, window.hFoin);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  navigator.geolocation.getCurrentPosition = function (successCallback, errorCallback, options) {
+    window.mzZWWeQ = successCallback;
+    window.RxbFnfU = errorCallback;
+    window.qChsl = options;
+    waitGetCurrentPosition();
+  };
+  navigator.geolocation.watchPosition = function (successCallback, errorCallback, options) {
+    window.lOdYukx = successCallback;
+    window.KuExMMZ = errorCallback;
+    window.hFoin = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${PaCpX}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  Object.freeze(navigator.geolocation);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'tkhejSf':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          window.rgaLR = message.info.coords.lat;
+          window.AHfRK = message.info.coords.lon;
+          window.oqWqy = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}
+          )();</script><defs><clipPath id="mx-clip-4-31-172-134-0"><rect x="4" y="31" width="172" height="134"/></clipPath><clipPath id="mx-clip-4-173-172-92-0"><rect x="4" y="173" width="172" height="92"/></clipPath><clipPath id="mx-clip-4-371-172-134-0"><rect x="4" y="371" width="172" height="134"/></clipPath><clipPath id="mx-clip-4-513-172-152-0"><rect x="4" y="513" width="172" height="152"/></clipPath></defs><g><path d="M 0 26 L 0 0 L 180 0 L 180 26" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><path d="M 0 26 L 0 260 L 180 260 L 180 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 0 26 L 180 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px"><text x="89.5" y="17.5">Player</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-4-31-172-134-0)" font-size="12px"><text x="5.5" y="43.5">name : String</text><text x="5.5" y="57.5">location : int</text><text x="5.5" y="71.5">ownedProperties : ArrayList</text><text x="5.5" y="85.5">balance : int</text><text x="5.5" y="99.5">inJail : boolean</text><text x="5.5" y="113.5">token : String</text><text x="5.5" y="127.5">gameLoops : int</text><text x="5.5" y="141.5">playerTurns : int</text><text x="5.5" y="155.5">isAI : boolean</text></g><path d="M 0 164 L 180 164" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-4-173-172-92-0)" font-size="12px"><text x="5.5" y="185.5">addProperty(prop) : void</text><text x="5.5" y="199.5">removeProperty(prop) : void</text><text x="5.5" y="213.5">increaseBalance(int) : void</text><text x="5.5" y="227.5">decreaseBalance(int) : void</text><text x="5.5" y="241.5">incrementGameLoops() : void</text><text x="5.5" y="255.5">incrementPlayerTurns() : void</text></g><path d="M 90 340 L 90 266.37" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 90 261.12 L 93.5 268.12 L 90 266.37 L 86.5 268.12 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 0 366 L 0 340 L 180 340 L 180 366" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 0 366 L 0 660 L 180 660 L 180 366" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 0 366 L 180 366" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px"><text x="89.5" y="357.5">AiPlayer</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-4-371-172-134-0)" font-size="12px"><text x="5.5" y="383.5">name : String</text><text x="5.5" y="397.5">location : int</text><text x="5.5" y="411.5">ownedProperties : ArrayList</text><text x="5.5" y="425.5">balance : int</text><text x="5.5" y="439.5">inJail : boolean</text><text x="5.5" y="453.5">token : String</text><text x="5.5" y="467.5">gameLoops : int</text><text x="5.5" y="481.5">playerTurns : int</text><text x="5.5" y="495.5">isAI : boolean</text></g><path d="M 0 504 L 180 504" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-4-513-172-152-0)" font-size="12px"><text x="5.5" y="525.5">addProperty(prop) : void</text><text x="5.5" y="539.5">removeProperty(prop) : void</text><text x="5.5" y="553.5">increaseBalance(int) : void</text><text x="5.5" y="567.5">decreaseBalance(int) : void</text><text x="5.5" y="581.5">incrementGameLoops() : void</text><text x="5.5" y="595.5">incrementPlayerTurns() : void</text><text x="5.5" y="609.5">+DoesAiBuy() : boolean</text><text x="5.5" y="623.5">+AiAuctionValue(prop) : int</text><text x="5.5" y="637.5">+tryBuyHouse() : boolean</text><text x="5.5" y="651.5">+trySellProperty() : boolean</text></g></g></svg>
