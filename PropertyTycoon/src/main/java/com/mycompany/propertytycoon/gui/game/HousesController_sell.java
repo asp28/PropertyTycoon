@@ -27,7 +27,7 @@ import javafx.scene.text.Text;
  *
  * @author ankeet
  */
-public class HousesController implements Initializable {
+public class HousesController_sell implements Initializable {
 
     @FXML
     private Button confirm, house_neg, house_pos, hotel_neg, hotel_pos;
@@ -48,12 +48,14 @@ public class HousesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         hotel_count = 0;
         houses_count = 0;
-
-        List<ColouredProperty> properties = SM.getGame().listOfHousableProps();
+        
         ObservableList<String> props = FXCollections.<String>observableArrayList();
-        for (ColouredProperty p : properties) {
-            props.add(p.getTitle());
-        }
+        SM.getGame().getActivePlayer().getOwnedProperties().stream().filter((p) -> (p instanceof ColouredProperty)).forEachOrdered((p) -> {
+            ColouredProperty prop = (ColouredProperty) p;
+            if (prop.getHouseCount() != 0) {
+                props.add(p.getTitle());
+            }
+        });
 
         canAddHouses.getItems().addAll(props);
         canAddHouses.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
