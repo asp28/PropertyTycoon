@@ -414,13 +414,16 @@ public class GameController {
         }
         
         if (doubleRent(p, owner)) {
+            
             activePlayer.increaseBalance(-(2 * Integer.parseInt(p.getRent())));
             owner.increaseBalance(2 * Integer.parseInt(p.getRent()));
             log.addToLog(activePlayer.getName() + " has paid rent to " + owner.getName() + " of £" + (2 * Integer.parseInt(p.getRent())));
+            checkIfBankrupt();
         } else {
             activePlayer.increaseBalance(-Integer.parseInt(p.getRent()));
             owner.increaseBalance(Integer.parseInt(p.getRent()));
             log.addToLog(activePlayer.getName() + " has paid rent to " + owner.getName() + " of £" + p.getRent());
+            checkIfBankrupt();
         }
     }
 
@@ -543,10 +546,13 @@ public class GameController {
                 }
             case "Player puts £15 on free parking":
                 fpp.setBalance(fpp.getBalance() + 15);
+                activePlayer.increaseBalance(-15);
+                checkIfBankrupt();
                 break;
             case "Player pays £150 to the bank":
                 activePlayer.increaseBalance(-150);
                 bank.deposit(150);
+                checkIfBankrupt();
                 break;
             case "Bank pays £150 to the player":
                 bank.withdraw(150);
@@ -583,6 +589,7 @@ public class GameController {
                     activePlayer.decreaseBalance((house*25) + (hotel*100));
                     fpp.setBalance(fpp.getBalance() + ((house*25) + (hotel*100)));
                 }
+                checkIfBankrupt();
                 break;
             case "As the card says":
                 goToJail();
@@ -590,6 +597,8 @@ public class GameController {
             case "Player puts £20 on free parking":
                 FreeParkingPiece fpp2 = (FreeParkingPiece) board.getBoardLocations().get(20);
                 fpp2.setBalance(fpp2.getBalance() + 20);
+                activePlayer.increaseBalance(-20);
+                checkIfBankrupt();
                 break;
             case "Retained by the player until needed. No resale or trade value":
                 activePlayer.setGOJF(opportunityKnocks);
@@ -627,10 +636,14 @@ public class GameController {
             case "If fine paid, player puts £10 on free parking":
                 FreeParkingPiece fpp = (FreeParkingPiece) board.getBoardLocations().get(20);
                 fpp.setBalance(fpp.getBalance() + 10);
+                activePlayer.increaseBalance(-50);
+                checkIfBankrupt();
                 break;
             case "Player puts £50 on free parking":
                 FreeParkingPiece fpp2 = (FreeParkingPiece) board.getBoardLocations().get(20);
                 fpp2.setBalance(fpp2.getBalance() + 50);
+                activePlayer.increaseBalance(-50);
+                checkIfBankrupt();
                 break;
             case "Bank pays £100 to the player":
                 bank.withdraw(100);
@@ -663,6 +676,7 @@ public class GameController {
                 break;
             case "Player pays £100 to the bank":
                 activePlayer.increaseBalance(-100);
+                checkIfBankrupt();
                 bank.deposit(100);
                 break;
         }
@@ -778,6 +792,7 @@ public class GameController {
         ColouredProperty propColour = (ColouredProperty) prop;
         if (propColour.getHouseCost() <= activePlayer.getBalance() && propColour.getHouseCount() <= 5 && checkHouseCount(prop)) {
             activePlayer.decreaseBalance(propColour.getHouseCost());
+            checkIfBankrupt();
             propColour.setHouseCount(propColour.getHouseCount() + 1);
             int rentValue = propColour.getHouses().get(propColour.getHouseCount());
             propColour.setRent(Integer.toString(rentValue));
@@ -791,6 +806,7 @@ public class GameController {
         ColouredProperty prop = (ColouredProperty) board.getBoardPiece(activePlayer.getLocation());
         if (prop.getHouseCost() < activePlayer.getBalance() && prop.getHouseCount() <= 5) {
             activePlayer.decreaseBalance(prop.getHouseCost());
+            checkIfBankrupt();
             prop.setHouseCount(prop.getHouseCount() + 1);
             int rentValue = prop.getHouses().get(prop.getHouseCount());
             prop.setRent(Integer.toString(rentValue));
@@ -860,6 +876,7 @@ public class GameController {
         prop.setMortgaged(false);
         bank.deposit(prop.getCost() / 2);
         activePlayer.decreaseBalance(prop.getCost() / 2);
+        checkIfBankrupt();
         log.addToLog(activePlayer.getName() + "has paid his debt to the bank for " + prop.getTitle() + ".");
     }
 
@@ -882,6 +899,7 @@ public class GameController {
     public void payTax(TaxPiece tp) {
         FreeParkingPiece fpp = (FreeParkingPiece) getBoard().getBoardPiece(20);
         getActivePlayer().decreaseBalance(tp.getTaxAmount());
+        checkIfBankrupt();
         fpp.setBalance(fpp.getBalance() + tp.getTaxAmount());
 
     }
@@ -892,6 +910,20 @@ public class GameController {
     
     public void addToPotLuck(PotLuck pl) {
         potluckcards.add(pl);
+    }
+    
+    private void checkIfBankrupt()
+    {
+        if(activePlayer.getBalance() < 0 && activePlayer.getOwnedProperties().isEmpty())
+        {
+            log.addToLog(activePlayer.getName() + "has gone bakrupt and is out the game");
+            amountOfPlayers.remove(activePlayer);
+            if(amountOfPlayers.size() == 1)
+            {
+                log.addToLog(amountOfPlayers.get(0).getName() + " has won the game");
+            }
+            
+        }
     }
 
 }
