@@ -4,7 +4,7 @@
 
 - **Team Number:** 13
 - **Team Lead:** Ankeet
-- **Sprint Start:** 27/04/2020
+- **Sprint Start:** 08/05/2020
 - **Sprint End:** 14/05/2020
 
 ## Individual Key Contributions
