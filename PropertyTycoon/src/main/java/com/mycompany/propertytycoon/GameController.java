@@ -4,6 +4,8 @@ import com.mycompany.propertytycoon.boardpieces.*;
 import com.mycompany.propertytycoon.cards.OpportunityKnocks;
 import com.mycompany.propertytycoon.cards.PotLuck;
 import com.mycompany.propertytycoon.exceptions.NotAProperty;
+import com.mycompany.propertytycoon.gui.utils.StageManager;
+import com.mycompany.propertytycoon.gui.utils.View;
 import com.mycompany.propertytycoon.log.Log;
 import javafx.util.Pair;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -15,6 +17,7 @@ import java.util.Map.Entry;
 public class GameController {
 
     private static Log log = Log.getInstance();
+    private static StageManager SM = StageManager.getInstance();
 
     private ArrayList<Player> amountOfPlayers = new ArrayList<>();
     private ArrayList<Integer> playerLocations = new ArrayList<>();
@@ -88,52 +91,43 @@ public class GameController {
     public void move() {
         actions = new ArrayList<>();
         roll();
-        
-        if(activePlayer.isInJail())
-        {
-            if(rolls.getKey() == rolls.getValue())
-            {
+
+        if (activePlayer.isInJail()) {
+            if (rolls.getKey() == rolls.getValue()) {
                 activePlayer.setInJail(false);
             }
+        } else {
+            if (rolls.getKey() == rolls.getValue() && doublesRolled < 3) {
+                actions.add("ROLL");
+                log.addToLog(activePlayer.getName() + " has rolled a double " + rolls.getKey() + ".");
+                int currentLocation = activePlayer.getLocation();
+                int newLocation = currentLocation + (rolls.getKey() + rolls.getValue());
+                activePlayer.setLocation(newLocation);
+                doublesRolled++;
+            } else if (doublesRolled > 2) {
+                log.addToLog(activePlayer.getName() + " was sent to jail for rolling 3 doubles in a row.");
+                goToJail();
+                doublesRolled = 0;
+            } else {
+                log.addToLog(activePlayer.getName() + " has rolled " + rolls.getKey() + " and " + rolls.getValue() + ".");
+                int currentLocation = activePlayer.getLocation();
+                int newLocation = currentLocation + (rolls.getKey() + rolls.getValue());
+                activePlayer.setLocation(newLocation);
+                doublesRolled = 0;
+            }
+
+            if (activePlayer.getLocation() >= 40) {
+                passingGo();
+                activePlayer.setGameloops(activePlayer.getGameloops() + 1);
+                int newLocation = activePlayer.getLocation() - 40;
+                activePlayer.setLocation(newLocation);
+
+            }
+            playerLocations.set(amountOfPlayers.indexOf(activePlayer), activePlayer.getLocation());
+            actions.addAll(getPlayerActions());
+            System.out.println(actions);
+            actions = performActions(actions);
         }
-        else
-        {
-        if(rolls.getKey() == rolls.getValue() && doublesRolled < 3)
-        {
-            actions.add("ROLL");
-            log.addToLog(activePlayer.getName() + " has rolled a double " + rolls.getKey() + ".");
-            int currentLocation = activePlayer.getLocation();
-            int newLocation = currentLocation + (rolls.getKey() + rolls.getValue());
-            activePlayer.setLocation(newLocation);
-            doublesRolled++;
-        }else if(doublesRolled > 2)
-        {
-             log.addToLog(activePlayer.getName() + " was sent to jail for rolling 3 doubles in a row.");
-             goToJail();
-             doublesRolled = 0;
-        }else
-        {
-            log.addToLog(activePlayer.getName() + " has rolled " + rolls.getKey() + " and " + rolls.getValue() + ".");
-            int currentLocation = activePlayer.getLocation();
-            int newLocation = currentLocation + (rolls.getKey() + rolls.getValue());
-            activePlayer.setLocation(newLocation);
-            doublesRolled = 0;
-        }
-        
-        if(activePlayer.getLocation() >= 40)
-        {
-            log.addToLog(activePlayer.getName() + "Has travelled all the way around the board");
-            passingGo();
-            activePlayer.setGameloops(activePlayer.getGameloops() + 1); 
-            int newLocation = activePlayer.getLocation()-40;
-            activePlayer.setLocation(newLocation);
-            
-        }
-        playerLocations.set(amountOfPlayers.indexOf(activePlayer), activePlayer.getLocation());
-        actions.addAll(getPlayerActions());
-        System.out.println(actions);
-        actions = performActions(actions);
-    }
     }
 
     /**
@@ -148,21 +142,16 @@ public class GameController {
         if (boardPiece instanceof ColouredProperty) {
             ColouredProperty buyable = (ColouredProperty) boardPiece;
             if (buyable.getOwnedBuy().equals("The Bank")) {
-                if (buyable.getCost() <= activePlayer.getBalance() && activePlayer.getGameloops() > 0) {
+                if (activePlayer.getGameloops() > 0) {
                     playerActions.add("BUY");
                 }
-            } else if (buyable.getOwnedBuy().equals(activePlayer.getName())) {
-                if (checkAllColoursOwned(buyable) && checkHouseCount(buyable)) {
-                    playerActions.add("BUYHOUSE");
-                }
-
             } else {
                 playerActions.add("RENT");
             }
         } else if (boardPiece instanceof StationProperty) {
             StationProperty buyable = (StationProperty) boardPiece;
             if (buyable.getOwnedBuy().equals("The Bank")) {
-                if ((buyable.getCost() <= activePlayer.getBalance()) && (activePlayer.getGameloops() > 0)) {
+                if (activePlayer.getGameloops() > 0) {
                     playerActions.add("BUY");
                 }
             } else {
@@ -171,7 +160,7 @@ public class GameController {
         } else if (boardPiece instanceof UtilityProperty) {
             UtilityProperty buyable = (UtilityProperty) boardPiece;
             if (buyable.getOwnedBuy().equals("The Bank")) {
-                if ((buyable.getCost() <= activePlayer.getBalance()) && (activePlayer.getGameloops() > 0)) {
+                if (activePlayer.getGameloops() > 0) {
                     playerActions.add("BUY");
                 }
             } else {
@@ -193,8 +182,6 @@ public class GameController {
             playerActions.add("FREEPARKING");
         } else if (boardPiece instanceof TaxPiece) {
             playerActions.add("TAX");
-        } else if (actions.contains("ROLL")) {
-            playerActions.add("ROLL");
         }
 
         //Add other actions
@@ -227,7 +214,6 @@ public class GameController {
     public ArrayList<String> performActions(ArrayList<String> playerActions) { //local variable as output of getPlayerActions
         ArrayList<String> remaining = new ArrayList<>();
         for (String s : playerActions) {
-            System.out.println(s);
             switch (s) {
                 case "RENT":
                     payRent();
@@ -282,6 +268,11 @@ public class GameController {
         return activePlayer;
     }
 
+    /**
+     * Buy Property (Non auction)
+     * @param bp
+     * @throws NotAProperty 
+     */
     public void buyProperty(BoardPiece bp) throws NotAProperty {
         if (bp instanceof Property) {
             Property prop = (Property) bp;
@@ -330,6 +321,10 @@ public class GameController {
 
     }
 
+    /**
+     * Sell property back to bank for full amount/half amount if mortgaged
+     * @param prop 
+     */
     public void sellProperty(Property prop) {
         if (prop.getOwnedBuy().equals(activePlayer.getName()) && prop.isMortgaged() == false) {
             prop.setOwnedBuy("The Bank");
@@ -349,6 +344,14 @@ public class GameController {
 
     }
 
+    /**
+     * Trade method between player A and player B
+     * @param tradingP
+     * @param cash
+     * @param desiredCash
+     * @param desiredP
+     * @param choosenPlayer 
+     */
     public void trade(ArrayList<Property> tradingP, int cash, int desiredCash, ArrayList<Property> desiredP, Player choosenPlayer) {
 
         if (tradingP.size() > 0) {
@@ -378,6 +381,9 @@ public class GameController {
 
     }
 
+    /**
+     * Ends the turn of the active player
+     */
     public void endTurn() {
         doublesRolled = 0;
         moveTotal = 0;
@@ -391,6 +397,9 @@ public class GameController {
         }
     }
 
+    /**
+     * Pay rent
+     */
     private void payRent() {
         Property p = (Property) board.getBoardPiece(activePlayer.getLocation());
         Player owner = null;
@@ -400,19 +409,17 @@ public class GameController {
                 break;
             }
         }
-        
-        if(owner.isInJail())
-        {
+
+        if (owner.isInJail()) {
             log.addToLog("No rent is paid as owner of the property is in jail");
-            return ;
+            return;
         }
-        
-        if(p.isMortgaged())
-        {
+
+        if (p.isMortgaged()) {
             log.addToLog("No rent is paid as property is mortaged");
-            return ;
+            return;
         }
-        
+
         if (doubleRent(p, owner)) {
             activePlayer.increaseBalance(-(2 * Integer.parseInt(p.getRent())));
             owner.increaseBalance(2 * Integer.parseInt(p.getRent()));
@@ -451,7 +458,6 @@ public class GameController {
 
     private void pickUpCard() {
         if (board.getBoardPiece(activePlayer.getLocation()) instanceof OpportunityKnocksPiece) {
-            log.addToLog("This is my location");
             log.addToLog(activePlayer.getName() + " has picked up an opportunity knocks card.");
             OpportunityKnocks card = oppocards.get(0);
             log.addToLog(card.getDescription());
@@ -496,30 +502,33 @@ public class GameController {
                 break;
             case "Player token moves forwards to Turing Heights":
                 activePlayer.setLocation(39);
+                SM.changeScene(View.GAME);
                 break;
             case "Player moves token":
                 if (opportunityKnocks.getDescription().contains("han xin")) {
                     if (activePlayer.getLocation() > 24) {
                         activePlayer.setLocation(24);
-                        activePlayer.increaseBalance(200);
-                        bank.withdraw(200);
+                        passingGo();
                     } else {
                         activePlayer.setLocation(24);
                     }
+                    SM.changeScene(View.GAME);
                     break;
                 }
                 if (opportunityKnocks.getDescription().contains("hove station")) {
                     if (activePlayer.getLocation() > 15) {
                         activePlayer.setLocation(15);
-                        activePlayer.increaseBalance(200);
-                        bank.withdraw(200);
+                        passingGo();
                     } else {
                         activePlayer.setLocation(15);
                     }
+                    SM.changeScene(View.GAME);
                     break;
                 }
                 if (opportunityKnocks.getDescription().equalsIgnoreCase("advance to go")) {
                     activePlayer.setLocation(0);
+                    passingGo();
+                    SM.changeScene(View.GAME);
                     break;
                 }
                 if (opportunityKnocks.getDescription().equalsIgnoreCase("go back 3 spaces")) {
@@ -529,28 +538,33 @@ public class GameController {
                     } else {
                         activePlayer.setLocation(activePlayer.getLocation() - 3);
                     }
+                    SM.changeScene(View.GAME);
                     break;
                 }
                 if (opportunityKnocks.getDescription().equalsIgnoreCase("Advance to Skywalker Drive. If you pass GO collect £200")) {
                     if (activePlayer.getLocation() > 11) {
                         activePlayer.setLocation(11);
-                        activePlayer.increaseBalance(200);
-                        bank.withdraw(200);
+                        passingGo();
                     } else {
                         activePlayer.setLocation(11);
                     }
+                    SM.changeScene(View.GAME);
                     break;
                 }
             case "Player puts £15 on free parking":
+                activePlayer.decreaseBalance(15);
                 fpp.setBalance(fpp.getBalance() + 15);
+                SM.changeScene(View.GAME);
                 break;
             case "Player pays £150 to the bank":
                 activePlayer.increaseBalance(-150);
                 bank.deposit(150);
+                SM.changeScene(View.GAME);
                 break;
             case "Bank pays £150 to the player":
                 bank.withdraw(150);
                 activePlayer.increaseBalance(150);
+                SM.changeScene(View.GAME);
                 break;
             case "Player pays money to the bank":
                 if (opportunityKnocks.getDescription().equalsIgnoreCase("You are assessed for repairs, £40/house, £115/hotel")) {
@@ -565,8 +579,9 @@ public class GameController {
                             }
                         }
                     }
-                    activePlayer.decreaseBalance((house*40) + (hotel*115));
-                    fpp.setBalance(fpp.getBalance() + ((house*40) + (hotel*115)));
+                    activePlayer.decreaseBalance((house * 40) + (hotel * 115));
+                    fpp.setBalance(fpp.getBalance() + ((house * 40) + (hotel * 115)));
+                    SM.changeScene(View.GAME);
                 }
                 if (opportunityKnocks.getDescription().equalsIgnoreCase("You are assessed for repairs, £25/house, £100/hotel")) {
                     int house = 0;
@@ -580,16 +595,19 @@ public class GameController {
                             }
                         }
                     }
-                    activePlayer.decreaseBalance((house*25) + (hotel*100));
-                    fpp.setBalance(fpp.getBalance() + ((house*25) + (hotel*100)));
+                    activePlayer.decreaseBalance((house * 25) + (hotel * 100));
+                    fpp.setBalance(fpp.getBalance() + ((house * 25) + (hotel * 100)));
+                    SM.changeScene(View.GAME);
                 }
                 break;
             case "As the card says":
                 goToJail();
+                SM.changeScene(View.GAME);
                 break;
             case "Player puts £20 on free parking":
                 FreeParkingPiece fpp2 = (FreeParkingPiece) board.getBoardLocations().get(20);
                 fpp2.setBalance(fpp2.getBalance() + 20);
+                SM.changeScene(View.GAME);
                 break;
             case "Retained by the player until needed. No resale or trade value":
                 activePlayer.setGOJF(opportunityKnocks);
@@ -608,37 +626,46 @@ public class GameController {
             case "Bank pays player £20":
                 bank.withdraw(20);
                 activePlayer.increaseBalance(20);
+                SM.changeScene(View.GAME);
                 break;
             case "Bank pays player £50":
                 bank.withdraw(50);
                 activePlayer.increaseBalance(50);
+                SM.changeScene(View.GAME);
                 break;
             case "Bank pays player £100":
                 bank.withdraw(100);
                 activePlayer.increaseBalance(100);
+                SM.changeScene(View.GAME);
                 break;
             case "Bank pays player £200":
                 bank.withdraw(200);
                 activePlayer.increaseBalance(200);
+                SM.changeScene(View.GAME);
                 break;
             case "Player token moves backwards to Crapper Street":
                 activePlayer.setLocation(1);
+                SM.changeScene(View.GAME);
                 break;
             case "If fine paid, player puts £10 on free parking":
                 FreeParkingPiece fpp = (FreeParkingPiece) board.getBoardLocations().get(20);
                 fpp.setBalance(fpp.getBalance() + 10);
+                SM.changeScene(View.GAME);
                 break;
             case "Player puts £50 on free parking":
                 FreeParkingPiece fpp2 = (FreeParkingPiece) board.getBoardLocations().get(20);
                 fpp2.setBalance(fpp2.getBalance() + 50);
+                SM.changeScene(View.GAME);
                 break;
             case "Bank pays £100 to the player":
                 bank.withdraw(100);
                 activePlayer.increaseBalance(100);
+                SM.changeScene(View.GAME);
                 break;
             case "Bank pays player £25":
                 bank.withdraw(25);
                 activePlayer.increaseBalance(25);
+                SM.changeScene(View.GAME);
                 break;
             case "Player receives £10 from each player":
                 amountOfPlayers.stream().map((p) -> {
@@ -647,23 +674,30 @@ public class GameController {
                 }).forEachOrdered((_item) -> {
                     activePlayer.increaseBalance(10);
                 });
+                SM.changeScene(View.GAME);
                 break;
             case "As the card says":
                 goToJail();
+                SM.changeScene(View.GAME);
                 break;
             case "Player moves forwards to GO":
                 activePlayer.setLocation(0);
+                passingGo();
+                SM.changeScene(View.GAME);
                 break;
             case "Retained by the player until needed. No resale or trade value":
                 activePlayer.setGOJF(potluck);
+                SM.changeScene(View.GAME);
                 break;
             case "Player pays £50 to the bank":
                 activePlayer.increaseBalance(-50);
                 bank.deposit(50);
+                SM.changeScene(View.GAME);
                 break;
             case "Player pays £100 to the bank":
                 activePlayer.increaseBalance(-100);
                 bank.deposit(100);
+                SM.changeScene(View.GAME);
                 break;
         }
     }
@@ -744,34 +778,32 @@ public class GameController {
         }
         return housableProps;
     }
-    
-    public boolean canAddHouses(ArrayList<ColouredProperty> props, int NumOfHouses) {
-        boolean canAdd = true;
-        //check for difference of 1 (checkhousecount method above)  
-        for (ColouredProperty p : props) {
-            if(checkAllColoursOwned(p)) {
-                if (p.getHouseCount() >= 5) {
-                    return false;
-                }
-                if (p.getHouseCount() + NumOfHouses >= 5) {
-                    
-                }
+
+    public boolean canAddHouse(ColouredProperty prop) {
+        ColouredProperty property = (ColouredProperty) prop;
+        if (property.getHouseCount() >= 5) {
+            return false;
+        }
+        ArrayList<ColouredProperty> cp = new ArrayList<>();
+
+        for (Property ownedProperties : activePlayer.getOwnedProperties()) {
+            if (prop.getGroup().equals(ownedProperties.getGroup()) && !ownedProperties.getTitle().equals(property.getTitle())) {
+                cp.add((ColouredProperty) ownedProperties);
             }
-            
         }
-        return canAdd;
+        for (ColouredProperty check : cp) {
+            if (((property.getHouseCount() + 1) - check.getHouseCount()) >= 1) {
+                return false;
+            }
+        }
+        return true;
     }
-    
-    public boolean canAffordHouses(ArrayList<ColouredProperty> props, int NumOfHouses) {
-        boolean canAfford = true;
-        int totalCost = 0;
-        for (ColouredProperty p : props) {
-            totalCost += NumOfHouses * p.getHouseCost();
+
+    public boolean canAffordHouse(ColouredProperty prop) {
+        if (prop.getHouseCost() > activePlayer.getBalance()) {
+            return false;
         }
-        if (totalCost > activePlayer.getBalance()) {
-            canAfford = false;
-        }
-        return canAfford;
+        return true;
     }
 
     public void buyHouse(Property prop) {
@@ -782,6 +814,7 @@ public class GameController {
             int rentValue = propColour.getHouses().get(propColour.getHouseCount());
             propColour.setRent(Integer.toString(rentValue));
             log.addToLog(activePlayer.getName() + "has bought a house on" + prop.getTitle());
+            bank.deposit(propColour.getHouseCost());
         } else {
             log.addToLog(activePlayer.getName() + "has insuffient funds or has the maximum amount of houses");
         }
@@ -795,7 +828,7 @@ public class GameController {
             int rentValue = prop.getHouses().get(prop.getHouseCount());
             prop.setRent(Integer.toString(rentValue));
             log.addToLog(activePlayer.getName() + "has bought a house.");
-
+            bank.deposit(prop.getHouseCost());
         }
     }
 
@@ -803,6 +836,7 @@ public class GameController {
         if (property.getHouseCount() > 0) {
             activePlayer.increaseBalance(property.getHouseCost());
             property.setHouseCount(property.getHouseCount() - 1);
+            bank.withdraw(property.getHouseCost());
             int rentValue = property.getHouses().get(property.getHouseCount());
             property.setRent(Integer.toString(rentValue));
             log.addToLog(activePlayer.getName() + " has sold a house.");
@@ -885,13 +919,21 @@ public class GameController {
         fpp.setBalance(fpp.getBalance() + tp.getTaxAmount());
 
     }
-    
+
     public void addToOppo(OpportunityKnocks ok) {
         oppocards.add(ok);
     }
-    
+
     public void addToPotLuck(PotLuck pl) {
         potluckcards.add(pl);
+    }
+    
+    public Player winningConditions() {
+        if(amountOfPlayers.size() == 1) {
+            return amountOfPlayers.get(0);
+        } else {
+            return null;
+        }
     }
 
 }
