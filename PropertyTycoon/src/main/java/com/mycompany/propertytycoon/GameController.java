@@ -216,7 +216,7 @@ public class GameController {
         for (String s : playerActions) {
             switch (s) {
                 case "RENT":
-                    payRent();
+                    remaining.add("RENT");
                     break;
                 case "BUY":
                     remaining.add("BUY");
@@ -400,7 +400,7 @@ public class GameController {
     /**
      * Pay rent
      */
-    private void payRent() {
+    public void payRent() {
         Property p = (Property) board.getBoardPiece(activePlayer.getLocation());
         Player owner = null;
         for (Player player : amountOfPlayers) {

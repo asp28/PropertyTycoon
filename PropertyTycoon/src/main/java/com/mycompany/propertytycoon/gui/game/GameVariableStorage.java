@@ -21,6 +21,7 @@ public class GameVariableStorage {
     private ArrayList<Player> players;
     private Property auctionProperty;
     private ArrayList<String> actions;
+    private boolean rent = true;
     
     private boolean rolled = false;
     
@@ -62,7 +63,16 @@ public class GameVariableStorage {
     public boolean getRoll() {
         return rolled;
     }
+    
     public void setRolled(boolean roll) {
         rolled = roll;
+    }
+    
+    public void setRent(boolean rentPaid) {
+        rent = rentPaid;
+    }
+    
+    public boolean getRentPaid() {
+        return rent;
     }
 }

@@ -50,9 +50,9 @@ import javafx.scene.text.TextAlignment;
 public class GameController implements Initializable {
 
     @FXML
-    private Button roll, gg, sell, houses, trade, mortgage, endTurn, buy_yes, buy_no, jail;
+    private Button roll, sell, houses, trade, mortgage, endTurn, buy_yes, buy_no, jail, rent;
     @FXML
-        private Label playerName, playerMoney, leftTitle, leftOwner, leftHouses, leftRent;
+    private Label playerName, playerMoney, leftTitle, leftOwner, leftHouses, leftRent;
     @FXML
     private ImageView profileToken, catToken, bootToken, spoonToken, gobletToken, hatstandToken, phoneToken, leftPic;
 
@@ -63,7 +63,7 @@ public class GameController implements Initializable {
     @FXML
     private BorderPane bPane;
     @FXML
-    private VBox right, middle_gray;
+    private VBox middle_gray;
     @FXML
     private AnchorPane anchorpane_left, anchorpane_right;
 
@@ -99,6 +99,11 @@ public class GameController implements Initializable {
             endTurn.setDisable(true);
         }
 
+        if (GVS.getRentPaid()) {
+            rent.setDisable(true);
+        } else {
+            rent.setDisable(false);
+        }
         try {
             updateControls();
         } catch (FileNotFoundException ex) {
@@ -107,12 +112,41 @@ public class GameController implements Initializable {
         roll.setOnAction(e -> {
             SM.getGame().move();
             if (!Objects.equals(SM.getGame().getRolls().getKey(), SM.getGame().getRolls().getValue())) {
-                GVS.setRolled(true);
-                endTurn.setDisable(false);
-                roll.setDisable(true);
+                if (SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()) instanceof Property) {
+                    Property p = (Property) SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation());
+                    if (!p.getOwnedBuy().equalsIgnoreCase("The Bank") && !p.getOwnedBuy().equalsIgnoreCase(SM.getGame().getActivePlayer().getName())) {
+                        endTurn.setDisable(true);
+                        roll.setDisable(true);
+                        GVS.setRent(false);
+                        rent.setDisable(false);
+                    } else {
+                        GVS.setRolled(true);
+                        endTurn.setDisable(false);
+                        roll.setDisable(true);
+                    }
+                } else {
+                    GVS.setRolled(true);
+                    endTurn.setDisable(false);
+                    roll.setDisable(true);
+                }
+
             } else {
+                //double roll
+                if (SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()) instanceof Property) {
+                    Property p = (Property) SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation());
+                    if (!p.getOwnedBuy().equalsIgnoreCase("The Bank") && !p.getOwnedBuy().equalsIgnoreCase(SM.getGame().getActivePlayer().getName())) {
+                        endTurn.setDisable(true);
+                        roll.setDisable(true);
+                        GVS.setRent(false);
+                        rent.setDisable(false);
+                    } else {
+                        roll.setDisable(false);
+                        endTurn.setDisable(true);
+                    }
+                }
                 roll.setDisable(false);
                 endTurn.setDisable(true);
+
             }
 
             ArrayList<String> remaining = SM.getGame().getPlayerActions();
@@ -131,6 +165,9 @@ public class GameController implements Initializable {
                 endTurn.setDisable(true);
                 remaining.remove("BUY");
             }
+            if (GVS.getActions().contains("RENT"))     {
+                endTurn.setDisable(true);
+            }
 
             log();
             try {
@@ -138,6 +175,20 @@ public class GameController implements Initializable {
             } catch (FileNotFoundException ex) {
 
             }
+        });
+        rent.setOnAction(e -> {
+            SM.getGame().payRent();
+            if (SM.getGame().getRolls().getKey() == SM.getGame().getRolls().getValue()) {
+                roll.setDisable(false);
+                endTurn.setDisable(true);
+                rent.setDisable(true);
+                GVS.setRent(true);
+            } else {
+                endTurn.setDisable(false);
+                rent.setDisable(true);
+                GVS.setRent(true);
+            }
+            
         });
         sell.setOnAction(e -> {
             SM.changeScene(View.SELL);
@@ -165,6 +216,7 @@ public class GameController implements Initializable {
             GVS.setRolled(false);
             roll.setDisable(false);
             endTurn.setDisable(true);
+            rent.setDisable(true);
             try {
                 updateControls();
             } catch (FileNotFoundException ex) {
@@ -1042,7 +1094,7 @@ public class GameController implements Initializable {
 
         }
 
-       labelName.addEventFilter(MouseEvent.MOUSE_PRESSED, event
+        labelName.addEventFilter(MouseEvent.MOUSE_PRESSED, event
                 -> {
             try {
                 leftSide(labelName);
@@ -1066,7 +1118,7 @@ public class GameController implements Initializable {
                 if (bp instanceof ColouredProperty) {
                     if (labelName.getText().equals(bp.getTitle())) {
                         leftRent.setText("Rent: £" + ((ColouredProperty) bp).getRent());
-                        leftHouses.setText("Number of Houses: " +((ColouredProperty) bp).getHouseCount() + " Cost: £" + ((ColouredProperty) bp).getCost());
+                        leftHouses.setText("Number of Houses: " + ((ColouredProperty) bp).getHouseCount() + " Cost: £" + ((ColouredProperty) bp).getCost());
                     }
                 } else if (bp instanceof FreeParkingPiece) {
                     if (labelName.getText().equals(bp.getTitle())) {
@@ -1086,7 +1138,6 @@ public class GameController implements Initializable {
                     }
                 }
             }
-            
 
         });
     }
