@@ -947,7 +947,7 @@ public class GameController {
         {
             log.addToLog(activePlayer.getName() + "has gone bakrupt and is out the game");
             amountOfPlayers.remove(activePlayer);
-            if(amountOfPlayers.size() == 1)
+            if(winningConditions() != null)
             {
                 log.addToLog(amountOfPlayers.get(0).getName() + " has won the game");
             }
