@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" minHeight="760.0" minWidth="1064.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.mycompany.propertytycoon.gui.initialisegame.TimerController">
+   <children>
+      <Button fx:id="confirm" layoutX="503.0" layoutY="468.0" mnemonicParsing="false" text="Confirm" />
+      <Text layoutX="215.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the length of time" wrappingWidth="634.4765625">
+         <font>
+            <Font size="60.0" />
+         </font>
+      </Text>
+      <TextField fx:id="value" layoutX="458.0" layoutY="407.0" />
+      <Text layoutX="456.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(In Minutes)">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Text>
+      <Button fx:id="back" layoutX="503.0" layoutY="506.0" minHeight="25.0" minWidth="59.0" mnemonicParsing="false" text="Back" />
+   </children>
+</AnchorPane>
