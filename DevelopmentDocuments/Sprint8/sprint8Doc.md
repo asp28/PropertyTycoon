@@ -71,4 +71,6 @@ As an example below, the move method ensures that the move method will produce a
 
 ![move test method](images/GameControllerTest.png)
 
+With this sprint, the team found the issues of the aforementioned errors, but the team did not successfully fix such errors. As a result, these tasks will be added onto the next sprint.
+
 ## Summary of Sprint
