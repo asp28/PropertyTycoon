@@ -230,8 +230,11 @@
                            </VBox.margin>
                            <children>
                               <Label alignment="CENTER" prefHeight="17.0" prefWidth="208.0" text="Board Piece Info" />
+                              <Label fx:id="leftTitle" alignment="CENTER" prefHeight="67.0" prefWidth="214.0" style="-fx-border-color: lightGrey;" />
                               <ImageView fx:id="leftPic" fitHeight="206.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label fx:id="leftSide" alignment="CENTER" prefHeight="67.0" prefWidth="214.0" style="-fx-border-color: lightGrey;" />
+                              <Label fx:id="leftOwner" prefHeight="67.0" prefWidth="214.0" style="-fx-border-color: lightGrey;" />
+                              <Label fx:id="leftHouses" prefHeight="67.0" prefWidth="214.0" style="-fx-border-color: lightGrey;" />
+                              <Label fx:id="leftRent" prefHeight="67.0" prefWidth="214.0" style="-fx-border-color: lightGrey;" />
                            </children>
                            <opaqueInsets>
                               <Insets />

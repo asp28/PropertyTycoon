@@ -6,7 +6,13 @@
 package com.mycompany.propertytycoon.gui.game;
 
 import com.mycompany.propertytycoon.Player;
+import com.mycompany.propertytycoon.boardpieces.BoardPiece;
+import com.mycompany.propertytycoon.boardpieces.ColouredProperty;
+import com.mycompany.propertytycoon.boardpieces.FreeParkingPiece;
 import com.mycompany.propertytycoon.boardpieces.Property;
+import com.mycompany.propertytycoon.boardpieces.StationProperty;
+import com.mycompany.propertytycoon.boardpieces.TaxPiece;
+import com.mycompany.propertytycoon.boardpieces.UtilityProperty;
 import com.mycompany.propertytycoon.exceptions.NotAProperty;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
 import com.mycompany.propertytycoon.gui.utils.View;
@@ -46,7 +52,7 @@ public class GameController implements Initializable {
     @FXML
     private Button roll, gg, sell, houses, trade, mortgage, endTurn, buy_yes, buy_no, jail;
     @FXML
-    private Label playerName, playerMoney, leftSide;
+        private Label playerName, playerMoney, leftTitle, leftOwner, leftHouses, leftRent;
     @FXML
     private ImageView profileToken, catToken, bootToken, spoonToken, gobletToken, hatstandToken, phoneToken, leftPic;
 
@@ -1036,13 +1042,52 @@ public class GameController implements Initializable {
 
         }
 
-        labelName.addEventFilter(MouseEvent.MOUSE_PRESSED, event
+       labelName.addEventFilter(MouseEvent.MOUSE_PRESSED, event
                 -> {
             try {
                 leftSide(labelName);
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            leftOwner.setText("No Owner");
+            for (Player p : SM.getGame().getAmountOfPlayers()) {
+                if (!p.getOwnedProperties().isEmpty()) {
+                    for (Property py : p.getOwnedProperties()) {
+                        if (py.getTitle().equals(labelName.getText())) {
+                            leftOwner.setText("Owner: " + p.getName());
+
+                        }
+                    }
+                }
+            }
+            leftRent.setText("No Rent");
+            leftHouses.setText("No Houses");
+            for (BoardPiece bp : SM.getGame().getBoard().getBoardLocations()) {
+                if (bp instanceof ColouredProperty) {
+                    if (labelName.getText().equals(bp.getTitle())) {
+                        leftRent.setText("Rent: £" + ((ColouredProperty) bp).getRent());
+                        leftHouses.setText("Number of Houses: " +((ColouredProperty) bp).getHouseCount() + " Cost: £" + ((ColouredProperty) bp).getCost());
+                    }
+                } else if (bp instanceof FreeParkingPiece) {
+                    if (labelName.getText().equals(bp.getTitle())) {
+                        leftRent.setText("Balance: £" + ((FreeParkingPiece) bp).getBalance());
+                    }
+                } else if (bp instanceof StationProperty) {
+                    if (labelName.getText().equals(bp.getTitle())) {
+                        leftRent.setText("Rent: £" + ((StationProperty) bp).getRent());
+                    }
+                } else if (bp instanceof TaxPiece) {
+                    if (labelName.getText().equals(bp.getTitle())) {
+                        leftRent.setText("Tax: £" + ((TaxPiece) bp).getTaxAmount());
+                    }
+                } else if (bp instanceof UtilityProperty) {
+                    if (labelName.getText().equals(bp.getTitle())) {
+                        leftRent.setText("Rent: £" + ((UtilityProperty) bp).getRent());
+                    }
+                }
+            }
+            
+
         });
     }
 
@@ -1054,7 +1099,7 @@ public class GameController implements Initializable {
     }
 
     public void leftSide(Label n) throws FileNotFoundException {
-        leftSide.setText(n.getText());
+        leftTitle.setText(n.getText());
         FileInputStream inputstream = null;
         Image Image = null;
         switch (n.getId()) {
