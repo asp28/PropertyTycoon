@@ -31,45 +31,44 @@ The image below shows the tasks set out on Trello during our weekly meeting
 
 ## Gantt Chart
 
-![Gantt Chart]()
+![Gantt Chart](images/gantt8.png)
 
 ## Requirements Analysis
 
 ### Functional Requirements
 
 - F1
-  - 
+  - The software shall not allow a player to purchase any property including `ColouredProperty`, `Station` or `Utility` until after the player have travelled around the board at least once.
+- F2
+  - If all bidders in an auction bid 0 on a possible property, the property shall not sold and the auction is voided.
+- F3
+  - Profile icons of players should be shown on the GUI as a GIF.
 
 ### Non-Functional Requirements
 
 - NF1
-  - 
-
-### Domain Requirements
-
-- D1
-  - 
+  - The software shall wait to let a player buy a property until a player's gameLoops counter is incremented
 
 ## Design
 
 ### UML Diagram
 ___
 
-![UML]()
+![UML](images/UML8.svg)
 
 ### Sequence Diagrams
 ___
 
-#### Sequence 1
+#### The current player has to pay rent to the owner of their current location
 
-![Sequence1]()
-
-#### Sequence 2
-
-![Sequence2]()
+![payRent sequence diagram](images/rentSequence.svg)
 
 ## Test Plan
 
+As half of the current sprint's tasks was to fix some issues with the software, the updated code was run against previous test methods developed in the past to guarantee the functionality is proper.
 
+As an example below, the move method ensures that the move method will produce a non-negative result greater or equal to 2 and less than or equal to 35 (counting doubles)
+
+![move test method](images/GameControllerTest.png)
 
 ## Summary of Sprint
