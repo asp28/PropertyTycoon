@@ -109,12 +109,6 @@ public class GameController implements Initializable {
                 endTurn.setDisable(true);
             }
 
-            try {
-                updateControls();
-            } catch (FileNotFoundException ex) {
-
-            }
-
             ArrayList<String> remaining = SM.getGame().getPlayerActions();
             GVS.setActions(remaining);
             //System.out.print(GVS.getActions() + " " + remaining + "\n");
@@ -133,13 +127,18 @@ public class GameController implements Initializable {
             }
 
             log();
+            try {
+                updateControls();
+            } catch (FileNotFoundException ex) {
+
+            }
         });
         sell.setOnAction(e -> {
             SM.changeScene(View.SELL);
             log();
         });
         houses.setOnAction(e -> {
-            SM.changeScene(View.HOUSES);
+            SM.changeScene(View.HOUSES_CHOICE);
             log();
 
         });

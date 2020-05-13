@@ -31,7 +31,10 @@ public class HomePageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         normal.setOnAction(e -> SM.changeScene(View.PLAYER_BOT_COUNT));
-        timed.setOnAction(e -> SM.changeScene(View.PLAYER_BOT_COUNT));
+        timed.setOnAction(e -> {
+            SM.changeScene(View.TIMER);
+            SM.isTimed(true);
+        });
         quit.setOnAction(e -> SM.quit());
     }
     

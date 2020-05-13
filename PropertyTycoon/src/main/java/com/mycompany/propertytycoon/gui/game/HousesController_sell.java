@@ -8,6 +8,7 @@ package com.mycompany.propertytycoon.gui.game;
 import com.mycompany.propertytycoon.boardpieces.ColouredProperty;
 import com.mycompany.propertytycoon.boardpieces.Property;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
+import com.mycompany.propertytycoon.gui.utils.View;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,25 +31,18 @@ import javafx.scene.text.Text;
 public class HousesController_sell implements Initializable {
 
     @FXML
-    private Button confirm, house_neg, house_pos, hotel_neg, hotel_pos;
+    private Button confirm, cancel;
 
     @FXML
     private ListView<String> canAddHouses;
 
-    @FXML
-    private Text houses_val, hotel_val;
-
     private StageManager SM = StageManager.getInstance();
-    private int hotel_count, houses_count;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        hotel_count = 0;
-        houses_count = 0;
-        
         ObservableList<String> props = FXCollections.<String>observableArrayList();
         SM.getGame().getActivePlayer().getOwnedProperties().stream().filter((p) -> (p instanceof ColouredProperty)).forEachOrdered((p) -> {
             ColouredProperty prop = (ColouredProperty) p;
@@ -58,81 +52,19 @@ public class HousesController_sell implements Initializable {
         });
 
         canAddHouses.getItems().addAll(props);
-        canAddHouses.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-        house_pos.setOnAction(e -> {
-            if (houses_count == 5) {
-                //do nothing
-            } else {
-                houses_count++;
-                houses_val.setText(String.valueOf(houses_count));
-            }
-        });
-        house_neg.setOnAction(e -> {
-            if (houses_count == 0) {
-                //do nothing
-            } else {
-                houses_count--;
-                houses_val.setText(String.valueOf(houses_count));
-            }
-        });
-        hotel_pos.setOnAction(e -> {
-            if (hotel_count == 1) {
-                //do nothing
-            } else {
-                hotel_count++;
-                hotel_val.setText(String.valueOf(hotel_count));
-            }
-        });
-        hotel_neg.setOnAction(e -> {
-            if (hotel_count == 0) {
-                //do nothing
-            } else {
-                hotel_count--;
-                hotel_val.setText(String.valueOf(hotel_count));
-            }
-        });
         confirm.setOnAction(e -> {
-            ObservableList<String> selected = canAddHouses.getSelectionModel().getSelectedItems();
-            ArrayList<ColouredProperty> selectedProperty = new ArrayList<>();
-            for (String s : selected) {
-                for (Property p : SM.getGame().getActivePlayer().getOwnedProperties()) {
-                    if (p.getTitle().equals(s)) {
-                        selectedProperty.add((ColouredProperty) p);
-                    }
+            String selected = canAddHouses.getSelectionModel().getSelectedItem();
+            ColouredProperty selectedProperty = null;
+            for (Property p : SM.getGame().getActivePlayer().getOwnedProperties()) {
+                if (p.getTitle().equals(selected)) {
+                    selectedProperty = (ColouredProperty) p;
                 }
             }
-            if (SM.getGame().canAddHouses(selectedProperty, (houses_count + (5 * hotel_count))) && SM.getGame().canAffordHouses(selectedProperty, (houses_count + (5 * hotel_count)))) {
-                for (ColouredProperty p : selectedProperty) {
-                    for (int i = 0; i < (houses_count + (5 * hotel_count)); i++) {
-                        SM.getGame().buyHouse(p);
-                    }
-                }
-            } else {
-                if (!SM.getGame().canAddHouses(selectedProperty, (houses_count + (5 * hotel_count)))) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Invalid");
-                    alert.setHeaderText("The amount of houses/hotel cannot be added to the property");
-                    alert.setContentText("Please choose a lower amount.");
-                    alert.showAndWait();
-                }
-                else if (!SM.getGame().canAffordHouses(selectedProperty, (houses_count + (5 * hotel_count)))) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Invalid");
-                    alert.setHeaderText("Cannot Afford the number of houses/hotel.");
-                    alert.setContentText("Please choose a lower amount.");
-                    alert.showAndWait();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Invalid");
-                    alert.setHeaderText("Cannot Afford the number of houses/hotel and number of houses/hotel is more than the allowed amount.");
-                    alert.setContentText("Please choose a lower amount.");
-                    alert.showAndWait();
-                }
-                
-            }
+            SM.getGame().sellHouse(selectedProperty);
+            SM.changeScene(View.HOUSES_CHOICE);
         });
-
+        cancel.setOnAction(e -> SM.changeScene(View.HOUSES_CHOICE));
     }
 
 }
