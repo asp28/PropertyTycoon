@@ -125,3 +125,8 @@ With the `Dice` test class, the sole method ensured that the amount shown on the
 
 ## Summary of Sprint
 
+The team started strong. We designed and set up the procedures for how we would work as a team including how to use git effectively as well as the ideas of an agile methodology. We began to design the parser system and got a very basic version working.
+
+The strengths of this sprint was the willingness of the team and the motivation to get a sprint done enabling us to complete this sprint quicker then we originally planned. Additionally, we had a good initial build of the game with clear and concise goals that were easily met.
+
+A downside to having done this sprint quickly was that we did not set enough work for us; we felt underworked. Furthermore, we should have spent more time designing the game and the structure of its componenents in the long term so the goals for future sprints would have been more clear.
