@@ -79,7 +79,6 @@ public class GameController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         anchorpane_left.setVisible(false);
         anchorpane_right.setVisible(false);
         middle_gray.setVisible(false);
@@ -179,7 +178,7 @@ public class GameController implements Initializable {
         });
         rent.setOnAction(e -> {
             SM.getGame().payRent();
-            if (SM.getGame().getRolls().getKey() == SM.getGame().getRolls().getValue()) {
+            if (Objects.equals(SM.getGame().getRolls().getKey(), SM.getGame().getRolls().getValue())) {
                 roll.setDisable(false);
                 endTurn.setDisable(true);
                 rent.setDisable(true);
@@ -346,7 +345,6 @@ public class GameController implements Initializable {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         for (int i = 0; i < 40; i++) {
             try {
                 LocationNames(i, SM.getGame().getBoard().getBoardLocations().get(i).getTitle());
@@ -354,7 +352,6 @@ public class GameController implements Initializable {
                 Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
     }
 
     public void playerProfile() throws FileNotFoundException {
@@ -390,6 +387,8 @@ public class GameController implements Initializable {
     public void placePlayersOnBoard() throws FileNotFoundException {
         FileInputStream inputstream;
         Image image = null;
+        System.out.println("init");
+        System.out.println(SM.getGame().getAmountOfPlayers().size());
         for (Player p : SM.getGame().getAmountOfPlayers()) {
 
             switch (p.getToken()) {
@@ -399,7 +398,7 @@ public class GameController implements Initializable {
                     image = new Image(inputstream) {
                     };
                     catToken.setImage(image);
-
+                    System.out.println("CAT");
                     break;
 
                 case "boot":
@@ -407,6 +406,7 @@ public class GameController implements Initializable {
                     image = new Image(inputstream) {
                     };
                     bootToken.setImage(image);
+                    System.out.println("BOOT");
                     break;
 
                 case "spoon":
@@ -414,6 +414,7 @@ public class GameController implements Initializable {
                     image = new Image(inputstream) {
                     };
                     spoonToken.setImage(image);
+                    System.out.println("SPOON");
                     break;
 
                 case "cup":
@@ -422,6 +423,7 @@ public class GameController implements Initializable {
                     };
 
                     gobletToken.setImage(image);
+                    System.out.println("CUP");
                     break;
 
                 case "hat_hanger":
@@ -430,6 +432,7 @@ public class GameController implements Initializable {
                     };
 
                     hatstandToken.setImage(image);
+                    System.out.println("HAT");
                     break;
 
                 case "phone":
@@ -437,10 +440,13 @@ public class GameController implements Initializable {
                     image = new Image(inputstream) {
                     };
                     phoneToken.setImage(image);
+                    System.out.println("PHONE");
                     break;
 
             }
+            System.out.println("EXIT SWITCH");
         }
+        System.out.println("EXIT LOOP");
 
     }
 
@@ -832,7 +838,7 @@ public class GameController implements Initializable {
                 break;
 
             case 13:
-                 labelName.setId("purple");
+                labelName.setId("purple");
                 labelName.setRotate(180);
                 labelName.setAlignment(Pos.CENTER);
                 labelName.setWrapText(true);

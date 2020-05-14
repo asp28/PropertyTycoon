@@ -51,7 +51,7 @@ public class GameController {
      * @throws InvalidFormatException
      */
     public GameController(int amountOfPlayer, int amountOfBots) throws IOException, InvalidFormatException {
-        for (int i = 0; i < amountOfPlayer+amountOfBots; i++) {
+        for (int i = 0; i < amountOfPlayer; i++) {
             Player player = new Player();
             player.setName("Player" + i);
             amountOfPlayers.add(player);
