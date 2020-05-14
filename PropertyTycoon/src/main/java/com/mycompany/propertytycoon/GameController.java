@@ -51,12 +51,19 @@ public class GameController {
      * @throws InvalidFormatException
      */
     public GameController(int amountOfPlayer, int amountOfBots) throws IOException, InvalidFormatException {
-        for (int i = 0; i < amountOfPlayer; i++) {
+        for (int i = 0; i < amountOfPlayer+amountOfBots; i++) {
             Player player = new Player();
             player.setName("Player" + i);
             amountOfPlayers.add(player);
             playerLocations.add(0);
         }
+        for (int x = 0; x < amountOfBots; x++) {
+            AiPlayer player = new AiPlayer();
+            amountOfPlayers.add(player);
+            playerLocations.add(0);
+        }
+        
+        
         board = new Board();
         bank = new Bank(board.getBoardLocations());
         potluckcards = new Parser().createPotLuckCards();
@@ -394,6 +401,15 @@ public class GameController {
         } else {
             int player = amountOfPlayers.indexOf(activePlayer) + 1;
             activePlayer = amountOfPlayers.get(player);
+        }
+        if(activePlayer.isIsAI())
+        {
+            move();
+            /*for(String action: actions)
+            {
+                if(actions.equals(log))
+            }*/
+            
         }
     }
 
