@@ -9,6 +9,7 @@ import com.mycompany.propertytycoon.GameController;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -28,17 +29,10 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 public class LoadNewGameGUI extends Application {
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws MalformedURLException {
         StageManager SM = StageManager.getInstance();
         SM.setStage(primaryStage);
         SM.init();
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
     }
 
 }

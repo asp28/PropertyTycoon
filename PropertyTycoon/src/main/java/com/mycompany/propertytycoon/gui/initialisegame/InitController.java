@@ -328,7 +328,7 @@ public class InitController implements Initializable {
 
         });
 
-        switch (SM.getPlayerNum()) {
+        switch (SM.getPlayerNum() + SM.getBotNum()) {
             case 2:
                 p1_list.getItems().addAll(tokens);
                 p2_list.getItems().addAll(tokens);
