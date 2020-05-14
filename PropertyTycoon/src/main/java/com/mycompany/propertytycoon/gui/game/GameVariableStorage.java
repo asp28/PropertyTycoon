@@ -75,4 +75,5 @@ public class GameVariableStorage {
     public boolean getRentPaid() {
         return rent;
     }
+
 }
