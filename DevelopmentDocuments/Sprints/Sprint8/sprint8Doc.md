@@ -25,6 +25,8 @@
 - Animate tokens as gifs in GUI
 - If all bidder bid 0 in an auction, no player gets the property
 
+<div style="page-break-after: always;"></div>
+
 The image below shows the tasks set out on Trello during our weekly meeting
 
 ![Trello task cards](images/trello8.png)
@@ -32,6 +34,8 @@ The image below shows the tasks set out on Trello during our weekly meeting
 ## Gantt Chart
 
 ![Gantt Chart](images/gantt8.png)
+
+<div style="page-break-after: always;"></div>
 
 ## Requirements Analysis
 
@@ -49,12 +53,16 @@ The image below shows the tasks set out on Trello during our weekly meeting
 - NF1
   - The software shall wait to let a player buy a property until a player's gameLoops counter is incremented
 
+<div style="page-break-after: always;"></div>
+
 ## Design
 
 ### UML Diagram
 ___
 
 ![UML](images/UML8.svg)
+
+<div style="page-break-after: always;"></div>
 
 ### Sequence Diagrams
 ___
@@ -72,6 +80,8 @@ As an example below, the move method ensures that the move method will produce a
 ![move test method](images/GameControllerTest.png)
 
 With this sprint, the team found the issues of the aforementioned errors, but the team did not successfully fix such errors. As a result, these tasks will be added onto the next sprint.
+
+<div style="page-break-after: always;"></div>
 
 ## Summary of Sprint
 

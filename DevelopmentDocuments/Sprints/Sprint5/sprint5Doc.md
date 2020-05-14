@@ -25,9 +25,13 @@
 - Add a start screen to the GUI to start a game
 - Get `BoardPiece` objects to print names onto board
 
+<div style="page-break-after: always;"></div>
+
 The image below shows the tasks set out on Trello during our weekly meeting
 
 ![Trello task cards](images/trello5.png)
+
+<div style="page-break-after: always;"></div>
 
 ## Gantt Chart
 
@@ -48,6 +52,8 @@ The image below shows the tasks set out on Trello during our weekly meeting
 - F5
   - The GUI shall have a start screen that should display the various options of starting a game of PropertyTycoon
 
+<div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 - NF1
   - For a player to be able to purchase a house, the player must own all properties of a certain colour group. Once this requirement is fulfilled, the number of houses on each property across each group cannot exceed a difference of 1 house. If the player passes these 2 prerequisites, the player can purchase a house on the specific property.
@@ -65,12 +71,16 @@ The image below shows the tasks set out on Trello during our weekly meeting
 - D1
   - When building the board in the GUI, the Excel file containing the information about the board must be present in order to play the game and buy properties
 
+<div style="page-break-after: always;"></div>
+
 ## Design
 
 ### UML Diagram
 ___
 
 ![UML](images/UML5.svg)
+
+<div style="page-break-after: always;"></div>
 
 ### Sequence Diagrams
 ___
@@ -81,6 +91,8 @@ ___
 #### When a player mortgages one of their owned properties
 
 ![mortgageProperty sequence](images/mortgagePropertySequence.svg)
+
+<div style="page-break-after: always;"></div>
 
 ### User Interface
 ___
@@ -100,6 +112,8 @@ The image shows the players choosing their names and their tokens to be in the g
 ![main game screen with board and player actions](images/GUI4.png)
 
 The image shows the playing board with all the board pieces together. This was created by the automatic parser that builds this board in the user interface from the information in the Excel document describing all of the board pieces. A minor addition from last sprint is the addition of a trade button. In the future, we plan on implementing a trading mechanic between players. When fully developed, 2 player can trade properties and money.
+
+<div style="page-break-after: always;"></div>
 
 ## Test Plan
 
@@ -135,6 +149,8 @@ With the `Bank` test class, it ensures that:
 3. adding and removing the bank's properties function properly
 
 ![adding and removing unowned properties in Bank test class](images/bankPropertiesTest.png)
+
+<div style="page-break-after: always;"></div>
 
 ## Summary of Sprint
 

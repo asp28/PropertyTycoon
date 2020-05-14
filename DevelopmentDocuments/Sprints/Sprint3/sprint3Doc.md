@@ -25,9 +25,13 @@
 - Update dice to return both values instead of calling dice twice
 - Develop methods to be assigned to buttons
 
+<div style="page-break-after: always;"></div>
+
 The image below shows the tasks set out on Trello during our weekly meeting
 
 ![Trello task cards](images/trello3.png)
+
+<div style="page-break-after: always;"></div>
 
 ## Gantt Chart
 
@@ -48,6 +52,8 @@ The image below shows the tasks set out on Trello during our weekly meeting
 - F5
   - The software shall have buttons that shall have the appropriate actions performed when pressed.
 
+<div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 - NF1
   - The OO design of the `Card` class shall have 2 subclasses, `OpportunityKnocks` and `PotLuck`.
@@ -67,6 +73,8 @@ ___
 
 ![UML](images/UML3.svg)
 
+<div style="page-break-after: always;"></div>
+
 The image below shows the design of how the OpportunityKnocks and PotLuck cards were created
 
 ![Card subclasses](images/cardDesign.svg)
@@ -74,6 +82,8 @@ The image below shows the design of how the OpportunityKnocks and PotLuck cards 
 The image below shows the design of how the BoardPieces are structured
 
 ![BoardPiece subclasses](images/boardPieceDesign.svg)
+
+<div style="page-break-after: always;"></div>
 
 ### Sequence Diagrams
 ___
@@ -85,6 +95,8 @@ ___
 #### Player picks up OpportunityKnocks/PotLuck, advances to Go and received £200 
 
 ![Sequence2](images/advanceGoSequence.svg)
+
+<div style="page-break-after: always;"></div>
 
 ### User Interface
 ___
@@ -99,7 +111,9 @@ On the top right of the screen, we have chosen to include:
 1. the player's token
 2. the player's name
 3. the player's owned properties
-4. the buttons of which we are planning on assigning methods in the future
+4. the buttons of which we are planning on assigning methods in the future 
+
+<div style="page-break-after: always;"></div>
 
 ## Test Plan
 
@@ -110,6 +124,8 @@ To ensure the correct objects were being created in regards to the Opportunity K
 ![OpportunityKnocks method in Parser test class](images/oppoTest.png)
 
 ![PotLuck method in Parser test class](images/potLuckTest.png)
+
+<div style="page-break-after: always;"></div>
 
 ## Summary of Sprint
 

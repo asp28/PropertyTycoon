@@ -26,13 +26,19 @@
 - If jailed player pays to leave jail, money is given to FreeParking
 - Bugs relating to last week's sprint
 
+<div style="page-break-after: always;"></div>
+
 The image below shows the tasks set out on Trello during our weekly meeting
 
 ![Trello task cards](images/trello9.png)
 
+<div style="page-break-after: always;"></div>
+
 ## Gantt Chart
 
 ![Gantt Chart](images/gantt9.png)
+
+<div style="page-break-after: always;"></div>
 
 ## Requirements Analysis
 
@@ -57,12 +63,16 @@ The image below shows the tasks set out on Trello during our weekly meeting
 - D1
   - Our team is currently looking into the ability to compress our project into a single JAR file. If there is sufficient evidence that this will make the creating a game easier, it should be present in the submission.
 
+<div style="page-break-after: always;"></div>
+
 ## Design
 
 ### UML Diagram
 ___
 
 ![UML](images/UML9.svg)
+
+<div style="page-break-after: always;"></div>
 
 ### Sequence Diagrams
 ___
@@ -71,6 +81,8 @@ ___
 
 ![move method in GameController](images/moveSequence.svg)
 
+<div style="page-break-after: always;"></div>
+
 #### payRent method when the owner of the property doesn't own all of that group
 
 ![payRent method in GameController](images/payRentSequence.svg)
@@ -78,6 +90,8 @@ ___
 ## Test Plan
 
 Unlike the previous sprints in this project, much of the testing was done on the front-end to ensure the buttons function as they are supposed to, text fields get updated with GameController actions and appropriate windows open eg. auction.
+
+<div style="page-break-after: always;"></div>
 
 ## Summary of Sprint
 

@@ -24,9 +24,13 @@
 - Implement method to return what properties can be upgraded with a house
 - Create basic agent to play game against player
 
+<div style="page-break-after: always;"></div>
+
 The image below shows the tasks set out on Trello during our weekly meeting
 
 ![Trello task cards](images/trello7.png)
+
+<div style="page-break-after: always;"></div>
 
 ## Gantt Chart
 
@@ -49,6 +53,8 @@ The image below shows the tasks set out on Trello during our weekly meeting
 - NF4
   - The auction shall check that there is only 1 maximum bid to go through with the auction. If 2 maximum bids are detected, the players in the auction shall rebid.
 
+<div style="page-break-after: always;"></div>
+
 ## Design
 
 ### UML Diagram
@@ -56,9 +62,13 @@ ___
 
 ![UML](images/UML7.svg)
 
+<div style="page-break-after: always;"></div>
+
 The `AiPlayer` is a subclass of `Player` with a few added methods to determine whether the agent perfroms an action or not
 
 ![Player class structure](images/playerClassStructure.svg)
+
+<div style="page-break-after: always;"></div>
 
 ### Sequence Diagrams
 ___
@@ -69,6 +79,8 @@ ___
 #### Player pays a tax
 
 ![Sequence2](images/payTaxSequence.svg)
+
+<div style="page-break-after: always;"></div>
 
 ## Test Plan
 
@@ -81,6 +93,8 @@ In the below image in the `GameController` test class, the auction tests are set
 In the below image in the `GameController` test class, the houseImprovements method guarantees it will generate a list of properties that the player can add a house onto a coloured property
 
 ![possibleHouseImprovements method in GameController test class](images/possibleHouseImprovementsTest.png)
+
+<div style="page-break-after: always;"></div>
 
 ## Summary of Sprint
 

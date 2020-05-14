@@ -7,7 +7,7 @@
 - **Sprint Start:** 09/03/2020
 - **Sprint End:** 06/04/2020
 
-Note: this sprint was extended to roughly a month due to special circumstances
+Note: this sprint was extended to a month due to special circumstances
 
 ## Individual Key Contributions
 
@@ -30,9 +30,13 @@ Note: this sprint was extended to roughly a month due to special circumstances
 - Property cannot be purchased until the player has looped around the board at least once
 - Show the log in the GUI
 
+<div style="page-break-after: always;"></div>
+
 The image below shows the tasks set out on Trello during our weekly meeting
 
 ![Trello task cards](images/trello6.png)
+
+<div style="page-break-after: always;"></div>
 
 ## Gantt Chart
 
@@ -53,6 +57,8 @@ The image below shows the tasks set out on Trello during our weekly meeting
 - F5
   - The software should display a log of previous events
 
+<div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 - NF1
   - When a player is purchasing a house, the software shall check if the property can have an additional house
@@ -66,12 +72,16 @@ The image below shows the tasks set out on Trello during our weekly meeting
 - D1
     - The team must ask the client what the maximum number of houses that can be bought on a single property
 
+<div style="page-break-after: always;"></div>
+
 ## Design
 
 ### UML Diagram
 ___
 
 ![UML](images/UML6.svg)
+
+<div style="page-break-after: always;"></div>
 
 ### Sequence Diagrams
 ___
@@ -84,6 +94,8 @@ ___
 
 ![ending a player's turn sequence diagram](images/endTurnSequence.svg)
 
+<div style="page-break-after: always;"></div>
+
 ### User Interface
 ___
 
@@ -94,6 +106,8 @@ An update to last sprint on choosing of names and tokens of players was that ins
 ![board in user interface](images/GUI4.png)
 
 An addition to the main user interface is that the left side of the board is now a box highlighting a specific board piece on the board. This has not yet been implemented, but the appropriate space is built for it.
+
+<div style="page-break-after: always;"></div>
 
 ## Test Plan
 
@@ -109,6 +123,8 @@ The next 3 images below highlight the testing capabilities of ensuring the metho
 ![Mortgaging test in GameController test class](images/mortgageTest.png)
 
 ![Rent and double rent test in GameController test class](images/rentTest.png)
+
+<div style="page-break-after: always;"></div>
 
 ## Summary of Sprint
 

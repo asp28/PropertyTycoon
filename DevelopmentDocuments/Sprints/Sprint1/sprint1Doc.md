@@ -26,6 +26,8 @@
 - Create dice that a player can roll
 - Create bank that will hold money and properties
 
+<div style="page-break-after: always;"></div>
+
 The image below shows the tasks set out on Trello during our weekly meeting
 
 ![Trello task cards](images/trello1.png)
@@ -34,9 +36,7 @@ The image below shows the tasks set out on Trello during our weekly meeting
 
 ![Gantt Chart](images/gantt1.png)
 
-\
-\
-\
+<div style="page-break-after: always;"></div>
 
 ## Requirements Analysis
 
@@ -61,6 +61,8 @@ The image below shows the tasks set out on Trello during our weekly meeting
 - NF3
   - The implementation of the project will vary between the IDEs of NetBeans and Intellij.
 
+<div style="page-break-after: always;"></div>  
+
 ### Domain Requirements
 - D1
   - The version control of the project should be stored on GitHub, iteration by iteration. Need more information on how to edit and update repository.
@@ -71,6 +73,8 @@ The image below shows the tasks set out on Trello during our weekly meeting
 ___
 
 ![UML](images/UML1.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Sequence Diagrams
 ___
@@ -122,6 +126,8 @@ With the `Bank` test class, our team ensured that:
 6. a property can be added back to the bank's list of properties
 
 ![Bank test class](images/bankTest.png)
+
+<div style="page-break-after: always;"></div>
 
 With the `Dice` test class, the sole method ensured that the amount shown on the dice was between 1 and 6.
 
