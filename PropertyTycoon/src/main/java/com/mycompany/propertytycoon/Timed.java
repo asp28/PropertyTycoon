@@ -8,10 +8,10 @@ package com.mycompany.propertytycoon;
 import com.mycompany.propertytycoon.boardpieces.ColouredProperty;
 import com.mycompany.propertytycoon.boardpieces.Property;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
-import com.mycompany.propertytycoon.gui.utils.View;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 import javafx.util.Pair;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
@@ -22,6 +22,8 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 public class Timed extends GameController {
     
     private static StageManager SM = StageManager.getInstance();
+    private Timer t;
+    private TimerTask task;
     
     /**
      * TIMER IS IN MINUTES
@@ -33,11 +35,21 @@ public class Timed extends GameController {
      */
     public Timed(int amountOfPlayer, int amountOfBots, int timerLength) throws IOException, InvalidFormatException {
         super(amountOfPlayer, amountOfBots);
-        
+        t = new Timer();
+        task = new TimerTask() {
+            @Override
+            public void run() {
+                SM.setTimerEnded(true);
+                System.out.println("TIMER COMPLETE");
+            }
+        };
+        long time = 60*1000*timerLength;
+        t.schedule(task, time);
     }
     
-    private boolean fullTurn() {
-        return getAmountOfPlayers().get(0) == getAmountOfPlayers().get(getAmountOfPlayers().size()-1);
+    public boolean fullTurn() {
+        System.out.println("Player 1:" + getAmountOfPlayers().get(0).getPlayerTurns() + " Player 2:" + getAmountOfPlayers().get(getAmountOfPlayers().size() - 1).getPlayerTurns());
+        return getAmountOfPlayers().get(0).getPlayerTurns() == getAmountOfPlayers().get(getAmountOfPlayers().size()-1).getPlayerTurns();
     }
     
     @Override
@@ -71,4 +83,21 @@ public class Timed extends GameController {
             return p.getKey();
         }
     }
+
+    public Timer getT() {
+        return t;
+    }
+
+    public void setT(Timer t) {
+        this.t = t;
+    }
+
+    public TimerTask getTask() {
+        return task;
+    }
+
+    public void setTask(TimerTask task) {
+        this.task = task;
+    }
+    
 }
