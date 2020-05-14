@@ -85,9 +85,14 @@ With the **Player** test class, the added testing capability ensured that:
 1. the correct token was chosen when a Player object was created
 2. the rent functionality was correctly paid to the owner to the property. Else, the player was removed
 
-
 ![Player token](images/playerTest.png)
 
 ![Player rent](images/playerRentTest.png)
 
 ## Summary of Sprint
+
+In this sprint, we continued the setup and strengthening of the backend and logic of the game whilst a frontend display was constructed. With this, we added more features upon the previous sprint to get our prototype closer to the final product. The team felt a good amount of work was set out in our weekly meeting although we would have short meetings throughout the week highlighting issues and problems.
+
+Everyone in the team continued to push out work quickly and we completed what we set out to achieve in the current iteration. This was deemed a strength. Another team member also noted that this sprint had good development of the further basic features required to make the game function properly.
+
+In hindsight, we did not plan the system as in depth as we should have at the time. This would come back to haunt the team in the next sprint. This will be mentioned again in the next sprint.
