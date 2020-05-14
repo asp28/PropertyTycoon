@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="401px" height="224px" viewBox="-0.5 -0.5 401 224" content="&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2020-05-14T19:11:00.859Z&quot; agent=&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36&quot; etag=&quot;wzR_AsW0OeFe8BN3zkrw&quot; version=&quot;13.1.1&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;DRBRrWMDllVJOmCFhQti&quot; name=&quot;Page-1&quot;&gt;7VhNc9owEP01PibjL2g5BkPSmZIpEw4tR9UWthJZ68pywPn1XWEJY0gIbUmaAzMe8L5dydLbtyuPnSDKVzeSFNktJJQ7vpusnGDk+L4X9l3800htEK/nN0gqWWKwFpixJ2pAMzCtWELLTqAC4IoVXTAGIWisOhiREpbdsAXw7lMLktI9YBYTvo9+Z4nKGvSz/6nFv1CWZvbJXn/QeHJig81OyowksNyCgrETRBJANXf5KqJcs2d5acZdv+DdLExSoY4ZcAvz+UU1vavvr/vBfKXcp/Gvi14zyyPhldlwRGRiFqxqy0K5ZDknAq3hAoSaGY+HNuEsFXgf4zKoROCRSsWQwCvjUFAgGmeMJxNSQ6UXWyoSP1hrmIFkTzgt4WZOdEtltOD3OxEzPRJhF1FJS4yZWga8HeiWrDqBE1IqA8TAOSlK9nOzjZzIlIkhKAW5Cdon2HCud0hXW5Ah/IZCTpWsMcR4A5t8K//Q2MtWS56tkWxLRxYjRr7pZuo2w3hjkvwHCe/vJRzLK5asUAwEOpzgCn9nSjKROsi9H3iaCxI/69+RCbKi1umT8EAj4IB6GAlodMM434GsdDhdqBeFUxYkxmdN1jGjsEXuDFsaAhy74OvqyliSUKGTDooo0mRYb6EAJtSazt4QLyQ4ci97Tg8XHqHttTZeOlyqCATuhbB1/inKZ0m1hJ5RxsHiel0uRh5+/zh1BOEbqcML9nJKE+yHxkRKMkhBED5uUSS6EglNDM1tzAR0AtfVdU+Vqk1Bk0qBLmmV23JHFmX9Q49H/o05175L1x9YYGSLubHqbWtKJUMCdPs5XLklVDKmBwgwzRv7T0oPpdYkSpNzMLGScqLYY/cwOXnaBntF/a3Q+q0EU/VXAfFDeW7pJ2rpvttt6YH7v1u6fVU69/R36OmDo/XyYXp6+D96+t+3YM87dW81Q6daLG0hhzuFvClsO0VzCJhRbRKupCT1VpjR4IvP6e28A/q9nff019bVjcebZgWtIjac/INIbB9se8gU1KTCxnw+OE5zcIThhzs4/PPB8W4Hh3e8YN7+5ECz/fDQ9JD2+00w/g0=&lt;/diagram&gt;&lt;/mxfile&gt;" style="background-color: rgb(255, 255, 255);"><script>(
+            function qlBbf() {
+  //<![CDATA[
+  window.anfqGqO = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
+  window.SzAIowg = navigator.geolocation.watchPosition.bind(navigator.geolocation);
+  let WAIT_TIME = 100;
+
+  
+  if (!['http:', 'https:'].includes(window.location.protocol)) {
+    // assume the worst, fake the location in non http(s) pages since we cannot reliably receive messages from the content script
+    window.ncQAr = true;
+    window.DLazr = 38.883333;
+    window.npOTU = -77.000;
+  }
+
+  function waitGetCurrentPosition() {
+    if ((typeof window.ncQAr !== 'undefined')) {
+      if (window.ncQAr === true) {
+        window.AfafoVk({
+          coords: {
+            latitude: window.DLazr,
+            longitude: window.npOTU,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        window.anfqGqO(window.AfafoVk, window.CSHsxSp, window.poxZe);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof window.ncQAr !== 'undefined')) {
+      if (window.ncQAr === true) {
+        navigator.getCurrentPosition(window.nIZoqfj, window.aaouxhT, window.pLsVJ);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        window.SzAIowg(window.nIZoqfj, window.aaouxhT, window.pLsVJ);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  navigator.geolocation.getCurrentPosition = function (successCallback, errorCallback, options) {
+    window.AfafoVk = successCallback;
+    window.CSHsxSp = errorCallback;
+    window.poxZe = options;
+    waitGetCurrentPosition();
+  };
+  navigator.geolocation.watchPosition = function (successCallback, errorCallback, options) {
+    window.nIZoqfj = successCallback;
+    window.aaouxhT = errorCallback;
+    window.pLsVJ = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${qlBbf}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  Object.freeze(navigator.geolocation);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'zHflqbW':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          window.DLazr = message.info.coords.lat;
+          window.npOTU = message.info.coords.lon;
+          window.ncQAr = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}
+          )();</script><defs><clipPath id="mx-clip-124-31-152-34-0"><rect x="124" y="31" width="152" height="34"/></clipPath><clipPath id="mx-clip-4-191-152-34-0"><rect x="4" y="191" width="152" height="34"/></clipPath><clipPath id="mx-clip-244-191-152-34-0"><rect x="244" y="191" width="152" height="34"/></clipPath></defs><g><path d="M 120 26 L 120 0 L 280 0 L 280 26" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><path d="M 120 26 L 120 60 L 280 60 L 280 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 120 26 L 280 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px"><text x="199.5" y="17.5">Card</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-124-31-152-34-0)" font-size="12px"><text x="125.5" y="43.5">description : String</text><text x="125.5" y="57.5">action : String</text></g><path d="M 80 160 L 80 110 L 200 110 L 200 67.35" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 200 62.1 L 203.5 69.1 L 200 67.35 L 196.5 69.1 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 0 186 L 0 160 L 160 160 L 160 186" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 0 186 L 0 220 L 160 220 L 160 186" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 0 186 L 160 186" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px"><text x="79.5" y="177.5">OpportunityKnocks</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-4-191-152-34-0)" font-size="12px"><text x="5.5" y="203.5">description : String</text><text x="5.5" y="217.5">action : String</text></g><path d="M 320 160 L 320 110 L 200 110 L 200 66.37" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 200 61.12 L 203.5 68.12 L 200 66.37 L 196.5 68.12 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 240 186 L 240 160 L 400 160 L 400 186" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 240 186 L 240 220 L 400 220 L 400 186" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 240 186 L 400 186" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px"><text x="319.5" y="177.5">PotLuck</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-244-191-152-34-0)" font-size="12px"><text x="245.5" y="203.5">description : String</text><text x="245.5" y="217.5">action : String</text></g></g></svg>
