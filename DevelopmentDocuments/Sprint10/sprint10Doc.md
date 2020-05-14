@@ -68,3 +68,5 @@ ___
 
 
 ## Summary of Sprint
+
+This sprint was the final sprint of the project. The sprint was mainly the preparation of the documentation and the final release of the game.
