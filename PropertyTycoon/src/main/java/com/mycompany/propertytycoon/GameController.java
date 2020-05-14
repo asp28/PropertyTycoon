@@ -4,9 +4,11 @@ import com.mycompany.propertytycoon.boardpieces.*;
 import com.mycompany.propertytycoon.cards.OpportunityKnocks;
 import com.mycompany.propertytycoon.cards.PotLuck;
 import com.mycompany.propertytycoon.exceptions.NotAProperty;
+import com.mycompany.propertytycoon.gui.game.GameVariableStorage;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
 import com.mycompany.propertytycoon.gui.utils.View;
 import com.mycompany.propertytycoon.log.Log;
+import java.io.FileNotFoundException;
 import javafx.util.Pair;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
@@ -20,6 +22,7 @@ public class GameController {
 
     private static Log log = Log.getInstance();
     private static StageManager SM = StageManager.getInstance();
+    private static GameVariableStorage GVS = GameVariableStorage.getInstance();
 
     private ArrayList<Player> amountOfPlayers = new ArrayList<>();
     private ArrayList<Integer> playerLocations = new ArrayList<>();
@@ -64,8 +67,7 @@ public class GameController {
             amountOfPlayers.add(player);
             playerLocations.add(0);
         }
-        
-        
+
         board = new Board();
         bank = new Bank(board.getBoardLocations());
         potluckcards = new Parser().createPotLuckCards();
@@ -224,29 +226,24 @@ public class GameController {
         for (String s : playerActions) {
             switch (s) {
                 case "RENT":
-                    
-                    if(activePlayer.isIsAI())
-                    {
+
+                    if (activePlayer.isIsAI()) {
                         payRent();
-                    }else
-                    {
+                    } else {
                         remaining.add("RENT");
                     }
                     break;
                 case "BUY":
-                    if(activePlayer.isIsAI())
-                    {
+                    if (activePlayer.isIsAI()) {
                         AiPlayer aiPlayer = (AiPlayer) activePlayer;
-                        if(aiPlayer.DoesAiBuy())
-                        {
+                        if (aiPlayer.DoesAiBuy()) {
                             try {
                                 buyProperty(board.getBoardPiece(activePlayer.getLocation()));
                             } catch (NotAProperty ex) {
                                 Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         }
-                    }else
-                    {
+                    } else {
                         remaining.add("BUY");
                     }
                     break;
@@ -266,11 +263,75 @@ public class GameController {
                     remaining.add("SELL");
                     break;
                 case "END":
-                    if(activePlayer.isIsAI())
-                    {
-                        //endTurn();
-                    }else{
-                    remaining.add("END");
+                    if (activePlayer.isIsAI()) {
+                        if (SM.getGame() instanceof Timed) {
+                            Timed game = (Timed) SM.getGame();
+                            if (SM.timerEnded() && game.fullTurn()) {
+                                SM.setWinner(game.winningConditions());
+                                SM.changeScene(View.WINNER);
+                                System.out.println("Winner found");
+                            } else if (SM.timerEnded() && !game.fullTurn()) {
+                                System.out.println("full turn not done");
+                                //carry on until full turns ended
+                                if (SM.getGame().getActivePlayer().getBalance() < 0 && !SM.getGame().getActivePlayer().getOwnedProperties().isEmpty()) {
+                                    log.addToLog(SM.getGame().getActivePlayer().getName() + " cannot end turn as balance is negative.");
+                                    for (Property p : activePlayer.getOwnedProperties()) {
+                                        sellProperty(p);
+                                        if (activePlayer.getBalance() >= 0) {
+                                            break;
+                                        }
+                                    }
+                                    if (activePlayer.getBalance() < 0) {
+                                        checkIfBankrupt();
+                                    } else {
+                                        GVS.setRolled(false);
+                                        endTurn();
+                                        SM.changeScene(View.GAME);
+                                    }
+                                } else if (SM.getGame().checkBankrupt()) {
+                                    SM.getGame().checkIfBankrupt();
+                                    if (SM.getGame().winningConditions() != null) {
+                                        SM.setWinner(SM.getGame().winningConditions());
+                                        SM.changeScene(View.WINNER);
+                                    }
+                                } else {
+                                    System.out.println("Timer not done yet");
+                                    SM.getGame().endTurn();
+                                    GVS.setRolled(false);
+                                    SM.changeScene(View.GAME);
+                                }
+                            }
+                        } else {
+                            //not timed stuff here
+                            if (SM.getGame().getActivePlayer().getBalance() < 0 && !SM.getGame().getActivePlayer().getOwnedProperties().isEmpty()) {
+                                log.addToLog(SM.getGame().getActivePlayer().getName() + " cannot end turn as balance is negative.");
+                                for (Property p : activePlayer.getOwnedProperties()) {
+                                        sellProperty(p);
+                                        if (activePlayer.getBalance() >= 0) {
+                                            break;
+                                        }
+                                    }
+                                    if (activePlayer.getBalance() < 0) {
+                                        checkIfBankrupt();
+                                    } else {
+                                        GVS.setRolled(false);
+                                        endTurn();
+                                        SM.changeScene(View.GAME);
+                                    }
+                            } else if (SM.getGame().checkBankrupt()) {
+                                SM.getGame().checkIfBankrupt();
+                                if (SM.getGame().winningConditions() != null) {
+                                    SM.setWinner(SM.getGame().winningConditions());
+                                    SM.changeScene(View.WINNER);
+                                }
+                            } else {
+                                SM.getGame().endTurn();
+                                GVS.setRolled(false);
+                                SM.changeScene(View.GAME);
+                            }
+                        }
+                    } else {
+                        remaining.add("END");
                     }
                     break;
                 case "TAX":
@@ -304,8 +365,9 @@ public class GameController {
 
     /**
      * Buy Property (Non auction)
+     *
      * @param bp
-     * @throws NotAProperty 
+     * @throws NotAProperty
      */
     public void buyProperty(BoardPiece bp) throws NotAProperty {
         if (bp instanceof Property) {
@@ -357,7 +419,8 @@ public class GameController {
 
     /**
      * Sell property back to bank for full amount/half amount if mortgaged
-     * @param prop 
+     *
+     * @param prop
      */
     public void sellProperty(Property prop) {
         if (prop.getOwnedBuy().equals(activePlayer.getName()) && prop.isMortgaged() == false) {
@@ -380,11 +443,12 @@ public class GameController {
 
     /**
      * Trade method between player A and player B
+     *
      * @param tradingP
      * @param cash
      * @param desiredCash
      * @param desiredP
-     * @param choosenPlayer 
+     * @param choosenPlayer
      */
     public void trade(ArrayList<Property> tradingP, int cash, int desiredCash, ArrayList<Property> desiredP, Player choosenPlayer) {
 
@@ -429,19 +493,18 @@ public class GameController {
             int player = amountOfPlayers.indexOf(activePlayer) + 1;
             activePlayer = amountOfPlayers.get(player);
         }
-        if(activePlayer.isIsAI())
-        {
+        if (activePlayer.isIsAI()) {
             move();
-            new java.util.Timer().schedule( 
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                       endTurn();
-                    }
-                }, 
-                2000 
-        );
-            
+            new java.util.Timer().schedule(
+                    new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    endTurn();
+                }
+            },
+                    2000
+            );
+
         }
     }
 
@@ -469,7 +532,7 @@ public class GameController {
         }
 
         if (doubleRent(p, owner)) {
-            
+
             activePlayer.increaseBalance(-(2 * Integer.parseInt(p.getRent())));
             owner.increaseBalance(2 * Integer.parseInt(p.getRent()));
             log.addToLog(activePlayer.getName() + " has paid rent to " + owner.getName() + " of £" + (2 * Integer.parseInt(p.getRent())));
@@ -592,7 +655,7 @@ public class GameController {
                     if (activePlayer.getLocation() - 3 < 0) {
                         int left = 3 - activePlayer.getLocation();
                         activePlayer.setLocation(40 - left);
-                        playerLocations.set(amountOfPlayers.indexOf(activePlayer), 40-left);
+                        playerLocations.set(amountOfPlayers.indexOf(activePlayer), 40 - left);
                     } else {
                         activePlayer.setLocation(activePlayer.getLocation() - 3);
                         playerLocations.set(amountOfPlayers.indexOf(activePlayer), activePlayer.getLocation());
@@ -1000,25 +1063,22 @@ public class GameController {
     public void addToPotLuck(PotLuck pl) {
         potluckcards.add(pl);
     }
-    
-    public void checkIfBankrupt()
-    {
-        if(activePlayer.getBalance() < 0 && activePlayer.getOwnedProperties().isEmpty())
-        {
+
+    public void checkIfBankrupt() {
+        if (activePlayer.getBalance() < 0 && activePlayer.getOwnedProperties().isEmpty()) {
             log.addToLog(activePlayer.getName() + "has gone bakrupt and is out the game");
             amountOfPlayers.remove(activePlayer);
-            if(winningConditions() != null)
-            {
+            if (winningConditions() != null) {
                 log.addToLog(amountOfPlayers.get(0).getName() + " has won the game");
             }
-            
+
         }
     }
-    
+
     public boolean checkBankrupt() {
         return activePlayer.getBalance() < 0 && activePlayer.getOwnedProperties().isEmpty();
     }
-    
+
     public Player winningConditions() {
         if (amountOfPlayers.size() == 1) {
             return amountOfPlayers.get(0);
