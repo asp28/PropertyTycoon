@@ -83,3 +83,7 @@ In the below image in the `GameController` test class, the houseImprovements met
 ![possibleHouseImprovements method in GameController test class](images/possibleHouseImprovementsTest.png)
 
 ## Summary of Sprint
+
+The sprint went well and smoothly. The sprint required the team to continue working on their set areas of development such as creating the player agents and the auction check.
+
+We continuted to work on the game with a few debugging tasks as well. There was a good update on the user interface.
