@@ -82,6 +82,25 @@ ___
 
 ![mortgageProperty sequence](images/mortgagePropertySequence.svg)
 
+### User Interface
+___
+
+![start screen](images/GUI1.png)
+
+The image above shows the starting screen of the game. The title is shown across the middle of the screen as well as 3 buttons for playing a regular game, a timed game or quitting the application.
+
+![sliders for number of players and agents](images/GUI2.png)
+
+This image shows when someone has to make a decision on how many players to play with and how many agents to play against. Plus and minus buttons adjust the number in the middle.
+
+![choosing names and tokens](images/GUI3.png)
+
+The image shows the players choosing their names and their tokens to be in the game. 2 things about choosing names and tokens is that names and tokens must be different before starting the game. If 2 or more players choose the same name or token, an error message will appear showing them that a unique name and token must be agreed upon by the players.
+
+![main game screen with board and player actions](images/GUI4.png)
+
+The image shows the playing board with all the board pieces together. This was created by the automatic parser that builds this board in the user interface from the information in the Excel document describing all of the board pieces. A minor addition from last sprint is the addition of a trade button. In the future, we plan on implementing a trading mechanic between players. When fully developed, 2 player can trade properties and money.
+
 ## Test Plan
 
 With unit testing the new features within, most tests are done in the `GameController` class as it handles all of the logic.
@@ -118,3 +137,7 @@ With the `Bank` test class, it ensures that:
 ![adding and removing unowned properties in Bank test class](images/bankPropertiesTest.png)
 
 ## Summary of Sprint
+
+In this sprint, we ocntinued our split team development with 2 developers working on the backend and the other 2 developers on the frontend. This was effective and evables both sides to contue pushing working versions of the game. Some issues grow around git such as forgetting to fetch code and working on an older version of the project. 
+
+Good development on the frontend side on integrating all the different classes that were made. There was contued development on different aspects of the game that were required. A con of this sprint would be that there was a backlog of documentation that needed to be upkept.
