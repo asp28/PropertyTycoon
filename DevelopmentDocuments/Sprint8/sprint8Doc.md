@@ -74,3 +74,7 @@ As an example below, the move method ensures that the move method will produce a
 With this sprint, the team found the issues of the aforementioned errors, but the team did not successfully fix such errors. As a result, these tasks will be added onto the next sprint.
 
 ## Summary of Sprint
+
+In this sprint, a majority of the time was spent debugging the software instead of completing more work towards the final product, but the sprint was successfull overall.
+
+We had spent a week going over all the features and fixing any bugs that would not have been found by the test classes by performing system-wide testing on the user interface. We shouldn't have needed a sprint cycle to do this as it should have been done as methods were made previously.
