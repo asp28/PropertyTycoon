@@ -24,6 +24,8 @@
 The image below shows the tasks set out on Trello during our weekly meeting
 ![Trello task cards](images/trello4.png)
 
+<div style="page-break-after: always;"></div>
+
 Below are some images taken from one of the brain-storming days
 
 ![mindmap of the redesign](images/overallRedesign.jpg)
@@ -36,6 +38,8 @@ Below are some images taken from one of the brain-storming days
 
 ![new performAutomaticActions method pseudocode](images/performAutomaticActions.jpg)
 
+<div style="page-break-after: always;"></div>
+
 ## Gantt Chart
 
 ![Gantt Chart](images/gantt4.png)
@@ -46,12 +50,16 @@ Below are some images taken from one of the brain-storming days
 - NF1
   - The need for a redesign this sprint was due to the fact that our mindset was based off the textual-based game instead of developing methods to be deployed in the GUI. So after some time, we came up with a new design that should be easier to function with less spagetification (fewer calls to other classes).
 
+<div style="page-break-after: always;"></div>
+
 ## Design
 
 ### UML Diagram
 ___
 
 ![UML](images/UML4.svg)
+
+<div style="page-break-after: always;"></div>
 
 ### Sequence Diagrams
 ___
@@ -62,6 +70,8 @@ ___
 #### the goToJail method when a player lands on GoToJail piece or triple double roll
 
 ![goToJail sequence](images/goToJailSequence.svg)
+
+<div style="page-break-after: always;"></div>
 
 ### User Interface
 ___
@@ -74,15 +84,19 @@ The image above shows the basic starting state of the game. There are 2 buttons 
 
 This image gathers input from a person to select how many players will be playing in the game. At the time being, only a normal game can be played. From the user requirements, the game can only be played by 2-6 players. Such is implemented.
 
+<div style="page-break-after: always;"></div>
+
 ![inputting names of players in user interface](images/GUI3.png)
 
 The next image shows after selecting the amount of players (in this case, 2), the players input their names into the corresponding fields and select ``confirm``.
+
+<div style="page-break-after: always;"></div>
 
 ![Main game view in user interface](images/GUI4.png)
 
 This last image shows the board as just the names of the board pieces arranged in a grid. This is our attempt at automatically creating the board and not hard-coding in the information of the board pieces. With this, 2 more buttons have been added to the group of buttons: endTurn and Mortgage. We have also made the buttons larger as well as disabling the buttons the player cannot perform automatically. Another improvement is a dedicating area for the log: a list of actions that have been performed during the game, eg. Player A has bought Turing Heights. 
 
-
+<div style="page-break-after: always;"></div>
 
 ## Test Plan
 
@@ -95,6 +109,8 @@ In the image below, a test method of `getAction` shows the different scenarios t
 In the image below, a test method of `doActions` ensures the automatic methods are run in the GameConroller. The resulting ArrayList indicates the list of possibilities the player can take. This list also determines what buttons on the GUI can be clicked upon and enabled.
 
 ![getAction test method](images/doActionsTest.png)
+
+<div style="page-break-after: always;"></div>
 
 ## Summary of Sprint
 

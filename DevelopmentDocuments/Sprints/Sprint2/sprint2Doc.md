@@ -25,9 +25,13 @@
 - Create a method to tell what actions a player can perform
 - Modify objects from previous sprint with the new features
 
+<div style="page-break-after: always;"></div>
+
 The image below shows the tasks set out on Trello during our weekly meeting
 
-![Trello task cards](images/trello2.png)
+![Trello task cards](images/trello2.png) 
+
+<div style="page-break-after: always;"></div>
 
 ## Gantt Chart
 
@@ -44,13 +48,17 @@ The image below shows the tasks set out on Trello during our weekly meeting
 - F3
   - The software shall indicate on the GUI what actions the current player can perform. All actions up to this point are: rolling dice, buying a property, selling a property and ending their turn. For example if the player has rolled a non-double, the software should disable the action to roll again. On the contrary if the player rolls a double, the software should keep the action to roll again available.
 - F4
-  - Each player in the game will have a unique identifiable token. No two players shall have the same token. This token in the future will be displayed on the board and will move around the board.
+  - Each player in the game will have a unique identifiable token. No two players shall have the same token. This token in the future will be displayed on the board and will move around the board. 
+
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
+
 - NF1
   - To contruct the graphical user interface (GUI) of the software, our team has chosen to use JavaFX based on the premise that everyone in our team has some knowledge of JavaFX. If in the future there is an easier alternative, the question will be posed in the weekly discussion meeting to determine whether to switch.
 
 ### Domain Requirements
+
 - D1
   - We are unsure of how the system of rolling 3 doubles and going to jail should function. We will ask the customer in our next meeting.
 
@@ -60,6 +68,8 @@ The image below shows the tasks set out on Trello during our weekly meeting
 ___
 
 ![UML](images/UML2.svg)
+
+<div style="page-break-after: always;"></div>
 
 ### Sequence Diagrams
 ___
