@@ -6,6 +6,7 @@
 package com.mycompany.propertytycoon.gui.game;
 
 import com.mycompany.propertytycoon.Player;
+import com.mycompany.propertytycoon.Timed;
 import com.mycompany.propertytycoon.boardpieces.BoardPiece;
 import com.mycompany.propertytycoon.boardpieces.ColouredProperty;
 import com.mycompany.propertytycoon.boardpieces.FreeParkingPiece;
@@ -212,28 +213,90 @@ public class GameController implements Initializable {
             log();
         });
         endTurn.setOnAction(e -> {
-            if (SM.getGame().getActivePlayer().getBalance() < 0 && !SM.getGame().getActivePlayer().getOwnedProperties().isEmpty()) {
-                logObject.addToLog(SM.getGame().getActivePlayer().getName() + " cannot end turn as balance is negative.");
-                logObject.addToLog("HINT: Perhaps sell/mortgage properties or trade with another player.");
-            } else if (SM.getGame().checkBankrupt()) {
-                SM.getGame().checkIfBankrupt();
-                if (SM.getGame().winningConditions() != null) {
-                    SM.setWinner(SM.getGame().winningConditions());
+            if (SM.getGame() instanceof Timed) {
+                Timed game = (Timed) SM.getGame();
+                if (game.getAmountOfPlayers().size() != 1) {
+                    if (SM.timerEnded() && game.fullTurn()) {
+                        SM.setWinner(game.winningConditions());
+                        SM.changeScene(View.WINNER);
+                        System.out.println("Winner found");
+                    } else if (SM.timerEnded() && !game.fullTurn()) {
+                        System.out.println("full turn not done");
+                        //carry on until full turns ended
+                        if (SM.getGame().getActivePlayer().getBalance() < 0 && !SM.getGame().getActivePlayer().getOwnedProperties().isEmpty()) {
+                            logObject.addToLog(SM.getGame().getActivePlayer().getName() + " cannot end turn as balance is negative.");
+                            logObject.addToLog("HINT: Perhaps sell/mortgage properties or trade with another player.");
+                        } else if (SM.getGame().checkBankrupt()) {
+                            SM.getGame().checkIfBankrupt();
+                            if (SM.getGame().winningConditions() != null) {
+                                SM.setWinner(SM.getGame().winningConditions());
+                                SM.changeScene(View.WINNER);
+                            }
+                        } else {
+                            System.out.println("Timer not done yet");
+                            SM.getGame().endTurn();
+                            GVS.setRolled(false);
+                            roll.setDisable(false);
+                            endTurn.setDisable(true);
+                            rent.setDisable(true);
+                            try {
+                                updateControls();
+                            } catch (FileNotFoundException ex) {
+                                Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    } else {
+                        //timer not ended play normal
+                        if (SM.getGame().getActivePlayer().getBalance() < 0 && !SM.getGame().getActivePlayer().getOwnedProperties().isEmpty()) {
+                            logObject.addToLog(SM.getGame().getActivePlayer().getName() + " cannot end turn as balance is negative.");
+                            logObject.addToLog("HINT: Perhaps sell/mortgage properties or trade with another player.");
+                        } else if (SM.getGame().checkBankrupt()) {
+                            SM.getGame().checkIfBankrupt();
+                            if (SM.getGame().winningConditions() != null) {
+                                SM.setWinner(SM.getGame().winningConditions());
+                                SM.changeScene(View.WINNER);
+                            }
+                        } else {
+                            SM.getGame().endTurn();
+                            GVS.setRolled(false);
+                            roll.setDisable(false);
+                            endTurn.setDisable(true);
+                            rent.setDisable(true);
+                            try {
+                                updateControls();
+                            } catch (FileNotFoundException ex) {
+                                Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    }
+                } else {
+                    SM.setWinner(game.winningConditions());
                     SM.changeScene(View.WINNER);
                 }
+
             } else {
-                SM.getGame().endTurn();
-                GVS.setRolled(false);
-                roll.setDisable(false);
-                endTurn.setDisable(true);
-                rent.setDisable(true);
-                try {
-                    updateControls();
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                if (SM.getGame().getActivePlayer().getBalance() < 0 && !SM.getGame().getActivePlayer().getOwnedProperties().isEmpty()) {
+                    logObject.addToLog(SM.getGame().getActivePlayer().getName() + " cannot end turn as balance is negative.");
+                    logObject.addToLog("HINT: Perhaps sell/mortgage properties or trade with another player.");
+                } else if (SM.getGame().checkBankrupt()) {
+                    SM.getGame().checkIfBankrupt();
+                    if (SM.getGame().winningConditions() != null) {
+                        SM.setWinner(SM.getGame().winningConditions());
+                        SM.changeScene(View.WINNER);
+                    }
+                } else {
+                    SM.getGame().endTurn();
+                    GVS.setRolled(false);
+                    roll.setDisable(false);
+                    endTurn.setDisable(true);
+                    rent.setDisable(true);
+                    try {
+                        updateControls();
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
-
             log();
         });
         buy_yes.setOnAction(e -> {

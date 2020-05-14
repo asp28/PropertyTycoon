@@ -41,9 +41,7 @@ public class StageManager {
 
     private Property auctionProperty;
 
-    private boolean timed;
-    
-    private Timer time;
+    private boolean timed, timerEnded = false;
 
     private Player winner;
 
@@ -116,8 +114,7 @@ public class StageManager {
         try {
             if (timed) {
                 game = new Timed(players, bots, timer);
-                time = new Timer(timer);
-                time.run();
+
             } else {
                 game = new GameController(players, bots);
             }
@@ -177,6 +174,14 @@ public class StageManager {
 
     public void setTimer(int timer) {
         this.timer = timer;
+    }
+
+    public boolean timerEnded() {
+        return timerEnded;  
+    }
+
+    public void setTimerEnded(boolean hasEnded) {
+        timerEnded = hasEnded;
     }
 
 }
