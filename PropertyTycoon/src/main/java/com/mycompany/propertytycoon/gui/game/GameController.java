@@ -165,7 +165,7 @@ public class GameController implements Initializable {
                 endTurn.setDisable(true);
                 remaining.remove("BUY");
             }
-            if (GVS.getActions().contains("RENT"))     {
+            if (GVS.getActions().contains("RENT")) {
                 endTurn.setDisable(true);
             }
 
@@ -188,7 +188,7 @@ public class GameController implements Initializable {
                 rent.setDisable(true);
                 GVS.setRent(true);
             }
-            
+
         });
         sell.setOnAction(e -> {
             SM.changeScene(View.SELL);
@@ -212,16 +212,28 @@ public class GameController implements Initializable {
             log();
         });
         endTurn.setOnAction(e -> {
-            SM.getGame().endTurn();
-            GVS.setRolled(false);
-            roll.setDisable(false);
-            endTurn.setDisable(true);
-            rent.setDisable(true);
-            try {
-                updateControls();
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+            if (SM.getGame().getActivePlayer().getBalance() < 0 && !SM.getGame().getActivePlayer().getOwnedProperties().isEmpty()) {
+                logObject.addToLog(SM.getGame().getActivePlayer().getName() + " cannot end turn as balance is negative.");
+                logObject.addToLog("HINT: Perhaps sell/mortgage properties or trade with another player.");
+            } else if (SM.getGame().checkBankrupt()) {
+                SM.getGame().checkIfBankrupt();
+                if (SM.getGame().winningConditions() != null) {
+                    SM.setWinner(SM.getGame().winningConditions());
+                    SM.changeScene(View.WINNER);
+                }
+            } else {
+                SM.getGame().endTurn();
+                GVS.setRolled(false);
+                roll.setDisable(false);
+                endTurn.setDisable(true);
+                rent.setDisable(true);
+                try {
+                    updateControls();
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
+
             log();
         });
         buy_yes.setOnAction(e -> {

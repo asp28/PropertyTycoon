@@ -505,15 +505,18 @@ public class GameController {
                 break;
             case "Player token moves forwards to Turing Heights":
                 activePlayer.setLocation(39);
+                playerLocations.set(amountOfPlayers.indexOf(activePlayer), 39);
                 SM.changeScene(View.GAME);
                 break;
             case "Player moves token":
                 if (opportunityKnocks.getDescription().contains("han xin")) {
                     if (activePlayer.getLocation() > 24) {
                         activePlayer.setLocation(24);
+                        playerLocations.set(amountOfPlayers.indexOf(activePlayer), 24);
                         passingGo();
                     } else {
                         activePlayer.setLocation(24);
+                        playerLocations.set(amountOfPlayers.indexOf(activePlayer), 24);
                     }
                     SM.changeScene(View.GAME);
                     break;
@@ -521,15 +524,18 @@ public class GameController {
                 if (opportunityKnocks.getDescription().contains("hove station")) {
                     if (activePlayer.getLocation() > 15) {
                         activePlayer.setLocation(15);
+                        playerLocations.set(amountOfPlayers.indexOf(activePlayer), 15);
                         passingGo();
                     } else {
                         activePlayer.setLocation(15);
+                        playerLocations.set(amountOfPlayers.indexOf(activePlayer), 15);
                     }
                     SM.changeScene(View.GAME);
                     break;
                 }
                 if (opportunityKnocks.getDescription().equalsIgnoreCase("advance to go")) {
                     activePlayer.setLocation(0);
+                    playerLocations.set(amountOfPlayers.indexOf(activePlayer), 0);
                     passingGo();
                     SM.changeScene(View.GAME);
                     break;
@@ -538,8 +544,10 @@ public class GameController {
                     if (activePlayer.getLocation() - 3 < 0) {
                         int left = 3 - activePlayer.getLocation();
                         activePlayer.setLocation(40 - left);
+                        playerLocations.set(amountOfPlayers.indexOf(activePlayer), 40-left);
                     } else {
                         activePlayer.setLocation(activePlayer.getLocation() - 3);
+                        playerLocations.set(amountOfPlayers.indexOf(activePlayer), activePlayer.getLocation());
                     }
                     SM.changeScene(View.GAME);
                     break;
@@ -547,9 +555,11 @@ public class GameController {
                 if (opportunityKnocks.getDescription().equalsIgnoreCase("Advance to Skywalker Drive. If you pass GO collect £200")) {
                     if (activePlayer.getLocation() > 11) {
                         activePlayer.setLocation(11);
+                        playerLocations.set(amountOfPlayers.indexOf(activePlayer), 11);
                         passingGo();
                     } else {
                         activePlayer.setLocation(11);
+                        playerLocations.set(amountOfPlayers.indexOf(activePlayer), 11);
                     }
                     SM.changeScene(View.GAME);
                     break;
@@ -651,12 +661,14 @@ public class GameController {
                 break;
             case "Player token moves backwards to Crapper Street":
                 activePlayer.setLocation(1);
+                playerLocations.set(amountOfPlayers.indexOf(activePlayer), 1);
                 SM.changeScene(View.GAME);
                 break;
             case "If fine paid, player puts £10 on free parking":
+                //FIX THIS CODE NEED TO ASK PLAYER
                 FreeParkingPiece fpp = (FreeParkingPiece) board.getBoardLocations().get(20);
                 fpp.setBalance(fpp.getBalance() + 10);
-                activePlayer.increaseBalance(-50);
+                activePlayer.increaseBalance(-10);
                 checkIfBankrupt();
                 break;
             case "Player puts £50 on free parking":
@@ -941,7 +953,7 @@ public class GameController {
         potluckcards.add(pl);
     }
     
-    private void checkIfBankrupt()
+    public void checkIfBankrupt()
     {
         if(activePlayer.getBalance() < 0 && activePlayer.getOwnedProperties().isEmpty())
         {
@@ -953,6 +965,10 @@ public class GameController {
             }
             
         }
+    }
+    
+    public boolean checkBankrupt() {
+        return activePlayer.getBalance() < 0 && activePlayer.getOwnedProperties().isEmpty();
     }
     
     public Player winningConditions() {
