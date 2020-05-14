@@ -34,6 +34,10 @@ The image below shows the tasks set out on Trello during our weekly meeting
 
 ![Gantt Chart](images/gantt1.png)
 
+\
+\
+\
+
 ## Requirements Analysis
 
 ### Functional Requirements
