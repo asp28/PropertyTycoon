@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.propertytycoon.gui.initialisegame;
 
 import com.mycompany.propertytycoon.gui.utils.StageManager;
@@ -488,6 +483,10 @@ public class InitController implements Initializable {
 
     }
 
+    /**
+     * 
+     * @return true if tokens are unique
+     */
     public boolean uniqueToken() {
         boolean unique = true;
         ArrayList<String> strings = new ArrayList<>();
@@ -505,6 +504,10 @@ public class InitController implements Initializable {
         return unique;
     }
 
+    /**
+     * 
+     * @return true if names are not empty
+     */
     public boolean checkNames() {
         boolean notEmpty = true;
 

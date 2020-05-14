@@ -8,8 +8,8 @@ public class PotLuck extends Card {
     
     /**
      * PotLuck constructor
-     * @param desc
-     * @param action 
+     * @param desc - description of the card
+     * @param action - what the card does
      */
     public PotLuck(String desc, String action) {
         super(desc, action);

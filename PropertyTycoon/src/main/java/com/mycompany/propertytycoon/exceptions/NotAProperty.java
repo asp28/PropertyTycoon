@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.propertytycoon.exceptions;
 
 /**
@@ -11,6 +6,16 @@ package com.mycompany.propertytycoon.exceptions;
  */
 public class NotAProperty extends Exception {
 
+    /**
+     * constructor
+     */
+    public NotAProperty() {
+        this("not a property exception");
+    }
+    /**
+     * constructor
+     * @param message - specific message to be used
+     */
     public NotAProperty(String message) {
         super(message);
     }

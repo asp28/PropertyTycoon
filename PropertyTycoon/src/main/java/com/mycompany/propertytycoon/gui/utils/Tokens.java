@@ -20,10 +20,18 @@ public enum Tokens {
     
     private final String path;
 
+    /**
+     * 
+     * @return String path of the enum
+     */
     public String getPath() {
         return path;
     }
 
+    /**
+     * Token constructor using the path
+     * @param path 
+     */
     Tokens(String path) {
         this.path = path;
     }

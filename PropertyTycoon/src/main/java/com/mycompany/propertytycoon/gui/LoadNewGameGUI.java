@@ -1,26 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.propertytycoon.gui;
 
-import com.mycompany.propertytycoon.GameController;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
-import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 /**
  *
@@ -28,6 +11,11 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
  */
 public class LoadNewGameGUI extends Application {
 
+    /**
+     * Method to load the game
+     * @param primaryStage - the stage used to show the game
+     * @throws MalformedURLException 
+     */
     @Override
     public void start(Stage primaryStage) throws MalformedURLException {
         StageManager SM = StageManager.getInstance();
