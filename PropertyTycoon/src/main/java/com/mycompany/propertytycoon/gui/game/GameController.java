@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.propertytycoon.gui.game;
 
 import com.mycompany.propertytycoon.Player;
@@ -354,6 +349,11 @@ public class GameController implements Initializable {
         }
     }
 
+    /**
+     * Set the players box
+     *
+     * @throws FileNotFoundException
+     */
     public void playerProfile() throws FileNotFoundException {
         String pic = SM.getGame().getActivePlayer().getToken() + ".gif";
         FileInputStream inputstream = new FileInputStream("./src/main/java/resources/img/ProfileAnimations/" + pic);
@@ -365,6 +365,9 @@ public class GameController implements Initializable {
 
     }
 
+    /**
+     * Shows all the players cards
+     */
     public void playerCards() {
         String properties = new String();
 
@@ -374,21 +377,21 @@ public class GameController implements Initializable {
         ownedCards.setContent(new Text(properties));
     }
 
-    public void buttons() {
-        for (String s : SM.getGame().getPlayerActions()) {
-
-        }
-    }
-
+    /**
+     * refreshes the log
+     */
     public void log() {
         log.setContent(new Text(logObject.getLog()));
     }
 
+    /**
+     * Puts the players token on the board
+     *
+     * @throws FileNotFoundException
+     */
     public void placePlayersOnBoard() throws FileNotFoundException {
         FileInputStream inputstream;
         Image image = null;
-        System.out.println("init");
-        System.out.println(SM.getGame().getAmountOfPlayers().size());
         for (Player p : SM.getGame().getAmountOfPlayers()) {
 
             switch (p.getToken()) {
@@ -398,7 +401,7 @@ public class GameController implements Initializable {
                     image = new Image(inputstream) {
                     };
                     catToken.setImage(image);
-                    System.out.println("CAT");
+
                     break;
 
                 case "boot":
@@ -406,7 +409,7 @@ public class GameController implements Initializable {
                     image = new Image(inputstream) {
                     };
                     bootToken.setImage(image);
-                    System.out.println("BOOT");
+
                     break;
 
                 case "spoon":
@@ -414,7 +417,7 @@ public class GameController implements Initializable {
                     image = new Image(inputstream) {
                     };
                     spoonToken.setImage(image);
-                    System.out.println("SPOON");
+
                     break;
 
                 case "cup":
@@ -423,7 +426,7 @@ public class GameController implements Initializable {
                     };
 
                     gobletToken.setImage(image);
-                    System.out.println("CUP");
+
                     break;
 
                 case "hat_hanger":
@@ -432,7 +435,7 @@ public class GameController implements Initializable {
                     };
 
                     hatstandToken.setImage(image);
-                    System.out.println("HAT");
+
                     break;
 
                 case "phone":
@@ -440,16 +443,20 @@ public class GameController implements Initializable {
                     image = new Image(inputstream) {
                     };
                     phoneToken.setImage(image);
-                    System.out.println("PHONE");
+
                     break;
 
             }
-            System.out.println("EXIT SWITCH");
+
         }
-        System.out.println("EXIT LOOP");
 
     }
 
+    /**
+     * Place the player on the board at where they currently are.
+     *
+     * @param token - ImageView of the token to be used
+     */
     public void PlayerPosition(ImageView token) {
         switch (SM.getGame().getActivePlayer().getLocation()) {
 
@@ -660,23 +667,34 @@ public class GameController implements Initializable {
         }
     }
 
+    /**
+     * 
+     * @return ImageView of a players token
+     */
     public ImageView getPlayerTokenImage() {
-        if (SM.getGame().getActivePlayer().getToken() == "cat") {
-            return catToken;
-        } else if (SM.getGame().getActivePlayer().getToken() == "boot") {
-            return bootToken;
-        } else if (SM.getGame().getActivePlayer().getToken() == "spoon") {
-            return spoonToken;
-        } else if (SM.getGame().getActivePlayer().getToken() == "cup") {
-            return gobletToken;
-        } else if (SM.getGame().getActivePlayer().getToken() == "phone") {
-            return phoneToken;
-        } else {
-            return hatstandToken;
+        switch (SM.getGame().getActivePlayer().getToken()) {
+            case "cat":
+                return catToken;
+            case "boot":
+                return bootToken;
+            case "spoon":
+                return spoonToken;
+            case "cup":
+                return gobletToken;
+            case "phone":
+                return phoneToken;
+            default:
+                return hatstandToken;
         }
 
     }
 
+    /**
+     * Sets the names of each board piece
+     * @param num - board piece number
+     * @param name - name of the board piece
+     * @throws FileNotFoundException 
+     */
     public void LocationNames(int num, String name) throws FileNotFoundException {
         Label labelName = new Label(name);
 
@@ -1223,6 +1241,10 @@ public class GameController implements Initializable {
         });
     }
 
+    /**
+     * refresh the controls
+     * @throws FileNotFoundException 
+     */
     public void updateControls() throws FileNotFoundException {
         playerProfile();
         PlayerPosition(getPlayerTokenImage());
@@ -1230,6 +1252,11 @@ public class GameController implements Initializable {
 
     }
 
+    /**
+     * Controls the click and see property feature
+     * @param n - label
+     * @throws FileNotFoundException 
+     */
     public void leftSide(Label n) throws FileNotFoundException {
         leftTitle.setText(n.getText());
         FileInputStream inputstream = null;

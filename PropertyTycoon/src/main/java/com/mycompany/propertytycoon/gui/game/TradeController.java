@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.propertytycoon.gui.game;
 
 import com.mycompany.propertytycoon.Player;
@@ -119,6 +114,10 @@ public class TradeController implements Initializable {
 
     }
 
+    /**
+     * 
+     * @return if the money field is numbers only
+     */
     public boolean numbersOnly() {
         boolean num = false;
         if (p1_money.getText().matches("[0-9]+") && p2_money.getText().matches("[0-9]+")) {
@@ -127,6 +126,10 @@ public class TradeController implements Initializable {
         return num;
     }
     
+    /**
+     * 
+     * @return if both confirm the trade
+     */
     public boolean checkedBoxes() {
         boolean checked = false;
         if (p1_check.isSelected() && p2_check.isSelected()) {

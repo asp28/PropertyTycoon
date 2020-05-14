@@ -30,10 +30,18 @@ public enum View {
 
     private final String fxmlPath;
 
+    /**
+     * 
+     * @return String path of the FXML document
+     */
     public String getFXMLPath() {
         return fxmlPath;
     }
 
+    /**
+     * constructor
+     * @param fxmlPath - String path
+     */
     View(String fxmlPath) {
         this.fxmlPath = fxmlPath;
     }
