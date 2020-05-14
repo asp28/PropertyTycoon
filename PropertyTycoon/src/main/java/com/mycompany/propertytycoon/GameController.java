@@ -132,7 +132,6 @@ public class GameController {
             }
             playerLocations.set(amountOfPlayers.indexOf(activePlayer), activePlayer.getLocation());
             actions.addAll(getPlayerActions());
-            System.out.println(actions);
             actions = performActions(actions);
         }
     }

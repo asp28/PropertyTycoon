@@ -387,8 +387,6 @@ public class GameController implements Initializable {
     public void placePlayersOnBoard() throws FileNotFoundException {
         FileInputStream inputstream;
         Image image = null;
-        System.out.println("init");
-        System.out.println(SM.getGame().getAmountOfPlayers().size());
         for (Player p : SM.getGame().getAmountOfPlayers()) {
 
             switch (p.getToken()) {
@@ -398,7 +396,7 @@ public class GameController implements Initializable {
                     image = new Image(inputstream) {
                     };
                     catToken.setImage(image);
-                    System.out.println("CAT");
+
                     break;
 
                 case "boot":
@@ -406,7 +404,7 @@ public class GameController implements Initializable {
                     image = new Image(inputstream) {
                     };
                     bootToken.setImage(image);
-                    System.out.println("BOOT");
+
                     break;
 
                 case "spoon":
@@ -414,7 +412,7 @@ public class GameController implements Initializable {
                     image = new Image(inputstream) {
                     };
                     spoonToken.setImage(image);
-                    System.out.println("SPOON");
+
                     break;
 
                 case "cup":
@@ -423,7 +421,7 @@ public class GameController implements Initializable {
                     };
 
                     gobletToken.setImage(image);
-                    System.out.println("CUP");
+
                     break;
 
                 case "hat_hanger":
@@ -432,7 +430,7 @@ public class GameController implements Initializable {
                     };
 
                     hatstandToken.setImage(image);
-                    System.out.println("HAT");
+
                     break;
 
                 case "phone":
@@ -440,13 +438,12 @@ public class GameController implements Initializable {
                     image = new Image(inputstream) {
                     };
                     phoneToken.setImage(image);
-                    System.out.println("PHONE");
+
                     break;
 
             }
-            System.out.println("EXIT SWITCH");
+
         }
-        System.out.println("EXIT LOOP");
 
     }
 
