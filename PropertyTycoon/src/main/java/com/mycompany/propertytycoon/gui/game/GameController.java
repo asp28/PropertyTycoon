@@ -831,8 +831,8 @@ public class GameController implements Initializable {
 
                 break;
 
-            case 12:
-                labelName.setId("purple");
+            case 13:
+                 labelName.setId("purple");
                 labelName.setRotate(180);
                 labelName.setAlignment(Pos.CENTER);
                 labelName.setWrapText(true);
@@ -843,7 +843,7 @@ public class GameController implements Initializable {
 
                 break;
 
-            case 13:
+            case 12:
                 labelName.setId("thunder");
                 labelName.setRotate(180);
                 labelName.setAlignment(Pos.BOTTOM_CENTER);
