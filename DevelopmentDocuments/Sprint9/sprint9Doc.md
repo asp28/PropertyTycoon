@@ -80,3 +80,5 @@ ___
 Unlike the previous sprints in this project, much of the testing was done on the front-end to ensure the buttons function as they are supposed to, text fields get updated with GameController actions and appropriate windows open eg. auction.
 
 ## Summary of Sprint
+
+The main focus of this sprint was the continued debugging of the project and performing system-wide testing. On the frontend, the user interface was developed to incorporate the buying and selling of houses on player-owned properties. In the backend, there was a clean-up of the code base for creating a fully functioning version of the game.
