@@ -86,9 +86,24 @@ ___
 
 ![Sequence2](images/advanceGoSequence.svg)
 
+### User Interface
+___
+
+![Image of user interface](images/GUI.png)
+
+We have developed an interface that will show the board in the middle of the screen. At this moment, the board is a single image with the names of the properties hard-coded in. On top of the board images, the tokens move around from board piece to board piece.
+
+The black grid across the board has helped us with aligning each board piece so that in a later sprint, the board piece names and types are automatically printed on start up. At the time of the image taken, we have not yet aligned this grid properly.
+
+On the top right of the screen, we have chosen to include:
+1. the player's token
+2. the player's name
+3. the player's owned properties
+4. the buttons of which we are planning on assigning methods in the future
+
 ## Test Plan
 
-With respect to the Graphical User Interface, the tests created in the last sprint were used as verification.
+With respect to the Graphical User Interface on the screen, the tests created in the last sprint were used as verification.
 
 To ensure the correct objects were being created in regards to the Opportunity Knocks and the Pot Luck cards, the 2 images below highlight the validations done in the Parser test class.
 
@@ -97,3 +112,7 @@ To ensure the correct objects were being created in regards to the Opportunity K
 ![PotLuck method in Parser test class](images/potLuckTest.png)
 
 ## Summary of Sprint
+
+In this sprint, the team focused on importing the given information about Opportunity Knocks and Pot Luck cards into the game as well as implementing methods for the actions given on a card. Given these 2 new game objects, this lead a discussion on representing them as 2 objects as identical twins: everything looks similar except for their names. This previous discusstion lead to the entire property structure being redesigned. In respect to the user interface, we mainly focused on correctly displaying the tokens on the board. 
+
+We collectively decided this current sprint was a failure based on the poor planning that ook place in sprint 2. With this, the backend system was a complete mess. A term created within our group was 'spaghetti code'. This is then on top of the classes all performing and being used for the GUI with no centralised system to manage the game. We should have spent more time talking about the execution of ideas and what parts of each idea need to go in each section. We should have communicated better in terms of what we stilled needed to do.
