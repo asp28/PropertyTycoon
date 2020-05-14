@@ -422,7 +422,7 @@ public class InitController implements Initializable {
         confirm.setOnAction(e -> {
             if (checkNames() && uniqueToken()) {
                 SM.createGameController(SM.getPlayerNum(), SM.getBotNum());
-                switch (SM.getPlayerNum()) {
+                switch (SM.getPlayerNum() + SM.getBotNum()) {
                     case 2:
                         SM.getGame().getAmountOfPlayers().get(0).setName(p1_name.getText());
                         SM.getGame().getAmountOfPlayers().get(0).setToken(p1_list.getSelectionModel().getSelectedItem());

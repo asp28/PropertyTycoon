@@ -13,6 +13,8 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import java.io.IOException;
 import java.util.*;
 import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class GameController {
 
@@ -57,6 +59,13 @@ public class GameController {
             amountOfPlayers.add(player);
             playerLocations.add(0);
         }
+        for (int x = 0; x < amountOfBots; x++) {
+            AiPlayer player = new AiPlayer();
+            amountOfPlayers.add(player);
+            playerLocations.add(0);
+        }
+        
+        
         board = new Board();
         bank = new Bank(board.getBoardLocations());
         potluckcards = new Parser().createPotLuckCards();
@@ -216,10 +225,31 @@ public class GameController {
         for (String s : playerActions) {
             switch (s) {
                 case "RENT":
-                    remaining.add("RENT");
+                    
+                    if(activePlayer.isIsAI())
+                    {
+                        payRent();
+                    }else
+                    {
+                        remaining.add("RENT");
+                    }
                     break;
                 case "BUY":
-                    remaining.add("BUY");
+                    if(activePlayer.isIsAI())
+                    {
+                        AiPlayer aiPlayer = (AiPlayer) activePlayer;
+                        if(aiPlayer.DoesAiBuy())
+                        {
+                            try {
+                                buyProperty(board.getBoardPiece(activePlayer.getLocation()));
+                            } catch (NotAProperty ex) {
+                                Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    }else
+                    {
+                        remaining.add("BUY");
+                    }
                     break;
                 case "PICKCARD":
                     pickUpCard();
@@ -237,7 +267,12 @@ public class GameController {
                     remaining.add("SELL");
                     break;
                 case "END":
+                    if(activePlayer.isIsAI())
+                    {
+                        //endTurn();
+                    }else{
                     remaining.add("END");
+                    }
                     break;
                 case "TAX":
                     payTax((TaxPiece) getBoard().getBoardPiece(activePlayer.getLocation()));
@@ -394,6 +429,20 @@ public class GameController {
         } else {
             int player = amountOfPlayers.indexOf(activePlayer) + 1;
             activePlayer = amountOfPlayers.get(player);
+        }
+        if(activePlayer.isIsAI())
+        {
+            move();
+            new java.util.Timer().schedule( 
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                       endTurn();
+                    }
+                }, 
+                2000 
+        );
+            
         }
     }
 
