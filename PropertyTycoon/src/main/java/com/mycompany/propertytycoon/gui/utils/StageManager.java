@@ -13,11 +13,13 @@ import com.mycompany.propertytycoon.boardpieces.Property;
 import com.mycompany.propertytycoon.log.Log;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
@@ -56,12 +58,15 @@ public class StageManager {
         currStage = s;
     }
 
-    public void init() {
+    public void init() throws MalformedURLException {
         Parent root = loadHierarchy("src/main/java/com/mycompany/propertytycoon/gui/mainmenu/homepage.fxml");
         Scene scene = new Scene(root);
 
         currStage.setTitle("Property Tycoon");
         currStage.setScene(scene);
+        URL url = new File("src/main/java/resources/img/PTBarLogo.png").toURI().toURL();
+        Image i = new Image(url.toString());
+        currStage.getIcons().add(i);
         currStage.show();
     }
 

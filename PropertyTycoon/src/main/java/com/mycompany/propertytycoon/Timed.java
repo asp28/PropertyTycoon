@@ -8,6 +8,7 @@ package com.mycompany.propertytycoon;
 import com.mycompany.propertytycoon.boardpieces.ColouredProperty;
 import com.mycompany.propertytycoon.boardpieces.Property;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
+import com.mycompany.propertytycoon.log.Log;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -22,6 +23,7 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 public class Timed extends GameController {
     
     private static StageManager SM = StageManager.getInstance();
+    private static Log log = Log.getInstance();
     private Timer t;
     private TimerTask task;
     
@@ -40,7 +42,8 @@ public class Timed extends GameController {
             @Override
             public void run() {
                 SM.setTimerEnded(true);
-                System.out.println("TIMER COMPLETE");
+                log.addToLog("TIME HAS RUN OUT. THE GAME WILL END WHEN ALL REMAINING PLAYERS HAVE TAKEN THE SAME NUMBER OF TURNS.");
+                t.purge();
             }
         };
         long time = 60*1000*timerLength;
@@ -49,7 +52,7 @@ public class Timed extends GameController {
     
     public boolean fullTurn() {
         System.out.println("Player 1:" + getAmountOfPlayers().get(0).getPlayerTurns() + " Player 2:" + getAmountOfPlayers().get(getAmountOfPlayers().size() - 1).getPlayerTurns());
-        return getAmountOfPlayers().get(0).getPlayerTurns() == getAmountOfPlayers().get(getAmountOfPlayers().size()-1).getPlayerTurns();
+        return (getAmountOfPlayers().size() -1) == getAmountOfPlayers().indexOf(getActivePlayer());
     }
     
     @Override
