@@ -84,6 +84,17 @@ ___
 
 ![ending a player's turn sequence diagram](images/endTurnSequence.svg)
 
+### User Interface
+___
+
+![selecting names and tokens of players](images/GUI3.png)
+
+An update to last sprint on choosing of names and tokens of players was that instead of words, we have added what the token would look like.
+
+![board in user interface](images/GUI4.png)
+
+An addition to the main user interface is that the left side of the board is now a box highlighting a specific board piece on the board. This has not yet been implemented, but the appropriate space is built for it.
+
 ## Test Plan
 
 The main updates in terms of testing is with:
@@ -100,3 +111,7 @@ The next 3 images below highlight the testing capabilities of ensuring the metho
 ![Rent and double rent test in GameController test class](images/rentTest.png)
 
 ## Summary of Sprint
+
+This sprint, the frontend team tried to use a new game library to help build the unique frames for auctions and properties. This should have been discussed eaerlier in the development cycle. This new library was later dropped which we feld was a bit of a waste of time. This was the first sprint that we had to hold our sprint meetings remotely as a team member was out of the country. As a team, we coped well and stayed focused.
+
+With the fronted, there was a complete redesign on the user interface using a new service. This has allowed the frontend team to code much easier transitions and connect different scenes together. The disadvantage of this was that the new service required more time on the user interface than should have due to a full redesign.
