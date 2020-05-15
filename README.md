@@ -32,7 +32,7 @@ Once in the game you can easily play, with a simple and easy to follow display.
 
 The menu on the right shows the current players token, balance, name, cards owned, button they can use and the log of the current game.
 
-All graphics and logos seen in the project are solely designed by the team.
+All graphics and logos seen in the project are solely designed and created by the team.
 
 ## Dependencies
 - Maven
