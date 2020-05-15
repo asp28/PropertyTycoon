@@ -6,9 +6,13 @@ This is the game Property Tycoon developed by team 13 for the module Software En
 
 All documentation is located in the file 'DevelopmentDocuments'. There is a simple file system with one file for each sprint cycle that contains all the relevant documents for that sprint. There is also an overall project plan that states what we set out to do in each sprint at the beginning of the project.
 
+Trello was used to plan and organise task cards for every sprint. The Trello board can be accessed [here](https://trello.com/b/VlTDakv4/software-engineering-project)
+
 ## Code
 
 Inside the 'PropertyTycoon' file you will find all the code that was developed along with any additional resources used to develop the game. Inside the 'src' you will find an intricite passage of packages that were used to keep organisation simple and effective. The project main in located at 'com.mycompany.propertytycoon'
+
+GitHub was used to to maintin our code base. The repository can be found [here](https://github.com/asp28/PropertyTycoon)
 
 ## GUI
 
