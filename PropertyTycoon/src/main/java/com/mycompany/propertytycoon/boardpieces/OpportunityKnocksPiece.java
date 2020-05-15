@@ -10,8 +10,8 @@ public class OpportunityKnocksPiece extends BoardPiece {
 
     /**
      * OpportunityKnocksPiece constructor
-     * @param title
-     * @param action 
+     * @param title title of OpportunityKnocks card
+     * @param action action of OpportunityKnocks card
      */
     public OpportunityKnocksPiece(String title, String action) {
         super(title);
@@ -20,7 +20,7 @@ public class OpportunityKnocksPiece extends BoardPiece {
 
     /**
      * Gets the action related to the OpportunityKnocksPiece
-     * @return action
+     * @return OpportunityKnocks action
      */
     public String getAction() {
         return action;

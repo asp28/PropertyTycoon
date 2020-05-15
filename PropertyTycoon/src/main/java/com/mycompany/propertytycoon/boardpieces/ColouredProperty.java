@@ -10,17 +10,16 @@ public class ColouredProperty extends Property {
 
     private final ArrayList<Integer> houses;
     private final int houseCost;
-
     private int houseCount;
 
     /**
      * ColouredProperty constructor
-     * @param name
-     * @param group
-     * @param cost
-     * @param rent
-     * @param houses
-     * @param houseCost
+     * @param name name of ColouredProperty
+     * @param group group of ColouredProperty
+     * @param cost cost of ColouredProperty
+     * @param rent rent of ColouredProperty without houses
+     * @param houses list of rent prices with associated houses of ColouredProperty
+     * @param houseCost cost of purchasing a house on ColouredProperty
      */
     public ColouredProperty(String name, String group, int cost, String rent, ArrayList<Integer> houses, int houseCost) {
         super(name, group, cost, rent);

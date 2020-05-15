@@ -10,7 +10,7 @@ public class BoardPiece {
     
     /**
      * BoardPiece constructor
-     * @param title 
+     * @param title title of BoardPiece
      */
     public BoardPiece(String title) {
         this.title = title;

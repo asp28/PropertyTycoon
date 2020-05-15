@@ -1,16 +1,13 @@
 package com.mycompany.propertytycoon;
 
-
 import com.mycompany.propertytycoon.boardpieces.Property;
 import com.mycompany.propertytycoon.cards.Card;
 import com.mycompany.propertytycoon.cards.OpportunityKnocks;
 import com.mycompany.propertytycoon.cards.PotLuck;
-
 import java.util.ArrayList;
 
 /**
- * @author Big Nerd Notation
- * Player class to hold player's location, their ownedProperties, etc.
+ * Property Tycoon Player
  */
 public class Player {
     private String name;
@@ -24,11 +21,8 @@ public class Player {
     private boolean isAI;
     private OpportunityKnocks GOJFoppoknocks;
     private PotLuck GOJFpotluck;
-
-    public void setGameloops(int gameloops) {
-        this.gameloops = gameloops;
-    }
-
+    
+    
 
     /**
      * Player constructor
@@ -42,163 +36,6 @@ public class Player {
         this.inJail = false;
         this.isAI = false;
     }
-
-
-    //Getters and Setters
-
-    public boolean isIsAI() {
-        return isAI;
-    }
-
-    public void setIsAI(boolean isAI) {
-        this.isAI = isAI;
-    }
-
-
-    /**
-     * Gets the player's name
-     *
-     * @return name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Sets the name of the player
-     * @param name 
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * Returns the player's location on the board
-     * @return location
-     */
-    public int getLocation() {
-        return location;
-    }
-
-    /**
-     * Sets the location of the player
-     * @param location 
-     */
-    public void setLocation(int location) {
-        this.location = location;
-    }
-
-    /**
-     * Returns all the properties the player owns
-     * @return ownedProperties
-     */
-    public ArrayList<Property> getOwnedProperties() {
-        return ownedProperties;
-    }
-
-    /**
-     * Sets all owned properties of player
-     * @param ownedProperties 
-     */
-    public void setOwnedProperties(ArrayList<Property> ownedProperties) {
-        this.ownedProperties = ownedProperties;
-    }
-
-    /**
-     * Returns current player balance
-     * @return balance
-     */
-    public int getBalance() {
-        return balance;
-    }
-
-    /**
-     * Sets player balance
-     * @param balance 
-     */
-    public void setBalance(int balance) {
-        this.balance = balance;
-    }   
-
-    /**
-     * Returns true whether player is in jail
-     * @return inJail
-     */
-    public boolean isInJail() {
-        return inJail;
-    }
-
-    /**
-     * Decides whether player is in jail
-     * @param inJail 
-     */
-    public void setInJail(boolean inJail) {
-        this.inJail = inJail;
-    }
-
-    /**
-     * Returns the player's token
-     * @return token
-     */
-    public String getToken() {
-        return token;
-    }
-
-    /**
-     * Sets the player's token
-     * @param token 
-     */
-    public void setToken(String token) {
-        this.token = token;
-    }
-    
-    
-    //Methods
-    
-    /**
-     * Adds a property to player's owned properties
-     * @param prop 
-     */
-    public void addProperty(Property prop){
-        ownedProperties.add(prop);
-    }
-    
-    /**
-     * Removes a property from player's owned properties
-     * @param prop 
-     */
-    public void removeProperty(Property prop){
-        ownedProperties.remove(prop);
-    }
-    
-    /**
-     * Increases the player balance by a certain value when receiving rent
-     *
-     * @param value
-     */
-    public void increaseBalance(int value) {
-        balance += value;
-    }
-
-    public void decreaseBalance(int value) {
-        balance -= value;
-    }
-
-    public int getGameloops() {
-        return gameloops;
-    }
-
-    public void incrementGameloops() {
-        this.gameloops++;
-    }
-
-    public int getPlayerTurns() {
-        return playerTurns;
-    }
-
-    public void incrementPlayerTurns() {
-        this.playerTurns++;
-    }
     
     public Card getOutOfJailCard() {
         if (GOJFoppoknocks != null && GOJFpotluck == null) {
@@ -210,18 +47,261 @@ public class Player {
         }
         return GOJFoppoknocks;
     }
+
+    //Getters and Setters
+
+    /**
+     * Returns player's name
+     * @return player's name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Sets player's name
+     * @param name player name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Gets player's location
+     * @return player location
+     */
+    public int getLocation() {
+        return location;
+    }
+
+    /**
+     * Sets player's location
+     * @param location player's location
+     */
+    public void setLocation(int location) {
+        this.location = location;
+    }
+
+    /**
+     * Gets player's owned properties
+     * @return list of player's owned properties
+     */
+    public ArrayList<Property> getOwnedProperties() {
+        return ownedProperties;
+    }
+
+    /**
+     * Set player's properties
+     * @param ownedProperties list of player's properties
+     */
+    public void setOwnedProperties(ArrayList<Property> ownedProperties) {
+        this.ownedProperties = ownedProperties;
+    }
+
+    /**
+     * Gets player's balance
+     * @return player's balance
+     */
+    public int getBalance() {
+        return balance;
+    }
+
+    /**
+     * Sets player's balance
+     * @param balance player's balance
+     */
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    /**
+     * Is player in jail
+     * @return true if player in jail
+     */
+    public boolean isInJail() {
+        return inJail;
+    }
+
+    /**
+     * Puts player in or out of jail
+     * @param inJail is player in jail?
+     */
+    public void setInJail(boolean inJail) {
+        this.inJail = inJail;
+    }
+
+    /**
+     * Gets player's token
+     * @return player's token
+     */
+    public String getToken() {
+        return token;
+    }
+
+    /**
+     * Set player's token
+     * @param token one of six tokens
+     */
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    /**
+     * Gets player's gameLoops
+     * @return how many loops around the board player has traveled
+     */
+    public int getGameloops() {
+        return gameloops;
+    }
+
+    /**
+     * Set player's gameLoops
+     * @param gameloops loops around the board
+     */
+    public void setGameloops(int gameloops) {
+        this.gameloops = gameloops;
+    }
+
+    /**
+     * Gets player's turn counter
+     * @return player's turn counter
+     */
+    public int getPlayerTurns() {
+        return playerTurns;
+    }
+
+    /**
+     * Sets player's turn counter
+     * @param playerTurns amount of turns
+     */
+    public void setPlayerTurns(int playerTurns) {
+        this.playerTurns = playerTurns;
+    }
+
+    /**
+     * Is the player an AI
+     * @return true if player an AI
+     */
+    public boolean isIsAI() {
+        return isAI;
+    }
+
+    /**
+     * Sets whether player is AI
+     * @param isAI is player AI?
+     */
+    public void setIsAI(boolean isAI) {
+        this.isAI = isAI;
+    }
+
+    /**
+     * Gets GetOutOfJailFree Opportunity Knocks card
+     * @return Opportunity Knocks card
+     */
+    public OpportunityKnocks getGOJFoppoknocks() {
+        return GOJFoppoknocks;
+    }
+
+    /**
+     * Sets the GetOutOfJailFree Opportunity Knocks card
+     * @param GOJFoppoknocks OpportunityKnocks card
+     */
+    public void setGOJFoppoknocks(OpportunityKnocks GOJFoppoknocks) {
+        this.GOJFoppoknocks = GOJFoppoknocks;
+    }
+
+    /**
+     * Gets GetOutOfJailFree PotLuck card
+     * @return PotLuck card
+     */
+    public PotLuck getGOJFpotluck() {
+        return GOJFpotluck;
+    }
+
+    /**
+     * Sets the GetOutOfJailFree PotLuck card
+     * @param GOJFpotluck PotLuck card
+     */
+    public void setGOJFpotluck(PotLuck GOJFpotluck) {
+        this.GOJFpotluck = GOJFpotluck;
+    }
     
+    
+    //Methods
+    
+
+    /**
+     * Add a property to player's owned properties
+     * @param prop property to be added
+     */
+    public void addProperty(Property prop){
+        ownedProperties.add(prop);
+    }
+    
+    /**
+     * Remove a property from player's owned properties
+     * @param prop property to be removed
+     */
+    public void removeProperty(Property prop){
+        ownedProperties.remove(prop);
+    }
+
+    /**
+     * Increase player's balance by a certain amount
+     * @param value amount to increase by
+     */
+    public void increaseBalance(int value) {
+        balance += value;
+    }
+
+    /**
+     * Decrease player's balance by a certain amount
+     * @param value amount to decrease by
+     */
+    public void decreaseBalance(int value) {
+        balance -= value;
+    }
+
+    /**
+     * Increments player's gameLoop counter
+     */
+    public void incrementGameloops() {
+        this.gameloops++;
+    }
+
+    /**
+     * Increments player's turn counter
+     */
+    public void incrementPlayerTurns() {
+        this.playerTurns++;
+    }
+    
+    /**
+     * Sets GetOutOfJailFree card of Opportunity Knocks
+     * @param card OpportunityKnocks card
+     */
     public void setGOJF(OpportunityKnocks card) {
         GOJFoppoknocks = card;
     }
     
+    /**
+     * Sets GetOutOfJailFree card of PotLuck
+     * @param card PotLuck card
+     */
     public void setGOJF(PotLuck card) {
         GOJFpotluck = card;
     }
+    
+    /**
+     * Removes GetOutOfJailFree card of OpportunityKnocks
+     */
     public void removeGOJFoppo() {
         GOJFoppoknocks = null;
     }
     
+    /**
+     * Removes GetOutOfJailFree card of PotLuck
+     */
     public void removeGOJFpotluck() {
         GOJFpotluck = null;
     }

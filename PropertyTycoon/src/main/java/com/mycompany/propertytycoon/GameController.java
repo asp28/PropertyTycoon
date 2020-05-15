@@ -11,7 +11,6 @@ import com.mycompany.propertytycoon.log.Log;
 import java.io.FileNotFoundException;
 import javafx.util.Pair;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-
 import java.io.IOException;
 import java.util.*;
 import java.util.Map.Entry;
@@ -49,7 +48,7 @@ public class GameController {
     };
 
     /**
-     * The constructor
+     * Constructor to create players, board, bank, etc.
      *
      * @param amountOfPlayer
      * @throws IOException
@@ -84,7 +83,7 @@ public class GameController {
      * Roll is used to replace the dice class that generates a random number
      * between 1 and 6 for both dice
      *
-     * @return an array that holds the 2 dice values
+     * @return a pair that holds the 2 dice values
      */
     private void roll() {
         Random rn = new Random();
@@ -218,7 +217,7 @@ public class GameController {
      * paying rent etc then returns the methods that require user interaction
      * This is then used by the GUI to update and display the correct buttons
      *
-     * @param playerActions
+     * @param playerActions list of actions the player can take at the start of the turn
      * @return Arraylist of player required commands
      */
     public ArrayList<String> performActions(ArrayList<String> playerActions) { //local variable as output of getPlayerActions
@@ -348,25 +347,10 @@ public class GameController {
         return remaining;
     }
 
-    /*
-    Getters and setters
-     */
-    public Board getBoard() {
-        return board;
-    }
-
-    public ArrayList<Player> getAmountOfPlayers() {
-        return amountOfPlayers;
-    }
-
-    public Player getActivePlayer() {
-        return activePlayer;
-    }
-
     /**
      * Buy Property (Non auction)
      *
-     * @param bp
+     * @param bp BoardPiece a player buys
      * @throws NotAProperty
      */
     public void buyProperty(BoardPiece bp) throws NotAProperty {
@@ -393,8 +377,8 @@ public class GameController {
      *
      * Buy property for auctioning
      *
-     * @param bp
-     * @param bidder
+     * @param bp BoardPiece to be bought
+     * @param bidder Player and their bid to buy property
      *
      */
     public void buyProperty(BoardPiece bp, Pair<Player, Integer> bidder) throws NotAProperty {
@@ -420,7 +404,7 @@ public class GameController {
     /**
      * Sell property back to bank for full amount/half amount if mortgaged
      *
-     * @param prop
+     * @param prop Property to be sold
      */
     public void sellProperty(Property prop) {
         if (prop.getOwnedBuy().equals(activePlayer.getName()) && prop.isMortgaged() == false) {
@@ -444,11 +428,11 @@ public class GameController {
     /**
      * Trade method between player A and player B
      *
-     * @param tradingP
-     * @param cash
-     * @param desiredCash
-     * @param desiredP
-     * @param choosenPlayer
+     * @param tradingP activePlayer's proposed properties to give
+     * @param cash activePlayer's proposed cash to give
+     * @param desiredCash exchangee's proposed cash to give
+     * @param desiredP exchangee's proposed properties to give
+     * @param choosenPlayer exchangee of trade
      */
     public void trade(ArrayList<Property> tradingP, int cash, int desiredCash, ArrayList<Property> desiredP, Player choosenPlayer) {
 
@@ -544,7 +528,14 @@ public class GameController {
             checkIfBankrupt();
         }
     }
-
+    
+    /**
+     * A check to see if the rent must be doubled if the owner of the property owns
+     * all of the colour group
+     * @param property Property in question
+     * @param owner Owner of property
+     * @return 
+     */
     private boolean doubleRent(Property property, Player owner) {
         if (property instanceof ColouredProperty) {
             String colourGroup = property.getGroup();
@@ -570,6 +561,10 @@ public class GameController {
         return false;
     }
 
+    /**
+     * Player picks up a card if landed on an Opportunity Knocks BoardPiece 
+     * or a PotLuck BoardPiece
+     */
     private void pickUpCard() {
         if (board.getBoardPiece(activePlayer.getLocation()) instanceof OpportunityKnocksPiece) {
             log.addToLog(activePlayer.getName() + " has picked up an opportunity knocks card.");
@@ -600,7 +595,7 @@ public class GameController {
     /**
      * Does the action of the OpportunityKnocks card.
      *
-     * @param opportunityKnocks
+     * @param opportunityKnocks the card picked up
      */
     private void doCardAction(OpportunityKnocks opportunityKnocks) {
         String action = opportunityKnocks.getAction();
@@ -745,7 +740,7 @@ public class GameController {
     /**
      * Does action for the potluck card chosen.
      *
-     * @param potluck
+     * @param potluck the card picked up
      */
     private void doCardAction(PotLuck potluck) {
         String action = potluck.getAction();
@@ -834,12 +829,18 @@ public class GameController {
         }
     }
 
+    /**
+     * Sends the active player to jail
+     */
     private void goToJail() {
         activePlayer.setLocation(10);
         activePlayer.setInJail(true);
         log.addToLog(activePlayer.getName() + " was sent to jail.");
     }
 
+    /**
+     * When landed on FreeParking, active player received FreeParking's balance
+     */
     private void acquireFreeParkingMoney() {
         FreeParkingPiece fp = (FreeParkingPiece) board.getBoardPiece(activePlayer.getLocation());
         activePlayer.increaseBalance(fp.getBalance());
@@ -847,12 +848,21 @@ public class GameController {
         log.addToLog(activePlayer.getName() + " has acquired the free parking balance.");
     }
 
+    /**
+     * When the player lands on Go or passes Go
+     */
     private void passingGo() {
         bank.withdraw(200);
         activePlayer.increaseBalance(200);
         log.addToLog(activePlayer.getName() + " has passed Go and collected £200.");
     }
 
+    /**
+     * A check to determine if the player owns all properties
+     * of a given group
+     * @param prop Property of a group
+     * @return true of player owns all properties of group
+     */
     public boolean checkAllColoursOwned(ColouredProperty prop) {
         String colourGroup = prop.getGroup();
         int countOfColours = 0;
@@ -876,6 +886,12 @@ public class GameController {
         return false;
     }
 
+    /**
+     * A check to ensure all properties have no difference of
+     * 1 house between them
+     * @param prop Property that wants an additional house
+     * @return true if property can have an additional house
+     */
     public boolean checkHouseCount(Property prop) {
         ColouredProperty property = (ColouredProperty) prop;
         if (property.getHouseCount() >= 5) {
@@ -896,6 +912,10 @@ public class GameController {
         return true;
     }
 
+    /**
+     * Creates a list of properties a player can buy a house for
+     * @return a list of ColouredProperty
+     */
     public ArrayList<ColouredProperty> listOfHousableProps() {
         ArrayList<ColouredProperty> housableProps = new ArrayList<>();
         for (Property prop : activePlayer.getOwnedProperties()) {
@@ -911,6 +931,11 @@ public class GameController {
         return housableProps;
     }
 
+    /**
+     * Check to see if a person can add a house to a property
+     * @param prop ColouredProperty to add proposed house
+     * @return true if property can be improved with house
+     */
     public boolean canAddHouse(ColouredProperty prop) {
         ColouredProperty property = (ColouredProperty) prop;
         if (property.getHouseCount() >= 5) {
@@ -931,6 +956,11 @@ public class GameController {
         return true;
     }
 
+    /**
+     * Check to see if the player can afford to add another house on a property
+     * @param prop ColouredProperty in question
+     * @return true if player can afford another house on property
+     */
     public boolean canAffordHouse(ColouredProperty prop) {
         if (prop.getHouseCost() > activePlayer.getBalance()) {
             return false;
@@ -938,6 +968,10 @@ public class GameController {
         return true;
     }
 
+    /**
+     * Buys a house on property
+     * @param prop Property to have an additional house
+     */
     public void buyHouse(Property prop) {
         ColouredProperty propColour = (ColouredProperty) prop;
         if (propColour.getHouseCost() <= activePlayer.getBalance() && propColour.getHouseCount() <= 5 && checkHouseCount(prop)) {
@@ -953,6 +987,9 @@ public class GameController {
         }
     }
 
+    /**
+     * Buys a house on the player's location if owned
+     */
     public void buyHouse() {
         ColouredProperty prop = (ColouredProperty) board.getBoardPiece(activePlayer.getLocation());
         if (prop.getHouseCost() < activePlayer.getBalance() && prop.getHouseCount() <= 5) {
@@ -966,6 +1003,10 @@ public class GameController {
         }
     }
 
+    /**
+     * Sells house on a property
+     * @param property Property to sell a house
+     */
     public void sellHouse(ColouredProperty property) {
         if (property.getHouseCount() > 0) {
             activePlayer.increaseBalance(property.getHouseCost());
@@ -977,6 +1018,12 @@ public class GameController {
         }
     }
 
+    /**
+     * Check to see if the bids in an auction are valid such that the maximum bid does not
+     * occur more than once
+     * @param bids HashMap of Players and their bids
+     * @return true if valid auction
+     */
     public boolean checkValidAuction(HashMap<Player, Integer> bids) {
         int maxBid = 0;
         for (Entry<Player, Integer> playerBid : bids.entrySet()) {
@@ -1002,6 +1049,11 @@ public class GameController {
         return true;
     }
 
+    /**
+     * Performs an auction
+     * @param bids HashMap of Players and their bids
+     * @throws NotAProperty 
+     */
     public void auction(HashMap<Player, Integer> bids) throws NotAProperty {
         if (!(board.getBoardPiece(activePlayer.getLocation()) instanceof Property)) {
             throw new NotAProperty("Player's current location is not a Property");
@@ -1017,6 +1069,10 @@ public class GameController {
         }
     }
 
+    /**
+     * Mortgage a property
+     * @param prop Property to be mortgaged
+     */
     public void mortgageProperty(Property prop) {
         prop.setMortgaged(true);
         bank.withdraw(prop.getCost() / 2);
@@ -1024,6 +1080,10 @@ public class GameController {
         log.addToLog(activePlayer.getName() + " has mortgaged " + prop.getTitle() + ".");
     }
 
+    /**
+     * Unmortgage a property
+     * @param prop Property to be unmortgaged
+     */
     public void unmortgageProperty(Property prop) {
         prop.setMortgaged(false);
         bank.deposit(prop.getCost() / 2);
@@ -1032,22 +1092,10 @@ public class GameController {
         log.addToLog(activePlayer.getName() + "has paid his debt to the bank for " + prop.getTitle() + ".");
     }
 
-    public void updateGUI() {
-
-    }
-
-    public Pair<Integer, Integer> getRolls() {
-        return rolls;
-    }
-
-    public ArrayList<String> getActions() {
-        return actions;
-    }
-
-    public ArrayList<String> getTokens() {
-        return tokens;
-    }
-
+    /**
+     * Player pays specified tax to FreeParking
+     * @param tp TaxPiece player has landed upon
+     */
     public void payTax(TaxPiece tp) {
         FreeParkingPiece fpp = (FreeParkingPiece) getBoard().getBoardPiece(20);
         getActivePlayer().decreaseBalance(tp.getTaxAmount());
@@ -1056,17 +1104,12 @@ public class GameController {
 
     }
 
-    public void addToOppo(OpportunityKnocks ok) {
-        oppocards.add(ok);
-    }
-
-    public void addToPotLuck(PotLuck pl) {
-        potluckcards.add(pl);
-    }
-
+    /**
+     * Removes player if bankrupt
+     */
     public void checkIfBankrupt() {
-        if (activePlayer.getBalance() < 0 && activePlayer.getOwnedProperties().isEmpty()) {
-            log.addToLog(activePlayer.getName() + "has gone bakrupt and is out the game");
+        if (checkBankrupt()) {
+            log.addToLog(activePlayer.getName() + "has gone bankrupt and is out the game");
             amountOfPlayers.remove(activePlayer);
             if (winningConditions() != null) {
                 log.addToLog(amountOfPlayers.get(0).getName() + " has won the game");
@@ -1075,15 +1118,91 @@ public class GameController {
         }
     }
 
+    /**
+     * Checks if player is bankrupt
+     * @return 
+     */
     public boolean checkBankrupt() {
         return activePlayer.getBalance() < 0 && activePlayer.getOwnedProperties().isEmpty();
     }
 
+    /**
+     * The winning conditions of the game
+     * @return the winning player
+     */
     public Player winningConditions() {
         if (amountOfPlayers.size() == 1) {
             return amountOfPlayers.get(0);
         }
         return null;
+    }
+    
+    /*
+    Getters and setters
+     */
+    
+    /**
+     * Gets board object
+     * @return Board
+     */
+    public Board getBoard() {
+        return board;
+    }
+
+    /**
+     * Gets list of players
+     * @return list of players
+     */
+    public ArrayList<Player> getAmountOfPlayers() {
+        return amountOfPlayers;
+    }
+
+    /**
+     * Gets current player
+     * @return current player
+     */
+    public Player getActivePlayer() {
+        return activePlayer;
+    }
+
+    /**
+     * Gets roll of both dice
+     * @return dice values
+     */
+    public Pair<Integer, Integer> getRolls() {
+        return rolls;
+    }
+
+    /**
+     * Gets the player's actions
+     * @return list of player's actions
+     */
+    public ArrayList<String> getActions() {
+        return actions;
+    }
+
+    /**
+     * Gets the list of playable tokens
+     * @return list of playable tokens
+     */
+    public ArrayList<String> getTokens() {
+        return tokens;
+    }
+
+    /**
+     * Add an OpportunityKnocks card to card stack
+     * @param ok OpportunityKnocks card
+     */
+    public void addToOppo(OpportunityKnocks ok) {
+        oppocards.add(ok);
+    }
+
+    /**
+     * Add a PotLuck card to card stack
+     * @param pl PotLuck card
+     */
+    public void addToPotLuck(PotLuck pl) {
+        potluckcards.add(pl);
     }
 
 }

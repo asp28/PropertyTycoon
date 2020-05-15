@@ -10,8 +10,8 @@ public class GoPiece extends BoardPiece {
     
     /**
      * GoPiece constructor
-     * @param title
-     * @param action 
+     * @param title title of Go
+     * @param action action of Go
      */
     public GoPiece(String title, String action) {
         super(title);
