@@ -14,7 +14,7 @@ public class LoadNewGameGUI extends Application {
     /**
      * Method to load the game
      * @param primaryStage - the stage used to show the game
-     * @throws MalformedURLException 
+     * @throws MalformedURLException - When URL is bad
      */
     @Override
     public void start(Stage primaryStage) throws MalformedURLException {

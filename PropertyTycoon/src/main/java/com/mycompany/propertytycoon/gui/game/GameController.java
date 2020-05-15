@@ -352,7 +352,7 @@ public class GameController implements Initializable {
     /**
      * Set the players box
      *
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException - Player profile token not found
      */
     public void playerProfile() throws FileNotFoundException {
         String pic = SM.getGame().getActivePlayer().getToken() + ".gif";
@@ -387,7 +387,7 @@ public class GameController implements Initializable {
     /**
      * Puts the players token on the board
      *
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException - Player token not found
      */
     public void placePlayersOnBoard() throws FileNotFoundException {
         FileInputStream inputstream;
@@ -693,7 +693,7 @@ public class GameController implements Initializable {
      * Sets the names of each board piece
      * @param num - board piece number
      * @param name - name of the board piece
-     * @throws FileNotFoundException 
+     * @throws FileNotFoundException - Board Piece img not found
      */
     public void LocationNames(int num, String name) throws FileNotFoundException {
         Label labelName = new Label(name);
@@ -1243,7 +1243,7 @@ public class GameController implements Initializable {
 
     /**
      * refresh the controls
-     * @throws FileNotFoundException 
+     * @throws FileNotFoundException - Imgs not found
      */
     public void updateControls() throws FileNotFoundException {
         playerProfile();
@@ -1255,7 +1255,7 @@ public class GameController implements Initializable {
     /**
      * Controls the click and see property feature
      * @param n - label
-     * @throws FileNotFoundException 
+     * @throws FileNotFoundException - Zoom effect img not found
      */
     public void leftSide(Label n) throws FileNotFoundException {
         leftTitle.setText(n.getText());

@@ -42,8 +42,8 @@ public class Parser {
     /**
      *
      * @return ArrayList of propertyCard objects.
-     * @throws IOException
-     * @throws InvalidFormatException
+     * @throws IOException - could not load
+     * @throws InvalidFormatException - invalid excel sheet
      */
     public ArrayList<BoardPiece> boardMaker() throws IOException, InvalidFormatException {
         ArrayList<BoardPiece> b = new ArrayList<>();
@@ -137,9 +137,9 @@ public class Parser {
     /**
      * Creates the Opportunity Knocks cards
      *
-     * @return
-     * @throws IOException
-     * @throws InvalidFormatException
+     * @return arraylist of opportunity knocks objects
+     * @throws IOException - Cant run
+     * @throws InvalidFormatException - Excel sheet invalid
      */
     public ArrayList<OpportunityKnocks> createOppoCards() throws IOException, InvalidFormatException {
         ArrayList<OpportunityKnocks> oppo = new ArrayList<>();
@@ -163,9 +163,9 @@ public class Parser {
     /**
      * Creates the PotLuck cards
      *
-     * @return
-     * @throws IOException
-     * @throws org.apache.poi.openxml4j.exceptions.InvalidFormatException
+     * @return arraylist of potluck cards
+     * @throws IOException - Cant run
+     * @throws org.apache.poi.openxml4j.exceptions.InvalidFormatException - Excel sheet invalid
      */
     public ArrayList<PotLuck> createPotLuckCards() throws IOException, InvalidFormatException {
         ArrayList<PotLuck> potluck = new ArrayList<>();

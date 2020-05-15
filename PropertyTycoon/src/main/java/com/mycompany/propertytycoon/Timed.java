@@ -26,8 +26,8 @@ public class Timed extends GameController {
      * @param amountOfPlayer
      * @param amountOfBots
      * @param timerLength
-     * @throws IOException
-     * @throws InvalidFormatException 
+     * @throws IOException - Cant load
+     * @throws InvalidFormatException - Invalid excel document
      */
     public Timed(int amountOfPlayer, int amountOfBots, int timerLength) throws IOException, InvalidFormatException {
         super(amountOfPlayer, amountOfBots);

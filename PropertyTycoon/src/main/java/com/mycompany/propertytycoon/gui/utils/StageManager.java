@@ -63,7 +63,7 @@ public class StageManager {
 
     /**
      * Initial loading of the main menu
-     * @throws MalformedURLException 
+     * @throws MalformedURLException - Malformed URL
      */
     public void init() throws MalformedURLException {
         Parent root = loadHierarchy("src/main/java/com/mycompany/propertytycoon/gui/mainmenu/homepage.fxml");
@@ -80,7 +80,7 @@ public class StageManager {
     /**
      * private method to load the FXML file
      * @param fxmlFilePath - String filepath of where fxml is located
-     * @return 
+     * @return Parent node
      */
     private Parent loadHierarchy(String fxmlFilePath) {
         Parent p = null;

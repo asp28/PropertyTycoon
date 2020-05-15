@@ -18,7 +18,7 @@ public class BoardPiece {
 
     /**
      * Gets the title/name of the BoardPiece
-     * @return 
+     * @return name of board piece
      */
     public String getTitle() {
         return title;

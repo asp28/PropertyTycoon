@@ -8,7 +8,6 @@ import com.mycompany.propertytycoon.gui.game.GameVariableStorage;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
 import com.mycompany.propertytycoon.gui.utils.View;
 import com.mycompany.propertytycoon.log.Log;
-import java.io.FileNotFoundException;
 import javafx.util.Pair;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import java.io.IOException;
@@ -51,8 +50,8 @@ public class GameController {
      * Constructor to create players, board, bank, etc.
      *
      * @param amountOfPlayer
-     * @throws IOException
-     * @throws InvalidFormatException
+     * @throws IOException - Cant load
+     * @throws InvalidFormatException - Excel parser error
      */
     public GameController(int amountOfPlayer, int amountOfBots) throws IOException, InvalidFormatException {
         for (int i = 0; i < amountOfPlayer; i++) {
@@ -289,7 +288,7 @@ public class GameController {
      * Buy Property (Non auction)
      *
      * @param bp BoardPiece a player buys
-     * @throws NotAProperty
+     * @throws NotAProperty property invalid
      */
     public void buyProperty(BoardPiece bp) throws NotAProperty {
         if (bp instanceof Property) {
@@ -472,7 +471,7 @@ public class GameController {
      * all of the colour group
      * @param property Property in question
      * @param owner Owner of property
-     * @return 
+     * @return true if rent should be doubled
      */
     private boolean doubleRent(Property property, Player owner) {
         if (property instanceof ColouredProperty) {
@@ -990,7 +989,7 @@ public class GameController {
     /**
      * Performs an auction
      * @param bids HashMap of Players and their bids
-     * @throws NotAProperty 
+     * @throws NotAProperty Not a property piece
      */
     public void auction(HashMap<Player, Integer> bids) throws NotAProperty {
         if (!(board.getBoardPiece(activePlayer.getLocation()) instanceof Property)) {
@@ -1058,7 +1057,7 @@ public class GameController {
 
     /**
      * Checks if player is bankrupt
-     * @return 
+     * @return true if player has no money and properties
      */
     public boolean checkBankrupt() {
         return activePlayer.getBalance() < 0 && activePlayer.getOwnedProperties().isEmpty();

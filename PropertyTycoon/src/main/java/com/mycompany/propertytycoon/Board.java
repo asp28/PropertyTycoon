@@ -15,8 +15,8 @@ public class Board {
     /**
      * Constructor to initialize Board object
      * Calls Parser object to scan through Excel document
-     * @throws IOException
-     * @throws InvalidFormatException
+     * @throws IOException - Not able to load
+     * @throws InvalidFormatException - Excel parser error
      */
     public Board() throws IOException, InvalidFormatException {
         this.boardLocations = new Parser().boardMaker();
