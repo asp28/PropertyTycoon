@@ -241,6 +241,9 @@ public class GameController {
                             } catch (NotAProperty ex) {
                                 Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
                             }
+                        } else {
+                            SM.setAuctionProperty(board.getBoardPiece(activePlayer.getLocation()));
+                            SM.changeScene(View.AUCTION);
                         }
                     } else {
                         remaining.add("BUY");
@@ -263,72 +266,7 @@ public class GameController {
                     break;
                 case "END":
                     if (activePlayer.isIsAI()) {
-                        if (SM.getGame() instanceof Timed) {
-                            Timed game = (Timed) SM.getGame();
-                            if (SM.timerEnded() && game.fullTurn()) {
-                                SM.setWinner(game.winningConditions());
-                                SM.changeScene(View.WINNER);
-                                System.out.println("Winner found");
-                            } else if (SM.timerEnded() && !game.fullTurn()) {
-                                System.out.println("full turn not done");
-                                //carry on until full turns ended
-                                if (SM.getGame().getActivePlayer().getBalance() < 0 && !SM.getGame().getActivePlayer().getOwnedProperties().isEmpty()) {
-                                    log.addToLog(SM.getGame().getActivePlayer().getName() + " cannot end turn as balance is negative.");
-                                    for (Property p : activePlayer.getOwnedProperties()) {
-                                        sellProperty(p);
-                                        if (activePlayer.getBalance() >= 0) {
-                                            break;
-                                        }
-                                    }
-                                    if (activePlayer.getBalance() < 0) {
-                                        checkIfBankrupt();
-                                    } else {
-                                        GVS.setRolled(false);
-                                        endTurn();
-                                        SM.changeScene(View.GAME);
-                                    }
-                                } else if (SM.getGame().checkBankrupt()) {
-                                    SM.getGame().checkIfBankrupt();
-                                    if (SM.getGame().winningConditions() != null) {
-                                        SM.setWinner(SM.getGame().winningConditions());
-                                        SM.changeScene(View.WINNER);
-                                    }
-                                } else {
-                                    System.out.println("Timer not done yet");
-                                    SM.getGame().endTurn();
-                                    GVS.setRolled(false);
-                                    SM.changeScene(View.GAME);
-                                }
-                            }
-                        } else {
-                            //not timed stuff here
-                            if (SM.getGame().getActivePlayer().getBalance() < 0 && !SM.getGame().getActivePlayer().getOwnedProperties().isEmpty()) {
-                                log.addToLog(SM.getGame().getActivePlayer().getName() + " cannot end turn as balance is negative.");
-                                for (Property p : activePlayer.getOwnedProperties()) {
-                                        sellProperty(p);
-                                        if (activePlayer.getBalance() >= 0) {
-                                            break;
-                                        }
-                                    }
-                                    if (activePlayer.getBalance() < 0) {
-                                        checkIfBankrupt();
-                                    } else {
-                                        GVS.setRolled(false);
-                                        endTurn();
-                                        SM.changeScene(View.GAME);
-                                    }
-                            } else if (SM.getGame().checkBankrupt()) {
-                                SM.getGame().checkIfBankrupt();
-                                if (SM.getGame().winningConditions() != null) {
-                                    SM.setWinner(SM.getGame().winningConditions());
-                                    SM.changeScene(View.WINNER);
-                                }
-                            } else {
-                                SM.getGame().endTurn();
-                                GVS.setRolled(false);
-                                SM.changeScene(View.GAME);
-                            }
-                        }
+                        GVS.endTurnForBot();
                     } else {
                         remaining.add("END");
                     }
