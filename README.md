@@ -16,7 +16,7 @@ Trello was used to plan and organise task cards for every sprint. The Trello boa
 
 Inside the 'PropertyTycoon' file you will find all the code that was developed along with any additional resources used to develop the game. Inside the 'src' you will find an intricite passage of packages that were used to keep organisation simple and effective. The project main in located at 'com.mycompany.propertytycoon'
 
-GitHub was used to to maintin our code base. The repository can be found [here](https://github.com/asp28/PropertyTycoon)
+GitHub was used to to maintain our code base. The repository can be found [here](https://github.com/asp28/PropertyTycoon)
 
 ## GUI
 
