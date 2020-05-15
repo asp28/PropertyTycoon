@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="/DevelopmentDocuments/Sprints/companyLogo.png" alt="Team logo"/>
+</p>
+
 # PropertyTycoon
 
 This is the game Property Tycoon developed by team 13 for the module Software Engineering at the University Of Sussex (2020).
