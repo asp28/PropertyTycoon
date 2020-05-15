@@ -10,8 +10,8 @@ public class TaxPiece extends BoardPiece {
     
     /**
      * TaxPiece Constructor
-     * @param title
-     * @param taxAmount 
+     * @param title title of tax
+     * @param taxAmount amount of tax due
      */
     public TaxPiece(String title, int taxAmount) {
         super(title);

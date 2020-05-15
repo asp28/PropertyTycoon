@@ -11,7 +11,7 @@ public class JailPiece extends BoardPiece{
     
     /**
      * JailPiece constructor
-     * @param title 
+     * @param title name of jail
      */
     public JailPiece(String title) {
         super(title);
@@ -28,7 +28,7 @@ public class JailPiece extends BoardPiece{
 
     /**
      * Adds a player to jail
-     * @param name 
+     * @param name Name of player to be added to jail
      */
     public void addPlayer(String name) {
         heldPlayers.add(name);
@@ -36,7 +36,7 @@ public class JailPiece extends BoardPiece{
     
     /**
      * Removes a player from jail
-     * @param name 
+     * @param name Name of player to be removed from jail
      */
     public void removePlayer(String name){
         heldPlayers.remove(name);

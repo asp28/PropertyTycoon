@@ -8,7 +8,7 @@ public class GoToJailPiece extends BoardPiece {
     
     /**
      * GoToJailPiece constructor
-     * @param title 
+     * @param title name of GoToJailPiece
      */
     public GoToJailPiece(String title) {
         super(title);

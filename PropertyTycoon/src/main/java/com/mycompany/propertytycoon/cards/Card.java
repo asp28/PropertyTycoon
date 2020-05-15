@@ -11,8 +11,8 @@ public class Card {
     
     /**
      * Card constructor
-     * @param desc
-     * @param action 
+     * @param desc - description of the card
+     * @param action - what the card does
      */
     public Card(String desc, String action) {
         description = desc;

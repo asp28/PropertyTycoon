@@ -7,8 +7,6 @@ import java.util.ArrayList;
 
 /**
  * PropertyTycoon Bank
- *
- * @author Big Nerd Notation
  */
 public class Bank {
 
@@ -27,15 +25,6 @@ public class Bank {
                 unownedProperties.add((Property) pc);
             }
         }
-    }
-
-    /**
-     * Returns banks total money
-     *
-     * @return current cash
-     */
-    public int getMoney() {
-        return totalMoney;
     }
 
     /**
@@ -63,21 +52,8 @@ public class Bank {
             return withdraw(cash);
         }
     }
-
-    /**
-     * Gets properties
-     *
-     * @param name property name
-     * @return property object or null if it doesn't exist
-     */
-    public Property getProperties(String name) {
-        for (Property p : unownedProperties) {
-            if (name.equals(p.getTitle())) {
-                return p;
-            }
-        }
-        return null; // Watch out for later
-    }
+    
+    //Methods
 
     /**
      * Adds property to list of properties
@@ -95,5 +71,31 @@ public class Bank {
      */
     public void removeProperties(String name) {
         unownedProperties.remove(getProperties(name));
+    }
+    
+    //Getters and Setters
+    
+    /**
+     * Returns banks total money
+     *
+     * @return current cash
+     */
+    public int getMoney() {
+        return totalMoney;
+    }
+    
+    /**
+     * Gets properties
+     *
+     * @param name property name
+     * @return property object or null if it doesn't exist
+     */
+    public Property getProperties(String name) {
+        for (Property p : unownedProperties) {
+            if (name.equals(p.getTitle())) {
+                return p;
+            }
+        }
+        return null; // Watch out for later
     }
 }

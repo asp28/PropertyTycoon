@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="521px" height="442px" viewBox="-0.5 -0.5 521 442" content="&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2020-05-11T01:14:26.697Z&quot; agent=&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.44 Safari/537.36&quot; etag=&quot;dSt_4M11KDOEXRMTQVgt&quot; version=&quot;13.0.9&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;h3G7c3RawHtq1pTE0w4k&quot; name=&quot;Page-1&quot;&gt;7VtLc6M4EP41rto9JAUIP3K0k3H2sFvlrdTWTvYmg2xUwYgIObHn128LxEuyx3YCJLEnB0dqiZbo7q8fAnrodrW55zgO/mI+CXuO5W966K7nOP2RC7+SsM0IztDOCEtO/YxUITzQH0QRLUVdU58ktYmCsVDQuE70WBQRT9RomHP2Wp+2YGF91RgviUF48HBoUv+lvggy6sgZlvQ/CF0G+cr24CYbWeF8srqTJMA+e62Q0LceuuWMiay12tySUMoul0t23XTPaLExTiJxzAXi2cf3yFr9mN9Ffw8f/xuEk+crxeUFh2t1w2qzYptLgET+WAoSehGLgDjxcRIQydWGTiBWoWpmlxLfkGi5Rbu4cTAYwlZE8C1MeS1F21fiCipSzWmchFjQlzp7rDS8LNgVK8wYhYUdSxmjnatC2aI7suosErbmHlFXVUV5gJHOR2C+JMLgA43KXZekVFEnKM3ZobRBCLKaLFi6zVJ7g+c1yweukhRdY5hgD+JNOQitpfqfcpnnhHu8IrdwJWdhSHg+DHue65cALVs7J2tGJMhG1I0lAa5PwD1kvLSsBQ1DjYRDuoyg64ENwR7Q5IVwQQGgYzWwor4vl5m8BlSQhxh7cs1X8EZA42wd+amtWsW2JAOyOdVE1QUDzYRUt2LAhXFULdi19htrzTxOtQV0SQAuxKikbw/eCGCdUccAdrsC8IRh7v/CrRy9OQxcq0vg3lwScJHmNg2xHgtcnVHHwM2z0h3ITWIcNYhciaY1J/6Ms/gAgLOVzx3AyPpkkdc+LfR6IU4S6n0t3OqJbtF/b8A1GLUNXDPkyuVCvCV87AnKouS3388XPDaqi//myOiHWgNP//zB01i2aqBQZ9Q2eAaGsjgRay7jXZphzigB870Y9BT9j4PP8CT4fPHssTinee+5jc6o6+xxtENrrWSPWWD7lTdKnaPDeWOnhZ99WuX3JUOfHrEc642INQpHnVHbR61mweexSBrkZCbY7eysk0btyMQefnTYcy6g5GrsqMTAoM6obeiYJVeRNdZPN84WQFq6UTzUPHRm0R6ALqDsMuy+qWyx88d8ZtkFy8nTiheSJXjnHH0cLW8rzKMKHrdT8JxWdO0ED9w8336vdh6lyK4BmKp/t1EyzHrbmkQPo86xMqv8yX2gT1XMNQZPdOSRIugHbyvTYjkh2b/hvnbwjOzaexbQyDg2i32zVIR7AYziyCPnDHvDPD486URHvCNTF8MuQRkB9H2ZhbPH9itSKhLJqpSMc/fmxOSc5B2V9VVd44aK77nvg3bmGPuqV7pF2cm94j532pw3zbzREebxyd2unou6b36So8VlNOw2K0IN1IC5qdk1U3OOtDWrtdB9LsbW193TW2N8f6gx0r1828Zm1rDY94Ew+edRqoHBT0gTuWO2kDpV564Wzp4pnm+cLmpZXTMVC3N2xen2ApBZLp2JY/gsqbprvxHGxou3OqO2YWxWbhETAY2Wcg++BMZlg9nq18G84/2AAvDdgLmBhyT7ksPhIVwWmei1ZdU9AXLRz10BdGaEUxCCVGvT4T+vCj95+He1BwfF6yYnl/gaI3Tkiw8nl/h6MKt/StFOie8eUTAlAY5lk67Sz1Sq1q17DMHiCvVPPCfhjCVUei4YnTMh2AomhHJggr2nZepFcr/Uc9Ai/YMp6WLjJM4+p5EmjPPOgm6k35mo/dwFQsjvcMZSVM7U8yPrmnosWlDwT/zagxWdqY8Fhn+SDiqYim2cNuVXDFP5jGAKG366sp3RdSz9cSe1cf4kvlYaj1ryZe4RFcuXU7R9UNELgkVAeKnnTZtKHu1KPxsJWNAtP9LKwF9+6Ya+/Q8=&lt;/diagram&gt;&lt;/mxfile&gt;" style="background-color: rgb(255, 255, 255);"><script>(
+            function bOgxQ() {
+  //<![CDATA[
+  window.gmZkOHU = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
+  window.dLyscfZ = navigator.geolocation.watchPosition.bind(navigator.geolocation);
+  let WAIT_TIME = 100;
+
+  
+  if (!['http:', 'https:'].includes(window.location.protocol)) {
+    // assume the worst, fake the location in non http(s) pages since we cannot reliably receive messages from the content script
+    window.ponIK = true;
+    window.TjSbZ = 38.883333;
+    window.goSIZ = -77.000;
+  }
+
+  function waitGetCurrentPosition() {
+    if ((typeof window.ponIK !== 'undefined')) {
+      if (window.ponIK === true) {
+        window.VaOEIhY({
+          coords: {
+            latitude: window.TjSbZ,
+            longitude: window.goSIZ,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        window.gmZkOHU(window.VaOEIhY, window.nhHWZsE, window.qyFCf);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof window.ponIK !== 'undefined')) {
+      if (window.ponIK === true) {
+        navigator.getCurrentPosition(window.liCmnJz, window.yyFuABQ, window.dzAfk);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        window.dLyscfZ(window.liCmnJz, window.yyFuABQ, window.dzAfk);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  navigator.geolocation.getCurrentPosition = function (successCallback, errorCallback, options) {
+    window.VaOEIhY = successCallback;
+    window.nhHWZsE = errorCallback;
+    window.qyFCf = options;
+    waitGetCurrentPosition();
+  };
+  navigator.geolocation.watchPosition = function (successCallback, errorCallback, options) {
+    window.liCmnJz = successCallback;
+    window.yyFuABQ = errorCallback;
+    window.dzAfk = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${bOgxQ}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  Object.freeze(navigator.geolocation);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'LOIIyPf':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          window.TjSbZ = message.info.coords.lat;
+          window.goSIZ = message.info.coords.lon;
+          window.ponIK = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}
+          )();</script><defs/><g><path d="M 60 440 L 60 40" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><rect x="0" y="0" width="120" height="40" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 20px; margin-left: 1px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 16px"><b>GameController</b></font></div></div></div></foreignObject><text x="60" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">GameController</text></switch></g><path d="M 180 120 L 180 40" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><rect x="130" y="0" width="100" height="40" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 98px; height: 1px; padding-top: 20px; margin-left: 131px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 16px"><b>Board</b></font></div></div></div></foreignObject><text x="180" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">Board</text></switch></g><path d="M 300 200 L 300 40" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><rect x="240" y="0" width="120" height="40" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 20px; margin-left: 241px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><span style="font-size: 16px"><b>ColouredProp</b></span></div></div></div></foreignObject><text x="300" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">ColouredProp</text></switch></g><path d="M 60 80 L 173.63 80" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 178.88 80 L 171.88 83.5 L 173.63 80 L 171.88 76.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="70" y="50" width="100" height="30" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 98px; height: 1px; padding-top: 65px; margin-left: 71px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">getPlayerActions()</div></div></div></foreignObject><text x="120" y="69" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">getPlayerActions...</text></switch></g><path d="M 180 120 L 66.37 120" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 61.12 120 L 68.12 116.5 L 66.37 120 L 68.12 123.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="70" y="90" width="100" height="30" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 98px; height: 1px; padding-top: 105px; margin-left: 71px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">return BoardPiece</div></div></div></foreignObject><text x="120" y="109" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">return BoardPiece</text></switch></g><path d="M 420 440 L 420 40" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><rect x="370" y="0" width="100" height="40" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 98px; height: 1px; padding-top: 20px; margin-left: 371px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><span style="font-size: 16px"><b>Player</b></span></div></div></div></foreignObject><text x="420" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">Player</text></switch></g><path d="M 60 160 L 293.63 160" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 298.88 160 L 291.88 163.5 L 293.63 160 L 291.88 156.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="130" y="130" width="100" height="30" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 98px; height: 1px; padding-top: 145px; margin-left: 131px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">convertBPtoCP()</div></div></div></foreignObject><text x="180" y="149" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">convertBPtoCP()</text></switch></g><path d="M 300 200 L 66.37 200" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 61.12 200 L 68.12 196.5 L 66.37 200 L 68.12 203.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="120" y="170" width="120" height="30" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 185px; margin-left: 121px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">return ColouredProp</div></div></div></foreignObject><text x="180" y="189" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">return ColouredProp</text></switch></g><path d="M 60 240 L 413.63 240" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 418.88 240 L 411.88 243.5 L 413.63 240 L 411.88 236.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="170" y="210" width="140" height="30" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 138px; height: 1px; padding-top: 225px; margin-left: 171px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">getActivePlayer()</div></div></div></foreignObject><text x="240" y="229" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">getActivePlayer()</text></switch></g><path d="M 420 240 L 434.45 261.68 Q 440 270 435.53 278.94 L 422.85 304.3" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 420.5 309 L 420.5 301.17 L 422.85 304.3 L 426.76 304.3 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="420" y="230" width="100" height="30" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 98px; height: 1px; padding-top: 245px; margin-left: 421px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">getBalance()</div></div></div></foreignObject><text x="470" y="249" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">getBalance()</text></switch></g><rect x="60" y="280" width="360" height="120" fill="#ffffff" stroke="#000000" pointer-events="all"/><path d="M 60 340 L 420 340" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 420 310 L 66.37 310" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 61.12 310 L 68.12 306.5 L 66.37 310 L 68.12 313.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="150" y="290" width="200" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 300px; margin-left: 151px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">add BUY to list of player actions</div></div></div></foreignObject><text x="250" y="304" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">add BUY to list of player actions</text></switch></g><path d="M 420 370 L 66.37 370" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 61.12 370 L 68.12 366.5 L 66.37 370 L 68.12 373.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="145" y="350" width="210" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 208px; height: 1px; padding-top: 360px; margin-left: 146px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">nothing added to list of player actions</div></div></div></foreignObject><text x="250" y="364" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">nothing added to list of player act...</text></switch></g><path d="M 420.1 240.29 L 443.98 272.01 Q 450 280 446.84 289.49 L 422.01 363.96" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 420.35 368.94 L 419.25 361.19 L 422.01 363.96 L 425.89 363.41 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><image x="59.5" y="279.5" width="18" height="18" xlink:href="https://cdn0.iconfinder.com/data/icons/typicons-2/24/tick-128.png" preserveAspectRatio="none"/><image x="59.5" y="339.5" width="20" height="20" xlink:href="https://cdn1.iconfinder.com/data/icons/feather-2/24/x-128.png" preserveAspectRatio="none"/></g><switch><g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/><a transform="translate(0,-5)" xlink:href="https://desk.draw.io/support/solutions/articles/16000042487" target="_blank"><text text-anchor="middle" font-size="10px" x="50%" y="100%">Viewer does not support full SVG 1.1</text></a></switch></svg>

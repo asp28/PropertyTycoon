@@ -10,8 +10,8 @@ public class FreeParkingPiece extends BoardPiece {
     
     /**
      * FreeParkingPiece constructor
-     * @param title
-     * @param action 
+     * @param title title of FreeParking
+     * @param action action of FreeParking
      */
     public FreeParkingPiece(String title, String action) {
         super(title);
@@ -29,7 +29,7 @@ public class FreeParkingPiece extends BoardPiece {
     
     /**
      * Gets the current balance of the FreeParkingPiece
-     * @return balance
+     * @return FreeParking balance
      */
     public int getBalance() {
         return balance;
@@ -37,7 +37,7 @@ public class FreeParkingPiece extends BoardPiece {
     
     /**
      * Sets the balance of the FreeParkingPiece
-     * @param num 
+     * @param num proposed balance of FreeParking
      */
     public void setBalance(int num) {
         balance = num;

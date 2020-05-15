@@ -1,12 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.propertytycoon.gui.game;
 
 import com.mycompany.propertytycoon.Player;
+import com.mycompany.propertytycoon.Timed;
+import com.mycompany.propertytycoon.boardpieces.BoardPiece;
+import com.mycompany.propertytycoon.boardpieces.ColouredProperty;
+import com.mycompany.propertytycoon.boardpieces.FreeParkingPiece;
 import com.mycompany.propertytycoon.boardpieces.Property;
+import com.mycompany.propertytycoon.boardpieces.StationProperty;
+import com.mycompany.propertytycoon.boardpieces.TaxPiece;
+import com.mycompany.propertytycoon.boardpieces.UtilityProperty;
 import com.mycompany.propertytycoon.exceptions.NotAProperty;
 import com.mycompany.propertytycoon.gui.utils.StageManager;
 import com.mycompany.propertytycoon.gui.utils.View;
@@ -44,9 +46,9 @@ import javafx.scene.text.TextAlignment;
 public class GameController implements Initializable {
 
     @FXML
-    private Button roll, gg, sell, houses, trade, mortgage, endTurn, buy_yes, buy_no, jail;
+    private Button roll, sell, houses, trade, mortgage, endTurn, buy_yes, buy_no, jail, rent;
     @FXML
-    private Label playerName, playerMoney, leftSide;
+    private Label playerName, playerMoney, leftTitle, leftOwner, leftHouses, leftRent;
     @FXML
     private ImageView profileToken, catToken, bootToken, spoonToken, gobletToken, hatstandToken, phoneToken, leftPic;
 
@@ -57,7 +59,7 @@ public class GameController implements Initializable {
     @FXML
     private BorderPane bPane;
     @FXML
-    private VBox right, middle_gray;
+    private VBox middle_gray;
     @FXML
     private AnchorPane anchorpane_left, anchorpane_right;
 
@@ -72,7 +74,6 @@ public class GameController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         anchorpane_left.setVisible(false);
         anchorpane_right.setVisible(false);
         middle_gray.setVisible(false);
@@ -93,6 +94,11 @@ public class GameController implements Initializable {
             endTurn.setDisable(true);
         }
 
+        if (GVS.getRentPaid()) {
+            rent.setDisable(true);
+        } else {
+            rent.setDisable(false);
+        }
         try {
             updateControls();
         } catch (FileNotFoundException ex) {
@@ -101,17 +107,40 @@ public class GameController implements Initializable {
         roll.setOnAction(e -> {
             SM.getGame().move();
             if (!Objects.equals(SM.getGame().getRolls().getKey(), SM.getGame().getRolls().getValue())) {
-                GVS.setRolled(true);
-                endTurn.setDisable(false);
-                roll.setDisable(true);
+                if (SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()) instanceof Property) {
+                    Property p = (Property) SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation());
+                    if (!p.getOwnedBuy().equalsIgnoreCase("The Bank") && !p.getOwnedBuy().equalsIgnoreCase(SM.getGame().getActivePlayer().getName())) {
+                        endTurn.setDisable(true);
+                        roll.setDisable(true);
+                        GVS.setRent(false);
+                        rent.setDisable(false);
+                    } else {
+                        GVS.setRolled(true);
+                        endTurn.setDisable(false);
+                        roll.setDisable(true);
+                    }
+                } else {
+                    GVS.setRolled(true);
+                    endTurn.setDisable(false);
+                    roll.setDisable(true);
+                }
+
             } else {
+                //double roll
+                if (SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation()) instanceof Property) {
+                    Property p = (Property) SM.getGame().getBoard().getBoardPiece(SM.getGame().getActivePlayer().getLocation());
+                    if (!p.getOwnedBuy().equalsIgnoreCase("The Bank") && !p.getOwnedBuy().equalsIgnoreCase(SM.getGame().getActivePlayer().getName())) {
+                        endTurn.setDisable(true);
+                        roll.setDisable(true);
+                        GVS.setRent(false);
+                        rent.setDisable(false);
+                    } else {
+                        roll.setDisable(false);
+                        endTurn.setDisable(true);
+                    }
+                }
                 roll.setDisable(false);
                 endTurn.setDisable(true);
-            }
-
-            try {
-                updateControls();
-            } catch (FileNotFoundException ex) {
 
             }
 
@@ -131,15 +160,37 @@ public class GameController implements Initializable {
                 endTurn.setDisable(true);
                 remaining.remove("BUY");
             }
+            if (GVS.getActions().contains("RENT")) {
+                endTurn.setDisable(true);
+            }
 
             log();
+            try {
+                updateControls();
+            } catch (FileNotFoundException ex) {
+
+            }
+        });
+        rent.setOnAction(e -> {
+            SM.getGame().payRent();
+            if (Objects.equals(SM.getGame().getRolls().getKey(), SM.getGame().getRolls().getValue())) {
+                roll.setDisable(false);
+                endTurn.setDisable(true);
+                rent.setDisable(true);
+                GVS.setRent(true);
+            } else {
+                endTurn.setDisable(false);
+                rent.setDisable(true);
+                GVS.setRent(true);
+            }
+
         });
         sell.setOnAction(e -> {
             SM.changeScene(View.SELL);
             log();
         });
         houses.setOnAction(e -> {
-            SM.changeScene(View.HOUSES);
+            SM.changeScene(View.HOUSES_CHOICE);
             log();
 
         });
@@ -156,14 +207,89 @@ public class GameController implements Initializable {
             log();
         });
         endTurn.setOnAction(e -> {
-            SM.getGame().endTurn();
-            GVS.setRolled(false);
-            roll.setDisable(false);
-            endTurn.setDisable(true);
-            try {
-                updateControls();
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+            if (SM.getGame() instanceof Timed) {
+                Timed game = (Timed) SM.getGame();
+                if (game.getAmountOfPlayers().size() != 1) {
+                    if (SM.timerEnded() && game.fullTurn()) {
+                        SM.setWinner(game.winningConditions());
+                        SM.changeScene(View.WINNER);
+                        System.out.println("Winner found");
+                    } else if (SM.timerEnded() && !game.fullTurn()) {
+                        System.out.println("full turn not done");
+                        //carry on until full turns ended
+                        if (SM.getGame().getActivePlayer().getBalance() < 0 && !SM.getGame().getActivePlayer().getOwnedProperties().isEmpty()) {
+                            logObject.addToLog(SM.getGame().getActivePlayer().getName() + " cannot end turn as balance is negative.");
+                            logObject.addToLog("HINT: Perhaps sell/mortgage properties or trade with another player.");
+                        } else if (SM.getGame().checkBankrupt()) {
+                            SM.getGame().checkIfBankrupt();
+                            if (SM.getGame().winningConditions() != null) {
+                                SM.setWinner(SM.getGame().winningConditions());
+                                SM.changeScene(View.WINNER);
+                            }
+                        } else {
+                            System.out.println("Timer not done yet");
+                            SM.getGame().endTurn();
+                            GVS.setRolled(false);
+                            roll.setDisable(false);
+                            endTurn.setDisable(true);
+                            rent.setDisable(true);
+                            try {
+                                updateControls();
+                            } catch (FileNotFoundException ex) {
+                                Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    } else {
+                        //timer not ended play normal
+                        if (SM.getGame().getActivePlayer().getBalance() < 0 && !SM.getGame().getActivePlayer().getOwnedProperties().isEmpty()) {
+                            logObject.addToLog(SM.getGame().getActivePlayer().getName() + " cannot end turn as balance is negative.");
+                            logObject.addToLog("HINT: Perhaps sell/mortgage properties or trade with another player.");
+                        } else if (SM.getGame().checkBankrupt()) {
+                            SM.getGame().checkIfBankrupt();
+                            if (SM.getGame().winningConditions() != null) {
+                                SM.setWinner(SM.getGame().winningConditions());
+                                SM.changeScene(View.WINNER);
+                            }
+                        } else {
+                            SM.getGame().endTurn();
+                            GVS.setRolled(false);
+                            roll.setDisable(false);
+                            endTurn.setDisable(true);
+                            rent.setDisable(true);
+                            try {
+                                updateControls();
+                            } catch (FileNotFoundException ex) {
+                                Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    }
+                } else {
+                    SM.setWinner(game.winningConditions());
+                    SM.changeScene(View.WINNER);
+                }
+
+            } else {
+                if (SM.getGame().getActivePlayer().getBalance() < 0 && !SM.getGame().getActivePlayer().getOwnedProperties().isEmpty()) {
+                    logObject.addToLog(SM.getGame().getActivePlayer().getName() + " cannot end turn as balance is negative.");
+                    logObject.addToLog("HINT: Perhaps sell/mortgage properties or trade with another player.");
+                } else if (SM.getGame().checkBankrupt()) {
+                    SM.getGame().checkIfBankrupt();
+                    if (SM.getGame().winningConditions() != null) {
+                        SM.setWinner(SM.getGame().winningConditions());
+                        SM.changeScene(View.WINNER);
+                    }
+                } else {
+                    SM.getGame().endTurn();
+                    GVS.setRolled(false);
+                    roll.setDisable(false);
+                    endTurn.setDisable(true);
+                    rent.setDisable(true);
+                    try {
+                        updateControls();
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
             log();
         });
@@ -214,7 +340,6 @@ public class GameController implements Initializable {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         for (int i = 0; i < 40; i++) {
             try {
                 LocationNames(i, SM.getGame().getBoard().getBoardLocations().get(i).getTitle());
@@ -222,9 +347,13 @@ public class GameController implements Initializable {
                 Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
     }
 
+    /**
+     * Set the players box
+     *
+     * @throws FileNotFoundException
+     */
     public void playerProfile() throws FileNotFoundException {
         String pic = SM.getGame().getActivePlayer().getToken() + ".gif";
         FileInputStream inputstream = new FileInputStream("./src/main/java/resources/img/ProfileAnimations/" + pic);
@@ -236,6 +365,9 @@ public class GameController implements Initializable {
 
     }
 
+    /**
+     * Shows all the players cards
+     */
     public void playerCards() {
         String properties = new String();
 
@@ -245,16 +377,18 @@ public class GameController implements Initializable {
         ownedCards.setContent(new Text(properties));
     }
 
-    public void buttons() {
-        for (String s : SM.getGame().getPlayerActions()) {
-
-        }
-    }
-
+    /**
+     * refreshes the log
+     */
     public void log() {
         log.setContent(new Text(logObject.getLog()));
     }
 
+    /**
+     * Puts the players token on the board
+     *
+     * @throws FileNotFoundException
+     */
     public void placePlayersOnBoard() throws FileNotFoundException {
         FileInputStream inputstream;
         Image image = null;
@@ -275,6 +409,7 @@ public class GameController implements Initializable {
                     image = new Image(inputstream) {
                     };
                     bootToken.setImage(image);
+
                     break;
 
                 case "spoon":
@@ -282,6 +417,7 @@ public class GameController implements Initializable {
                     image = new Image(inputstream) {
                     };
                     spoonToken.setImage(image);
+
                     break;
 
                 case "cup":
@@ -290,6 +426,7 @@ public class GameController implements Initializable {
                     };
 
                     gobletToken.setImage(image);
+
                     break;
 
                 case "hat_hanger":
@@ -298,6 +435,7 @@ public class GameController implements Initializable {
                     };
 
                     hatstandToken.setImage(image);
+
                     break;
 
                 case "phone":
@@ -305,13 +443,20 @@ public class GameController implements Initializable {
                     image = new Image(inputstream) {
                     };
                     phoneToken.setImage(image);
+
                     break;
 
             }
+
         }
 
     }
 
+    /**
+     * Place the player on the board at where they currently are.
+     *
+     * @param token - ImageView of the token to be used
+     */
     public void PlayerPosition(ImageView token) {
         switch (SM.getGame().getActivePlayer().getLocation()) {
 
@@ -522,23 +667,34 @@ public class GameController implements Initializable {
         }
     }
 
+    /**
+     * 
+     * @return ImageView of a players token
+     */
     public ImageView getPlayerTokenImage() {
-        if (SM.getGame().getActivePlayer().getToken() == "cat") {
-            return catToken;
-        } else if (SM.getGame().getActivePlayer().getToken() == "boot") {
-            return bootToken;
-        } else if (SM.getGame().getActivePlayer().getToken() == "spoon") {
-            return spoonToken;
-        } else if (SM.getGame().getActivePlayer().getToken() == "cup") {
-            return gobletToken;
-        } else if (SM.getGame().getActivePlayer().getToken() == "phone") {
-            return phoneToken;
-        } else {
-            return hatstandToken;
+        switch (SM.getGame().getActivePlayer().getToken()) {
+            case "cat":
+                return catToken;
+            case "boot":
+                return bootToken;
+            case "spoon":
+                return spoonToken;
+            case "cup":
+                return gobletToken;
+            case "phone":
+                return phoneToken;
+            default:
+                return hatstandToken;
         }
 
     }
 
+    /**
+     * Sets the names of each board piece
+     * @param num - board piece number
+     * @param name - name of the board piece
+     * @throws FileNotFoundException 
+     */
     public void LocationNames(int num, String name) throws FileNotFoundException {
         Label labelName = new Label(name);
 
@@ -699,7 +855,7 @@ public class GameController implements Initializable {
 
                 break;
 
-            case 12:
+            case 13:
                 labelName.setId("purple");
                 labelName.setRotate(180);
                 labelName.setAlignment(Pos.CENTER);
@@ -711,7 +867,7 @@ public class GameController implements Initializable {
 
                 break;
 
-            case 13:
+            case 12:
                 labelName.setId("thunder");
                 labelName.setRotate(180);
                 labelName.setAlignment(Pos.BOTTOM_CENTER);
@@ -1044,9 +1200,51 @@ public class GameController implements Initializable {
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            leftOwner.setText("No Owner");
+            for (Player p : SM.getGame().getAmountOfPlayers()) {
+                if (!p.getOwnedProperties().isEmpty()) {
+                    for (Property py : p.getOwnedProperties()) {
+                        if (py.getTitle().equals(labelName.getText())) {
+                            leftOwner.setText("Owner: " + p.getName());
+
+                        }
+                    }
+                }
+            }
+            leftRent.setText("No Rent");
+            leftHouses.setText("No Houses");
+            for (BoardPiece bp : SM.getGame().getBoard().getBoardLocations()) {
+                if (bp instanceof ColouredProperty) {
+                    if (labelName.getText().equals(bp.getTitle())) {
+                        leftRent.setText("Rent: £" + ((ColouredProperty) bp).getRent());
+                        leftHouses.setText("Number of Houses: " + ((ColouredProperty) bp).getHouseCount() + " Cost: £" + ((ColouredProperty) bp).getCost());
+                    }
+                } else if (bp instanceof FreeParkingPiece) {
+                    if (labelName.getText().equals(bp.getTitle())) {
+                        leftRent.setText("Balance: £" + ((FreeParkingPiece) bp).getBalance());
+                    }
+                } else if (bp instanceof StationProperty) {
+                    if (labelName.getText().equals(bp.getTitle())) {
+                        leftRent.setText("Rent: £" + ((StationProperty) bp).getRent());
+                    }
+                } else if (bp instanceof TaxPiece) {
+                    if (labelName.getText().equals(bp.getTitle())) {
+                        leftRent.setText("Tax: £" + ((TaxPiece) bp).getTaxAmount());
+                    }
+                } else if (bp instanceof UtilityProperty) {
+                    if (labelName.getText().equals(bp.getTitle())) {
+                        leftRent.setText("Rent: £" + ((UtilityProperty) bp).getRent());
+                    }
+                }
+            }
+
         });
     }
 
+    /**
+     * refresh the controls
+     * @throws FileNotFoundException 
+     */
     public void updateControls() throws FileNotFoundException {
         playerProfile();
         PlayerPosition(getPlayerTokenImage());
@@ -1054,8 +1252,13 @@ public class GameController implements Initializable {
 
     }
 
+    /**
+     * Controls the click and see property feature
+     * @param n - label
+     * @throws FileNotFoundException 
+     */
     public void leftSide(Label n) throws FileNotFoundException {
-        leftSide.setText(n.getText());
+        leftTitle.setText(n.getText());
         FileInputStream inputstream = null;
         Image Image = null;
         switch (n.getId()) {

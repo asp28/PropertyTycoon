@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.propertytycoon.gui.initialisegame;
 
 import com.mycompany.propertytycoon.gui.utils.StageManager;
@@ -328,7 +323,7 @@ public class InitController implements Initializable {
 
         });
 
-        switch (SM.getPlayerNum()) {
+        switch (SM.getPlayerNum() + SM.getBotNum()) {
             case 2:
                 p1_list.getItems().addAll(tokens);
                 p2_list.getItems().addAll(tokens);
@@ -422,7 +417,7 @@ public class InitController implements Initializable {
         confirm.setOnAction(e -> {
             if (checkNames() && uniqueToken()) {
                 SM.createGameController(SM.getPlayerNum(), SM.getBotNum());
-                switch (SM.getPlayerNum()) {
+                switch (SM.getPlayerNum() + SM.getBotNum()) {
                     case 2:
                         SM.getGame().getAmountOfPlayers().get(0).setName(p1_name.getText());
                         SM.getGame().getAmountOfPlayers().get(0).setToken(p1_list.getSelectionModel().getSelectedItem());
@@ -488,6 +483,10 @@ public class InitController implements Initializable {
 
     }
 
+    /**
+     * 
+     * @return true if tokens are unique
+     */
     public boolean uniqueToken() {
         boolean unique = true;
         ArrayList<String> strings = new ArrayList<>();
@@ -505,6 +504,10 @@ public class InitController implements Initializable {
         return unique;
     }
 
+    /**
+     * 
+     * @return true if names are not empty
+     */
     public boolean checkNames() {
         boolean notEmpty = true;
 

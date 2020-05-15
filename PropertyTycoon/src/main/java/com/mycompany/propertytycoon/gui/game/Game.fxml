@@ -132,13 +132,10 @@
                                     <Font size="17.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="sell" mnemonicParsing="false" prefHeight="50.0" prefWidth="70.0" style="-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey;" text="Sell">
+                              <Button fx:id="rent" layoutX="85.0" layoutY="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="70.0" style="-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey;" text="Rent">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
                               </Button>
                            </children>
                         </HBox>
@@ -164,14 +161,6 @@
                         </HBox>
                         <HBox alignment="TOP_CENTER" layoutX="20.0" layoutY="20.0" prefHeight="100.0" prefWidth="207.0" style="-fx-spacing: 20;">
                            <children>
-                              <Button fx:id="jail" mnemonicParsing="false" prefHeight="50.0" prefWidth="70.0" style="-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey;" text="Jail">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                              </Button>
                               <Button fx:id="mortgage" mnemonicParsing="false" prefHeight="50.0" prefWidth="70.0" style="-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey;" text="Mortgage">
                                  <HBox.margin>
                                     <Insets />
@@ -180,10 +169,23 @@
                                     <Font size="11.0" />
                                  </font>
                               </Button>
+                              <Button fx:id="sell" mnemonicParsing="false" prefHeight="50.0" prefWidth="70.0" style="-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey;" text="Sell">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
                            </children>
                         </HBox>
                         <HBox alignment="TOP_CENTER" layoutX="20.0" layoutY="115.0" prefHeight="100.0" prefWidth="207.0" style="-fx-spacing: 20;">
                            <children>
+                              <Button fx:id="jail" mnemonicParsing="false" prefHeight="50.0" prefWidth="70.0" style="-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey;" text="Jail">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Button>
                               <Button fx:id="endTurn" mnemonicParsing="false" prefHeight="50.0" prefWidth="70.0" style="-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-color: grey;" text="End Turn">
                                  <HBox.margin>
                                     <Insets />
@@ -230,8 +232,11 @@
                            </VBox.margin>
                            <children>
                               <Label alignment="CENTER" prefHeight="17.0" prefWidth="208.0" text="Board Piece Info" />
+                              <Label fx:id="leftTitle" alignment="CENTER" prefHeight="67.0" prefWidth="214.0" style="-fx-border-color: lightGrey;" />
                               <ImageView fx:id="leftPic" fitHeight="206.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label fx:id="leftSide" alignment="CENTER" prefHeight="67.0" prefWidth="214.0" style="-fx-border-color: lightGrey;" />
+                              <Label fx:id="leftOwner" prefHeight="67.0" prefWidth="214.0" style="-fx-border-color: lightGrey;" />
+                              <Label fx:id="leftHouses" prefHeight="67.0" prefWidth="214.0" style="-fx-border-color: lightGrey;" />
+                              <Label fx:id="leftRent" prefHeight="67.0" prefWidth="214.0" style="-fx-border-color: lightGrey;" />
                            </children>
                            <opaqueInsets>
                               <Insets />

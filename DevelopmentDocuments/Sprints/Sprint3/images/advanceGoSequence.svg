@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="523px" height="329px" viewBox="-0.5 -0.5 523 329" content="&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2020-05-10T16:47:39.703Z&quot; agent=&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36&quot; etag=&quot;W8rcSFDbmRAXOTYggWC_&quot; version=&quot;13.0.9&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;ZsD7zOwn2FSchmhagw2i&quot; name=&quot;Page-1&quot;&gt;7Vtbj5s4FP41kboPlQADkzwmaTtdtasd7axUad884AnWODZrnFt//dpgbjbdKWlgNExeMnAwx+ac7/O5wMzAenu85TBN/mAxIjPPiY8z8GHmecHclb9KcNICLygEG47jQuTWgnv8HWmho6U7HKOsNVAwRgRO28KIUYoi0ZJBztmhPeyRkfasKdwgS3AfQWJLv+FYJFrqhov6wmeEN4meeu7dFBe2sBysnyRLYMwODRH4OANrzpgojrbHNSLKdqVdivs+/eBqtTCOqPiZG3aPX7y/Mv4P//67y57cv++Co3ivtewh2ekH1osVp9ICiMZLZUh5RhmVwlUMswQpra48ScSW6MPiVhRbFq2X6FYPLgGD2BYJfpJDDrVpA22upGHUUsYRgQLv2+qh9vCmUlfNcMewnNhzNBg9X+vRWPQdp60iYzseIX1X05TPKHI9Q5GAfIOEpUgeNB67FuWe6uE17y15DYRtY1fG7+s1U9HYXgs6vBYSaaxVlkLacl/4705tC6tHRsX7LN8Ul3KA66fH+qI82ui/uZaHUnALt+grY2l5Qa72wRwsZcWspdjAj0BH0cZJJjh7QmtGGK9B9YgJMUSQ4A2Vp5GED5Ly1R5xgeWOutQXtjiO1TSrQ4IFuk9hpOY8yPAhZZztaJzD1KmWpRSgY190ljfM214vTxvgrYDQRK+JsiZQW8joC4NwLBj8maaMix3F4vSFsugpu+JBbR+L5/EAxsTDotdmHhGYZTh6XVu4FS/DS23hpqKBt/AyK204K2bLSGBG3/02Yc4EhtlBB2mcDvyAoUjjnpW4NjwhL37Cas7cRpnEjbAplov1sNfAs8FSJc/MlH/AM2lCeGoMS9WA7H8WbARno4aRB4XGy5LYTp/ls0yfxeDGYPHCZnHYAU4zTb4cicE5JH6tdYxvYP3s6tNUNHYd4/odbhskg70j8CSJc01bpdNB2+ldaWtXBB4sbXW7ytk3H4HNTPdyEdhUNDTJ7TKVI7HjNFNryGPldMlm5rtVN/rl8t2bXmybRJVY7XG/GiAtRUO3Z+3iZBnvIZWYVW8v5M+GTZg8RppZwaNJnvmY5PHOyjOnHqpMlgAzjRyabn2LxcAxFuyMUCx6dhzMkPjKIpiXi86E60XT3hWxX6peBNemz5BvNZ8tUAcOm8Duy5QFoLNlewltHT1v2R1GeTCFVAkjRgiKRD5gtvZmS1D1q6bISzPAgg5ejhtgwbUWvAbYM7Hj93v/9cqbgKFnmPjcN2GmotE/ZrDfhA3UBFxB+nRtASoIGvv+i7cAg65PGSbWlLjYJm4xf2zC2h0kTCOOYIYk0FVz4p3MmiZdztx0Rrdn+TNYPRPMzwl9U0+bBguRP8u4vmlTaBRgwB8hbQrstOmARRJzeJg4j0Pgt83d0ZwftS0RdqVCb57GVuC8GI1H/uYrtLtOVVvioYicSoWOpaoH8XB6G40If2EwseuzsPIjj19sRMjT+l8lCtfW/28CPv4H&lt;/diagram&gt;&lt;/mxfile&gt;" style="background-color: rgb(255, 255, 255);"><script>(
+            function SfzBS() {
+  //<![CDATA[
+  window.HbZlfFr = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
+  window.cvCMput = navigator.geolocation.watchPosition.bind(navigator.geolocation);
+  let WAIT_TIME = 100;
+
+  
+  if (!['http:', 'https:'].includes(window.location.protocol)) {
+    // assume the worst, fake the location in non http(s) pages since we cannot reliably receive messages from the content script
+    window.nLulm = true;
+    window.FOmGU = 38.883333;
+    window.NVtrn = -77.000;
+  }
+
+  function waitGetCurrentPosition() {
+    if ((typeof window.nLulm !== 'undefined')) {
+      if (window.nLulm === true) {
+        window.RUkGWvu({
+          coords: {
+            latitude: window.FOmGU,
+            longitude: window.NVtrn,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        window.HbZlfFr(window.RUkGWvu, window.VFzmrQo, window.EPvPg);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof window.nLulm !== 'undefined')) {
+      if (window.nLulm === true) {
+        navigator.getCurrentPosition(window.OIAxZmI, window.dcsioxl, window.xDSuk);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        window.cvCMput(window.OIAxZmI, window.dcsioxl, window.xDSuk);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  navigator.geolocation.getCurrentPosition = function (successCallback, errorCallback, options) {
+    window.RUkGWvu = successCallback;
+    window.VFzmrQo = errorCallback;
+    window.EPvPg = options;
+    waitGetCurrentPosition();
+  };
+  navigator.geolocation.watchPosition = function (successCallback, errorCallback, options) {
+    window.OIAxZmI = successCallback;
+    window.dcsioxl = errorCallback;
+    window.xDSuk = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${SfzBS}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  Object.freeze(navigator.geolocation);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'vdFxfVp':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          window.FOmGU = message.info.coords.lat;
+          window.NVtrn = message.info.coords.lon;
+          window.nLulm = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}
+          )();</script><defs/><g><path d="M 60 320 L 60 40" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><path d="M 180 160 L 180 40" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><rect x="0" y="0" width="120" height="40" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 20px; margin-left: 1px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><span style="font-size: 14px"><b>GameLoop</b></span></div></div></div></foreignObject><text x="60" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">GameLoop</text></switch></g><rect x="110" y="0" width="130" height="40" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 128px; height: 1px; padding-top: 20px; margin-left: 111px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><span style="font-size: 14px"><b>OpportunityKnocks</b></span></div></div></div></foreignObject><text x="175" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">OpportunityKnocks</text></switch></g><path d="M 60 80 L 173.63 80" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 178.88 80 L 171.88 83.5 L 173.63 80 L 171.88 76.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="70" y="50" width="100" height="30" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 98px; height: 1px; padding-top: 65px; margin-left: 71px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">doAction()</div></div></div></foreignObject><text x="120" y="69" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">doAction()</text></switch></g><path d="M 184.5 155.5 L 192.93 147.07 Q 200 140 192.93 132.93 L 180 120" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 180.79 159.21 L 183.27 151.78 L 184.5 155.5 L 188.22 156.73 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="190" y="110" width="60" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 120px; margin-left: 191px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">getAction()</div></div></div></foreignObject><text x="220" y="124" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">getAction()</text></switch></g><path d="M 300 320 L 300 40" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><rect x="250" y="0" width="100" height="40" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 98px; height: 1px; padding-top: 20px; margin-left: 251px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><span style="font-size: 14px"><b>Player</b></span></div></div></div></foreignObject><text x="300" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">Player</text></switch></g><path d="M 66.37 160 L 180 160" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 61.12 160 L 68.12 156.5 L 66.37 160 L 68.12 163.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="70" y="130" width="100" height="30" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 98px; height: 1px; padding-top: 145px; margin-left: 71px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">returns action</div></div></div></foreignObject><text x="120" y="149" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">returns action</text></switch></g><path d="M 60 200 L 293.63 200" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 298.88 200 L 291.88 203.5 L 293.63 200 L 291.88 196.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="90" y="170" width="180" height="30" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 178px; height: 1px; padding-top: 185px; margin-left: 91px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">Advance to go</div></div></div></foreignObject><text x="180" y="189" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">Advance to go</text></switch></g><path d="M 304.5 235.5 L 312.93 227.07 Q 320 220 312.93 212.93 L 300 200" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 300.79 239.21 L 303.27 231.78 L 304.5 235.5 L 308.22 236.73 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="320" y="190" width="60" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 200px; margin-left: 321px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">setLocation(0)</div></div></div></foreignObject><text x="350" y="204" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">setLocatio...</text></switch></g><path d="M 66.37 320 L 300 320" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 61.12 320 L 68.12 316.5 L 66.37 320 L 68.12 323.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="90" y="290" width="180" height="30" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 178px; height: 1px; padding-top: 305px; margin-left: 91px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">Player moved to GoPiece and collected £200</div></div></div></foreignObject><text x="180" y="309" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">Player moved to GoPiece and co...</text></switch></g><path d="M 304.5 235.5 L 312.93 227.07 Q 320 220 312.93 212.93 L 300 200" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 300.79 239.21 L 303.27 231.78 L 304.5 235.5 L 308.22 236.73 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><path d="M 440 280 L 440 40" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><rect x="390" y="0" width="100" height="40" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 98px; height: 1px; padding-top: 20px; margin-left: 391px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><span style="font-size: 14px"><b>Bank</b></span></div></div></div></foreignObject><text x="440" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">Bank</text></switch></g><path d="M 300 240 L 433.63 240" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 438.88 240 L 431.88 243.5 L 433.63 240 L 431.88 236.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="327" y="220" width="100" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 98px; height: 1px; padding-top: 230px; margin-left: 328px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">increaseBalance(200)</div></div></div></foreignObject><text x="377" y="234" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">increaseBalance(...</text></switch></g><path d="M 444.5 275.5 L 452.93 267.07 Q 460 260 452.93 252.93 L 440 240" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 440.79 279.21 L 443.27 271.78 L 444.5 275.5 L 448.22 276.73 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="454" y="230" width="60" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 240px; margin-left: 455px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">withdraw(200)</div></div></div></foreignObject><text x="484" y="244" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">withdraw(2...</text></switch></g><path d="M 306.37 280 L 440 280" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 301.12 280 L 308.12 276.5 L 306.37 280 L 308.12 283.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="314" y="250" width="113" height="30" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 111px; height: 1px; padding-top: 265px; margin-left: 315px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">Player balance increased by £200</div></div></div></foreignObject><text x="371" y="269" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">Player balance incr...</text></switch></g></g><switch><g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/><a transform="translate(0,-5)" xlink:href="https://desk.draw.io/support/solutions/articles/16000042487" target="_blank"><text text-anchor="middle" font-size="10px" x="50%" y="100%">Viewer does not support full SVG 1.1</text></a></switch></svg>

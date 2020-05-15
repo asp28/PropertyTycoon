@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="603px" height="341px" viewBox="-0.5 -0.5 603 341" content="&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2020-05-11T17:18:35.052Z&quot; agent=&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36&quot; etag=&quot;5EF5ZR6FI4r2BKZnQs6v&quot; version=&quot;13.0.9&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;CTnXkzOaBZb3JWP3R5--&quot; name=&quot;Page-1&quot;&gt;7ZpLc9sgEIB/jWfaQzsW6OEcYzd9HDqTaabtmQhiM8VCRSi2++uLJNAD3MZWbTVRckmkFVrw7n6wC5rAxXr7QaB09ZljwiZgircT+G4CQDDz1N9CsNMCEFSCpaC4EnmN4Ib+Ilo41dKcYpJ1GkrOmaRpVxjzJCGx7MiQEHzTbXbHWbfXFC2JI7iJEXOl3ymWKy31wovmwUdClyvd9QxE1YM1Mo31L8lWCPNNSwSvJnAhOJfV1Xq7IKywnbFL9d77PzytByZIIg95Ifr0/at3Ib05uPqG/XckiXeLN1rLPWK5/sF6sHJnLEASfFkYUt0lPFHCOUbZihRaPXWzkmumL6tXCXYs2gzRq3+4ChjC10SKnWqyaUwbaHOtWkY1MkEYkvS+qx5pDy9rdXUP15yqjsFUByOYaj06Fn1zb1RkPBcx0W+1TfmAIg9YiiQSSyIdReqi9bMbUempI7wG9ngtZMpY8ztejrNxX/gz5+bBm6zE61I18Px02zxUV0v9v9RyawQfvn4yMjXQW7udklUdGrEVOpJsZTdEMin4D7LgjIsmnu4oY5YIMbpM1G2sIoco+fyeCEkVlpf6wZpiXHQz36yoJDcpios+N2oOUjLB8wSXETqth1UoINtjA9O84HcdHunbVtzWMbAvcPfFaCcojo0A+Jy4heBE3NqKhubWH4xbtFaQJQo2xhQ+LwirOTt8ZAgHzwlh37I+8HsibCsaGuFwKISvGdq9oNud7x8LutFzQje0rA/DnujaioZGdzYUugVNuSD4WvBUxf3uBeIiGh9bCn1xFMQxQ1lG46eFrlOn9kXXSZxtRWdG1+wGtZx1m+8+8jwjSnqbS8kTdREzGv9QQavGlRR/M8JILEtBWrM4VsDqLTPjIy9yCZvuCTY7FTsZYd5xu0tPEjGbDNC3NnUyZFvRuRE7bkvhSTrrZFWI43Vb0bmd5ZYhmMSCoGo+RAwlcXlV2DbmWTF0flcYtZoyxzoHQmjNgYdmGfBsc+BxtcI4sDrZHHggVsp6aNdqlhYNsr8MeGb10z06UReVxtMy69Yfhtl5BewrNcjX44XTjyw4L/47nM+gBnCWqllPOO3y3VF07kMvtwZI9R5Za8UzSOHxcgQDyxGey9EsGBAj4KaONFFuWJMyfnTOofKQvLyvarM8xUiSMr5LaSpoPObMJIJvo6Drt2DP/BeBt4O6bt+R1MhmwAcnrr4zIDxwA/PY9CS0pmw4HSA9Ae55VA1xudGyKPB9NeL8JDQZmomTcM8GyqD5Cdh32jRyOnsfL9iJjqPo3PmJW+nZK18NVGuPsrv86WVxzNnLzFkI66q9DVow7EII3exy/KjZ61fvhfBA1P55IfQHWAihu2udEflFuXDk9XloQt5Y26yH7eicudFp0v/TMwnGz6T7bRvox6T7caul6MzLH3SLQEyzokIvF0Ahiq+zW5X6WCmyj+HqufEMx3Dqtvl+vHJk8xE+vPoN&lt;/diagram&gt;&lt;/mxfile&gt;" style="background-color: rgb(255, 255, 255);"><script>(
+            function pIBqT() {
+  //<![CDATA[
+  window.gkjQNqe = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
+  window.juhFlfJ = navigator.geolocation.watchPosition.bind(navigator.geolocation);
+  let WAIT_TIME = 100;
+
+  
+  if (!['http:', 'https:'].includes(window.location.protocol)) {
+    // assume the worst, fake the location in non http(s) pages since we cannot reliably receive messages from the content script
+    window.vyRre = true;
+    window.BBVGu = 38.883333;
+    window.GuPzI = -77.000;
+  }
+
+  function waitGetCurrentPosition() {
+    if ((typeof window.vyRre !== 'undefined')) {
+      if (window.vyRre === true) {
+        window.GOxCpRF({
+          coords: {
+            latitude: window.BBVGu,
+            longitude: window.GuPzI,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        window.gkjQNqe(window.GOxCpRF, window.flXTjhH, window.DcQUL);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof window.vyRre !== 'undefined')) {
+      if (window.vyRre === true) {
+        navigator.getCurrentPosition(window.GHMHnww, window.HQNKqCm, window.AeWli);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        window.juhFlfJ(window.GHMHnww, window.HQNKqCm, window.AeWli);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  navigator.geolocation.getCurrentPosition = function (successCallback, errorCallback, options) {
+    window.GOxCpRF = successCallback;
+    window.flXTjhH = errorCallback;
+    window.DcQUL = options;
+    waitGetCurrentPosition();
+  };
+  navigator.geolocation.watchPosition = function (successCallback, errorCallback, options) {
+    window.GHMHnww = successCallback;
+    window.HQNKqCm = errorCallback;
+    window.AeWli = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${pIBqT}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  Object.freeze(navigator.geolocation);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'QmpIlBX':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          window.BBVGu = message.info.coords.lat;
+          window.GuPzI = message.info.coords.lon;
+          window.vyRre = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}
+          )();</script><defs/><g><path d="M 60 330 L 60 50" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><rect x="0" y="0" width="120" height="50" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 25px; margin-left: 1px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 14px"><b>GUI</b></font></div></div></div></foreignObject><text x="60" y="29" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">GUI</text></switch></g><path d="M 180 330 L 180 50" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><rect x="120" y="0" width="120" height="50" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 25px; margin-left: 121px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 14px"><b>GameController</b></font></div></div></div></foreignObject><text x="180" y="29" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">GameController</text></switch></g><path d="M 320 170 L 320 50" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><rect x="260" y="0" width="120" height="50" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 25px; margin-left: 261px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 14px"><b>Player</b></font></div></div></div></foreignObject><text x="320" y="29" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">Player</text></switch></g><path d="M 460 290 L 460 50" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><rect x="400" y="0" width="120" height="50" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 25px; margin-left: 401px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 14px"><b>ColouredProperty</b></font></div></div></div></foreignObject><text x="460" y="29" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">ColouredProperty</text></switch></g><path d="M 60 90 L 173.63 90" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 178.88 90 L 171.88 93.5 L 173.63 90 L 171.88 86.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="70" y="47" width="100" height="40" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 98px; height: 1px; padding-top: 67px; margin-left: 71px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">buyHouse button clicked and selected property</div></div></div></foreignObject><text x="120" y="71" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">buyHouse button...</text></switch></g><path d="M 180 130 L 313.63 130" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 318.88 130 L 311.88 133.5 L 313.63 130 L 311.88 126.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><path d="M 320 170 L 186.37 170" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 181.12 170 L 188.12 166.5 L 186.37 170 L 188.12 173.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="190" y="100" width="120" height="30" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 115px; margin-left: 191px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">decrease balance by cost of house</div></div></div></foreignObject><text x="250" y="119" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">decrease balance by...</text></switch></g><path d="M 320 130 L 332.93 142.93 Q 340 150 332.93 157.07 L 324.5 165.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 320.79 169.21 L 323.27 161.78 L 324.5 165.5 L 328.22 166.73 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="330" y="120" width="120" height="30" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 135px; margin-left: 331px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">decreaseBalance(int)</div></div></div></foreignObject><text x="390" y="139" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">decreaseBalance(int)</text></switch></g><path d="M 180 210 L 453.63 210" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 458.88 210 L 451.88 213.5 L 453.63 210 L 451.88 206.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="210" y="140" width="85" height="30" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 83px; height: 1px; padding-top: 155px; margin-left: 211px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">player balance decreased</div></div></div></foreignObject><text x="253" y="159" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">player balance...</text></switch></g><rect x="233.75" y="180" width="172.5" height="30" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 171px; height: 1px; padding-top: 195px; margin-left: 235px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">increment house count and update rent price</div></div></div></foreignObject><text x="320" y="199" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">increment house count and upd...</text></switch></g><path d="M 460 210 L 472.93 222.93 Q 480 230 472.93 237.07 L 464.5 245.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 460.79 249.21 L 463.27 241.78 L 464.5 245.5 L 468.22 246.73 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="478" y="197" width="120" height="30" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 212px; margin-left: 479px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">incrementHouseCount()</div></div></div></foreignObject><text x="538" y="216" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">incrementHouseCount()</text></switch></g><path d="M 460 290 L 186.37 290" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 181.12 290 L 188.12 286.5 L 186.37 290 L 188.12 293.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="243.75" y="260" width="152.5" height="30" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 151px; height: 1px; padding-top: 275px; margin-left: 245px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">house count incremented and rent price updated</div></div></div></foreignObject><text x="320" y="279" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">house count incremented a...</text></switch></g><path d="M 460 250 L 472.93 262.93 Q 480 270 472.93 277.07 L 464.5 285.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 460.79 289.21 L 463.27 281.78 L 464.5 285.5 L 468.22 286.73 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="482" y="248" width="58" height="23" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 56px; height: 1px; padding-top: 260px; margin-left: 483px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">setRent(int)</div></div></div></foreignObject><text x="511" y="263" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">setRent(i...</text></switch></g><path d="M 180 332 L 66.37 332" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 61.12 332 L 68.12 328.5 L 66.37 332 L 68.12 335.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="70" y="290" width="100" height="40" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 98px; height: 1px; padding-top: 310px; margin-left: 71px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">display correct balance</div></div></div></foreignObject><text x="120" y="314" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">display correct...</text></switch></g></g><switch><g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/><a transform="translate(0,-5)" xlink:href="https://desk.draw.io/support/solutions/articles/16000042487" target="_blank"><text text-anchor="middle" font-size="10px" x="50%" y="100%">Viewer does not support full SVG 1.1</text></a></switch></svg>

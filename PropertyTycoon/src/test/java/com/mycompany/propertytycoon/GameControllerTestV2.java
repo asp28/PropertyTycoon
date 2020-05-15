@@ -148,7 +148,7 @@ public class GameControllerTestV2 {
         controller.buyProperty(controller.getBoard().getBoardLocations().get(controller.getActivePlayer().getLocation()));
         controller.endTurn();
         controller.getActivePlayer().setLocation(3);
-        controller.performActions(controller.getPlayerActions());
+        controller.payRent();
         Assert.assertTrue(1496 == controller.getActivePlayer().getBalance());
     }
 
@@ -162,7 +162,7 @@ public class GameControllerTestV2 {
 
         controller.endTurn();
         controller.getActivePlayer().setLocation(3);
-        controller.performActions(controller.getPlayerActions());
+        controller.payRent();
         Assert.assertTrue(1492 == controller.getActivePlayer().getBalance());
     }
 
@@ -176,7 +176,8 @@ public class GameControllerTestV2 {
         controller.buyHouse();
         controller.endTurn();
         controller.getActivePlayer().setLocation(3);
-        controller.performActions(controller.getPlayerActions());
+        ArrayList<String> actions = controller.getPlayerActions();
+        controller.payRent();
         Assert.assertTrue(1480 == controller.getActivePlayer().getBalance());
     }
 

@@ -2,11 +2,12 @@ package com.mycompany.propertytycoon;
 
 import com.mycompany.propertytycoon.boardpieces.BoardPiece;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
-
+/**
+ * Property Tycoon Board
+ */
 public class Board {
 
     private ArrayList<BoardPiece> boardLocations;
@@ -20,6 +21,8 @@ public class Board {
     public Board() throws IOException, InvalidFormatException {
         this.boardLocations = new Parser().boardMaker();
     }
+    
+    //Methods
 
     /**
      * Getter for variable boardLocations
@@ -29,10 +32,12 @@ public class Board {
         return boardLocations;
     }
     
+    //Getter
+    
     /**
      * Gets the BoardPiece at a specific location
-     * @param num
-     * @return 
+     * @param num BoardPiece index in Board arrayList
+     * @return BoardPiece at index
      */
     public BoardPiece getBoardPiece(int num) {
         return boardLocations.get(num);

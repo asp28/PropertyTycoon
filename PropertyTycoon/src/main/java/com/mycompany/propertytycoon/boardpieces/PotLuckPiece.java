@@ -11,8 +11,8 @@ public class PotLuckPiece extends BoardPiece {
     
     /**
      * PotLuckPiece constructor
-     * @param title
-     * @param action 
+     * @param title title of PotLuck card
+     * @param action action of PotLuck card
      */
     public PotLuckPiece(String title, String action) {
         super(title);
@@ -21,7 +21,7 @@ public class PotLuckPiece extends BoardPiece {
     
     /**
      * Returns the action of the PotLuckPiece object
-     * @return action
+     * @return PotLuck action
      */
     public String getAction() {
         return action;

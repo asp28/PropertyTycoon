@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.propertytycoon.gui.initialisegame;
 
 import com.mycompany.propertytycoon.gui.utils.StageManager;
@@ -67,7 +62,8 @@ public class Player_an_ai_countController implements Initializable {
         });
         confirm.setOnAction(e -> {
             if (player_count + bot_count <= 6 && player_count + bot_count >= 2) {
-                SM.setPlayerNumber(bot_count + player_count);
+                SM.setPlayerNumber(player_count);
+                SM.setBotNumber(bot_count);
                 SM.changeScene(View.INIT);
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);

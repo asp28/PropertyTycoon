@@ -20,16 +20,28 @@ public enum View {
     MORTGAGE("src/main/java/com/mycompany/propertytycoon/gui/game/Mortgage.fxml"),
     SELL("src/main/java/com/mycompany/propertytycoon/gui/game/sell.fxml"),
     HOUSES("src/main/java/com/mycompany/propertytycoon/gui/game/houses.fxml"),
+    HOUSES_CHOICE("src/main/java/com/mycompany/propertytycoon/gui/game/houses_buy_or_sell.fxml"),
+    HOUSES_SELL("src/main/java/com/mycompany/propertytycoon/gui/game/houses_sell.fxml"),
     JAIL("src/main/java/com/mycompany/propertytycoon/gui/game/jail.fxml"),
+    WINNER("src/main/java/com/mycompany/propertytycoon/gui/game/winning.fxml"),
+    TIMER("src/main/java/com/mycompany/propertytycoon/gui/initialisegame/Timer.fxml"),
     AUCTION("src/main/java/com/mycompany/propertytycoon/gui/game/auction.fxml");
     
 
     private final String fxmlPath;
 
+    /**
+     * 
+     * @return String path of the FXML document
+     */
     public String getFXMLPath() {
         return fxmlPath;
     }
 
+    /**
+     * constructor
+     * @param fxmlPath - String path
+     */
     View(String fxmlPath) {
         this.fxmlPath = fxmlPath;
     }
